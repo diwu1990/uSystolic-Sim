@@ -11,7 +11,7 @@
 Ideally, *uSystolic-Sim* is open to any dataflow. But currently, it focuses on the weight-stationary dataflow, which enables low-cost and high-accuracy unary computing for a fair comparison with bianry computing.
 
 ### 2. Cycle-accurate trace generation
-Assuming no stalls in the computing kernel, *uSystolic-Sim* generates __cycle-accurate__ SRAM traces and approximate DRAM traces.
+Assuming no stalls in the computing kernel, *uSystolic-Sim* generates cycle-accurate SRAM traces and approximate DRAM traces.
 
 ### 3. Computing scheme-aware, multi-cycle MAC operation
 *uSystolic-Sim* offers per GEMM level configuration for MAC operations. The maximum cycle count for a MAC operation is related to the computing scheme in the kernel. For exmaple, with N-bit binary source data, unary computing, bit-seral and bit-parallel binary computing will spend at most 2^N, N and 1 cycles for one MAC operations, respectively.
