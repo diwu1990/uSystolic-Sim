@@ -9,6 +9,6 @@ Configuration of GEMMs to run on systolic array hardware.
 | Filter Width  | int    | Width of weight filters |
 | Channels      | int    | Count of input channels |
 | Num Filter    | int    | Count of output channels/filters |
-| Strides H     | int    | Strides in height dimension |
-| Strides W     | int    | Strides in width dimension |
+| Stride H      | int    | Strides in the height dimension |
+| Stride W      | int    | Strides in the width dimension |
 | MACCycle      | int    | Count of cycles for a MAC operation |
