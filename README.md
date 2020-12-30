@@ -4,7 +4,7 @@
 2) the bandwidth for memory accesses
 3) the power and energy consumption, including both computing kernels and memory hierarchies
 
-*uSystolic-Sim* is aware of the computing scheme, including [unary computing](https://conferences.computer.org/isca/pdfs/ISCA2020-4QlDegUf3fKiwUXfV0KdCm/466100a377/466100a377.pdf), bit-serial binary computing and bit-parallel binary computing.
+*uSystolic-Sim* is aware of the computing scheme, including [unary computing](https://conferences.computer.org/isca/pdfs/ISCA2020-4QlDegUf3fKiwUXfV0KdCm/466100a377/466100a377.pdf), bit-serial and bit-parallel binary computing.
 
 ## Feature
 ### 1. Weight-stationary dataflow
@@ -24,4 +24,4 @@ Assuming no stalls in the computing kernels, *uSystolic-Sim* generates __cycle-a
 All mandatory traces are generated to evaluate the latency and bandwidth for all GEMM operations, e.g., in deep neural networks.
 
 ### 2. Hardware simulation - [hwSim](https://github.com/diwu1990/uSystolic-Sim/blob/main/hwSim/README.md)
-The traces file, latency and bandwidth numbers are further used to model the power and energy consumption of the systolic array with the a target computing scheme.
+The traces, latency and bandwidth numbers are further used to model the power and energy consumption of the systolic array with the a target computing scheme.
