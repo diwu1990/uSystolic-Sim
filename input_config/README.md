@@ -13,5 +13,4 @@ Configuration of systolic array hardware.
 | OfmapOffset   | int    | Start address in word granularity for output feature maps |
 | Dataflow      | str    | Dataflow, currently use "ws" for weight stationary |
 | WordByte      | float  | Count of bytes for a data word |
-| MACCycle      | int    | Count of cycles for a MAC operation |
 | WeightBwOpt   | bool   | Weight bandwidth optimization flag |
