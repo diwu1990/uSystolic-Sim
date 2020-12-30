@@ -17,7 +17,7 @@ Assuming no stalls in the computing kernels, *uSystolic-Sim* generates __cycle-a
 *uSystolic-Sim* offers per GEMM level configuration for MAC operations. The maximum cycle count for a MAC operation is related to the computing scheme in the kernels. For exmaple, with N-bit binary source data, unary computing, bit-seral and bit-parallel binary computing will spend at most 2^N, N and 1 cycles for one MAC operations, respectively.
 
 ### 4. Varying-bitwidth data
-*uSystolic-Sim* provides per GEMM level configuration for the data bitwidth. The data bitwidth can be arbitrary, as required by the target application, and will ultimately influence the power and energy consumption. Note that *uSystolic-Sim* focuses on the performance and efficiency, while ignoring the influence of data bitwidth on accuracy.
+*uSystolic-Sim* provides per GEMM level configuration for the data bitwidth. The data bitwidth can be arbitrary, as required by the target application, and will ultimately influence the power and energy consumption. Note that *uSystolic-Sim* focuses on the performance and efficiency evaluation, while ignoring the influence of data bitwidth on accuracy.
 
 ## Workflow
 ### 1. Architecture simulation - [archSim](https://github.com/diwu1990/uSystolic-Sim/blob/main/archSim/README.md)
