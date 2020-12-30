@@ -20,8 +20,8 @@ Assuming no stalls in the computing kernel, *uSystolic-Sim* generates cycle-accu
 *uSystolic-Sim* provides per GEMM level configuration for the data bitwidth. The data bitwidth can be arbitrary, as required by the target application, and will ultimately influence the power and energy consumption. Note that *uSystolic-Sim* focuses on the performance and efficiency evaluation, while ignoring the influence of data bitwidth on accuracy.
 
 ## Workflow
-### 1. Architecture simulation - [archSim](https://github.com/diwu1990/uSystolic-Sim/blob/main/archSim/README.md)
+### 1. Architecture simulation - [simArch](https://github.com/diwu1990/uSystolic-Sim/blob/main/simArch/README.md)
 All mandatory traces are generated to evaluate the latency and bandwidth for all GEMM operations, e.g., in deep neural networks.
 
-### 2. Hardware simulation - [hwSim](https://github.com/diwu1990/uSystolic-Sim/blob/main/hwSim/README.md)
+### 2. Hardware simulation - [simHw](https://github.com/diwu1990/uSystolic-Sim/blob/main/simSim/README.md)
 The traces, latency and bandwidth numbers are further used to model the power and energy consumption of the systolic array with the a target computing scheme.
