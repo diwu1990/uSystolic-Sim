@@ -1,14 +1,14 @@
 import os
 import time
 import configparser as cp
-import run_nets as r
+import simArch.run_nets as r
 from absl import flags
 from absl import app
 import platform
 
 FLAGS = flags.FLAGS
 # name of flag | default | explanation
-flags.DEFINE_string("arch_config", "./input_config/eval.cfg", "file where we are getting our architechture from")
+flags.DEFINE_string("arch_config", "./input_config/scale.cfg", "file where we are getting our architechture from")
 flags.DEFINE_string("network", "./input_topology/test_net/test_net.csv", "topology that we are reading")
 
 class eval:
@@ -83,9 +83,6 @@ class eval:
         word_sz_bytes = config.get(arch_sec, 'WordByte')
         self.word_sz_bytes = float(word_sz_bytes.strip())
         
-        mac_cycles = config.get(arch_sec, 'MACCycle')
-        self.mac_cycles = int(mac_cycles.strip())
-        
         self.wgt_bw_opt= config.get(arch_sec, 'WeightBwOpt')
 
         self.topology_file= FLAGS.network
@@ -125,7 +122,6 @@ class eval:
                     net_name = net_name,
                     data_flow = self.dataflow,
                     word_size_bytes = self.word_sz_bytes,
-                    mac_cycles = self.mac_cycles,
                     wgt_bw_opt = self.wgt_bw_opt,
                     topology_file = self.topology_file,
                     offset_list = offset_list

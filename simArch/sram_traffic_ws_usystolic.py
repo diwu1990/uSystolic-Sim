@@ -15,7 +15,8 @@ def sram_traffic(
     filt_h=3, # weight height
     filt_w=3, # weight width
     num_channels=1, # input channel count
-    strides=1, # stride, assuming identical in row and column dimension
+    stride_h=1, # stride in row dimension
+    stride_w=1, # stride in column dimension
     num_filt=33, # filter count, also output channel count
     ofmap_base=2000000, # output feature map base addr
     filt_base=1000000, # weight base addr
@@ -48,8 +49,8 @@ def sram_traffic(
         max_w_bw = dimension_cols
         
     # Dimensions of output feature map channel
-    ofmap_h = math.floor((ifmap_h - filt_h + strides) / strides)
-    ofmap_w = math.floor((ifmap_w - filt_w + strides) / strides)
+    ofmap_h = math.floor((ifmap_h - filt_h + stride_h) / stride_h)
+    ofmap_w = math.floor((ifmap_w - filt_w + stride_w) / stride_w)
 
     # Number of pixels in one convolution window
     filt_sz = filt_h * filt_w * num_channels
@@ -125,7 +126,8 @@ def sram_traffic(
                                         filt_w = filt_w,
                                         num_channels = num_channels,
                                         num_filters = num_filt,
-                                        stride = strides,
+                                        stride_h = stride_h,
+                                        stride_w = stride_w,
                                         ofmap_h = ofmap_h,
                                         ofmap_w = ofmap_w,
                                         ofmap_px_filt = int(ofmap_px_filt),
@@ -212,7 +214,8 @@ def gen_trace_ifmap_ofmap_fold(
     ifmap_w = 4,
     filt_h = 3,
     filt_w = 3,
-    stride = 1,
+    stride_h = 1,
+    stride_w = 1,
     ofmap_h = 4,
     ofmap_w = 4,
     ofmap_px_filt = 16,
@@ -264,8 +267,8 @@ def gen_trace_ifmap_ofmap_fold(
     if remaining == act_rows:
         ifmap_top_addr = ifmap_base + ifmap_h * ifmap_w * num_channels
     else:
-        ifmap_h_used_init = (ofmap_h - 1) * stride
-        ifmap_w_used_init = (ofmap_w - 1) * stride
+        ifmap_h_used_init = (ofmap_h - 1) * stride_h
+        ifmap_w_used_init = (ofmap_w - 1) * stride_w
         ifmap_px_idx_init_next_fold = filt_sz - (remaining - act_rows)
         ifmap_h_idx_init_next_fold = math.floor(ifmap_px_idx_init_next_fold / wc_filt)
         ifmap_w_idx_init_next_fold = math.floor((ifmap_px_idx_init_next_fold % wc_filt) / num_channels)
@@ -293,8 +296,8 @@ def gen_trace_ifmap_ofmap_fold(
                 ofmap_w_idx = ofmap_px_row % ofmap_w
                 ofmap_legal = ofmap_h_idx >= 0 and ofmap_h_idx < ofmap_h and ofmap_w_idx >= 0 and ofmap_w_idx < ofmap_w
                 # get the h and w indexes of first ifmap px for this row/conv window
-                ifmap_h_idx_init = ofmap_h_idx * stride
-                ifmap_w_idx_init = ofmap_w_idx * stride
+                ifmap_h_idx_init = ofmap_h_idx * stride_h
+                ifmap_w_idx_init = ofmap_w_idx * stride_w
                 # the relative index of the px in the conv window
                 ifmap_px_idx_relative = ifmap_px_idx_init + reverse_row
                 # get the absolute h, w and c indexes of current ifmap px for this row/conv window

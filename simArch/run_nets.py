@@ -1,4 +1,4 @@
-import trace_gen_wrapper as tg
+import simArch.trace_gen_wrapper as tg
 
 
 def run_net(
@@ -9,7 +9,6 @@ def run_net(
     array_w=32,
     data_flow = 'ws',
     word_size_bytes = 1,
-    mac_cycles = 1,
     wgt_bw_opt = False,
     topology_file = './topologies/yolo_v2.csv',
     net_name='yolo_v2',
@@ -57,7 +56,7 @@ def run_net(
             
         elems = row.strip().split(',')
         # Do not continue if incomplete line
-        if len(elems) < 9:
+        if len(elems) < 11:
             continue
 
         name = elems[0]
@@ -73,7 +72,9 @@ def run_net(
         num_channels = int(elems[5])
         num_filters = int(elems[6])
 
-        strides = int(elems[7])
+        stride_h = int(elems[7])
+        stride_w = int(elems[8])
+        mac_cycles = int(elems[9])
         
         ifmap_base  = offset_list[0]
         filter_base = offset_list[1]
@@ -92,7 +93,8 @@ def run_net(
                                 filt_w = filt_w,
                                 num_channels = num_channels,
                                 num_filt = num_filters,
-                                strides = strides,
+                                stride_h = stride_h,
+                                stride_w = stride_w,
                                 data_flow = data_flow,
                                 word_size_bytes = word_size_bytes,
                                 filter_sram_size = filter_sram_size,
