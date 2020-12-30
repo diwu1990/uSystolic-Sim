@@ -12,8 +12,7 @@ flags.DEFINE_string("arch_config", "./input_config/eval.cfg", "file where we are
 flags.DEFINE_string("network", "./input_topology/test_net/test_net.csv", "topology that we are reading")
 
 class eval:
-    def __init__(self, sweep = False, save = False):
-        self.sweep = sweep
+    def __init__(self, save = False):
         self.save_space = save
 
     def parse_config(self):
@@ -94,10 +93,7 @@ class eval:
     def run_eval(self):
         self.parse_config()
 
-        if self.sweep == False:
-            self.run_once()
-        else:
-            self.run_sweep()
+        self.run_once()
 
 
     def run_once(self):
@@ -106,7 +102,7 @@ class eval:
         assert self.dataflow == 'ws', "Input dataflow for uSystolic should be weight stationary."
 
         print("====================================================")
-        print("***************** uSystolic SIM ********************")
+        print("***************** uSystolic Sim ********************")
         print("====================================================")
         print("Array Size: \t" + str(self.ar_h_min) + "x" + str(self.ar_w_min))
         print("SRAM IFMAP: \t" + str(self.isram_min))
@@ -135,7 +131,7 @@ class eval:
                     offset_list = offset_list
                 )
         self.cleanup()
-        print("************ uSystolic SIM Run Complete ************")
+        print("************ uSystolic Sim Run Complete ************")
 
 
     def cleanup(self):
@@ -217,7 +213,7 @@ class eval:
 
 
 def main(argv):
-    s = eval(save = False, sweep = False)
+    s = eval(save = False)
     s.run_eval()
 
 if __name__ == '__main__':
