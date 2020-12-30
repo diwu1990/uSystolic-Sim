@@ -1,6 +1,7 @@
 # **S**ystolic **C**NN **A**cce**LE**rator Simulator (SCALE Sim)
 
 uSystolic is adapted from [SCALE-Sim](https://github.com/ARM-software/SCALE-Sim) by ARM.
+*uSystolic-Sim* is not developed to support general-purpose systolic array simulations as [SCALE-Sim](https://github.com/ARM-software/SCALE-Sim) by ARM.
 
 
 SCALE sim is a CNN accelerator simulator, that provides cycle-accurate timing,
