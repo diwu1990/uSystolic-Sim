@@ -13,11 +13,11 @@ Ideally, *uSystolic-Sim* is open to any dataflow. But currently, it focuses on t
 ### 2. Cycle-accurate trace generation
 Assuming no stalls in the computing kernels, *uSystolic-Sim* generates __cycle-accurate__ SRAM traces and approximate DRAM traces.
 
-### 3. Multi-cycle MAC execution
-*uSystolic-Sim* offers per GEMM level configuration for MAC operations. The cycle count for a MAC operation is determined by the computing scheme in the kernels. For exmaple, with N-bit binary source data, unary computing, bit-seral and bit-parallel binary computing will spend 2^N, N and 1 cycles for one MAC operations, respectively.
+### 3. Computing scheme-aware, multi-cycle MAC operation
+*uSystolic-Sim* offers per GEMM level configuration for MAC operations. The maximum cycle count for a MAC operation is related to the computing scheme in the kernels. For exmaple, with N-bit binary source data, unary computing, bit-seral and bit-parallel binary computing will spend at most 2^N, N and 1 cycles for one MAC operations, respectively.
 
 ### 4. Varying-bitwidth data
-*uSystolic-Sim* provides per GEMM level configuration for the data bitwidth, and the bitwidth is N can be arbitrary, as required by the target application.
+*uSystolic-Sim* provides per GEMM level configuration for the data bitwidth. The data bitwidth can be arbitrary, as required by the target application, and will ultimately influence the power and energy consumption. Note that *uSystolic-Sim* focuses on the performance and efficiency, while ignoring the influence of data bitwidth on accuracy.
 
 ## Workflow
 ### 1. Architecture simulation - [archSim](https://github.com/diwu1990/uSystolic-Sim/blob/main/archSim/README.md)
