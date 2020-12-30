@@ -1,10 +1,17 @@
-from 
-FLAGS = flags.FLAGS
-#name of flag | default | explanation
-flags.DEFINE_string("arch_config","./configs/scale.cfg","file where we are getting our architechture from")
-flags.DEFINE_string("network","./topologies/test_net/test_net.csv","topology that we are reading")
+import os
+import time
+import configparser as cp
+import run_nets as r
+from absl import flags
+from absl import app
+import platform
 
-class scale:
+FLAGS = flags.FLAGS
+# name of flag | default | explanation
+flags.DEFINE_string("arch_config", "./input_config/eval.cfg", "file where we are getting our architechture from")
+flags.DEFINE_string("network", "./input_topology/test_net/test_net.csv", "topology that we are reading")
+
+class eval:
     def __init__(self, sweep = False, save = False):
         self.sweep = sweep
         self.save_space = save
@@ -84,7 +91,7 @@ class scale:
 
         self.topology_file= FLAGS.network
 
-    def run_scale(self):
+    def run_eval(self):
         self.parse_config()
 
         if self.sweep == False:
@@ -106,7 +113,6 @@ class scale:
         print("SRAM Filter: \t" + str(self.fsram_min))
         print("SRAM OFMAP: \t" + str(self.osram_min))
         print("Word Bytes: \t" + str(self.word_sz_bytes))
-        print("MAC Cycles: \t" + str(self.mac_cycles))
         print("Weight BW Opt: \t" + str(self.wgt_bw_opt))
         print("CSV file path: \t" + self.topology_file)
         print("Dataflow: \t" + df_string)
@@ -141,7 +147,7 @@ class scale:
 
             net_name = self.topology_file.split('/')[-1].split('.')[0]
 
-            path = ".\\output\\scale_out"
+            path = ".\\output\\eval_out"
             if self.run_name == "":
                 path = ".\\outputs\\" + net_name +"_"+ self.dataflow
             else:
@@ -178,7 +184,7 @@ class scale:
 
             net_name = self.topology_file.split('/')[-1].split('.')[0]
 
-            path = "./output/scale_out"
+            path = "./output/eval_out"
             if self.run_name == "":
                 path = "./outputs/" + net_name +"_"+ self.dataflow
             else:
@@ -210,31 +216,9 @@ class scale:
                 os.system(cmd)
 
 
-    def run_sweep(self):
-
-        all_mac_cycle_list = [1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384]
-        all_arr_dim_list = [1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384]
-        all_sram_sz_list = [256, 512, 1024]
-
-        mac_cycle_list = [16, 32, 64, 128, 256]
-        arr_h_list = [16, 32, 64, 128, 256]
-        arr_w_list = [16, 32, 64, 128, 256]
-
-        net_name = self.topology_file.split('/')[-1].split('.')[0]
-        for df in data_flow_list:
-            self.dataflow = df
-
-            for i in range(len(arr_h_list)):
-                self.ar_h_min = arr_h_list[i]
-                self.ar_w_min = arr_w_list[i]
-
-                self.run_name = net_name + "_" + df + "_" + str(self.ar_h_min) + "x" + str(self.ar_w_min)
-
-                self.run_once()
-
 def main(argv):
-    s = scale(save = False, sweep = False)
-    s.run_scale()
+    s = eval(save = False, sweep = False)
+    s.run_eval()
 
 if __name__ == '__main__':
   app.run(main)

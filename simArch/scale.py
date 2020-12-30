@@ -113,7 +113,6 @@ class scale:
         print("SRAM Filter: \t" + str(self.fsram_min))
         print("SRAM OFMAP: \t" + str(self.osram_min))
         print("Word Bytes: \t" + str(self.word_sz_bytes))
-        print("MAC Cycles: \t" + str(self.mac_cycles))
         print("Weight BW Opt: \t" + str(self.wgt_bw_opt))
         print("CSV file path: \t" + self.topology_file)
         print("Dataflow: \t" + df_string)
