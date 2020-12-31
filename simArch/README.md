@@ -4,17 +4,17 @@ In *uSystolic-Sim*, we focus on the influence of computing schemes, which differ
 
 The following table provides a comparison between them.
 
-| Feature               | *uSystolic-Sim*        | SCALE-Sim              |
-| --------------------- | ---------------------- | ---------------------- |
-| Trace generation      | <ul><li>[x] </li></ul> | <ul><li>[x] </li></ul> |
-| Latency report        | <ul><li>[x] </li></ul> | <ul><li>[x] </li></ul> |
-| Utilization report    | <ul><li>[x] </li></ul> | <ul><li>[x] </li></ul> |
-| Bandwidth report      | <ul><li>[x] </li></ul> | <ul><li>[x] </li></ul> |
-| Varying H/W strides   | <ul><li>[x] </li></ul> | <ul><li>[ ] </li></ul> |
-| <ul><li>Varying-bitwidth data</li><li>Cycle-accurate trace</li><li>Multi-cycle MAC</li></ul> | <ul><li>[x] </li></ul><br><ul><li>[x] </li></ul><br><ul><li>[x] </li></ul> | <ul><li>[ ] </li></ul><br><ul><li>[ ] </li></ul><br><ul><li>[ ] </li></ul> |
-| Weight stationary     | <ul><li>[x] </li></ul> | <ul><li>[x] </li></ul> |
-| Input stationary      | <ul><li>[ ] </li></ul> | <ul><li>[x] </li></ul> |
-| Output stationary     | <ul><li>[ ] </li></ul> | <ul><li>[x] </li></ul> |
+| Feature               | *uSystolic-Sim*       | SCALE-Sim             |
+| --------------------- | --------------------- | --------------------- |
+| Trace generation      | <ul><li>[x]</li></ul> | <ul><li>[x]</li></ul> |
+| Latency report        | <ul><li>[x]</li></ul> | <ul><li>[x]</li></ul> |
+| Utilization report    | <ul><li>[x]</li></ul> | <ul><li>[x]</li></ul> |
+| Bandwidth report      | <ul><li>[x]</li></ul> | <ul><li>[x]</li></ul> |
+| Varying H/W strides   | <ul><li>[x]</li></ul> | <ul><li>[ ]</li></ul> |
+| <ul><li>Varying-bitwidth data</li><li>Cycle-accurate trace</li><li>Multi-cycle MAC</li></ul> | <ul><li>[x]</li><li>[x]</li><li>[x]</li></ul> | <ul><li>[ ]</li><li>[ ]</li><li>[ ]</li></ul> |
+| Weight stationary     | <ul><li>[x]</li></ul> | <ul><li>[x]</li></ul> |
+| Input stationary      | <ul><li>[ ]</li></ul> | <ul><li>[x]</li></ul> |
+| Output stationary     | <ul><li>[ ]</li></ul> | <ul><li>[x]</li></ul> |
 
 
 
