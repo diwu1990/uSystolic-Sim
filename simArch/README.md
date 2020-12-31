@@ -6,7 +6,7 @@ The following table provides a comparison between them.
 
 | Feature               | *uSystolic-Sim*       | SCALE-Sim             |
 | --------------------- | --------------------- | --------------------- |
-| Trace generation      | <ul><li>[x]</li></ul> | <ul><li>[x]</li></ul> |
+| Trace generation      | <ul><li>[x]</li></ul> | :heavy_check_mark: |
 | Latency report        | <ul><li>[x]</li></ul> | <ul><li>[x]</li></ul> |
 | Utilization report    | <ul><li>[x]</li></ul> | <ul><li>[x]</li></ul> |
 | Bandwidth report      | <ul><li>[x]</li></ul> | <ul><li>[x]</li></ul> |
