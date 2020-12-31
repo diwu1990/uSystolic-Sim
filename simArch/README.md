@@ -4,9 +4,9 @@ In *uSystolic-Sim*, we focus on the influence of computing schemes, which differ
 
 The following table provides a comparison between them.
 
-| Category | Feature               | *uSystolic-Sim*    | SCALE-Sim          |
-| -------  | --------------------- | ------------------ | ------------------ |
-| Performance Analysis  | <ul><li>Trace</li><li>Latency</li><li>Utilization</li><li>Bandwidth</li><li>Strides</li></ul> | <ul><li>:heavy_check_mark:</li><li>:heavy_check_mark:</li><li>:heavy_check_mark:</li><li>:heavy_check_mark:</li><li>:heavy_check_mark:</li></ul> | <ul><li>:heavy_check_mark:</li><li>:heavy_check_mark:</li><li>:heavy_check_mark:</li><li>:heavy_check_mark:</li><li></li></ul> |
+| Function | Feature               | *uSystolic-Sim*    | SCALE-Sim          |
+| -------- | --------------------- | ------------------ | ------------------ |
+| Performance Analysis  | <ul><li>Trace generation</li><li>GEMM latency</li><li>MAC utilization</li><li>Memory bandwidth</li><li>Asymmetric strides</li></ul> | <ul><li>:heavy_check_mark:</li><li>:heavy_check_mark:</li><li>:heavy_check_mark:</li><li>:heavy_check_mark:</li><li>:heavy_check_mark:</li></ul> | <ul><li>:heavy_check_mark:</li><li>:heavy_check_mark:</li><li>:heavy_check_mark:</li><li>:heavy_check_mark:</li><li></li></ul> |
 | Computing scheme | <ul><li>Varying-bitwidth data</li><li>Cycle-accurate trace</li><li>Multi-cycle MAC</li></ul> | <ul><li>:heavy_check_mark:</li><li>:heavy_check_mark:</li><li>:heavy_check_mark:</li></ul> | <ul><li></li><li></li><li></li></ul> |
 | Dataflow | <ul><li>Weight stationary</li><li>Input stationary</li><li>Output stationary</li></ul>      | <ul><li>:heavy_check_mark:</li><li></li><li></li></ul> | <ul><li>:heavy_check_mark:</li><li>:heavy_check_mark:</li><li>:heavy_check_mark:</li></ul> |
 
