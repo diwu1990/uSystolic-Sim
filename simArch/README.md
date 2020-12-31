@@ -11,7 +11,7 @@ The following table provides a comparison between them.
 | Utilization report    | <ul><li>[x] </li></ul> | <ul><li>[x] </li></ul> |
 | Bandwidth report      | <ul><li>[x] </li></ul> | <ul><li>[x] </li></ul> |
 | Varying H/W strides   | <ul><li>[x] </li></ul> | <ul><li>[ ] </li></ul> |
-| Varying-bitwidth data<br>Cycle-accurate trace<br>Multi-cycle MAC | <ul><li>[x] </li></ul><br><ul><li>[x] </li></ul><br><ul><li>[x] </li></ul> | <ul><li>[ ] </li></ul><br><ul><li>[ ] </li></ul><br><ul><li>[ ] </li></ul> |
+| <ul><li>Varying-bitwidth data</li><li>Cycle-accurate trace</li><li>Multi-cycle MAC</li></ul> | <ul><li>[x] </li></ul><br><ul><li>[x] </li></ul><br><ul><li>[x] </li></ul> | <ul><li>[ ] </li></ul><br><ul><li>[ ] </li></ul><br><ul><li>[ ] </li></ul> |
 | Weight stationary     | <ul><li>[x] </li></ul> | <ul><li>[x] </li></ul> |
 | Input stationary      | <ul><li>[ ] </li></ul> | <ul><li>[x] </li></ul> |
 | Output stationary     | <ul><li>[ ] </li></ul> | <ul><li>[x] </li></ul> |
