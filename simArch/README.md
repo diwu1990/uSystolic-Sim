@@ -18,7 +18,7 @@ Configure the hardware using [parameters](https://github.com/diwu1990/uSystolic-
 Configure the GEMM using [parameters](https://github.com/diwu1990/uSystolic-Sim/tree/main/input_topology), and each GEMM has its own typology and cycle count per MAC.
 
 ### 3. Generate the trace.
-Above configurations are read by the simulator to generate both SRAM and DRAM traces. The SRAMs for both the feature maps and weight filters apply double buffering to ensure the no stalls occur during computation. The SRAM traces for all data are cycle-accurate to ensure the accurate evaluation of power and energy, when a MAC requires multiple cycles. On the other hand, the DRAM traces are approximately generated without stalling the computation.
+Above configurations are read by the simulator to generate both SRAM and DRAM traces. The SRAM traces for all data are cycle-accurate to ensure the accurate evaluation of power and energy, when a MAC requires multiple cycles. On the other hand, the DRAM traces are approximately generated without stalling the computation.
 
 ### 4. Calculate the bandwidth
 With all traces ready, the GEMM latency, MAC utilization and memory bandwidth are calculated, all assuming non-stalled systolic array computation.

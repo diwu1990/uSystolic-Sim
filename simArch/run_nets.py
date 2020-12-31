@@ -60,8 +60,6 @@ def run_net(
             continue
 
         name = elems[0]
-        print("")
-        print("Commencing run for " + name)
 
         ifmap_h = int(elems[1])
         ifmap_w = int(elems[2])
@@ -80,6 +78,9 @@ def run_net(
         filter_base = offset_list[1]
         ofmap_base  = offset_list[2]
 
+        print("")
+        print("Commencing run for " + name + " with a MAC cycle count " + str(mac_cycles))
+        
         bw_log = str(ifmap_sram_size) +",\t" + str(filter_sram_size) + ",\t" + str(ofmap_sram_size) + ",\t" + name + ",\t"
         max_bw_log = bw_log
         detailed_log = name + ",\t"

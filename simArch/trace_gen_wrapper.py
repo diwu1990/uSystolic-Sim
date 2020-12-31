@@ -106,80 +106,75 @@ def gen_max_bw_numbers(
     word_size_bytes
 ):
 
-    max_dram_ifmap_bw = 0
-    num_bytes = 0
+    max_dram_ifmap_bw_in_words = 0 # max words per cycle
+    num_words = 0
     max_dram_act_clk = ""
     f = open(dram_ifmap_trace_file, 'r')
 
     for row in f:
         clk = row.split(',')[0]
-        num_bytes = len(row.split(',')) - 2
+        num_words = len(row.split(',')) - 2
         
-        
-        if max_dram_ifmap_bw < num_bytes:
-            max_dram_ifmap_bw = num_bytes
+        if max_dram_ifmap_bw_in_words < num_words:
+            max_dram_ifmap_bw_in_words = num_words
             max_dram_act_clk = clk
     f.close()
 
-    max_dram_filter_bw = 0
-    num_bytes = 0
+    max_dram_filter_bw_in_words = 0 # max words per cycle
+    num_words = 0
     max_dram_filt_clk = ""
     f = open(dram_filter_trace_file, 'r')
 
     for row in f:
         clk = row.split(',')[0]
-        num_bytes = len(row.split(',')) - 2
+        num_words = len(row.split(',')) - 2
 
-        if max_dram_filter_bw < num_bytes:
-            max_dram_filter_bw = num_bytes
+        if max_dram_filter_bw_in_words < num_words:
+            max_dram_filter_bw_in_words = num_words
             max_dram_filt_clk = clk
-
     f.close()
 
-    max_dram_ofmap_bw = 0
-    num_bytes = 0
+    max_dram_ofmap_bw_in_words = 0 # max words per cycle
+    num_words = 0
     max_dram_ofmap_clk = ""
     f = open(dram_ofmap_trace_file, 'r')
 
     for row in f:
         clk = row.split(',')[0]
-        num_bytes = len(row.split(',')) - 2
+        num_words = len(row.split(',')) - 2
 
-        if max_dram_ofmap_bw < num_bytes:
-            max_dram_ofmap_bw = num_bytes
+        if max_dram_ofmap_bw_in_words < num_words:
+            max_dram_ofmap_bw_in_words = num_words
             max_dram_ofmap_clk = clk
-
     f.close()
     
-    max_sram_ofmap_bw = 0
-    num_bytes = 0
+    max_sram_ofmap_bw_in_words = 0 # max words per cycle
+    num_words = 0
     f = open(sram_write_trace_file, 'r')
 
     for row in f:
         elems = row.strip().split(',')
-        num_bytes = parse_sram_read_data(elems[1:])
+        num_words = parse_sram_read_data(elems[1:])
 
-        if max_sram_ofmap_bw < num_bytes:
-            max_sram_ofmap_bw = num_bytes
-
+        if max_sram_ofmap_bw_in_words < num_words:
+            max_sram_ofmap_bw_in_words = num_words
     f.close()
 
-    max_sram_read_bw = 0
-    num_bytes = 0
+    max_sram_read_bw_in_words = 0 # max words per cycle
+    num_words = 0
     f = open(sram_read_trace_file, 'r')
 
     for row in f:
         elems = row.strip().split(',')
-        num_bytes = parse_sram_read_data(elems[1:])
+        num_words = parse_sram_read_data(elems[1:])
         
-        if max_sram_read_bw < num_bytes:
-            max_sram_read_bw = num_bytes
-
+        if max_sram_read_bw_in_words < num_words:
+            max_sram_read_bw_in_words = num_words
     f.close()
 
-    log  = str(max_dram_ifmap_bw) + ",\t" + str(max_dram_filter_bw) + ",\t" 
-    log += str(max_dram_ofmap_bw) + ",\t" + str(max_sram_read_bw) + ",\t"
-    log += str(max_sram_ofmap_bw)  + ","
+    log  = str(max_dram_ifmap_bw_in_words * word_size_bytes) + ",\t" + str(max_dram_filter_bw_in_words * word_size_bytes) + ",\t" 
+    log += str(max_dram_ofmap_bw_in_words * word_size_bytes) + ",\t" + str(max_sram_read_bw_in_words * word_size_bytes) + ",\t"
+    log += str(max_sram_ofmap_bw_in_words * word_size_bytes)  + ","
     return log
 
 
@@ -304,16 +299,16 @@ def gen_bw_numbers(
 
     delta_clk = max_clk - min_clk
 
-    dram_ifmap_bw  = num_dram_ifmap_words / delta_clk
-    dram_filter_bw      = num_dram_filter_words / delta_clk
-    dram_ofmap_bw       = num_dram_ofmap_words / delta_clk
-    sram_ofmap_bw       = num_sram_ofmap_words / delta_clk
-    sram_read_bw        = num_sram_read_words / delta_clk
+    dram_ifmap_bw       = num_dram_ifmap_words / delta_clk * word_size_bytes
+    dram_filter_bw      = num_dram_filter_words / delta_clk * word_size_bytes
+    dram_ofmap_bw       = num_dram_ofmap_words / delta_clk * word_size_bytes
+    sram_ofmap_bw       = num_sram_ofmap_words / delta_clk * word_size_bytes
+    sram_read_bw        = num_sram_read_words / delta_clk * word_size_bytes
     
     units = " Bytes/cycle"
-    print("DRAM IFMAP Read BW  : \t" + str(dram_ifmap_bw * word_size_bytes) + units)
-    print("DRAM Filter Read BW : \t" + str(dram_filter_bw * word_size_bytes) + units)
-    print("DRAM OFMAP Write BW : \t" + str(dram_ofmap_bw * word_size_bytes) + units)
+    print("DRAM IFMAP Read BW  : \t" + str(dram_ifmap_bw) + units)
+    print("DRAM Filter Read BW : \t" + str(dram_filter_bw) + units)
+    print("DRAM OFMAP Write BW : \t" + str(dram_ofmap_bw) + units)
     
     log = str(dram_ifmap_bw) + ",\t" + str(dram_filter_bw) + ",\t" + str(dram_ofmap_bw) + ",\t" + str(sram_read_bw) + ",\t" + str(sram_ofmap_bw) + ","
     return log, detailed_log

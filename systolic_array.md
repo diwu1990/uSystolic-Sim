@@ -1,4 +1,3 @@
-Mind you that this simulator is based on google's tpu while Eyeriss is from MIT/NVIDIA
 # The processing element
 
 ## memory
