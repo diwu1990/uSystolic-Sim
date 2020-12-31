@@ -1,5 +1,5 @@
 # uSystolic-Sim
-*uSystolic-Sim* is a systolic array simulator, which generates cycle-accurate traces to evaluate 
+*uSystolic-Sim* is a [systolic array](https://github.com/diwu1990/uSystolic-Sim/blob/main/systolic_array.md) simulator, which generates cycle-accurate traces to evaluate 
 1) the latency for GEMM execution the computing kernel
 2) the bandwidth for memory hierarchy
 3) the power and energy consumption, including both the computing kernel and memory hierarchy
