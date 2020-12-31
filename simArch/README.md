@@ -1,18 +1,22 @@
-The architecute simulation in *uSystolic-Sim* is adapted from [SCALE-Sim](https://github.com/ARM-software/SCALE-Sim) by ARM. The following table provides a brief comparison between them.
+The architecute simulation in *uSystolic-Sim* is adapted from [SCALE-Sim](https://github.com/ARM-software/SCALE-Sim) by ARM. In brief, the key difference is that *uSystolic-Sim* focuses on the influence of computing schemes, while SCALE-Sim targets the influence of dataflow.
 
-| Feature              | *uSystolic-Sim*        | SCALE-Sim              |
-| -------------------- | ---------------------- | ---------------------- |
-| Cycle accurate       | <ul><li>[x] </li></ul> | <ul><li>[x] </li></ul> |
-| Cycle accurate       | <ul><li>[x] </li></ul> | <ul><li>[x] </li></ul> |
-| Cycle accurate       | <ul><li>[x] </li></ul> | <ul><li>[x] </li></ul> |
-| Cycle accurate       | <ul><li>[x] </li></ul> | <ul><li>[x] </li></ul> |
-| Cycle accurate       | <ul><li>[x] </li></ul> | <ul><li>[x] </li></ul> |
-| Cycle accurate       | <ul><li>[x] </li></ul> | <ul><li>[x] </li></ul> |
-| Cycle accurate       | <ul><li>[x] </li></ul> | <ul><li>[x] </li></ul> |
-| Cycle accurate       | <ul><li>[x] </li></ul> | <ul><li>[x] </li></ul> |
+In *uSystolic-Sim*, we focus on the influence of computing schemes, which differ in the MAC cycle count, to the performance, including [unary computing](https://conferences.computer.org/isca/pdfs/ISCA2020-4QlDegUf3fKiwUXfV0KdCm/466100a377/466100a377.pdf), bit-serial and bit-parallel binary computing, instead of the influence of dataflow to the performance.
+
+The following table provides a comparison between them.
+
+| Feature               | *uSystolic-Sim*        | SCALE-Sim              |
+| --------------------- | ---------------------- | ---------------------- |
+| Trace generation      | <ul><li>[x] </li></ul> | <ul><li>[x] </li></ul> |
+| Latency report        | <ul><li>[x] </li></ul> | <ul><li>[x] </li></ul> |
+| Utilization report    | <ul><li>[x] </li></ul> | <ul><li>[x] </li></ul> |
+| Bandwidth report      | <ul><li>[x] </li></ul> | <ul><li>[x] </li></ul> |
+| Varying H/W strides   | <ul><li>[x] </li></ul> | <ul><li>[ ] </li></ul> |
+| Varying-bitwidth data<br>Cycle-accurate trace<br>Multi-cycle MAC | <ul><li>[x] </li></ul><br><ul><li>[x] </li></ul><br><ul><li>[x] </li></ul> | <ul><li>[ ] </li></ul><br><ul><li>[ ] </li></ul><br><ul><li>[ ] </li></ul> |
+| Weight stationary     | <ul><li>[x] </li></ul> | <ul><li>[x] </li></ul> |
+| Input stationary      | <ul><li>[ ] </li></ul> | <ul><li>[x] </li></ul> |
+| Output stationary     | <ul><li>[ ] </li></ul> | <ul><li>[x] </li></ul> |
 
 
-*uSystolic-Sim* is not developed to support general-purpose systolic array simulations as [SCALE-Sim](https://github.com/ARM-software/SCALE-Sim) by ARM.
 
 
 SCALE sim is a CNN accelerator simulator, that provides cycle-accurate timing,
@@ -139,23 +143,14 @@ There are three summary logs:
 
 In addition cycle accurate SRAM/DRAM access logs are also dumped and could be accesses at ```./outputs/<topology_name>/layer_wise```
 
-### Detailed Documentation
+<!-- ## Citing
 
-For detailed insights on working of SCALE-Sim, you can refer to this [paper](https://arxiv.org/abs/1811.02883)
-
-## Citing
-
-To be released.
+To be released. -->
 
 <!-- If you find this tool useful for your research, please use the following bibtex to cite us,
 
 ```
-@article{samajdar2018scale,
-  title={SCALE-Sim: Systolic CNN Accelerator Simulator},
-  author={Samajdar, Ananda and Zhu, Yuhao and Whatmough, Paul and Mattina, Matthew and Krishna, Tushar},
-  journal={arXiv preprint arXiv:1811.02883},
-  year={2018}
-}
+bib
 ``` -->
 
 ## Authors
