@@ -1,14 +1,12 @@
 The architecute simulation in *uSystolic-Sim* is adapted from [SCALE-Sim](https://github.com/ARM-software/SCALE-Sim) by ARM. In brief, the key difference is that *uSystolic-Sim* focuses on the influence of computing schemes, while SCALE-Sim targets the influence of dataflow.
 
-In *uSystolic-Sim*, we focus on the influence of computing schemes, which differ in the MAC cycle count, to the performance, including [unary computing](https://conferences.computer.org/isca/pdfs/ISCA2020-4QlDegUf3fKiwUXfV0KdCm/466100a377/466100a377.pdf), bit-serial and bit-parallel binary computing, instead of the influence of dataflow to the performance.
-
-The following table provides a comparison between them.
+The following table provides a comparison between them. For general performance analysis, *uSystolic-Sim* additionally supports asymmetric strides in matrix convolution, besides the report of trace, latency, utilization and bandwidth. For the dataflow, *uSystolic-Sim* currently only supports weight stationary, which natually provides high accuracy for unary computing; on the other hand, SCALE-Sim is developed to provide generalizability. For computing scheme, *uSystolic-Sim* can support varying computing schemes with different MAC cycle count and data bitwidth, which jointly influence the cycle-level trace behavior, as well as the final power and energy consumption.
 
 | Function | Feature               | *uSystolic-Sim*    | SCALE-Sim          |
 | -------- | --------------------- | ------------------ | ------------------ |
 | Performance Analysis  | <ul><li>Trace generation</li><li>GEMM latency</li><li>MAC utilization</li><li>Memory bandwidth</li><li>Asymmetric strides</li></ul> | <ul><li>:heavy_check_mark:</li><li>:heavy_check_mark:</li><li>:heavy_check_mark:</li><li>:heavy_check_mark:</li><li>:heavy_check_mark:</li></ul> | <ul><li>:heavy_check_mark:</li><li>:heavy_check_mark:</li><li>:heavy_check_mark:</li><li>:heavy_check_mark:</li><li></li></ul> |
-| Computing scheme | <ul><li>Varying-bitwidth data</li><li>Cycle-accurate trace</li><li>Multi-cycle MAC</li></ul> | <ul><li>:heavy_check_mark:</li><li>:heavy_check_mark:</li><li>:heavy_check_mark:</li></ul> | <ul><li></li><li></li><li></li></ul> |
 | Dataflow | <ul><li>Weight stationary</li><li>Input stationary</li><li>Output stationary</li></ul>      | <ul><li>:heavy_check_mark:</li><li></li><li></li></ul> | <ul><li>:heavy_check_mark:</li><li>:heavy_check_mark:</li><li>:heavy_check_mark:</li></ul> |
+| Computing scheme | <ul><li>Multi-cycle MAC</li><li>Varying-bitwidth data</li><li>Cycle-accurate trace</li></ul> | <ul><li>:heavy_check_mark:</li><li>:heavy_check_mark:</li><li>:heavy_check_mark:</li></ul> | <ul><li></li><li></li><li></li></ul> |
 
 
 
