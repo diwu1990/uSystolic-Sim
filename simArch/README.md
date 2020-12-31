@@ -1,8 +1,15 @@
 The architecute simulation in *uSystolic-Sim* is adapted from [SCALE-Sim](https://github.com/ARM-software/SCALE-Sim) by ARM. The following table provides a brief comparison between them.
 
-| Feature     | *uSystolic-Sim*   | SCALE-Sim |
-| ------------- | ------ | ----------- |
-| Cycle accurate    | <ul><li>[x]</li>    | <ul><li>[x]</li> |
+| Feature              | *uSystolic-Sim*        | SCALE-Sim              |
+| -------------------- | ---------------------- | ---------------------- |
+| Cycle accurate       | <ul><li>[x] </li></ul> | <ul><li>[x] </li></ul> |
+| Cycle accurate       | <ul><li>[x] </li></ul> | <ul><li>[x] </li></ul> |
+| Cycle accurate       | <ul><li>[x] </li></ul> | <ul><li>[x] </li></ul> |
+| Cycle accurate       | <ul><li>[x] </li></ul> | <ul><li>[x] </li></ul> |
+| Cycle accurate       | <ul><li>[x] </li></ul> | <ul><li>[x] </li></ul> |
+| Cycle accurate       | <ul><li>[x] </li></ul> | <ul><li>[x] </li></ul> |
+| Cycle accurate       | <ul><li>[x] </li></ul> | <ul><li>[x] </li></ul> |
+| Cycle accurate       | <ul><li>[x] </li></ul> | <ul><li>[x] </li></ul> |
 
 
 *uSystolic-Sim* is not developed to support general-purpose systolic array simulations as [SCALE-Sim](https://github.com/ARM-software/SCALE-Sim) by ARM.
