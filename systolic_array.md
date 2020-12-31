@@ -21,9 +21,9 @@ Data in systolic array can be either:
 * weight filters (multiply element wise filter by input, add them up, save them as output, then moves in strides)
 * output feature map (smaller than input, can get smaller with large stride or large filter)
 
-PEs arranged in a big array, and global memory that is specified for output, input and filters (aka weights)
+PEs arranged in a big array, and global memory that is specified for output, input and filters.
 
-Athe weight stationary dataflow can reuse weights during loading inputs:
+The weight stationary dataflow can reuse weights during loading inputs:
 
 * __weights__ are loaded once and stored in the __register__ different PEs
 * __inputs__ are loaded from __global memory__ everytime
