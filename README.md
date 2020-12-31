@@ -21,55 +21,30 @@ Assuming no stalls in the computing kernel, *uSystolic-Sim* generates cycle-accu
 
 ## Workflow
 ### 1. Architecture simulation - [simArch](https://github.com/diwu1990/uSystolic-Sim/blob/main/simArch/README.md)
-All mandatory traces are generated to evaluate the latency and bandwidth for all GEMM operations, e.g., in deep neural networks.
+All mandatory traces are generated to evaluate the latency, utilization and bandwidth for all GEMM operations, e.g., in deep neural networks.
+The config files inside [input_config](https://github.com/diwu1990/uSystolic-Sim/blob/main/input_config/README.md) contain achitecture presets.
+The csv files inside [input_topology](https://github.com/diwu1990/uSystolic-Sim/blob/main/input_topology/README.md) contain different networks.
 
 ### 2. Hardware simulation - [simHw](https://github.com/diwu1990/uSystolic-Sim/blob/main/simHw/README.md)
 The traces, latency and bandwidth numbers are further used to model the power and energy consumption of the systolic array with the a target computing scheme.
 
 ## Example run
-This experiment will run the default MLPERF_AlphaGoZero_32x32_os architechture contained inside scale.cfg. 
-It will also run alexnet as its network topology.
-* Run the command: ```python scale.py```
+* Run the default configuration: ```python eval.py```
 * Wait for the run to finish
 
-
-Here is sample of the config file.  
-![sample config](https://raw.githubusercontent.com/AnandS09/SCALE-Sim/master/images/config_example.png "sample config")    
-Architecture presets are the variable parameters for SCALE-Sim, like array size, memory etc.  
-
-The Network Topoplogy csv file contains the network that we want to test in our architechture.  
-SCALE-Sim accepts topology csv in the format shown below.  
-![yolo_tiny topology](https://raw.githubusercontent.com/AnandS09/SCALE-Sim/master/images/yolo_tiny_csv.png "yolo_tiny.csv")
-
-Since SCALE-Sim is a CNN simulator please do not provide any layers other than convolutional or fully connected in the csv.
-You can take a look at 
-[yolo_tiny.csv](https://raw.githubusercontent.com/AnandS09/SCALE-Sim/master/topologies/yolo_tiny.csv)
-for your reference.
+* Run your own configuration:```python scale.py -arch_config=input_config/your_own.cfg -network=input_topology/your_own.csv```
+* Wait for the run to finish
 
 ### Output
 
-Here is an example output dumped to stdout when running Yolo tiny (whose configuration is in yolo_tiny.csv):
-![screen_out](https://github.com/AnandS09/SCALE-Sim/blob/master/images/output.png "std_out")
-
-Also, the simulator generates read write traces and summary logs at ```./outputs/<topology_name>```.
-There are three summary logs:
+The simulator generates read write traces and summary logs at ```./outputs/<run_name>```.
 
 * Layer wise runtime and average utilization
 * Layer wise MAX DRAM bandwidth log
 * Layer wise AVG DRAM bandwidth log
 * Layer wise breakdown of data movement and compute cycles
 
-In addition cycle accurate SRAM/DRAM access logs are also dumped and could be accesses at ```./outputs/<topology_name>/layer_wise```
-
-The config file inside configs contain achitecture presets.  
-the csv files inside toologies contain different networks
-
-In order to change a different arichtechture/network, create a new .cfg file inside ```cofigs``` and call a new network by running
-```python scale.py -arch_config=configs/eyeriss.cfg -network=topologies/yolo.csv```
-
-
-
-
+In addition cycle accurate SRAM/DRAM access logs are also dumped and could be accesses at ```./outputs/<run_name>/layer_wise```
 
 ## Citing
 
