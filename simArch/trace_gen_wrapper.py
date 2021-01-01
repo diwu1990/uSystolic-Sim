@@ -47,7 +47,6 @@ def gen_all_traces(
                                                             sram_read_trace_file = sram_read_trace_file,
                                                             sram_write_trace_file = sram_write_trace_file
                                                         )
-    print("Done...")
     print("Average utilization : \t"  + str(util) + " %")
     print("Cycles for compute  : \t"  + str(sram_cycles) + " cycles")
     # dram data placement: ifmap -> filt -> ofmap
@@ -60,7 +59,6 @@ def gen_all_traces(
         sram_trace_file=sram_read_trace_file,
         dram_trace_file=dram_ifmap_trace_file,
     )
-    print("Done...")
     
     # filter read dram
     print("Generate FILTER DRAM read trace...")
@@ -71,7 +69,6 @@ def gen_all_traces(
         sram_trace_file= sram_read_trace_file,
         dram_trace_file= dram_filter_trace_file,
     )
-    print("Done...")
 
     # ofmap write dram
     print("Generate OFMAP DRAM write trace...")
@@ -81,7 +78,6 @@ def gen_all_traces(
         sram_write_trace_file= sram_write_trace_file,
         dram_write_trace_file= dram_ofmap_trace_file
     )
-    print("Done...")
 
     print("Analyze average statistics...")
     bw_numbers, detailed_log  = gen_bw_numbers(
@@ -92,7 +88,6 @@ def gen_all_traces(
                                             sram_read_trace_file,
                                             word_size_bytes
                                             )
-    print("Done...")
     
     return bw_numbers, detailed_log, util, sram_cycles
 

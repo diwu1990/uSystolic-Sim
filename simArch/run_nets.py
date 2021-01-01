@@ -128,7 +128,7 @@ def run_net(
                                 dram_ofmap_trace_file= net_name + "_" + name + "_dram_ofmap_write.csv",
                                 word_size_bytes= word_size_bytes
                                 )
-        print("Done...")
+        print("All done...")
         maxbw.write(max_bw_log + "\n")
 
         util_str = str(util)
