@@ -6,4 +6,4 @@
 *.out
 *.o
 simHw/cacti70/cacti
-simHw/cacti70/obj_dbg/cacti
+simHw/cacti70/obj_dbg
