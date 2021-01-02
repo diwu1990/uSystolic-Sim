@@ -8,8 +8,8 @@ import platform
 
 FLAGS = flags.FLAGS
 # name of flag | default | explanation
-flags.DEFINE_string("arch_config", "./input_config/scale.cfg", "file where we are getting our architechture from")
-flags.DEFINE_string("network", "./input_topology/test_net/test_net.csv", "topology that we are reading")
+flags.DEFINE_string("arch_config", "./config/systolic/scale.cfg", "file where we are getting our architechture from")
+flags.DEFINE_string("network", "./config/gemm/test_net/test_net.csv", "topology that we are reading")
 
 class eval:
     def __init__(self, save = False):
