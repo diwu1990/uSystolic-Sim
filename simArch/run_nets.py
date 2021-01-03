@@ -1,6 +1,5 @@
 import simArch.trace_gen_wrapper as tg
 
-
 def run_net(
     ifmap_sram_size=1, # in KB
     filter_sram_size=1, # in KB
@@ -139,7 +138,3 @@ def run_net(
     maxbw.close()
     cycl.close()
     param_file.close()
-
-#if __name__ == "__main__":
-#    sweep_parameter_space_fast()    
-
