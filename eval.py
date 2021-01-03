@@ -8,10 +8,10 @@ import platform
 
 FLAGS = flags.FLAGS
 # name of flag | default | explanation
-flags.DEFINE_string("systolic", "./config/systolic/scale.cfg", "file to get systolic rray architechture from")
+flags.DEFINE_string("systolic", "./config/systolic/scale.cfg", "file to get systolic array architechture from")
 flags.DEFINE_string("network", "./config/gemm/test_net/test_net.csv", "consecutive GEMM topologies to read")
-flags.DEFINE_string("sram", "./config/sram/sram.cfg", "SRAM configs (sizes for each SRAM are indicated in systolic file)")
-flags.DEFINE_string("dram", "./config/dram/dram.cfg", "DRAM configs to extract from")
+flags.DEFINE_string("sram", "./config/sram/sram.cfg", "SRAM configs for hardware simulation (sizes for each SRAM are indicated in systolic file)")
+flags.DEFINE_string("dram", "./config/dram/dram.cfg", "DRAM configs for hardware simulation")
 
 class eval:
     def __init__(self, save = False, arch = True, hw = True):
