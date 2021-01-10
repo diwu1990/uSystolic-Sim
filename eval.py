@@ -2,16 +2,19 @@ import os
 import time
 import configparser as cp
 import simArch.run_nets as r
+import simHW.efficiency as eff
 from absl import flags
 from absl import app
 import platform
 
 FLAGS = flags.FLAGS
 # name of flag | default | explanation
-flags.DEFINE_string("systolic", "./config/systolic/scale.cfg", "file to get systolic array architechture from")
-flags.DEFINE_string("network", "./config/gemm/test_net/test_net.csv", "consecutive GEMM topologies to read")
-flags.DEFINE_string("sram", "./config/sram/sram.cfg", "SRAM configs for hardware simulation (sizes for each SRAM are indicated in systolic file)")
-flags.DEFINE_string("dram", "./config/dram/dram.cfg", "DRAM configs for hardware simulation")
+# architecture sim input config
+flags.DEFINE_string("systolic", "./config/example_run/systolic.cfg", "file to get systolic array architechture from")
+flags.DEFINE_string("network", "./config/example_run/gemm.csv", "consecutive GEMM topologies to read")
+# hardware sim input config
+flags.DEFINE_string("sram", "./config/example_run/sram.cfg", "SRAM configs for hardware simulation. Note that the sizes are specified in systolic.cfg")
+flags.DEFINE_string("dram", "./config/example_run/dram.cfg", "DRAM configs for hardware simulation")
 
 class eval:
     def __init__(self, save = False, arch = True, hw = True):

@@ -17,7 +17,7 @@ def gen_all_traces(
         word_size_bytes = 1,
         filter_sram_size = 64, ifmap_sram_size= 64, ofmap_sram_size = 64, # all with a unit of byte
 
-        filt_base = 1000000, ifmap_base=0, ofmap_base = 2000000, # in word granularity
+        filt_base = 1000000, ifmap_base=0, ofmap_base = 2000000, # in byte granularity
         mac_cycles=2, # extended input, indicating the cycle count for one mac operation
         wgt_bw_opt=False, # extended input, indicating the weight loading bw is bounded by the read bw during calculation
         
@@ -34,6 +34,7 @@ def gen_all_traces(
     
     assert data_flow == "ws", "Dataflow other than weight stationary is not supported in uSystolic simulator."
     print("Generate SRAM read/write trace...")
+    # SRAM trace is in word granulatiry
     sram_cycles, util = sram_traffic_ws_usystolic.sram_traffic(
                                                             dimension_rows = array_h,
                                                             dimension_cols = array_w,
@@ -55,7 +56,7 @@ def gen_all_traces(
     dram.dram_trace_read_v2(
         sram_sz_bytes=ifmap_sram_size,
         word_sz_bytes=word_size_bytes,
-        min_addr=ifmap_base, max_addr=filt_base,
+        min_addr_bytes=ifmap_base, max_addr_bytes=filt_base,
         sram_trace_file=sram_read_trace_file,
         dram_trace_file=dram_ifmap_trace_file,
     )
@@ -65,7 +66,7 @@ def gen_all_traces(
     dram.dram_trace_read_v2(
         sram_sz_bytes= filter_sram_size,
         word_sz_bytes= word_size_bytes,
-        min_addr=filt_base, max_addr=ofmap_base,
+        min_addr_bytes=filt_base, max_addr_bytes=ofmap_base,
         sram_trace_file= sram_read_trace_file,
         dram_trace_file= dram_filter_trace_file,
     )
@@ -103,7 +104,6 @@ def gen_max_bw_numbers(
 
     max_dram_ifmap_bw_in_words = 0 # max words per cycle
     num_words = 0
-    max_dram_act_clk = ""
     f = open(dram_ifmap_trace_file, 'r')
 
     for row in f:
@@ -117,7 +117,6 @@ def gen_max_bw_numbers(
 
     max_dram_filter_bw_in_words = 0 # max words per cycle
     num_words = 0
-    max_dram_filt_clk = ""
     f = open(dram_filter_trace_file, 'r')
 
     for row in f:
@@ -131,7 +130,6 @@ def gen_max_bw_numbers(
 
     max_dram_ofmap_bw_in_words = 0 # max words per cycle
     num_words = 0
-    max_dram_ofmap_clk = ""
     f = open(dram_ofmap_trace_file, 'r')
 
     for row in f:
@@ -288,7 +286,6 @@ def gen_bw_numbers(
     stop_clk = clk
     detailed_log += str(start_clk) + ",\t" + str(stop_clk) + ",\t" + str(num_sram_read_words) + ",\t"
     f.close()
-    sram_clk = clk
     if clk > max_clk:
         max_clk = clk
 

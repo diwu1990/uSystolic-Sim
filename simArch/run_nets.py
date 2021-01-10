@@ -6,12 +6,12 @@ def run_net(
     ofmap_sram_size=1, # in KB
     array_h=32,
     array_w=32,
-    data_flow = 'ws',
-    word_size_bytes = 1,
-    wgt_bw_opt = False,
-    topology_file = './topologies/yolo_v2.csv',
-    net_name='yolo_v2',
-    offset_list = [0, 10000000, 20000000]
+    data_flow='ws',
+    word_size_bytes=1,
+    wgt_bw_opt=False,
+    topology_file=None,
+    net_name=None,
+    offset_list = [0, 10000000, 20000000] # in byte
 ):
 
     ifmap_sram_size *= 1024 # in Byte
