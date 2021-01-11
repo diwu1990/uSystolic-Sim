@@ -11,7 +11,7 @@ def run_net(
     wgt_bw_opt=False,
     topology_file=None,
     net_name=None,
-    offset_list = [0, 10000000, 20000000] # in byte
+    offset_list = [0, 10000000, 20000000] # in word
 ):
 
     ifmap_sram_size *= 1024 # in Byte
@@ -100,9 +100,9 @@ def run_net(
                                 filter_sram_size = filter_sram_size,
                                 ifmap_sram_size = ifmap_sram_size,
                                 ofmap_sram_size = ofmap_sram_size,
-                                filt_base = filter_base,
-                                ifmap_base = ifmap_base,
-                                ofmap_base = ofmap_base,
+                                filt_base = filter_base, # in word granularity
+                                ifmap_base = ifmap_base, # in word granularity
+                                ofmap_base = ofmap_base, # in word granularity
                                 mac_cycles = mac_cycles,
                                 wgt_bw_opt = wgt_bw_opt,
                                 sram_read_trace_file= net_name + "_" + name + "_sram_read.csv",

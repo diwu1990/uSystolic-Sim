@@ -17,7 +17,7 @@ def gen_all_traces(
         word_size_bytes = 1,
         filter_sram_size = 64, ifmap_sram_size= 64, ofmap_sram_size = 64, # all with a unit of byte
 
-        filt_base = 1000000, ifmap_base=0, ofmap_base = 2000000, # in byte granularity
+        filt_base = 1000000, ifmap_base=0, ofmap_base = 2000000, # in word granularity
         mac_cycles=2, # extended input, indicating the cycle count for one mac operation
         wgt_bw_opt=False, # extended input, indicating the weight loading bw is bounded by the read bw during calculation
         
@@ -56,7 +56,7 @@ def gen_all_traces(
     dram.dram_trace_read_v2(
         sram_sz_bytes=ifmap_sram_size,
         word_sz_bytes=word_size_bytes,
-        min_addr_bytes=ifmap_base, max_addr_bytes=filt_base,
+        min_addr_word=ifmap_base, max_addr_word=filt_base,
         sram_trace_file=sram_read_trace_file,
         dram_trace_file=dram_ifmap_trace_file,
     )
@@ -66,7 +66,7 @@ def gen_all_traces(
     dram.dram_trace_read_v2(
         sram_sz_bytes= filter_sram_size,
         word_sz_bytes= word_size_bytes,
-        min_addr_bytes=filt_base, max_addr_bytes=ofmap_base,
+        min_addr_word=filt_base, max_addr_word=ofmap_base,
         sram_trace_file= sram_read_trace_file,
         dram_trace_file= dram_filter_trace_file,
     )

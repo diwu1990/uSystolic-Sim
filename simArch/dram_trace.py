@@ -15,7 +15,7 @@ def prune(input_list):
 def dram_trace_read_v2(
         sram_sz_bytes   = 512 * 1024, 
         word_sz_bytes   = 1,
-        min_addr_bytes = 0, max_addr_bytes=1000000, # in bytes
+        min_addr_word = 0, max_addr_word=1000000, # in bytes
         default_read_bw_words = 8,               # in words, this is arbitrary
         sram_trace_file = "sram_log.csv",
         dram_trace_file = "dram_log.csv"
@@ -34,9 +34,6 @@ def dram_trace_read_v2(
 
     sram_requests = open(sram_trace_file, 'r')
     dram          = open(dram_trace_file, 'w')
-
-    min_addr_word = min_addr_bytes / word_sz_bytes
-    max_addr_word = max_addr_bytes / word_sz_bytes
 
     for entry in sram_requests:
         elems = entry.strip().split(',')
@@ -209,5 +206,5 @@ def dram_trace_write(ofmap_sram_size_bytes = 64, # total size of two buffers, fi
     trace_file.close()
 
 if __name__ == "__main__":
-    dram_trace_read_v2(min_addr_bytes=0, max_addr_bytes=1000000, dram_trace_file="ifmaps_dram_read.csv")
-    dram_trace_read_v2(min_addr_bytes=1000000, max_addr_bytes=100000000, dram_trace_file="filter_dram_read.csv")
+    dram_trace_read_v2(min_addr_word=0, max_addr_word=1000000, dram_trace_file="ifmaps_dram_read.csv")
+    dram_trace_read_v2(min_addr_word=1000000, max_addr_word=100000000, dram_trace_file="filter_dram_read.csv")
