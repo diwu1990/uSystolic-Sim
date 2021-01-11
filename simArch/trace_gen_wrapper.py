@@ -108,12 +108,10 @@ def gen_max_bw_numbers(
     f = open(dram_ifmap_trace_file, 'r')
 
     for row in f:
-        clk = row.split(',')[0]
         num_words = len(row.split(',')) - 2
         
         if max_dram_ifmap_bw_in_words < num_words:
             max_dram_ifmap_bw_in_words = num_words
-            max_dram_act_clk = clk
     f.close()
 
     max_dram_filter_bw_in_words = 0 # max words per cycle
@@ -121,12 +119,10 @@ def gen_max_bw_numbers(
     f = open(dram_filter_trace_file, 'r')
 
     for row in f:
-        clk = row.split(',')[0]
         num_words = len(row.split(',')) - 2
 
         if max_dram_filter_bw_in_words < num_words:
             max_dram_filter_bw_in_words = num_words
-            max_dram_filt_clk = clk
     f.close()
 
     max_dram_ofmap_bw_in_words = 0 # max words per cycle
@@ -134,12 +130,10 @@ def gen_max_bw_numbers(
     f = open(dram_ofmap_trace_file, 'r')
 
     for row in f:
-        clk = row.split(',')[0]
         num_words = len(row.split(',')) - 2
 
         if max_dram_ofmap_bw_in_words < num_words:
             max_dram_ofmap_bw_in_words = num_words
-            max_dram_ofmap_clk = clk
     f.close()
     
     max_sram_ofmap_bw_in_words = 0 # max words per cycle
