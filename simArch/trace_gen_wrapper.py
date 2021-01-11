@@ -15,8 +15,7 @@ def gen_all_traces(
         data_flow = "ws",
 
         word_size_bytes = 1,
-        filter_sram_size = 64, ifmap_sram_size= 64, ofmap_sram_size = 64, # all with a unit of byte
-
+        filter_sram_size = 64, ifmap_sram_size= 64, ofmap_sram_size = 64, # in word
         filt_base = 1000000, ifmap_base=0, ofmap_base = 2000000, # in word granularity
         mac_cycles=2, # extended input, indicating the cycle count for one mac operation
         wgt_bw_opt=False, # extended input, indicating the weight loading bw is bounded by the read bw during calculation
@@ -33,7 +32,7 @@ def gen_all_traces(
     util        = 0
     
     assert data_flow == "ws", "Dataflow other than weight stationary is not supported in uSystolic simulator."
-    print("Generate SRAM read/write trace...")
+    print("Generate SRAM read/write trace in word...")
     # SRAM trace is in word granulatiry
     sram_cycles, util = sram_traffic_ws_usystolic.sram_traffic(
                                                             dimension_rows = array_h,
@@ -52,20 +51,18 @@ def gen_all_traces(
     print("Cycles for compute  : \t"  + str(sram_cycles) + " cycles")
     # dram data placement: ifmap -> filt -> ofmap
     # ifmap read dram
-    print("Generate IFMAP DRAM read trace...")
+    print("Generate IFMAP DRAM read trace in word...")
     dram.dram_trace_read_v2(
-        sram_sz_bytes=ifmap_sram_size,
-        word_sz_bytes=word_size_bytes,
+        sram_sz_word=ifmap_sram_size,
         min_addr_word=ifmap_base, max_addr_word=filt_base,
         sram_trace_file=sram_read_trace_file,
         dram_trace_file=dram_ifmap_trace_file,
     )
     
     # filter read dram
-    print("Generate FILTER DRAM read trace...")
+    print("Generate FILTER DRAM read trace in word...")
     dram.dram_trace_read_v2(
-        sram_sz_bytes= filter_sram_size,
-        word_sz_bytes= word_size_bytes,
+        sram_sz_word= filter_sram_size,
         min_addr_word=filt_base, max_addr_word=ofmap_base,
         sram_trace_file= sram_read_trace_file,
         dram_trace_file= dram_filter_trace_file,
@@ -73,10 +70,9 @@ def gen_all_traces(
 
     # assume ofmap sram is large enough to hold all ofmap, so no dram read is needed here
     # ofmap write dram
-    print("Generate OFMAP DRAM write trace...")
+    print("Generate OFMAP DRAM write trace in word...")
     dram.dram_trace_write(
-        ofmap_sram_size_bytes= ofmap_sram_size,
-        word_sz_bytes= word_size_bytes,
+        ofmap_sram_size_word= ofmap_sram_size,
         sram_write_trace_file= sram_write_trace_file,
         dram_write_trace_file= dram_ofmap_trace_file
     )

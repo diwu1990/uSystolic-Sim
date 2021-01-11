@@ -13,9 +13,8 @@ def prune(input_list):
 
 
 def dram_trace_read_v2(
-        sram_sz_bytes   = 512 * 1024, 
-        word_sz_bytes   = 1,
-        min_addr_word = 0, max_addr_word=1000000, # in bytes
+        sram_sz_word   = 512 * 1024, 
+        min_addr_word = 0, max_addr_word=1000000, # in word
         default_read_bw_words = 8,               # in words, this is arbitrary
         sram_trace_file = "sram_log.csv",
         dram_trace_file = "dram_log.csv"
@@ -42,13 +41,13 @@ def dram_trace_read_v2(
         
         clk = elems[0]
 
-        for e in range(1, len(elems)): # each element here is a word, with a unit of word_sz_bytes
+        for e in range(1, len(elems)): # each element here is a word
             # only count legal addresses
             if (elems[e] not in sram) and (elems[e] >= min_addr_word) and (elems[e] < max_addr_word):
                 
                 # Used up all the unique data in the SRAM?
                 # len(sram) is the word count in the SRAM
-                if (len(sram) + 1) * word_sz_bytes > sram_sz_bytes:
+                if len(sram) + 1 > sram_sz_word:
                     # once sram is full, generate all needed traces; then empty sram, and start collect the rest in a recursive manner.
                     if t_fill_start == -1:
                         t_fill_start = t_drain_start - math.ceil(len(sram) / init_bw)
@@ -103,8 +102,7 @@ def dram_trace_read_v2(
     dram.close()
 
 
-def dram_trace_write(ofmap_sram_size_bytes = 64, # total size of two buffers, filling_buf and draining_buf. Each has a read/write port.
-                     word_sz_bytes = 1,
+def dram_trace_write(ofmap_sram_size_word = 64, # total size of two buffers, filling_buf and draining_buf. Each has a read/write port.
                      default_write_bw_words = 8,                     # in words, this is arbitrary
                      sram_write_trace_file = "sram_write.csv",
                      dram_write_trace_file = "dram_write.csv"):
@@ -131,7 +129,7 @@ def dram_trace_write(ofmap_sram_size_bytes = 64, # total size of two buffers, fi
 
         # If enough space is in the filling buffer
         # Keep filling the buffer
-        if ((len(sram_buffer[filling_buf]) + len(elems) - 1) * word_sz_bytes ) < (ofmap_sram_size_bytes / 2):
+        if (len(sram_buffer[filling_buf]) + len(elems) - 1) < (ofmap_sram_size_word / 2):
             for i in range(1,len(elems)):
                 sram_buffer[filling_buf].add(elems[i])
 

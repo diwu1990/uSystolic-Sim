@@ -1,9 +1,9 @@
 import simArch.trace_gen_wrapper as tg
 
 def run_net(
-    ifmap_sram_size=1, # in KB
-    filter_sram_size=1, # in KB
-    ofmap_sram_size=1, # in KB
+    ifmap_sram_size=1, # in K-Word
+    filter_sram_size=1, # in K-Word
+    ofmap_sram_size=1, # in K-Word
     array_h=32,
     array_w=32,
     data_flow='ws',
@@ -14,9 +14,9 @@ def run_net(
     offset_list = [0, 10000000, 20000000] # in word
 ):
 
-    ifmap_sram_size *= 1024 # in Byte
-    filter_sram_size *= 1024 # in Byte
-    ofmap_sram_size *= 1024 # in Byte
+    ifmap_sram_size *= 1024 # in word
+    filter_sram_size *= 1024 # in word
+    ofmap_sram_size *= 1024 # in word
 
     #fname = net_name + ".csv"
     param_file = open(topology_file, 'r')
@@ -33,8 +33,8 @@ def run_net(
     f4name = net_name + "_detail.csv"
     detail = open(f4name, 'w')
 
-    bw.write("IFMAP SRAM Size,\tFilter SRAM Size,\tOFMAP SRAM Size,\tConv Layer Num,\tDRAM IFMAP Read BW,\tDRAM Filter Read BW,\tDRAM OFMAP Write BW,\tSRAM Read BW,\tSRAM OFMAP Write BW, \n")
-    maxbw.write("IFMAP SRAM Size,\tFilter SRAM Size,\tOFMAP SRAM Size,\tConv Layer Num,\tMax DRAM IFMAP Read BW,\tMax DRAM Filter Read BW,\tMax DRAM OFMAP Write BW,\tMax SRAM Read BW,\tMax SRAM OFMAP Write BW,\n")
+    bw.write("IFMAP SRAM Size (Bytes),\tFilter SRAM Size (Bytes),\tOFMAP SRAM Size (Bytes),\tConv Layer Num,\tDRAM IFMAP Read BW (Bytes/cycle),\tDRAM Filter Read BW (Bytes/cycle),\tDRAM OFMAP Write BW (Bytes/cycle),\tSRAM Read BW (Bytes/cycle),\tSRAM OFMAP Write BW (Bytes/cycle), \n")
+    maxbw.write("IFMAP SRAM Size (Bytes),\tFilter SRAM Size (Bytes),\tOFMAP SRAM Size (Bytes),\tConv Layer Num,\tMax DRAM IFMAP Read BW (Bytes/cycle),\tMax DRAM Filter Read BW (Bytes/cycle),\tMax DRAM OFMAP Write BW (Bytes/cycle),\tMax SRAM Read BW (Bytes/cycle),\tMax SRAM OFMAP Write BW (Bytes/cycle),\n")
     cycl.write("Layer,\tCycles,\t% Utilization,\n")
     detailed_log = "Layer," +\
                  "\tDRAM_IFMAP_start,\tDRAM_IFMAP_stop,\tDRAM_IFMAP_bytes," + \
@@ -73,17 +73,18 @@ def run_net(
         stride_w = int(elems[8])
         mac_cycles = int(elems[9])
         
-        ifmap_base  = offset_list[0]
-        filter_base = offset_list[1]
-        ofmap_base  = offset_list[2]
+        ifmap_base  = offset_list[0] # in word
+        filter_base = offset_list[1] # in word
+        ofmap_base  = offset_list[2] # in word
 
         print("")
         print("Commencing run for " + name + " with a MAC cycle count " + str(mac_cycles))
         
-        bw_log = str(ifmap_sram_size) +",\t" + str(filter_sram_size) + ",\t" + str(ofmap_sram_size) + ",\t" + name + ",\t"
+        bw_log = str(ifmap_sram_size * word_size_bytes) +",\t" + str(filter_sram_size * word_size_bytes) + ",\t" + str(ofmap_sram_size * word_size_bytes) + ",\t" + name + ",\t"
         max_bw_log = bw_log
         detailed_log = name + ",\t"
 
+        # all trace should be generated in granularity of word, the word size only influence the bandwidth
         bw_str, detailed_str, util, clk =  \
             tg.gen_all_traces(  array_h = array_h,
                                 array_w = array_w,
@@ -97,9 +98,9 @@ def run_net(
                                 stride_w = stride_w,
                                 data_flow = data_flow,
                                 word_size_bytes = word_size_bytes,
-                                filter_sram_size = filter_sram_size,
-                                ifmap_sram_size = ifmap_sram_size,
-                                ofmap_sram_size = ofmap_sram_size,
+                                filter_sram_size = filter_sram_size, # in word
+                                ifmap_sram_size = ifmap_sram_size, # in word
+                                ofmap_sram_size = ofmap_sram_size, # in word
                                 filt_base = filter_base, # in word granularity
                                 ifmap_base = ifmap_base, # in word granularity
                                 ofmap_base = ofmap_base, # in word granularity

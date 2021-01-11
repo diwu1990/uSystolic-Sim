@@ -4,6 +4,7 @@ import warnings
 
 """
 This module execute usystolic in a cycle accurate manner.
+All traces are in word granularity.
 Note that the scale-sim scheduling allows multiple filters mapped to the same column simultaneously, and reuqires multiple output ports and nonlocal connections.
 The scheduling here does not allow this.
 """
@@ -18,9 +19,9 @@ def sram_traffic(
     stride_h=1, # stride in row dimension
     stride_w=1, # stride in column dimension
     num_filt=33, # filter count, also output channel count
-    ofmap_base=2000000, # output feature map base addr
-    filt_base=1000000, # weight base addr
-    ifmap_base=0, # input feature map base addr
+    ofmap_base=2000000, # output feature map base addr, in word
+    filt_base=1000000, # weight base addr, in word
+    ifmap_base=0, # input feature map base addr, in word
     mac_cycles=1, # cycle count per mac
     wgt_bw_opt=True, # optimize the bandwidth of weight and output to match that of input
     sram_read_trace_file="sram_read.csv",
