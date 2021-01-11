@@ -71,6 +71,7 @@ def gen_all_traces(
         dram_trace_file= dram_filter_trace_file,
     )
 
+    # assume ofmap sram is large enough to hold all ofmap, so no dram read is needed here
     # ofmap write dram
     print("Generate OFMAP DRAM write trace...")
     dram.dram_trace_write(

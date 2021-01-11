@@ -2,7 +2,7 @@ import os
 import time
 import configparser as cp
 import simArch.run_nets as r
-import simHW.efficiency as eff
+import simHw.efficiency as eff
 from absl import flags
 from absl import app
 import platform
@@ -15,8 +15,9 @@ flags.DEFINE_string("network", "./config/example_run/gemm.csv", "consecutive GEM
 # hardware sim input config
 flags.DEFINE_string("sram", "./config/example_run/sram.cfg", "SRAM configs for hardware simulation. Note that the sizes are specified in systolic.cfg")
 flags.DEFINE_string("dram", "./config/example_run/dram.cfg", "DRAM configs for hardware simulation")
+flags.DEFINE_string("pe", "./config/example_run/pe.cfg", "PE area and power data for hardware simulation")
 
-class eval:
+class evaluate:
     def __init__(self, save = False, arch = True, hw = True):
         self.save_space = save
         self.simArch = arch
@@ -59,6 +60,8 @@ class eval:
         self.osram_min = ofmap_sram[0].strip()
 
         self.dataflow= config.get(arch_sec, 'Dataflow')
+        self.df_string = "Weight Stationary"
+        assert self.dataflow == 'ws', "Input dataflow for uSystolic should be weight stationary."
 
         ifmap_offset = config.get(arch_sec, 'IfmapOffset')
         self.ifmap_offset = int(ifmap_offset.strip())
@@ -74,10 +77,16 @@ class eval:
         
         self.wgt_bw_opt= config.get(arch_sec, 'WeightBwOpt')
 
+        # this parameter is used to evaluate power and energy
+        self.computing= config.get(arch_sec, 'Computing')
+
         self.topology_file = FLAGS.network
 
         self.sram_file = FLAGS.sram
+
         self.dram_file = FLAGS.dram
+
+        self.pe_file = FLAGS.pe
 
     def run_eval(self):
         self.parse_config()
@@ -89,9 +98,7 @@ class eval:
             self.run_hw()
 
     def run_arch(self):
-
-        df_string = "Weight Stationary"
-        assert self.dataflow == 'ws', "Input dataflow for uSystolic should be weight stationary."
+        # either linux or windows OS works
 
         print("====================================================")
         print("************ uSystolic Architecture Sim ************")
@@ -101,12 +108,14 @@ class eval:
         print("SRAM Filter: \t" + str(self.fsram_min))
         print("SRAM OFMAP: \t" + str(self.osram_min))
         print("Word Bytes: \t" + str(self.word_sz_bytes))
+        print("Dataflow: \t" + self.df_string)
+        print("Computing Scheme: \t" + self.computing)
         print("Weight BW Opt: \t" + str(self.wgt_bw_opt))
         print("CSV file path: \t" + self.topology_file)
-        print("Dataflow: \t" + df_string)
         print("====================================================")
 
-        net_name = self.topology_file.split('/')[-1].split('.')[0]
+        # net_name = self.topology_file.split('/')[-1].split('.')[0]
+        net_name = self.topology_file.split('/')[-2]
         offset_list = [self.ifmap_offset, self.filter_offset, self.ofmap_offset]
 
         r.run_net(  ifmap_sram_size  = int(self.isram_min), # in KB
@@ -124,7 +133,8 @@ class eval:
         self.arch_cleanup()
         print("******* uSystolic Architecture Sim Complete ********")
 
-    def run_hw():
+    def run_hw(self):
+        # linux OS is required due to executing CACTI
 
         print("====================================================")
         print("************** uSystolic Hardware Sim **************")
@@ -134,9 +144,12 @@ class eval:
         print("SRAM Filter: \t" + str(self.fsram_min))
         print("SRAM OFMAP: \t" + str(self.osram_min))
         print("Word Bytes: \t" + str(self.word_sz_bytes))
+        print("Dataflow: \t" + self.df_string)
+        print("Computing Scheme: \t" + self.computing)
         print("Weight BW Opt: \t" + str(self.wgt_bw_opt))
-        print("CSV file path: \t" + self.topology_file)
-        print("Dataflow: \t" + df_string)
+        print("SRAM file path: \t" + self.sram_file)
+        print("DRAM file path: \t" + self.dram_file)
+        print("PE file path: \t" + self.pe_file)
         print("====================================================")
 
         print("********* uSystolic Hardware Sim Complete **********")
@@ -163,7 +176,6 @@ class eval:
                 new_path= path + "_" + str(t)
                 os.system("move " + path + " " + new_path)
                 os.system("mkdir " + path)
-
 
             cmd = "move *.csv " + path
             os.system(cmd)
@@ -201,7 +213,6 @@ class eval:
                 os.system("mv " + path + " " + new_path)
                 os.system("mkdir " + path)
 
-
             cmd = "mv *.csv " + path
             os.system(cmd)
 
@@ -220,7 +231,7 @@ class eval:
 
 
 def main(argv):
-    s = eval(save = False, arch = True, hw = True)
+    s = evaluate(save = False, arch = True, hw = True)
     s.run_eval()
 
 if __name__ == '__main__':
