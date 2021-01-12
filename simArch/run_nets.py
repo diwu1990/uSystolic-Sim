@@ -18,8 +18,10 @@ def run_net(
     filter_sram_size *= 1024 # in word
     ofmap_sram_size *= 1024 # in word
 
-    #fname = net_name + ".csv"
     param_file = open(topology_file, 'r')
+    
+    profiling_file = net_name + "_profiling.csv"
+    profiling = open(profiling_file, 'w')
 
     fname = net_name + "_avg_bw.csv"
     bw = open(fname, 'w')
@@ -45,10 +47,12 @@ def run_net(
 
     detail.write(detailed_log)
 
+    profiling.write("")
 
     first = True
     
     for row in param_file:
+        # per layer trace gen
         if first:
             first = False
             continue
@@ -119,7 +123,7 @@ def run_net(
         detailed_log += detailed_str
         detail.write(detailed_log + "\n")
         
-        print("Analyze maximum statistics...")
+        print("Analyze maximum statistics in byte...")
         max_bw_log += tg.gen_max_bw_numbers(
                                 sram_read_trace_file = net_name + "_" + name + "_sram_read.csv",
                                 sram_write_trace_file= net_name + "_" + name + "_sram_write.csv",
@@ -135,7 +139,13 @@ def run_net(
         line = name + ",\t" + clk +",\t" + util_str +",\n"
         cycl.write(line)
 
+        # do per layer profiling
+        # profiling include the cycle count for weight load, input load, output load.
+
     bw.close()
     maxbw.close()
     cycl.close()
     param_file.close()
+    profiling.close()
+
+    return profiling_file

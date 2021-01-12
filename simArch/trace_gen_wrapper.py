@@ -77,7 +77,7 @@ def gen_all_traces(
         dram_write_trace_file= dram_ofmap_trace_file
     )
 
-    print("Analyze average statistics...")
+    print("Analyze average statistics in byte...")
     bw_numbers, detailed_log  = gen_bw_numbers(
                                             dram_ifmap_trace_file,
                                             dram_filter_trace_file,

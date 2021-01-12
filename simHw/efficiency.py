@@ -1,10 +1,15 @@
+import math
+import subprocess
+import simHw.profiling.mem_block_profiling as profiling
+
 def efficiency(
-    ifmap_sram_size=1, # in KB
-    filter_sram_size=1, # in KB
-    ofmap_sram_size=1, # in KB
+    ifmap_sram_size=1, # in K-Word
+    filter_sram_size=1, # in K-Word
+    ofmap_sram_size=1, # in K-Word
     sram_file=None,
     dram_file=None,
-    pe_file=None
+    pe_file=None,
+    profiling_file=None
 ):
     """
     this code run CACTI according to the configuration of ifmap, filter, ofmap to get power and energy
@@ -19,3 +24,5 @@ def efficiency(
     power = 0
     energy = 0
     return power, energy
+
+

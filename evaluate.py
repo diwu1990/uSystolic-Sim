@@ -45,17 +45,17 @@ class evaluate:
         self.ar_w_min = ar_w[0].strip()
 
         ## IFMAP SRAM buffer min, max
-        # in KB
+        # in K-Word
         ifmap_sram = config.get(arch_sec, 'IfmapSramSz').split(',')
         self.isram_min = ifmap_sram[0].strip()
 
         ## FILTER SRAM buffer min, max
-        # in KB
+        # in K-Word
         filter_sram = config.get(arch_sec, 'FilterSramSz').split(',')
         self.fsram_min = filter_sram[0].strip()
 
         ## OFMAP SRAM buffer min, max
-        # in KB
+        # in K-Word
         ofmap_sram = config.get(arch_sec, 'OfmapSramSz').split(',')
         self.osram_min = ofmap_sram[0].strip()
 
@@ -63,12 +63,15 @@ class evaluate:
         self.df_string = "Weight Stationary"
         assert self.dataflow == 'ws', "Input dataflow for uSystolic should be weight stationary."
 
+        # in Word
         ifmap_offset = config.get(arch_sec, 'IfmapOffset')
         self.ifmap_offset = int(ifmap_offset.strip())
 
+        # in Word
         filter_offset = config.get(arch_sec, 'FilterOffset')
         self.filter_offset = int(filter_offset.strip())
 
+        # in Word
         ofmap_offset = config.get(arch_sec, 'OfmapOffset')
         self.ofmap_offset = int(ofmap_offset.strip())
         
@@ -109,18 +112,17 @@ class evaluate:
         print("SRAM OFMAP: \t" + str(self.osram_min))
         print("Word Bytes: \t" + str(self.word_sz_bytes))
         print("Dataflow: \t" + self.df_string)
-        print("Computing: \t" + self.computing)
         print("Weight BW Opt: \t" + str(self.wgt_bw_opt))
         print("CSV file path: \t" + self.topology_file)
         print("====================================================")
 
-        # net_name = self.topology_file.split('/')[-1].split('.')[0]
         net_name = self.topology_file.split('/')[-2]
-        offset_list = [self.ifmap_offset, self.filter_offset, self.ofmap_offset]
+        offset_list = [self.ifmap_offset, self.filter_offset, self.ofmap_offset] # in Word
 
-        r.run_net(  ifmap_sram_size  = int(self.isram_min), # in KB
-                    filter_sram_size = int(self.fsram_min), # in KB
-                    ofmap_sram_size  = int(self.osram_min), # in KB
+        self.profiling_file = r.run_net(
+                    ifmap_sram_size  = int(self.isram_min), # in K-Word
+                    filter_sram_size = int(self.fsram_min), # in K-Word
+                    ofmap_sram_size  = int(self.osram_min), # in K-Word
                     array_h = int(self.ar_h_min),
                     array_w = int(self.ar_w_min),
                     net_name = net_name,
@@ -139,18 +141,23 @@ class evaluate:
         print("====================================================")
         print("************** uSystolic Hardware Sim **************")
         print("====================================================")
-        print("Array Size: \t" + str(self.ar_h_min) + "x" + str(self.ar_w_min))
-        print("SRAM IFMAP: \t" + str(self.isram_min))
-        print("SRAM Filter: \t" + str(self.fsram_min))
-        print("SRAM OFMAP: \t" + str(self.osram_min))
-        print("Word Bytes: \t" + str(self.word_sz_bytes))
-        print("Dataflow: \t" + self.df_string)
         print("Computing: \t" + self.computing)
         print("Weight BW Opt: \t" + str(self.wgt_bw_opt))
         print("SRAM file path: \t" + self.sram_file)
         print("DRAM file path: \t" + self.dram_file)
         print("PE file path: \t" + self.pe_file)
         print("====================================================")
+
+        eff.efficiency(
+            ifmap_sram_size=1, # in K-Word
+            filter_sram_size=1, # in K-Word
+            ofmap_sram_size=1, # in K-Word
+            sram_file=self.sram_file,
+            dram_file=self.dram_file,
+            pe_file=self.pe_file,
+            profiling_file=self.profiling_file
+        )
+        # self.hw_cleanup()
 
         print("********* uSystolic Hardware Sim Complete **********")
 
@@ -161,13 +168,7 @@ class evaluate:
             if not os.path.isdir(".\\outputs"):
                 os.system("mkdir .\\outputs")
 
-            net_name = self.topology_file.split('/')[-1].split('.')[0]
-
-            path = ".\\output\\eval_out"
-            if self.run_name == "":
-                path = ".\\outputs\\" + net_name +"_"+ self.dataflow
-            else:
-                path = ".\\outputs\\" + self.run_name
+            path = ".\\outputs\\" + self.run_name
 
             if not os.path.isdir(path):
                 os.system("mkdir " + path)
@@ -197,13 +198,70 @@ class evaluate:
             if not os.path.exists("./outputs/"):
                 os.system("mkdir ./outputs")
 
-            net_name = self.topology_file.split('/')[-1].split('.')[0]
+            path = "./outputs/" + self.run_name
 
-            path = "./output/eval_out"
-            if self.run_name == "":
-                path = "./outputs/" + net_name +"_"+ self.dataflow
+            if not os.path.exists(path):
+                os.system("mkdir " + path)
             else:
-                path = "./outputs/" + self.run_name
+                t = time.time()
+                new_path= path + "_" + str(t)
+                os.system("mv " + path + " " + new_path)
+                os.system("mkdir " + path)
+
+            cmd = "mv *.csv " + path
+            os.system(cmd)
+
+            cmd = "mkdir " + path +"/layer_wise"
+            os.system(cmd)
+
+            cmd = "mv " + path +"/*sram* " + path +"/layer_wise"
+            os.system(cmd)
+
+            cmd = "mv " + path +"/*dram* " + path +"/layer_wise"
+            os.system(cmd)
+
+            if self.save_space == True:
+                cmd = "rm -rf " + path +"/layer_wise"
+                os.system(cmd)
+
+    def hw_cleanup(self):
+        system = platform.system()
+        if system == "Windows":
+            # for windows os
+            if not os.path.isdir(".\\outputs"):
+                os.system("mkdir .\\outputs")
+
+            path = ".\\outputs\\" + self.run_name
+
+            if not os.path.isdir(path):
+                os.system("mkdir " + path)
+            else:
+                t = time.time()
+                new_path= path + "_" + str(t)
+                os.system("move " + path + " " + new_path)
+                os.system("mkdir " + path)
+
+            cmd = "move *.csv " + path
+            os.system(cmd)
+
+            cmd = "mkdir " + path +"\\layer_wise"
+            os.system(cmd)
+
+            cmd = "move " + path +"\\*sram* " + path +"\\layer_wise"
+            os.system(cmd)
+
+            cmd = "move " + path +"\\*dram* " + path +"\\layer_wise"
+            os.system(cmd)
+
+            if self.save_space == True:
+                cmd = "rm -rf " + path +"\\layer_wise"
+                os.system(cmd)
+        else:
+            # for linux os
+            if not os.path.exists("./outputs/"):
+                os.system("mkdir ./outputs")
+
+            path = "./outputs/" + self.run_name
 
             if not os.path.exists(path):
                 os.system("mkdir " + path)
