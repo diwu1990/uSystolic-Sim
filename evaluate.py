@@ -3,7 +3,7 @@ import time
 import configparser as cp
 import simArch.run_nets as r
 import simHw.efficiency as eff
-import simHw.sram_shape as shape
+import simHw.sram_size as sizing
 from absl import flags
 from absl import app
 import platform
@@ -161,11 +161,11 @@ class evaluate:
 
         if self.legacy_sram is False:
             # estimate the ifmap sram size to hide latency
-            ifmap_sram_size = shape.profiling()
+            ifmap_sram_size = sizing.profiling()
             # estimate the filter sram size to hide latency
-            filter_sram_size = shape.profiling()
+            filter_sram_size = sizing.profiling()
             # estimate the ofmap sram size to hide latency
-            ofmap_sram_size = shape.profiling()
+            ofmap_sram_size = sizing.profiling()
 
         eff.estimate(
             array_h = int(self.ar_h),

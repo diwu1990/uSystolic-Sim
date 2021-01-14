@@ -496,11 +496,11 @@ def estimate(
         sa_enery_src =  (array_h * src_leakage_border + array_h * array_w * src_leakage_inner) * real_total_cycle + \
                         (array_h * src_dynamic_border + array_h * array_w * src_dynamic_inner) * sram_cycle
         sa_enery_mul =  array_h * array_w * mul_leakage * real_total_cycle + \
-                        array_h * array_w * mul_dynamic * sram_cycle
+                        array_h * array_w * mul_dynamic * (sram_cycle - act_cycles_filter_rd_sram)
         sa_enery_add =  array_h * array_w * add_leakage * real_total_cycle + \
-                        array_h * array_w * add_dynamic * sram_cycle
+                        array_h * array_w * add_dynamic * (sram_cycle - act_cycles_filter_rd_sram)
         sa_enery_buf =  array_h * (array_w - 1) * buf_leakage * real_total_cycle + \
-                        array_h * (array_w - 1) * buf_dynamic * sram_cycle
+                        array_h * (array_w - 1) * buf_dynamic * (sram_cycle - act_cycles_filter_rd_sram)
         sa_enery_tot =  sa_enery_src + sa_enery_mul + sa_enery_add + sa_enery_buf
         energy_log += str(sa_enery_src) + ",\t" + str(sa_enery_mul) + ",\t" + str(sa_enery_add) + ",\t" + str(sa_enery_buf) + ",\t" + str(sa_enery_tot) + ",\t"
 
