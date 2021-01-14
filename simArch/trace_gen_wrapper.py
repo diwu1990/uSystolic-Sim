@@ -51,7 +51,7 @@ def gen_all_traces(
     print("Cycles for compute  : \t"  + str(sram_cycles) + " cycles")
     # dram data placement: ifmap -> filt -> ofmap
     # ifmap read dram
-    print("Generate IFMAP DRAM read trace in word...")
+    print("Generate IFMAP  DRAM read  trace in word...")
     dram.dram_trace_read_v2(
         sram_sz_word=ifmap_sram_size,
         min_addr_word=ifmap_base, max_addr_word=filt_base,
@@ -60,7 +60,7 @@ def gen_all_traces(
     )
     
     # filter read dram
-    print("Generate FILTER DRAM read trace in word...")
+    print("Generate FILTER DRAM read  trace in word...")
     dram.dram_trace_read_v2(
         sram_sz_word= filter_sram_size,
         min_addr_word=filt_base, max_addr_word=ofmap_base,
@@ -70,7 +70,7 @@ def gen_all_traces(
 
     # assume ofmap sram is large enough to hold all ofmap, so no dram read is needed here
     # ofmap write dram
-    print("Generate OFMAP DRAM write trace in word...")
+    print("Generate OFMAP  DRAM write trace in word...")
     dram.dram_trace_write(
         ofmap_sram_size_word= ofmap_sram_size,
         sram_write_trace_file= sram_write_trace_file,
@@ -287,7 +287,7 @@ def gen_bw_numbers(
     dram_ofmap_bw       = num_dram_ofmap_words / delta_clk * word_size_bytes
     sram_ofmap_bw       = num_sram_ofmap_words / delta_clk * word_size_bytes
     sram_read_bw        = num_sram_read_words / delta_clk * word_size_bytes
-    
+
     units = " Bytes/cycle"
     print("DRAM IFMAP Read BW  : \t" + str(dram_ifmap_bw) + units)
     print("DRAM Filter Read BW : \t" + str(dram_filter_bw) + units)
@@ -304,7 +304,7 @@ def parse_sram_read_data(elems):
     data = 0
     for i in range(len(elems)):
         e = elems[i]
-        if e != ' ':
+        if e != '' and e != ' ': # original scale-sim is buggy here
             data += 1
     return data
 

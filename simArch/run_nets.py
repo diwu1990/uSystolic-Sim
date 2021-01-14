@@ -20,9 +20,6 @@ def run_net(
 
     param_file = open(topology_file, 'r')
     
-    profiling_file = net_name + "_profiling.csv"
-    profiling = open(profiling_file, 'w')
-
     fname = net_name + "_avg_bw.csv"
     bw = open(fname, 'w')
 
@@ -46,8 +43,6 @@ def run_net(
                  "\tSRAM_write_start,\tSRAM_write_stop,\tSRAM_write_bytes,\n"
 
     detail.write(detailed_log)
-
-    profiling.write("")
 
     first = True
     
@@ -139,13 +134,8 @@ def run_net(
         line = name + ",\t" + clk +",\t" + util_str +",\n"
         cycl.write(line)
 
-        # do per layer profiling
-        # profiling include the cycle count for weight load, input load, output load.
-
     bw.close()
     maxbw.close()
     cycl.close()
+    detail.close()
     param_file.close()
-    profiling.close()
-
-    return profiling_file

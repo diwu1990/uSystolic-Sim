@@ -25,7 +25,7 @@ def run_cacti(
     subprocess.call([final_cmd], shell=True, cwd="./simHw/cacti7/")
 
 
-def cacti_sram_report_extract(
+def sram_report_extract(
     report=None
 ):
     # get the area and power numbers in the report for final memory power and energy estimation.
@@ -77,7 +77,7 @@ def cacti_sram_report_extract(
     return max_freq, energy_per_block_rd, energy_per_block_wr, leakage_power, total_area
 
 
-def cacti_dram_report_extract(
+def dram_report_extract(
     report=None
 ):
     # get the area and power numbers in the report for final memory power and energy estimation.
@@ -91,11 +91,11 @@ if __name__ == "__main__":
         mem_sz_bytes=1024*1024, # in byte
         mem_config_file="./config/example_run/sram.cfg", 
         target_config_file="./config/example_run/real_sram.cfg",
-        result_file="./config/example_run/sram.result"
+        result_file="./config/example_run/sram.rpt"
         )
 
-    out = cacti_sram_report_extract(
-        report="./config/example_run/sram.result"
+    out = sram_report_extract(
+        report="./config/example_run/sram.rpt"
         )
 
     print(out)
