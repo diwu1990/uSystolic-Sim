@@ -1,15 +1,15 @@
 import subprocess
 
-def run_cacti(
+def sram_cacti(
     mem_sz_bytes=16, # in byte
-    mem_config_file=None,
+    src_config_file=None,
     target_config_file=None,
     result_file=None
 ):
     """
-    run the cacti with input configuration, work for both DRAM and SRAM
+    run the cacti with input configuration, work for SRAM, whose size is either calculated to match the bw or pre-specified
     """
-    original = open(mem_config_file, 'r')
+    original = open(src_config_file, 'r')
     target   = open(target_config_file, 'w')
 
     target.write("-size (bytes) " + str(mem_sz_bytes) + "\n")
@@ -75,6 +75,28 @@ def sram_report_extract(
     # mm^2
     total_area = area
     return max_freq, energy_per_block_rd, energy_per_block_wr, leakage_power, total_area
+
+
+def dram_cacti(
+    src_config_file=None,
+    target_config_file=None,
+    result_file=None
+):
+    """
+    run the cacti with input configuration, work for DRAM (DRAM size is pre-specified)
+    """
+    original = open(src_config_file, 'r')
+    target   = open(target_config_file, 'w')
+
+    for entry in original:
+        target.write(entry)
+    
+    original.close()
+    target.close()
+
+    subprocess.call(["make", "all"], shell=True, cwd="./simHw/cacti7/")
+    final_cmd = "./cacti -infile ../../" + target_config_file + " > ../../" + result_file
+    subprocess.call([final_cmd], shell=True, cwd="./simHw/cacti7/")
 
 
 def dram_report_extract(

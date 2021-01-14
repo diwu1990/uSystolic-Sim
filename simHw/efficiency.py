@@ -286,9 +286,21 @@ def estimate(
                     min_addr_word=ofmap_base,
                     max_addr_word=ofmap_base + 10000000)
 
+        if layer_idx == 1:
+            cacti.dram_cacti(
+                        src_config_file=dram_cfg_file, 
+                        target_config_file=run_name + "_DRAM.cfg",
+                        result_file=run_name + "_DRAM.rpt")
+
+            max_freq_dram, \
+            energy_per_block_rd_dram, \
+            energy_per_block_wr_dram, \
+            leakage_power_dram, \
+            total_area_dram = cacti.dram_report_extract(report=run_name + "_DRAM.rpt")
+
         bw_log_ideal += ""
         bw_log_real += ""
-        area_log += ""
+        area_log += str(total_area_dram) + ",\t"
         energy_log += ""
         power_log += ""
 
@@ -389,9 +401,9 @@ def estimate(
         if layer_idx == 1:
             if ifmap_sram_exist == True:
                 # sram config for each parameter is fixed all the time
-                cacti.run_cacti(
+                cacti.sram_cacti(
                             mem_sz_bytes=ifmap_sram_size * word_sz_bytes, # in byte
-                            mem_config_file=sram_cfg_file, 
+                            src_config_file=sram_cfg_file, 
                             target_config_file=run_name + "_SRAM_ifmap.cfg",
                             result_file=run_name + "_SRAM_ifmap.rpt")
 
@@ -403,9 +415,9 @@ def estimate(
 
             if filter_sram_exist == True:
                 # sram config for each parameter is fixed all the time
-                cacti.run_cacti(
+                cacti.sram_cacti(
                             mem_sz_bytes=ifmap_sram_size * word_sz_bytes, # in byte
-                            mem_config_file=sram_cfg_file, 
+                            src_config_file=sram_cfg_file, 
                             target_config_file=run_name + "_SRAM_filter.cfg",
                             result_file=run_name + "_SRAM_filter.rpt")
 
@@ -417,9 +429,9 @@ def estimate(
             
             if ofmap_sram_exist == True:
                 # sram config for each parameter is fixed all the time
-                cacti.run_cacti(
+                cacti.sram_cacti(
                             mem_sz_bytes=ifmap_sram_size * word_sz_bytes, # in byte
-                            mem_config_file=sram_cfg_file, 
+                            src_config_file=sram_cfg_file, 
                             target_config_file=run_name + "_SRAM_ofmap.cfg",
                             result_file=run_name + "_SRAM_ofmap.rpt")
 
