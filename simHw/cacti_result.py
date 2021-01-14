@@ -20,9 +20,9 @@ def sram_cacti(
     original.close()
     target.close()
 
-    subprocess.call(["make", "all"], shell=True, cwd="./simHw/cacti65/")
+    subprocess.call(["make", "all"], shell=True, cwd="./simHw/cacti7/")
     final_cmd = "./cacti -infile ../../" + target_config_file + " > ../../" + result_file
-    subprocess.call([final_cmd], shell=True, cwd="./simHw/cacti65/")
+    subprocess.call([final_cmd], shell=True, cwd="./simHw/cacti7/")
 
 
 def sram_report_extract(
@@ -94,9 +94,9 @@ def dram_cacti(
     original.close()
     target.close()
 
-    subprocess.call(["make", "all"], shell=True, cwd="./simHw/cacti65/")
+    subprocess.call(["make", "all"], shell=True, cwd="./simHw/cacti7/")
     final_cmd = "./cacti -infile ../../" + target_config_file + " > ../../" + result_file
-    subprocess.call([final_cmd], shell=True, cwd="./simHw/cacti65/")
+    subprocess.call([final_cmd], shell=True, cwd="./simHw/cacti7/")
 
 
 def dram_report_extract(

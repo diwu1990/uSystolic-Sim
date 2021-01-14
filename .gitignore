@@ -5,5 +5,5 @@
 *outputs*
 *.out
 *.o
-simHw/cacti65/cacti
-simHw/cacti65/obj_dbg
+simHw/cacti7/cacti
+simHw/cacti7/obj_dbg
