@@ -63,6 +63,10 @@ def sram_report_extract(
             height = float(entry.strip().split(':')[-1].split('x')[0].strip())
             width = float(entry.strip().split(':')[-1].split('x')[1].strip())
             area = height * width
+
+        if line_idx == 2:
+            # unit: mW
+            block_sz_bytes = float(entry.strip().split(':')[-1].strip())
     
     # MHz
     max_freq = 1 / cycle_time * 1000
@@ -74,7 +78,7 @@ def sram_report_extract(
     leakage_power = (leakage_power_bank + gate_leakage_power_bank) * bank
     # mm^2
     total_area = area
-    return max_freq, energy_per_block_rd, energy_per_block_wr, leakage_power, total_area
+    return block_sz_bytes, max_freq, energy_per_block_rd, energy_per_block_wr, leakage_power, total_area
 
 
 def dram_cacti(
@@ -103,15 +107,57 @@ def dram_report_extract(
     report=None
 ):
     # get the area and power numbers in the report for final memory power and energy estimation.
+    cacti_out = open(report, 'r')
 
-    return None
+    line_idx = 0
+    for entry in cacti_out:
+        line_idx += 1
+        if line_idx == 12:
+            ram_type = entry.strip().split(':')[-1].strip()
+            assert ram_type == "Scratch RAM", "Invalid DRAM type."
+        if line_idx == 50:
+            # unit: ns
+            bank = float(entry.strip().split(':')[-1].strip())
+        if line_idx == 58:
+            # unit: ns
+            access_time = float(entry.strip().split(':')[-1].strip())
+        if line_idx == 59:
+            # unit: ns
+            cycle_time = float(entry.strip().split(':')[-1].strip())
+        if line_idx == 61:
+            # unit: nJ
+            activate_energy = float(entry.strip().split(':')[-1].strip())
+        if line_idx == 62:
+            # unit: nJ
+            energy_rd = float(entry.strip().split(':')[-1].strip())
+        if line_idx == 63:
+            # unit: nJ
+            energy_wr = float(entry.strip().split(':')[-1].strip())
+        if line_idx == 64:
+            # unit: nJ
+            precharge_energy = float(entry.strip().split(':')[-1].strip())
+        if line_idx == 65:
+            # unit: mW
+            leakage_power_closed_page = float(entry.strip().split(':')[-1].strip())
+        if line_idx == 67:
+            # unit: mW
+            leakage_power_IO = float(entry.strip().split(':')[-1].strip())
+        if line_idx == 69:
+            # unit: mm^2
+            height = float(entry.strip().split(':')[-1].split('x')[0].strip())
+            width = float(entry.strip().split(':')[-1].split('x')[1].strip())
+            area = height * width
+    
+    # MHz
+    max_freq = 1 / cycle_time * 1000
+    return max_freq, activate_energy, energy_rd, energy_wr, precharge_energy, leakage_power_closed_page, leakage_power_IO, area
 
 
 if __name__ == "__main__":
 
-    run_cacti(
+    sram_cacti(
         mem_sz_bytes=1024*1024, # in byte
-        mem_config_file="./config/example_run/sram.cfg", 
+        src_config_file="./config/example_run/sram.cfg", 
         target_config_file="./config/example_run/real_sram.cfg",
         result_file="./config/example_run/sram.rpt"
         )

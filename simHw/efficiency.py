@@ -78,6 +78,7 @@ def estimate(
     ideal_end_cycle_ofmap_wr_sram = 0
 
     # sram hw
+    dram_bw_bytes = 16
     max_freq_ifmap = 0
     energy_per_block_rd_ifmap = 0
     energy_per_block_wr_ifmap = 0
@@ -97,33 +98,36 @@ def estimate(
     total_area_ofmap = 0
 
     # dram data
-    tot_access_ifmap_rd_dram = 0
-    max_access_ifmap_rd_dram = 0
-    act_cycles_ifmap_rd_dram = 0
-    stall_cycles_ifmap_rd_dram = 0
+    tot_word_ifmap_rd_dram = 0
+    max_word_ifmap_rd_dram = 0
+    tot_row_access_ifmap_rd_dram = 0
+    shift_cycles_ifmap_rd_dram = 0
     ideal_start_cycle_ifmap_rd_dram = 0
     ideal_end_cycle_ifmap_rd_dram = 0
 
-    tot_access_filter_rd_dram = 0
-    max_access_filter_rd_dram = 0
-    act_cycles_filter_rd_dram = 0
-    stall_cycles_filter_rd_dram = 0
+    tot_word_filter_rd_dram = 0
+    max_word_filter_rd_dram = 0
+    tot_row_access_filter_rd_dram = 0
+    shift_cycles_filter_rd_dram = 0
     ideal_start_cycle_filter_rd_dram = 0
     ideal_end_cycle_filter_rd_dram = 0
 
-    tot_access_ofmap_wr_dram = 0
-    max_access_ofmap_wr_dram = 0
-    act_cycles_ofmap_wr_dram = 0
-    stall_cycles_ofmap_wr_dram = 0
+    tot_word_ofmap_wr_dram = 0
+    max_word_ofmap_wr_dram = 0
+    tot_row_access_ofmap_wr_dram = 0
+    shift_cycles_ofmap_wr_dram = 0
     ideal_start_cycle_ofmap_wr_dram = 0
     ideal_end_cycle_ofmap_wr_dram = 0
 
-    # sram hw
+    # dram hw
     max_freq_dram = 0
-    energy_per_block_rd_dram = 0
-    energy_per_block_wr_dram = 0
-    leakage_power_dram = 0
-    total_area_dram = 0
+    activate_energy_dram = 0
+    energy_rd_dram = 0
+    energy_wr_dram = 0
+    precharge_energy_dram = 0
+    leakage_power_closed_page_dram = 0
+    leakage_power_IO_dram = 0
+    area_dram = 0
 
     # working cycles
     ideal_max_clk = -1
@@ -136,69 +140,178 @@ def estimate(
     config.read(pe_cfg_file)
 
     src = config.get(computing, 'SRC').split(',')
-    src_area_border     = src[0].strip()
-    src_leakage_border  = src[1].strip()
-    src_dynamic_border  = src[2].strip()
-    src_area_inner      = src[3].strip()
-    src_leakage_inner   = src[4].strip()
-    src_dynamic_inner   = src[5].strip()
+    src_area_border     = float(src[0].strip())
+    src_leakage_border  = float(src[1].strip())
+    src_dynamic_border  = float(src[2].strip())
+    src_area_inner      = float(src[3].strip())
+    src_leakage_inner   = float(src[4].strip())
+    src_dynamic_inner   = float(src[5].strip())
 
     mul = config.get(computing, 'MUL').split(',')
-    mul_area     = mul[0].strip()
-    mul_leakage  = mul[1].strip()
-    mul_dynamic  = mul[2].strip()
+    mul_area     = float(mul[0].strip())
+    mul_leakage  = float(mul[1].strip())
+    mul_dynamic  = float(mul[2].strip())
 
     add = config.get(computing, 'ADD').split(',')
-    add_area     = add[0].strip()
-    add_leakage  = add[1].strip()
-    add_dynamic  = add[2].strip()
+    add_area     = float(add[0].strip())
+    add_leakage  = float(add[1].strip())
+    add_dynamic  = float(add[2].strip())
 
     buf = config.get(computing, 'BUF').split(',')
-    buf_area     = buf[0].strip()
-    buf_leakage  = buf[1].strip()
-    buf_dynamic  = buf[2].strip()
+    buf_area     = float(buf[0].strip())
+    buf_leakage  = float(buf[1].strip())
+    buf_dynamic  = float(buf[2].strip())
 
     # summary report
+    detail_ideal    = open(run_name + "_detail.csv", 'w')
+    detail_real     = open(run_name + "_detail.csv", 'w')
     bw_ideal        = open(run_name + "_avg_bw_ideal.csv", 'w')
     bw_real         = open(run_name + "_avg_bw_real.csv", 'w')
-    maxbw_ideal     = open(run_name + "_max_bw_ideal.csv", 'w')
-    maxbw_real      = open(run_name + "_max_bw_real.csv", 'w')
-    detail  = open(run_name + "_detail.csv", 'w')
-    power   = open(run_name + "_power.csv", 'w')
-    energy  = open(run_name + "_energy.csv", 'w')
-    area  = open(run_name + "_area.csv", 'w')
+    area            = open(run_name + "_area.csv", 'w')
+    energy          = open(run_name + "_energy.csv", 'w')
+    power           = open(run_name + "_power.csv", 'w')
 
-    bw_log =    "IFMAP SRAM Size (Bytes),\tFilter SRAM Size (Bytes),\tOFMAP SRAM Size (Bytes),\t" + \
-                "Conv Layer Num,\t" + \
-                "DRAM IFMAP Read BW (Bytes/cycle),\tDRAM Filter Read BW (Bytes/cycle),\tDRAM OFMAP Write BW (Bytes/cycle),\t" + \
-                "SRAM IFMAP Read BW (Bytes/cycle),\tSRAM Filter Read BW (Bytes/cycle),\tSRAM OFMAP Read BW (Bytes/cycle),\t" + \
-                "SRAM OFMAP Write BW (Bytes/cycle), \n"
-    bw_ideal.write(bw_log)
-    bw_real.write(bw_log)
-    maxbw_ideal.write(bw_log)
-    maxbw_real.write(bw_log)
+    detail_ideal_log =    "Layer,\t" +\
+                    "DRAM_IFMAP_Read_start,\tDRAM_IFMAP_Read_stop,\tDRAM_IFMAP_Read_bytes,\t" + \
+                    "DRAM_Filter_Read_start,\tDRAM_Filter_Read_stop,\tDRAM_Filter_Read_bytes,\t" + \
+                    "DRAM_OFMAP_Write_start,\tDRAM_OFMAP_Write_stop,\tDRAM_OFMAP_Write_bytes,\t" + \
+                    "SRAM_IFMAP_Read_start,\tSRAM_IFMAP_Read_stop,\tSRAM_IFMAP_Read_bytes,\t" +\
+                    "SRAM_Filter_Read_start,\tSRAM_Filter_Read_stop,\tSRAM_Filter_Read_bytes,\t" +\
+                    "SRAM_OFMAP_Read_start,\tSRAM_OFMAP_Read_stop,\tSRAM_OFMAP_Read_bytes,\t" +\
+                    "SRAM_OFMAP_Write_start,\tSRAM_OFMAP_Write_stop,\tSRAM_OFMAP_Write_bytes,\t\n"
 
-    detailed_log = "Layer," +\
-                "\tDRAM_IFMAP_start,\tDRAM_IFMAP_stop,\tDRAM_IFMAP_bytes," + \
-                "\tDRAM_Filter_start,\tDRAM_Filter_stop,\tDRAM_Filter_bytes," + \
-                "\tDRAM_OFMAP_start,\tDRAM_OFMAP_stop,\tDRAM_OFMAP_bytes," + \
-                "\tSRAM_read_start,\tSRAM_read_stop,\tSRAM_read_bytes," +\
-                "\tSRAM_write_start,\tSRAM_write_stop,\tSRAM_write_bytes,\n"
-    detail.write(detailed_log)
+    detail_real_log =    "Layer,\t" +\
+                    "DRAM_IFMAP_Read_start,\tDRAM_IFMAP_Read_stop,\tDRAM_IFMAP_Read_bytes,\t" + \
+                    "DRAM_Filter_Read_start,\tDRAM_Filter_Read_stop,\tDRAM_Filter_Read_bytes,\t" + \
+                    "DRAM_OFMAP_Write_start,\tDRAM_OFMAP_Write_stop,\tDRAM_OFMAP_Write_bytes,\t" + \
+                    "SRAM_IFMAP_Read_start,\tSRAM_IFMAP_Read_stop,\tSRAM_IFMAP_Read_bytes,\t" +\
+                    "SRAM_Filter_Read_start,\tSRAM_Filter_Read_stop,\tSRAM_Filter_Read_bytes,\t" +\
+                    "SRAM_OFMAP_Read_start,\tSRAM_OFMAP_Read_stop,\tSRAM_OFMAP_Read_bytes,\t" +\
+                    "SRAM_OFMAP_Write_start,\tSRAM_OFMAP_Write_stop,\tSRAM_OFMAP_Write_bytes,\t\n"
 
-    area_log =      "IFMAP SRAM (mm^2),\tFilter SRAM (mm^2),\tOFMAP SRAM (mm^2),\tTotal SRAM (mm^2),\t" + \
-                    "Total SRC (mm^2),\tTotal MUL (mm^2),\tTotal ADD (mm^2),\tTotal BUF (mm^2),\tTotal Systolic Array (mm^2),\t"
-    area.write(area_log)
+    bw_ideal_log =  "Layer,\t" + \
+                    "DRAM IFMAP Read BW (Bytes/cycle),\tDRAM Filter Read BW (Bytes/cycle),\tDRAM OFMAP Write BW (Bytes/cycle),\t" + \
+                    "SRAM IFMAP Read BW (Bytes/cycle),\tSRAM Filter Read BW (Bytes/cycle),\tSRAM OFMAP Read BW (Bytes/cycle),\t" + \
+                    "SRAM OFMAP Write BW (Bytes/cycle),\t\n"
+    
+    bw_real_log =   "Layer,\t" + \
+                    "DRAM IFMAP Read BW (Bytes/cycle),\tDRAM Filter Read BW (Bytes/cycle),\tDRAM OFMAP Write BW (Bytes/cycle),\t" + \
+                    "SRAM IFMAP Read BW (Bytes/cycle),\tSRAM Filter Read BW (Bytes/cycle),\tSRAM OFMAP Read BW (Bytes/cycle),\t" + \
+                    "SRAM OFMAP Write BW (Bytes/cycle),\t\n"
 
-    energy_log =    "DRAM (uJ),\t" + \
-                    "IFMAP SRAM (uJ),\tFilter SRAM (uJ),\tOFMAP SRAM (uJ),\tTotal SRAM (uJ),\t" + \
-                    "Total SRC (uJ),\tTotal MUL (uJ),\tTotal ADD (uJ),\tTotal BUF (uJ),\tTotal Systolic Array (uJ),\t"
-    energy.write(energy_log)
+    area_log =      "DRAM Area (mm^2),\t" + \
+                    "SRAM IFMAP Size (Bytes),\tFilter SRAM Size (Bytes),\tOFMAP SRAM Size (Bytes),\tTotal SRAM Size (mm^2),\t" + \
+                    "SRAM IFMAP Area (mm^2),\tFilter SRAM Area (mm^2),\tOFMAP SRAM Area (mm^2),\tTotal SRAM (mm^2),\t" + \
+                    "SRC (mm^2),\tMUL (mm^2),\tADD (mm^2),\tBUF (mm^2),\tSystolic Array Total (mm^2),\t" + \
+                    "On-chip Area Total (mm^2),\t\n"
 
-    power_log =     "DRAM (mW),\t" + \
-                    "IFMAP SRAM (mW),\tFilter SRAM (mW),\tOFMAP SRAM (mW),\tTotal SRAM (mW),\t" + \
-                    "Total SRC (mW),\tTotal MUL (mW),\tTotal ADD (mW),\tTotal BUF (mW),\tTotal Systolic Array (mW),\t"
-    power.write(power_log)
+    energy_log =    "Layer,\t" + \
+                    "DRAM IFMAP (uJ),\tDRAM Filter (uJ),\tDRAM OFMAP (uJ),\tDRAM Total (uJ),\t" + \
+                    "SRAM IFMAP (uJ),\tSRAM Filter (uJ),\tSRAM OFMAP (uJ),\tSRAM Total (uJ),\t" + \
+                    "SRC (uJ),\tMUL (uJ),\tADD (uJ),\tBUF (uJ),\tSystolic Array Total (uJ),\t" + \
+                    "System Total (uJ)\n"
+    
+    power_log =     "Layer,\t" + \
+                    "DRAM IFMAP (mW),\tDRAM Filter (mW),\tDRAM OFMAP (mW),\tDRAM Total (mW),\t" + \
+                    "SRAM IFMAP (mW),\tSRAM Filter (mW),\tSRAM OFMAP (mW),\tSRAM Total (mW),\t" + \
+                    "SRC (mW),\tMUL (mW),\tADD (mW),\tBUF (mW),\tSystolic Array Total (mW),\t" + \
+                    "System Total (mW)\n"
+
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+    # DRAM: area
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+    # DRAM cacti
+    cacti.dram_cacti(
+                src_config_file=dram_cfg_file, 
+                target_config_file=run_name + "_DRAM.cfg",
+                result_file=run_name + "_DRAM.rpt")
+
+    max_freq_dram, \
+    activate_energy_dram, \
+    energy_rd_dram, \
+    energy_wr_dram, \
+    precharge_energy_dram, \
+    leakage_power_closed_page_dram, \
+    leakage_power_IO_dram, \
+    area_dram = cacti.dram_report_extract(report=run_name + "_DRAM.rpt")
+
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+    # SRAM: area
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+    # SRAM cacti
+    if ifmap_sram_exist == True:
+        # sram config for each parameter is fixed all the time
+        cacti.sram_cacti(
+                    mem_sz_bytes=ifmap_sram_size * word_sz_bytes, # in byte
+                    src_config_file=sram_cfg_file, 
+                    target_config_file=run_name + "_SRAM_ifmap.cfg",
+                    result_file=run_name + "_SRAM_ifmap.rpt")
+
+        sram_block_sz_bytes, \
+        max_freq_ifmap, \
+        energy_per_block_rd_ifmap, \
+        energy_per_block_wr_ifmap, \
+        leakage_power_ifmap, \
+        total_area_ifmap = cacti.sram_report_extract(report=run_name + "_SRAM_ifmap.rpt")
+
+    if filter_sram_exist == True:
+        # sram config for each parameter is fixed all the time
+        cacti.sram_cacti(
+                    mem_sz_bytes=filter_sram_size * word_sz_bytes, # in byte
+                    src_config_file=sram_cfg_file, 
+                    target_config_file=run_name + "_SRAM_filter.cfg",
+                    result_file=run_name + "_SRAM_filter.rpt")
+
+        sram_block_sz_bytes, \
+        max_freq_filter, \
+        energy_per_block_rd_filter, \
+        energy_per_block_wr_filter, \
+        leakage_power_filter, \
+        total_area_filter = cacti.sram_report_extract(report=run_name + "_SRAM_filter.rpt")
+    
+    if ofmap_sram_exist == True:
+        # sram config for each parameter is fixed all the time
+        cacti.sram_cacti(
+                    mem_sz_bytes=ofmap_sram_size * word_sz_bytes, # in byte
+                    src_config_file=sram_cfg_file, 
+                    target_config_file=run_name + "_SRAM_ofmap.cfg",
+                    result_file=run_name + "_SRAM_ofmap.rpt")
+
+        sram_block_sz_bytes, \
+        max_freq_ofmap, \
+        energy_per_block_rd_ofmap, \
+        energy_per_block_wr_ofmap, \
+        leakage_power_ofmap, \
+        total_area_ofmap = cacti.sram_report_extract(report=run_name + "_SRAM_ofmap.rpt")
+    
+    sram_area_total = total_area_ifmap + total_area_filter + total_area_ofmap
+
+    sram_block_sz_word = sram_block_sz_bytes / word_sz_bytes
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+    # systolic array: area
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+    # all calculations here are based on modelling using synthesized data for each components specified in pe.cfg
+    sa_area_src = array_h * src_area_border + array_h * array_w * src_area_inner
+    sa_area_mul = array_h * array_w * mul_area
+    sa_area_add = array_h * array_w * add_area
+    sa_area_buf = array_h * (array_w - 1) * buf_area
+    sa_area_tot = sa_area_src + sa_area_mul + sa_area_add + sa_area_buf
+    
+    onchip_area_tot = sram_area_total + sa_area_tot
+    area_log += str(area_dram) + ",\t" + \
+                str(ifmap_sram_size * word_sz_bytes) + ",\t" + \
+                str(filter_sram_size * word_sz_bytes) + ",\t" + \
+                str(ofmap_sram_size * word_sz_bytes) + ",\t" + \
+                str(total_area_ifmap) + ",\t" + \
+                str(total_area_filter) + ",\t" + \
+                str(total_area_ofmap) + ",\t" + \
+                str(sram_area_total) + ",\t" + \
+                str(sa_area_src) + ",\t" + \
+                str(sa_area_mul) + ",\t" + \
+                str(sa_area_add) + ",\t" + \
+                str(sa_area_buf) + ",\t" + \
+                str(sa_area_tot) + ",\t" + \
+                str(onchip_area_tot) + ",\t\n"
 
     layer_idx = 0
     for row in param_file:
@@ -214,98 +327,98 @@ def estimate(
             continue
         
         layer_idx += 1
-        print("Processing layer ", layer_idx)
+        # print("Processing layer ", layer_idx)
 
         name = elems[0]
-        bw_log_ideal = ""
-        bw_log_real = ""
-        area_log = ""
-        energy_log = ""
-        power_log = ""
+
+        # at this point, all traces are supposed to be ready in outputs/run_name/simArchOut
+        # find all layers
+        path = "./outputs/" + run_name + "/simArchOut/layer_wise/"
 
         # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
-        # DRAM: area, energy and power
+        # DRAM profiling
         # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
         # extract the bank count from dram_cfg
         dram_cfg = open(dram_cfg_file, 'r')
         dram_bank = 0
-        dram_block_sz_bytes = 0
+        dram_page_sz_bits = 0
         for entry in dram_cfg:
             elems = entry.strip().split(' ')
             elems = prune(elems)
-            if elems[0] == "-UCA" and elems[1] == "bank" and elems[2] == "count":
-                dram_bank = float(elems[3])
-            
-            if elems[0] == "-block" and elems[1] == "size" and elems[2] == "(bytes)":
-                dram_block_sz_bytes = float(elems[3])
+            if len(elems) >= 4:
+                if elems[0] == "-UCA" and elems[1] == "bank" and elems[2] == "count":
+                    dram_bank = float(elems[3])
+                
+                if elems[0] == "-page" and elems[1] == "size" and elems[2] == "(bits)":
+                    dram_page_sz_bits = float(elems[3])
 
+        dram_page_sz_bytes = dram_page_sz_bits / 8
         assert dram_bank > 0, "DRAM bank count is invalid, please check the 'dram.cfg' file."
-        assert dram_block_sz_bytes > 0, "DRAM block size is invalid, please check the 'dram.cfg' file."
-        
+        assert dram_page_sz_bytes > 0, "DRAM block size is invalid, please check the 'dram.cfg' file."
         dram_cfg.close()
 
         # ifmap read
+        tot_word_ifmap_rd_dram, \
+        max_word_ifmap_rd_dram, \
         tot_access_ifmap_rd_dram, \
-        max_access_ifmap_rd_dram, \
-        act_cycles_ifmap_rd_dram, \
-        stall_cycles_ifmap_rd_dram, \
+        tot_row_access_ifmap_rd_dram, \
+        shift_cycles_ifmap_rd_dram, \
         ideal_start_cycle_ifmap_rd_dram, \
         ideal_end_cycle_ifmap_rd_dram = block_trace.dram_profiling(
                     trace_file=path + run_name + "_" + name + "_dram_ifmap_read.csv",
                     word_sz_bytes=word_sz_bytes,
-                    mem_block_sz_bytes=dram_block_sz_bytes,
+                    page_sz_bytes=dram_page_sz_bytes,
                     bank=dram_bank,
+                    bw_bytes=dram_bw_bytes, # in byte, 64 bits x 2 / 8 = 16 bytes for DDR3
+                    sram_sz_word=ifmap_sram_size,
+                    sram_block_sz_word=sram_block_sz_word,
                     min_addr_word=ifmap_base,
                     max_addr_word=filter_base)
-        
+        real_start_cycle_ifmap_rd_dram = ideal_start_cycle_ifmap_rd_dram - shift_cycles_ifmap_rd_dram
+        real_end_cycle_ifmap_rd_dram = ideal_end_cycle_ifmap_rd_dram
+
         # filter read
+        tot_word_filter_rd_dram, \
+        max_word_filter_rd_dram, \
         tot_access_filter_rd_dram, \
-        max_access_filter_rd_dram, \
-        act_cycles_filter_rd_dram, \
-        stall_cycles_filter_rd_dram, \
+        tot_row_access_filter_rd_dram, \
+        shift_cycles_filter_rd_dram, \
         ideal_start_cycle_filter_rd_dram, \
         ideal_end_cycle_filter_rd_dram = block_trace.dram_profiling(
                     trace_file=path + run_name + "_" + name + "_dram_filter_read.csv",
                     word_sz_bytes=word_sz_bytes,
-                    mem_block_sz_bytes=dram_block_sz_bytes,
+                    page_sz_bytes=dram_page_sz_bytes,
                     bank=dram_bank,
+                    bw_bytes=dram_bw_bytes, # in byte, 64 bits x 2 / 8 = 16 bytes for DDR3
+                    sram_sz_word=filter_sram_size,
+                    sram_block_sz_word=sram_block_sz_word,
                     min_addr_word=filter_base,
                     max_addr_word=ofmap_base)
-        
+        real_start_cycle_filter_rd_dram = ideal_start_cycle_filter_rd_dram - shift_cycles_filter_rd_dram
+        real_end_cycle_filter_rd_dram = ideal_end_cycle_filter_rd_dram
+
         # ofmap write
+        tot_word_ofmap_wr_dram, \
+        max_word_ofmap_wr_dram, \
         tot_access_ofmap_wr_dram, \
-        max_access_ofmap_wr_dram, \
-        act_cycles_ofmap_wr_dram, \
-        stall_cycles_ofmap_wr_dram, \
+        tot_row_access_ofmap_wr_dram, \
+        shift_cycles_ofmap_wr_dram, \
         ideal_start_cycle_ofmap_wr_dram, \
         ideal_end_cycle_ofmap_wr_dram = block_trace.dram_profiling(
                     trace_file=path + run_name + "_" + name + "_dram_ofmap_write.csv",
                     word_sz_bytes=word_sz_bytes,
-                    mem_block_sz_bytes=dram_block_sz_bytes,
+                    page_sz_bytes=dram_page_sz_bytes,
                     bank=dram_bank,
+                    bw_bytes=dram_bw_bytes, # in byte, 64 bits x 2 / 8 = 16 bytes for DDR3
+                    sram_sz_word=ofmap_sram_size,
+                    sram_block_sz_word=sram_block_sz_word,
                     min_addr_word=ofmap_base,
                     max_addr_word=ofmap_base + 10000000)
-
-        if layer_idx == 1:
-            cacti.dram_cacti(
-                        src_config_file=dram_cfg_file, 
-                        target_config_file=run_name + "_DRAM.cfg",
-                        result_file=run_name + "_DRAM.rpt")
-
-            max_freq_dram, \
-            energy_per_block_rd_dram, \
-            energy_per_block_wr_dram, \
-            leakage_power_dram, \
-            total_area_dram = cacti.dram_report_extract(report=run_name + "_DRAM.rpt")
-
-        bw_log_ideal += ""
-        bw_log_real += ""
-        area_log += str(total_area_dram) + ",\t"
-        energy_log += ""
-        power_log += ""
+        real_start_cycle_ofmap_wr_dram = ideal_start_cycle_ofmap_wr_dram
+        real_end_cycle_ofmap_wr_dram = ideal_end_cycle_ofmap_wr_dram + shift_cycles_ofmap_wr_dram
 
         # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
-        # SRAM: area, energy and power
+        # SRAM profiling
         # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
         # extract the bank count from sram_cfg
         sram_cfg = open(sram_cfg_file, 'r')
@@ -325,10 +438,6 @@ def estimate(
         assert sram_block_sz_bytes > 0, "SRAM block size is invalid, please check the 'sram.cfg' file."
 
         sram_cfg.close()
-
-        # at this point, all traces are supposed to be ready in outputs/run_name/simArchOut
-        # find all layers
-        path = "./outputs/" + run_name + "/simArchOut/layer_wise/"
         
         # ifmap read
         tot_word_ifmap_rd_sram, \
@@ -346,7 +455,9 @@ def estimate(
                     min_addr_word=ifmap_base,
                     max_addr_word=filter_base,
                     access_buf=access_buf)
-        
+        real_start_cycle_ifmap_rd_sram = ideal_start_cycle_ifmap_rd_sram
+        real_end_cycle_ifmap_rd_sram = ideal_end_cycle_ifmap_rd_sram + stall_cycles_ifmap_rd_sram
+
         # filter read
         tot_word_filter_rd_sram, \
         max_word_filter_rd_sram, \
@@ -363,6 +474,8 @@ def estimate(
                     min_addr_word=filter_base,
                     max_addr_word=ofmap_base,
                     access_buf=access_buf)
+        real_start_cycle_filter_rd_sram = ideal_start_cycle_filter_rd_sram
+        real_end_cycle_filter_rd_sram = ideal_end_cycle_filter_rd_sram + stall_cycles_filter_rd_sram
 
         # ofmap read
         tot_word_ofmap_rd_sram, \
@@ -380,6 +493,8 @@ def estimate(
                     min_addr_word=ofmap_base,
                     max_addr_word=ofmap_base + 10000000,
                     access_buf=access_buf)
+        real_start_cycle_ofmap_rd_sram = ideal_start_cycle_ofmap_rd_sram
+        real_end_cycle_ofmap_rd_sram = ideal_end_cycle_ofmap_rd_sram + stall_cycles_ofmap_rd_sram
 
         # ofmap write
         tot_word_ofmap_wr_sram, \
@@ -397,140 +512,245 @@ def estimate(
                     min_addr_word=ofmap_base,
                     max_addr_word=ofmap_base + 10000000,
                     access_buf=access_buf)
+        real_start_cycle_ofmap_wr_sram = ideal_start_cycle_ofmap_wr_sram
+        real_end_cycle_ofmap_wr_sram = ideal_end_cycle_ofmap_wr_sram + stall_cycles_ofmap_wr_sram
 
-        if layer_idx == 1:
-            if ifmap_sram_exist == True:
-                # sram config for each parameter is fixed all the time
-                cacti.sram_cacti(
-                            mem_sz_bytes=ifmap_sram_size * word_sz_bytes, # in byte
-                            src_config_file=sram_cfg_file, 
-                            target_config_file=run_name + "_SRAM_ifmap.cfg",
-                            result_file=run_name + "_SRAM_ifmap.rpt")
-
-                max_freq_ifmap, \
-                energy_per_block_rd_ifmap, \
-                energy_per_block_wr_ifmap, \
-                leakage_power_ifmap, \
-                total_area_ifmap = cacti.sram_report_extract(report=run_name + "_SRAM_ifmap.rpt")
-
-            if filter_sram_exist == True:
-                # sram config for each parameter is fixed all the time
-                cacti.sram_cacti(
-                            mem_sz_bytes=ifmap_sram_size * word_sz_bytes, # in byte
-                            src_config_file=sram_cfg_file, 
-                            target_config_file=run_name + "_SRAM_filter.cfg",
-                            result_file=run_name + "_SRAM_filter.rpt")
-
-                max_freq_filter, \
-                energy_per_block_rd_filter, \
-                energy_per_block_wr_filter, \
-                leakage_power_filter, \
-                total_area_filter = cacti.sram_report_extract(report=run_name + "_SRAM_filter.rpt")
-            
-            if ofmap_sram_exist == True:
-                # sram config for each parameter is fixed all the time
-                cacti.sram_cacti(
-                            mem_sz_bytes=ifmap_sram_size * word_sz_bytes, # in byte
-                            src_config_file=sram_cfg_file, 
-                            target_config_file=run_name + "_SRAM_ofmap.cfg",
-                            result_file=run_name + "_SRAM_ofmap.rpt")
-
-                max_freq_ofmap, \
-                energy_per_block_rd_ofmap, \
-                energy_per_block_wr_ofmap, \
-                leakage_power_ofmap, \
-                total_area_ofmap = cacti.sram_report_extract(report=run_name + "_SRAM_ofmap.rpt")
-            
-            # SRAM area
-            sram_area_ifmap     = total_area_ifmap
-            sram_area_filter    = total_area_filter
-            sram_area_ofmap     = total_area_ofmap
-            sram_area_total     = sram_area_ifmap + sram_area_filter + sram_area_ofmap
-            area_log += str(sram_area_ifmap) + ",\t" + str(sram_area_filter) + ",\t" + str(sram_area_ofmap) + ",\t" + str(sram_area_total) + ",\t"
-
+        # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+        # run time calculation
+        # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+        ideal_min_clk = min(ideal_start_cycle_ifmap_rd_dram, 
+                            ideal_start_cycle_filter_rd_dram, 
+                            ideal_start_cycle_ofmap_wr_dram,
+                            ideal_start_cycle_ifmap_rd_sram, 
+                            ideal_start_cycle_filter_rd_sram, 
+                            ideal_start_cycle_ofmap_rd_sram,
+                            ideal_start_cycle_ofmap_wr_sram)
+        ideal_max_clk = max(ideal_end_cycle_ifmap_rd_dram, 
+                            ideal_end_cycle_filter_rd_dram, 
+                            ideal_end_cycle_ofmap_wr_dram,
+                            ideal_end_cycle_ifmap_rd_sram, 
+                            ideal_end_cycle_filter_rd_sram, 
+                            ideal_end_cycle_ofmap_rd_sram,
+                            ideal_end_cycle_ofmap_wr_sram)
         ideal_total_cycle = ideal_max_clk - ideal_min_clk + 1
+
+        real_min_clk =  min(real_start_cycle_ifmap_rd_dram, 
+                            real_start_cycle_filter_rd_dram, 
+                            real_start_cycle_ofmap_wr_dram,
+                            real_start_cycle_ifmap_rd_sram, 
+                            real_start_cycle_filter_rd_sram, 
+                            real_start_cycle_ofmap_rd_sram,
+                            real_start_cycle_ofmap_wr_sram)
+        real_max_clk =  max(real_end_cycle_ifmap_rd_sram, 
+                            real_end_cycle_filter_rd_sram, 
+                            real_end_cycle_ofmap_rd_sram,
+                            real_end_cycle_ofmap_wr_sram) - \
+                        min(ideal_end_cycle_ifmap_rd_sram, 
+                            ideal_end_cycle_filter_rd_sram, 
+                            ideal_end_cycle_ofmap_rd_sram,
+                            ideal_end_cycle_ofmap_wr_sram) + real_end_cycle_ofmap_wr_dram
         real_total_cycle = real_max_clk - real_min_clk + 1
 
-        sram_cycle =    max(ideal_end_cycle_ifmap_rd_sram + stall_cycles_ifmap_rd_sram, 
+        sram_cycle =    stall_cycles_filter_rd_sram + \
+                        max(ideal_end_cycle_ifmap_rd_sram + stall_cycles_ifmap_rd_sram, 
                             ideal_end_cycle_ofmap_rd_sram + stall_cycles_ofmap_rd_sram, 
                             ideal_end_cycle_ofmap_wr_sram + stall_cycles_ofmap_wr_sram) - \
                         min(ideal_start_cycle_ifmap_rd_sram, 
                             ideal_start_cycle_filter_rd_sram, 
                             ideal_start_cycle_ofmap_rd_sram, 
-                            ideal_start_cycle_ofmap_wr_sram) + \
-                        stall_cycles_filter_rd_sram
-
-        # SRAM bw
-        sram_bw_ideal_ifmap_rd     = tot_word_ifmap_rd_sram    / ideal_total_cycle * word_sz_bytes
-        sram_bw_ideal_filter_rd    = tot_word_filter_rd_sram   / ideal_total_cycle * word_sz_bytes
-        sram_bw_ideal_ofmap_rd     = tot_word_ofmap_rd_sram    / ideal_total_cycle * word_sz_bytes
-        sram_bw_ideal_ofmap_wr     = tot_word_ofmap_wr_sram    / ideal_total_cycle * word_sz_bytes
-        bw_log_ideal += str(sram_bw_ideal_ifmap_rd) + ",\t" + str(sram_bw_ideal_filter_rd) + ",\t" + str(sram_bw_ideal_ofmap_rd) + ",\t" + str(sram_bw_ideal_ofmap_wr) + ",\t"
-
-        sram_bw_real_ifmap_rd      = tot_word_ifmap_rd_sram    /  real_total_cycle * word_sz_bytes
-        sram_bw_real_filter_rd     = tot_word_filter_rd_sram   /  real_total_cycle * word_sz_bytes
-        sram_bw_real_ofmap_rd      = tot_word_ofmap_rd_sram    /  real_total_cycle * word_sz_bytes
-        sram_bw_real_ofmap_wr      = tot_word_ofmap_wr_sram    /  real_total_cycle * word_sz_bytes
-        bw_log_real += str(sram_bw_real_ifmap_rd) + ",\t" + str(sram_bw_real_filter_rd) + ",\t" + str(sram_bw_real_ofmap_rd) + ",\t" + str(sram_bw_real_ofmap_wr) + ",\t"
-
-        # SRAM energy
-        sram_energy_ifmap   =   leakage_power_ifmap     * real_total_cycle + \
-                                tot_access_ifmap_rd_sram    * (energy_per_block_rd_ifmap    + energy_per_block_wr_ifmap)
-        sram_energy_filter  =   leakage_power_filter    * real_total_cycle + \
-                                tot_access_filter_rd_sram   * (energy_per_block_rd_filter   + energy_per_block_wr_filter)
-        sram_energy_ofmap   =   leakage_power_ofmap     * real_total_cycle + \
-                                tot_access_filter_rd_sram   * (energy_per_block_rd_ofmap    + energy_per_block_wr_ofmap)
-        sram_energy_total   =   sram_energy_ifmap + sram_energy_filter + sram_energy_ofmap
-        energy_log += str(sram_energy_ifmap) + ",\t" + str(sram_energy_filter) + ",\t" + str(sram_energy_ofmap) + ",\t" + str(sram_energy_total) + ",\t"
-        
-        # SRAM power
-        sram_power_ifmap    =   sram_energy_ifmap   / real_total_cycle
-        sram_power_filter   =   sram_energy_filter  / real_total_cycle
-        sram_power_ofmap    =   sram_energy_ofmap   / real_total_cycle
-        sram_power_total    =   sram_power_ifmap + sram_power_filter + sram_power_ofmap
-        power_log += str(sram_power_ifmap) + ",\t" + str(sram_power_filter) + ",\t" + str(sram_power_ofmap) + ",\t" + str(sram_power_total) + ",\t"
-
-        print((tot_word_filter_rd_sram + tot_word_ifmap_rd_sram + tot_word_ofmap_rd_sram))
-        print((tot_word_filter_rd_sram + tot_word_ifmap_rd_sram + tot_word_ofmap_rd_sram) / ideal_total_cycle)
-        print((tot_word_filter_rd_sram + tot_word_ifmap_rd_sram + tot_word_ofmap_rd_sram) / real_total_cycle)
+                            ideal_start_cycle_ofmap_wr_sram)
 
         # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
-        # systolic array: area, energy and power
+        # DRAM: bw, energy, power
+        # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+        dram_bw_ideal_ifmap_rd      =   tot_word_ifmap_rd_dram    / ideal_total_cycle * word_sz_bytes
+        dram_bw_ideal_filter_rd     =   tot_word_filter_rd_dram   / ideal_total_cycle * word_sz_bytes
+        dram_bw_ideal_ofmap_wr      =   tot_word_ofmap_wr_dram    / ideal_total_cycle * word_sz_bytes
+
+        dram_bw_real_ifmap_rd       =   tot_word_ifmap_rd_dram    /  real_total_cycle * word_sz_bytes
+        dram_bw_real_filter_rd      =   tot_word_filter_rd_dram   /  real_total_cycle * word_sz_bytes
+        dram_bw_real_ofmap_wr       =   tot_word_ofmap_wr_dram    /  real_total_cycle * word_sz_bytes
+
+        dram_energy_ifmap           =   tot_row_access_ifmap_rd_dram * (activate_energy_dram + precharge_energy_dram) + \
+                                        tot_access_ifmap_rd_dram * energy_rd_dram
+        dram_energy_filter          =   tot_row_access_filter_rd_dram * (activate_energy_dram + precharge_energy_dram) + \
+                                        tot_access_filter_rd_dram * energy_rd_dram
+        dram_energy_ofmap           =   tot_row_access_ofmap_wr_dram * (activate_energy_dram + precharge_energy_dram) + \
+                                        tot_access_ofmap_wr_dram * energy_wr_dram
+        dram_energy_total           =   dram_energy_ifmap + dram_energy_filter + dram_energy_ofmap
+
+        dram_power_ifmap            =   dram_energy_ifmap   / real_total_cycle
+        dram_power_filter           =   dram_energy_filter  / real_total_cycle
+        dram_power_ofmap            =   dram_energy_ofmap   / real_total_cycle
+        dram_power_total            =   dram_energy_total   / real_total_cycle
+
+        # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+        # SRAM: bw, energy, power
+        # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+        sram_bw_ideal_ifmap_rd      =   tot_word_ifmap_rd_sram    / ideal_total_cycle * word_sz_bytes
+        sram_bw_ideal_filter_rd     =   tot_word_filter_rd_sram   / ideal_total_cycle * word_sz_bytes
+        sram_bw_ideal_ofmap_rd      =   tot_word_ofmap_rd_sram    / ideal_total_cycle * word_sz_bytes
+        sram_bw_ideal_ofmap_wr      =   tot_word_ofmap_wr_sram    / ideal_total_cycle * word_sz_bytes
+
+        sram_bw_real_ifmap_rd       =   tot_word_ifmap_rd_sram    /  real_total_cycle * word_sz_bytes
+        sram_bw_real_filter_rd      =   tot_word_filter_rd_sram   /  real_total_cycle * word_sz_bytes
+        sram_bw_real_ofmap_rd       =   tot_word_ofmap_rd_sram    /  real_total_cycle * word_sz_bytes
+        sram_bw_real_ofmap_wr       =   tot_word_ofmap_wr_sram    /  real_total_cycle * word_sz_bytes
+        
+        sram_energy_ifmap           =   leakage_power_ifmap     * real_total_cycle + \
+                                        tot_access_ifmap_rd_sram    * (energy_per_block_rd_ifmap    + energy_per_block_wr_ifmap)
+        sram_energy_filter          =   leakage_power_filter    * real_total_cycle + \
+                                        tot_access_filter_rd_sram   * (energy_per_block_rd_filter   + energy_per_block_wr_filter)
+        sram_energy_ofmap           =   leakage_power_ofmap     * real_total_cycle + \
+                                        tot_access_filter_rd_sram   * (energy_per_block_rd_ofmap    + energy_per_block_wr_ofmap)
+        sram_energy_total           =   sram_energy_ifmap + sram_energy_filter + sram_energy_ofmap
+        
+        sram_power_ifmap            =   sram_energy_ifmap   / real_total_cycle
+        sram_power_filter           =   sram_energy_filter  / real_total_cycle
+        sram_power_ofmap            =   sram_energy_ofmap   / real_total_cycle
+        sram_power_total            =   sram_energy_total   / real_total_cycle
+        
+        # print((tot_word_filter_rd_sram + tot_word_ifmap_rd_sram + tot_word_ofmap_rd_sram))
+        # print((tot_word_filter_rd_sram + tot_word_ifmap_rd_sram + tot_word_ofmap_rd_sram) / ideal_total_cycle)
+        # print((tot_word_filter_rd_sram + tot_word_ifmap_rd_sram + tot_word_ofmap_rd_sram) / real_total_cycle)
+
+        # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+        # systolic array: energy and power
         # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
         # all calculations here are based on modelling using synthesized data for each components specified in pe.cfg
-        sa_area_src = array_h * src_area_border + array_h * array_w * src_area_inner
-        sa_area_mul = array_h * array_w * mul_area
-        sa_area_add = array_h * array_w * add_area
-        sa_area_buf = array_h * (array_w - 1) * buf_area
-        sa_area_tot = sa_area_src + sa_area_mul + sa_area_add + sa_area_buf + sa_area_tot
-        area_log += str(sa_area_src) + ",\t" + str(sa_area_mul) + ",\t" + str(sa_area_add) + ",\t" + str(sa_area_buf) + ",\t" + str(sa_area_tot) + ",\t"
-        
+        computing_stall_cycles = stall_cycles_ifmap_rd_sram + stall_cycles_ofmap_rd_sram + stall_cycles_ofmap_wr_sram
+        # src will work all the time
         sa_enery_src =  (array_h * src_leakage_border + array_h * array_w * src_leakage_inner) * real_total_cycle + \
                         (array_h * src_dynamic_border + array_h * array_w * src_dynamic_inner) * sram_cycle
+        # mul and add will work only when computing with no stalls
         sa_enery_mul =  array_h * array_w * mul_leakage * real_total_cycle + \
-                        array_h * array_w * mul_dynamic * (sram_cycle - act_cycles_filter_rd_sram)
+                        array_h * array_w * mul_dynamic * (sram_cycle - act_cycles_filter_rd_sram - computing_stall_cycles)
         sa_enery_add =  array_h * array_w * add_leakage * real_total_cycle + \
-                        array_h * array_w * add_dynamic * (sram_cycle - act_cycles_filter_rd_sram)
+                        array_h * array_w * add_dynamic * (sram_cycle - act_cycles_filter_rd_sram - computing_stall_cycles)
+        # buf will work only when computing
         sa_enery_buf =  array_h * (array_w - 1) * buf_leakage * real_total_cycle + \
                         array_h * (array_w - 1) * buf_dynamic * (sram_cycle - act_cycles_filter_rd_sram)
         sa_enery_tot =  sa_enery_src + sa_enery_mul + sa_enery_add + sa_enery_buf
-        energy_log += str(sa_enery_src) + ",\t" + str(sa_enery_mul) + ",\t" + str(sa_enery_add) + ",\t" + str(sa_enery_buf) + ",\t" + str(sa_enery_tot) + ",\t"
 
         sa_power_src = sa_enery_src / real_total_cycle
         sa_power_mul = sa_enery_mul / real_total_cycle
         sa_power_add = sa_enery_add / real_total_cycle
         sa_power_buf = sa_enery_buf / real_total_cycle
         sa_power_tot = sa_power_src + sa_power_mul + sa_power_add + sa_power_buf
-        power_log += str(sa_power_src) + ",\t" + str(sa_power_mul) + ",\t" + str(sa_power_add) + ",\t" + str(sa_power_buf) + ",\t" + str(sa_power_tot) + ",\t"
+        
+        # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+        # log generation
+        # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+        detail_ideal_log += str(name) + ",\t" + \
+                            str(ideal_start_cycle_ifmap_rd_dram) + ",\t" + \
+                            str(ideal_end_cycle_ifmap_rd_dram) + ",\t" + \
+                            str(tot_word_ifmap_rd_dram * word_sz_bytes) + ",\t" + \
+                            str(ideal_start_cycle_filter_rd_dram) + ",\t" + \
+                            str(ideal_end_cycle_filter_rd_dram) + ",\t" + \
+                            str(tot_word_filter_rd_dram * word_sz_bytes) + ",\t" + \
+                            str(ideal_start_cycle_ofmap_wr_dram) + ",\t" + \
+                            str(ideal_end_cycle_ofmap_wr_dram) + ",\t" + \
+                            str(tot_word_ofmap_wr_dram * word_sz_bytes) + ",\t" +\
+                            str(ideal_start_cycle_ifmap_rd_sram) + ",\t" + \
+                            str(ideal_end_cycle_ifmap_rd_sram) + ",\t" + \
+                            str(tot_word_ifmap_rd_sram * word_sz_bytes) + ",\t" + \
+                            str(ideal_start_cycle_filter_rd_sram) + ",\t" + \
+                            str(ideal_end_cycle_filter_rd_sram) + ",\t" + \
+                            str(tot_word_filter_rd_sram * word_sz_bytes) + ",\t" + \
+                            str(ideal_start_cycle_ofmap_rd_sram) + ",\t" + \
+                            str(ideal_end_cycle_ofmap_rd_sram) + ",\t" + \
+                            str(tot_word_ofmap_rd_sram * word_sz_bytes) + ",\t" + \
+                            str(ideal_start_cycle_ofmap_wr_sram) + ",\t" + \
+                            str(ideal_end_cycle_ofmap_wr_sram) + ",\t" + \
+                            str(tot_word_ofmap_wr_sram * word_sz_bytes) + ",\t\n"
 
+        detail_real_log +=  str(name) + ",\t" + \
+                            str(real_start_cycle_ifmap_rd_dram) + ",\t" + \
+                            str(real_end_cycle_ifmap_rd_dram) + ",\t" + \
+                            str(tot_word_ifmap_rd_dram * word_sz_bytes) + ",\t" + \
+                            str(real_start_cycle_filter_rd_dram) + ",\t" + \
+                            str(real_end_cycle_filter_rd_dram) + ",\t" + \
+                            str(tot_word_filter_rd_dram * word_sz_bytes) + ",\t" + \
+                            str(real_start_cycle_ofmap_wr_dram) + ",\t" + \
+                            str(real_end_cycle_ofmap_wr_dram) + ",\t" + \
+                            str(tot_word_ofmap_wr_dram * word_sz_bytes) + ",\t" + \
+                            str(real_start_cycle_ifmap_rd_sram) + ",\t" + \
+                            str(real_end_cycle_ifmap_rd_sram) + ",\t" + \
+                            str(tot_word_ifmap_rd_sram * word_sz_bytes) + ",\t" + \
+                            str(real_start_cycle_filter_rd_sram) + ",\t" + \
+                            str(real_end_cycle_filter_rd_sram) + ",\t" + \
+                            str(tot_word_filter_rd_sram * word_sz_bytes) + ",\t" + \
+                            str(real_start_cycle_ofmap_rd_sram) + ",\t" + \
+                            str(real_end_cycle_ofmap_rd_sram) + ",\t" + \
+                            str(tot_word_ofmap_rd_sram * word_sz_bytes) + ",\t" + \
+                            str(real_start_cycle_ofmap_wr_sram) + ",\t" + \
+                            str(real_end_cycle_ofmap_wr_sram) + ",\t" + \
+                            str(tot_word_ofmap_wr_sram * word_sz_bytes) + ",\t\n"
+
+        bw_ideal_log +=     str(name) + ",\t" + \
+                            str(dram_bw_ideal_ifmap_rd) + ",\t" + \
+                            str(dram_bw_ideal_filter_rd) + ",\t" + \
+                            str(dram_bw_ideal_ofmap_wr) + ",\t" + \
+                            str(sram_bw_ideal_ifmap_rd) + ",\t" + \
+                            str(sram_bw_ideal_filter_rd) + ",\t" + \
+                            str(sram_bw_ideal_ofmap_rd) + ",\t" + \
+                            str(sram_bw_ideal_ofmap_wr) + ",\t\n"
+
+        bw_real_log +=      str(name) + ",\t" + \
+                            str(dram_bw_real_ifmap_rd) + ",\t" + \
+                            str(dram_bw_real_filter_rd) + ",\t" + \
+                            str(dram_bw_real_ofmap_wr) + ",\t" + \
+                            str(sram_bw_real_ifmap_rd) + ",\t" + \
+                            str(sram_bw_real_filter_rd) + ",\t" + \
+                            str(sram_bw_real_ofmap_rd) + ",\t" + \
+                            str(sram_bw_real_ofmap_wr) + ",\t\n"
+        
+        energy_log +=       str(name) + ",\t" + \
+                            str(dram_energy_ifmap) + ",\t" + \
+                            str(dram_energy_filter) + ",\t" + \
+                            str(dram_energy_ofmap) + ",\t" + \
+                            str(dram_energy_total) + ",\t" + \
+                            str(sram_energy_ifmap) + ",\t" + \
+                            str(sram_energy_filter) + ",\t" + \
+                            str(sram_energy_ofmap) + ",\t" + \
+                            str(sram_energy_total) + ",\t" + \
+                            str(sa_enery_src) + ",\t" + \
+                            str(sa_enery_mul) + ",\t" + \
+                            str(sa_enery_add) + ",\t" + \
+                            str(sa_enery_buf) + ",\t" + \
+                            str(sa_enery_tot) + ",\t\n"
+
+        power_log +=        str(name) + ",\t" + \
+                            str(dram_power_ifmap) + ",\t" + \
+                            str(dram_power_filter) + ",\t" + \
+                            str(dram_power_ofmap) + ",\t" + \
+                            str(dram_power_total) + ",\t" + \
+                            str(sram_power_ifmap) + ",\t" + \
+                            str(sram_power_filter) + ",\t" + \
+                            str(sram_power_ofmap) + ",\t" + \
+                            str(sram_power_total) + ",\t" + \
+                            str(sa_power_src) + ",\t" + \
+                            str(sa_power_mul) + ",\t" + \
+                            str(sa_power_add) + ",\t" + \
+                            str(sa_power_buf) + ",\t" + \
+                            str(sa_power_tot) + ",\t\n"
+
+
+    detail_ideal.write(detail_ideal_log)
+    detail_real.write(detail_real_log)
+    bw_ideal.write(bw_ideal_log)
+    bw_real.write(bw_real_log)
+    area.write(area_log)
+    energy.write(energy_log)
+    power.write(power_log)
+
+    detail_ideal.close()
+    detail_real.close()
     bw_ideal.close()
     bw_real.close()
-    maxbw_ideal.close()
-    maxbw_real.close()
-    detail.close()
-    power.close()
+    area.close()
     energy.close()
-
+    power.close()
 
 def prune(input_list):
     l = []

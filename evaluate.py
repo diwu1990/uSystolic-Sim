@@ -125,6 +125,14 @@ class evaluate:
 
         offset_list = [self.ifmap_offset, self.filter_offset, self.ofmap_offset] # in Word
 
+        if self.legacy_sram is False:
+            # estimate the ifmap sram size to hide latency
+            self.isram = sizing.profiling()
+            # estimate the filter sram size to hide latency
+            self.fsram = sizing.profiling()
+            # estimate the ofmap sram size to hide latency
+            self.osram = sizing.profiling()
+            
         r.run_net(
             ifmap_sram_size  = int(self.isram), # in K-Word
             filter_sram_size = int(self.fsram), # in K-Word
@@ -155,24 +163,12 @@ class evaluate:
         print("PE file path: \t" + self.pe_file)
         print("====================================================")
 
-        ifmap_sram_size = int(self.isram)
-        filter_sram_size = int(self.fsram)
-        ofmap_sram_size = int(self.osram)
-
-        if self.legacy_sram is False:
-            # estimate the ifmap sram size to hide latency
-            ifmap_sram_size = sizing.profiling()
-            # estimate the filter sram size to hide latency
-            filter_sram_size = sizing.profiling()
-            # estimate the ofmap sram size to hide latency
-            ofmap_sram_size = sizing.profiling()
-
         eff.estimate(
             array_h = int(self.ar_h),
             array_w = int(self.ar_w),
-            ifmap_sram_size  = ifmap_sram_size, # in K-Word
-            filter_sram_size = filter_sram_size, # in K-Word
-            ofmap_sram_size  = ofmap_sram_size, # in K-Word
+            ifmap_sram_size  = int(self.isram), # in K-Word
+            filter_sram_size = int(self.fsram), # in K-Word
+            ofmap_sram_size  = int(self.osram), # in K-Word
             word_sz_bytes=self.word_sz_bytes, # bytes per word
             ifmap_base=self.ifmap_offset, # in word
             filter_base=self.filter_offset, # in word
@@ -236,7 +232,10 @@ class evaluate:
         cmd = "mv *.rpt " + path
         os.system(cmd)
 
-        cmd = "mv *.cfg* " + path
+        cmd = "mv *.cfg " + path
+        os.system(cmd)
+
+        cmd = "mv *.cfg.out " + path
         os.system(cmd)
 
         cmd = "mv *.csv " + path
