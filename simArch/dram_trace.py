@@ -23,6 +23,7 @@ def dram_trace_read_v2(
     """
     dram read happens for all ifmap, weight and ofmap
     double buffering should be used, but is not simulated here, thus need one read and one write port for ifmap and weight sram
+    the dram access here is in burst mode
     """
 
     t_fill_start    = -1
@@ -109,6 +110,7 @@ def dram_trace_write(ofmap_sram_size_word = 64, # total size of two buffers, fil
     """
     only for ofmap write, ifmap and weight wont be written back to DRAM
     double buffering will be used for ofmap sram, and each has a read/write port.
+    the dram access here is in burst mode
     """
     traffic = open(sram_write_trace_file, 'r')
     trace_file  = open(dram_write_trace_file, 'w')

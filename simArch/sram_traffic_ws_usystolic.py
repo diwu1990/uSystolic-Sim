@@ -1,5 +1,4 @@
-import math 
-from tqdm import tqdm
+import math
 import warnings
 
 """
@@ -86,7 +85,7 @@ def sram_traffic(
         addr = f * filt_sz + filt_base
         all_filt_addr_list.append(addr)
 
-    for v in tqdm(range(int(arr_fold))):
+    for v in range(int(arr_fold)):
         # Take a slice of the starting addresses that are relevant for this arr_fold 
         filt_this_fold = min(remaining_filt, dimension_cols)
         idx_start = v * dimension_cols

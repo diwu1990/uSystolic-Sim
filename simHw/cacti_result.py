@@ -68,6 +68,9 @@ def sram_report_extract(
             # unit: mW
             block_sz_bytes = float(entry.strip().split(':')[-1].strip())
     
+    if line_idx <= 64:
+        raise ValueError("Check " + report + " for sram cacti failure.")
+
     # MHz
     max_freq = 1 / cycle_time * 1000
     # nJ
@@ -147,7 +150,10 @@ def dram_report_extract(
             height = float(entry.strip().split(':')[-1].split('x')[0].strip())
             width = float(entry.strip().split(':')[-1].split('x')[1].strip())
             area = height * width
-    
+
+    if line_idx <= 69:
+        raise ValueError("Check " + report + " for dram cacti failure.")
+
     # MHz
     max_freq = 1 / cycle_time * 1000
     return max_freq, activate_energy, energy_rd, energy_wr, precharge_energy, leakage_power_closed_page, leakage_power_IO, area

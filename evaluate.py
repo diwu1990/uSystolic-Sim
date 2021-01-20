@@ -13,19 +13,21 @@ FLAGS = flags.FLAGS
 # name of flag | default | explanation
 # architecture sim input config
 flags.DEFINE_string("systolic", "./config/example_run/systolic.cfg", "file to get systolic array architechture from")
-flags.DEFINE_string("network", "./config/example_run/gemm.csv", "consecutive GEMM topologies to read")
+flags.DEFINE_string("network", "./config/example_run/network.csv", "consecutive GEMM topologies to read")
 # hardware sim input config
 flags.DEFINE_string("sram", "./config/example_run/sram.cfg", "SRAM configs for hardware simulation. Note that the sizes are specified in systolic.cfg")
 flags.DEFINE_string("dram", "./config/example_run/dram.cfg", "DRAM configs for hardware simulation")
 flags.DEFINE_string("pe", "./config/example_run/pe.cfg", "PE area and power data for hardware simulation")
 
 class evaluate:
-    def __init__(self, save = False, arch = True, hw = True, legacy_sram = True, access_buf = True):
+    def __init__(self, save = False, simArch = True, simHw = True, resize_sram_ifmap = True, resize_sram_filter = True, resize_sram_ofmap = True, sram_access_buf = False):
         self.save_space = save
-        self.simArch = arch
-        self.simHw = hw
-        self.legacy_sram = legacy_sram
-        self.access_buf = access_buf
+        self.simArch = simArch
+        self.simHw = simHw
+        self.resize_sram_ifmap = resize_sram_ifmap
+        self.resize_sram_filter = resize_sram_filter
+        self.resize_sram_ofmap = resize_sram_ofmap
+        self.sram_access_buf = sram_access_buf
 
     def parse_config(self):
         general = 'general'
@@ -125,14 +127,8 @@ class evaluate:
 
         offset_list = [self.ifmap_offset, self.filter_offset, self.ofmap_offset] # in Word
 
-        if self.legacy_sram is False:
-            # estimate the ifmap sram size to hide latency
-            self.isram = sizing.profiling()
-            # estimate the filter sram size to hide latency
-            self.fsram = sizing.profiling()
-            # estimate the ofmap sram size to hide latency
-            self.osram = sizing.profiling()
-            
+        # for arch sim, dram trace generation requires non-zero sram size
+        # now arch sim only reports the mac utilization, as well as generating ideal sram and dram traces
         r.run_net(
             ifmap_sram_size  = int(self.isram), # in K-Word
             filter_sram_size = int(self.fsram), # in K-Word
@@ -163,6 +159,16 @@ class evaluate:
         print("PE file path: \t" + self.pe_file)
         print("====================================================")
 
+        if self.resize_sram_ifmap is True:
+            # estimate the ifmap sram size to hide latency
+            self.isram = sizing.profiling()
+        if self.resize_sram_filter is True:
+            # estimate the filter sram size to hide latency
+            self.fsram = sizing.profiling()
+        if self.resize_sram_ofmap is True:
+            # estimate the ofmap sram size to hide latency
+            self.osram = sizing.profiling()
+        
         eff.estimate(
             array_h = int(self.ar_h),
             array_w = int(self.ar_w),
@@ -179,7 +185,7 @@ class evaluate:
             computing=self.computing,
             run_name=self.run_name,
             topology_file=self.topology_file,
-            access_buf=self.access_buf
+            sram_access_buf=self.sram_access_buf
         )
         self.hw_cleanup()
         print("********* uSystolic Hardware Sim Complete **********")
@@ -243,7 +249,7 @@ class evaluate:
 
 
 def main(argv):
-    s = evaluate(save = False, arch = True, hw = True, legacy_sram = True, access_buf = False)
+    s = evaluate(save = False, simArch = True, simHw = True, resize_sram_ifmap = True, resize_sram_filter = True, resize_sram_ofmap = True, sram_access_buf = False)
     s.run_eval()
 
 if __name__ == '__main__':
