@@ -94,11 +94,7 @@ def estimate(
     leakage_power_closed_page_dram = 0
     leakage_power_IO_dram = 0
     area_dram = 0
-    dram_page_bits = 0
-    dram_bank = 0
-    dram_burst = 0
-    dram_prefetch = 0
-    dram_io_bits = 0
+    dram_chip = 8 # assume 8 x8 for DDR3
 
     dram_bw_ideal_ifmap_rd      =   0
     dram_bw_ideal_filter_rd     =   0
@@ -189,7 +185,6 @@ def estimate(
     leakage_power_ofmap = 0
     total_area_ofmap = 0
 
-    sram_bank = 0
     sram_block_sz_bytes = 0
 
     sram_energy_ifmap_rd = 0
@@ -317,7 +312,6 @@ def estimate(
     # DRAM: area
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
     # DRAM cacti
-    # those results are for entire ddr3 with multiple chips
     print("Run CACTI7.0 for DRAM")
     cacti.dram_cacti(
                 src_config_file=dram_cfg_file, 
@@ -335,30 +329,21 @@ def estimate(
 
     # extract the bank count from dram_cfg
     dram_cfg = open(dram_cfg_file, 'r')
+    dram_bank = 0
+    dram_page_sz_bits = 0
     for entry in dram_cfg:
         elems = entry.strip().split(' ')
         elems = prune(elems)
         if len(elems) >= 4:
-            if elems[0] == "-page" and elems[1] == "size" and elems[2] == "(bits)":
-                dram_page_bits = float(elems[3])
-            
             if elems[0] == "-UCA" and elems[1] == "bank" and elems[2] == "count":
                 dram_bank = float(elems[3])
             
-            if elems[0] == "-internal" and elems[1] == "prefetch" and elems[2] == "width":
-                dram_prefetch = float(elems[3])
-        
-        if len(elems) >= 3:
-            if elems[0] == "-burst" and elems[1] == "length":
-                dram_burst = float(elems[2])
+            if elems[0] == "-page" and elems[1] == "size" and elems[2] == "(bits)":
+                dram_page_sz_bits = float(elems[3])
 
-    dram_io_bits = 64 # always 64 for ddr3
-
-    assert dram_page_bits > 0, "DRAM page bit is invalid, please check the 'dram.cfg' file."
+    dram_page_sz_bytes = dram_page_sz_bits / 8
     assert dram_bank > 0, "DRAM bank count is invalid, please check the 'dram.cfg' file."
-    assert dram_burst > 0, "DRAM burst length is invalid, please check the 'dram.cfg' file."
-    assert dram_prefetch > 0, "DRAM prefetch width is invalid, please check the 'dram.cfg' file."
-    assert dram_io_bits > 0, "DRAM IO bit is invalid."
+    assert dram_page_sz_bytes > 0, "DRAM block size is invalid, please check the 'dram.cfg' file."
     dram_cfg.close()
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -417,6 +402,7 @@ def estimate(
 
     # extract the bank count from sram_cfg
     sram_cfg = open(sram_cfg_file, 'r')
+    sram_bank = 0
     for entry in sram_cfg:
         elems = entry.strip().split(' ')
         elems = prune(elems)
@@ -491,51 +477,85 @@ def estimate(
         print("Profiling IFMAP  DRAM read  trace...")
         # ifmap read
         if ifmap_sram_exist == True:
-            trace_file=path + run_name + "_" + name + "_dram_ifmap_read.csv"
+            tot_word_ifmap_rd_dram, \
+            max_word_ifmap_rd_dram, \
+            tot_access_ifmap_rd_dram, \
+            tot_row_access_ifmap_rd_dram, \
+            shift_cycles_ifmap_rd_dram, \
+            ideal_start_cycle_ifmap_rd_dram, \
+            ideal_end_cycle_ifmap_rd_dram = block_trace.dram_profiling(
+                        trace_file=path + run_name + "_" + name + "_dram_ifmap_read.csv",
+                        word_sz_bytes=word_sz_bytes,
+                        page_sz_bytes=dram_page_sz_bytes,
+                        chip=dram_chip, # 8 x8 chips for DDR3
+                        bw_bytes=dram_bw_bytes, # in byte, 64 bits x 2 / 8 = 16 bytes for DDR3
+                        sram_sz_word=ifmap_sram_size,
+                        sram_block_sz_word=sram_block_sz_word,
+                        min_addr_word=ifmap_base,
+                        max_addr_word=filter_base)
+            real_start_cycle_ifmap_rd_dram = ideal_start_cycle_ifmap_rd_dram - shift_cycles_ifmap_rd_dram
+            real_end_cycle_ifmap_rd_dram = ideal_end_cycle_ifmap_rd_dram
         else:
-            trace_file=path + run_name + "_" + name + "_sram_read.csv"
-
-        tot_word_ifmap_rd_dram, \
-        max_word_ifmap_rd_dram, \
-        tot_access_ifmap_rd_dram, \
-        tot_row_access_ifmap_rd_dram, \
-        shift_cycles_ifmap_rd_dram, \
-        ideal_start_cycle_ifmap_rd_dram, \
-        ideal_end_cycle_ifmap_rd_dram = block_trace.ddr3_8x8_profiling(
-                    trace_file=trace_file,
-                    word_sz_bytes=word_sz_bytes,
-                    page_bits=dram_page_bits,
-                    min_addr_word=ifmap_base,
-                    max_addr_word=filter_base)
-        real_start_cycle_ifmap_rd_dram = ideal_start_cycle_ifmap_rd_dram - shift_cycles_ifmap_rd_dram
-        real_end_cycle_ifmap_rd_dram = ideal_end_cycle_ifmap_rd_dram
+            tot_word_ifmap_rd_dram, \
+            max_word_ifmap_rd_dram, \
+            tot_access_ifmap_rd_dram, \
+            tot_row_access_ifmap_rd_dram, \
+            shift_cycles_ifmap_rd_dram, \
+            ideal_start_cycle_ifmap_rd_dram, \
+            ideal_end_cycle_ifmap_rd_dram = block_trace.dram_profiling_no_sram(
+                        trace_file=path + run_name + "_" + name + "_sram_read.csv",
+                        word_sz_bytes=word_sz_bytes,
+                        page_sz_bytes=dram_page_sz_bytes,
+                        chip=dram_chip, # 8 x8 chips for DDR3
+                        bw_bytes=dram_bw_bytes, # in byte, 64 bits x 2 / 8 = 16 bytes for DDR3
+                        min_addr_word=ifmap_base,
+                        max_addr_word=filter_base)
+            real_start_cycle_ifmap_rd_dram = ideal_start_cycle_ifmap_rd_dram - shift_cycles_ifmap_rd_dram
+            real_end_cycle_ifmap_rd_dram = ideal_end_cycle_ifmap_rd_dram
 
         print("Profiling Filter DRAM read  trace...")
         # filter read
         if filter_sram_exist == True:
-            trace_file=path + run_name + "_" + name + "_dram_filter_read.csv"
+            tot_word_filter_rd_dram, \
+            max_word_filter_rd_dram, \
+            tot_access_filter_rd_dram, \
+            tot_row_access_filter_rd_dram, \
+            shift_cycles_filter_rd_dram, \
+            ideal_start_cycle_filter_rd_dram, \
+            ideal_end_cycle_filter_rd_dram = block_trace.dram_profiling(
+                        trace_file=path + run_name + "_" + name + "_dram_filter_read.csv",
+                        word_sz_bytes=word_sz_bytes,
+                        page_sz_bytes=dram_page_sz_bytes,
+                        chip=dram_chip,
+                        bw_bytes=dram_bw_bytes, # in byte, 64 bits x 2 / 8 = 16 bytes for DDR3
+                        sram_sz_word=filter_sram_size,
+                        sram_block_sz_word=sram_block_sz_word,
+                        min_addr_word=filter_base,
+                        max_addr_word=ofmap_base)
+            real_start_cycle_filter_rd_dram = ideal_start_cycle_filter_rd_dram - shift_cycles_filter_rd_dram
+            real_end_cycle_filter_rd_dram = ideal_end_cycle_filter_rd_dram
         else:
-            trace_file=path + run_name + "_" + name + "_sram_read.csv"
+            tot_word_filter_rd_dram, \
+            max_word_filter_rd_dram, \
+            tot_access_filter_rd_dram, \
+            tot_row_access_filter_rd_dram, \
+            shift_cycles_filter_rd_dram, \
+            ideal_start_cycle_filter_rd_dram, \
+            ideal_end_cycle_filter_rd_dram = block_trace.dram_profiling_no_sram(
+                        trace_file=path + run_name + "_" + name + "_sram_read.csv",
+                        word_sz_bytes=word_sz_bytes,
+                        page_sz_bytes=dram_page_sz_bytes,
+                        chip=dram_chip,
+                        bw_bytes=dram_bw_bytes, # in byte, 64 bits x 2 / 8 = 16 bytes for DDR3
+                        min_addr_word=filter_base,
+                        max_addr_word=ofmap_base)
+            real_start_cycle_filter_rd_dram = ideal_start_cycle_filter_rd_dram - shift_cycles_filter_rd_dram
+            real_end_cycle_filter_rd_dram = ideal_end_cycle_filter_rd_dram
 
-        tot_word_filter_rd_dram, \
-        max_word_filter_rd_dram, \
-        tot_access_filter_rd_dram, \
-        tot_row_access_filter_rd_dram, \
-        shift_cycles_filter_rd_dram, \
-        ideal_start_cycle_filter_rd_dram, \
-        ideal_end_cycle_filter_rd_dram = block_trace.ddr3_8x8_profiling(
-                    trace_file=trace_file,
-                    word_sz_bytes=word_sz_bytes,
-                    page_bits=dram_page_bits,
-                    min_addr_word=filter_base,
-                    max_addr_word=ofmap_base)
-        real_start_cycle_filter_rd_dram = ideal_start_cycle_filter_rd_dram - shift_cycles_filter_rd_dram
-        real_end_cycle_filter_rd_dram = ideal_end_cycle_filter_rd_dram
-
-        print("Profiling OFMAP  DRAM read  trace...")
-        # ofmap read
         if ofmap_sram_exist == True:
-            # when sram exist, assume no ofmap will be read from dram, as sram is large enough
+            print("Profiling OFMAP  DRAM read  trace...")
+            # ofmap read
+            # when sram exist, assume no ofmap will be read from dram
             tot_word_ofmap_rd_dram = 0
             max_word_ofmap_rd_dram = 0
             tot_access_ofmap_rd_dram = 0
@@ -545,44 +565,65 @@ def estimate(
             ideal_end_cycle_ofmap_rd_dram = 0
             real_start_cycle_ofmap_rd_dram = 0
             real_end_cycle_ofmap_rd_dram = 0
+
+            print("Profiling OFMAP  DRAM write trace...")
+            # ofmap write
+            tot_word_ofmap_wr_dram, \
+            max_word_ofmap_wr_dram, \
+            tot_access_ofmap_wr_dram, \
+            tot_row_access_ofmap_wr_dram, \
+            shift_cycles_ofmap_wr_dram, \
+            ideal_start_cycle_ofmap_wr_dram, \
+            ideal_end_cycle_ofmap_wr_dram = block_trace.dram_profiling(
+                        trace_file=path + run_name + "_" + name + "_dram_ofmap_write.csv",
+                        word_sz_bytes=word_sz_bytes,
+                        page_sz_bytes=dram_page_sz_bytes,
+                        chip=dram_chip,
+                        bw_bytes=dram_bw_bytes, # in byte, 64 bits x 2 / 8 = 16 bytes for DDR3
+                        sram_sz_word=ofmap_sram_size,
+                        sram_block_sz_word=sram_block_sz_word,
+                        min_addr_word=ofmap_base,
+                        max_addr_word=ofmap_base + 10000000)
+            real_start_cycle_ofmap_wr_dram = ideal_start_cycle_ofmap_wr_dram
+            real_end_cycle_ofmap_wr_dram = ideal_end_cycle_ofmap_wr_dram + shift_cycles_ofmap_wr_dram
         else:
-            trace_file=path + run_name + "_" + name + "_sram_read.csv"
+            print("Profiling OFMAP  DRAM read  trace...")
+            # ofmap read
             tot_word_ofmap_rd_dram, \
             max_word_ofmap_rd_dram, \
             tot_access_ofmap_rd_dram, \
             tot_row_access_ofmap_rd_dram, \
             shift_cycles_ofmap_rd_dram, \
             ideal_start_cycle_ofmap_rd_dram, \
-            ideal_end_cycle_ofmap_rd_dram = block_trace.ddr3_8x8_profiling(
-                        trace_file=trace_file,
+            ideal_end_cycle_ofmap_rd_dram = block_trace.dram_profiling_no_sram(
+                        trace_file=path + run_name + "_" + name + "_sram_read.csv",
                         word_sz_bytes=word_sz_bytes,
-                        page_bits=dram_page_bits,
+                        page_sz_bytes=dram_page_sz_bytes,
+                        chip=dram_chip,
+                        bw_bytes=dram_bw_bytes, # in byte, 64 bits x 2 / 8 = 16 bytes for DDR3
                         min_addr_word=ofmap_base,
                         max_addr_word=ofmap_base + 10000000)
             real_start_cycle_ofmap_rd_dram = ideal_start_cycle_ofmap_rd_dram
             real_end_cycle_ofmap_rd_dram = ideal_end_cycle_ofmap_rd_dram + shift_cycles_ofmap_rd_dram
 
-        print("Profiling OFMAP  DRAM write trace...")
-        # ofmap write
-        if ofmap_sram_exist == True:
-            trace_file=path + run_name + "_" + name + "_dram_ofmap_write.csv"
-        else:
-            trace_file=path + run_name + "_" + name + "_sram_write.csv"
-
-        tot_word_ofmap_wr_dram, \
-        max_word_ofmap_wr_dram, \
-        tot_access_ofmap_wr_dram, \
-        tot_row_access_ofmap_wr_dram, \
-        shift_cycles_ofmap_wr_dram, \
-        ideal_start_cycle_ofmap_wr_dram, \
-        ideal_end_cycle_ofmap_wr_dram = block_trace.ddr3_8x8_profiling(
-                    trace_file=trace_file,
-                    word_sz_bytes=word_sz_bytes,
-                    page_bits=dram_page_bits,
-                    min_addr_word=ofmap_base,
-                    max_addr_word=ofmap_base + 10000000)
-        real_start_cycle_ofmap_wr_dram = ideal_start_cycle_ofmap_wr_dram
-        real_end_cycle_ofmap_wr_dram = ideal_end_cycle_ofmap_wr_dram + shift_cycles_ofmap_wr_dram
+            print("Profiling OFMAP  DRAM write trace...")
+            # ofmap write
+            tot_word_ofmap_wr_dram, \
+            max_word_ofmap_wr_dram, \
+            tot_access_ofmap_wr_dram, \
+            tot_row_access_ofmap_wr_dram, \
+            shift_cycles_ofmap_wr_dram, \
+            ideal_start_cycle_ofmap_wr_dram, \
+            ideal_end_cycle_ofmap_wr_dram = block_trace.dram_profiling_no_sram(
+                        trace_file=path + run_name + "_" + name + "_sram_write.csv",
+                        word_sz_bytes=word_sz_bytes,
+                        page_sz_bytes=dram_page_sz_bytes,
+                        chip=dram_chip,
+                        bw_bytes=dram_bw_bytes, # in byte, 64 bits x 2 / 8 = 16 bytes for DDR3
+                        min_addr_word=ofmap_base,
+                        max_addr_word=ofmap_base + 10000000)
+            real_start_cycle_ofmap_wr_dram = ideal_start_cycle_ofmap_wr_dram
+            real_end_cycle_ofmap_wr_dram = ideal_end_cycle_ofmap_wr_dram + shift_cycles_ofmap_wr_dram
 
         # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
         # SRAM profiling

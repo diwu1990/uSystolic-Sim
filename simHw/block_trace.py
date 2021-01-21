@@ -105,21 +105,261 @@ def sram_profiling(
     return tot_word, max_word, tot_access, max_access, act_cycles, stall_cycles, ideal_start_cycle, ideal_end_cycle
 
 
-def dram_profiling(
+# def dram_profiling(
+#     trace_file=None,
+#     word_sz_bytes=4,
+#     page_sz_bytes=16, # in byte for a dram row/page
+#     chip=8, # 8 x8 chips, x8 mean each chip provides 8-bit output
+#     bw_bytes=16, # in byte, 64 bits x 2 / 8 = 16 bytes for DDR3, bw per cycle
+#     sram_sz_word=4,
+#     sram_block_sz_word=4,
+#     min_addr_word=0,
+#     max_addr_word=100000
+# ):
+#     """
+#     this code takes non-stalling dram trace and reorganizes the trace to meet the bandwidth requirement.
+#     currently, it does not generate new trace, which can be improved later.
+#     """
+#     # output list
+#     tot_word = 0
+#     max_word = 0
+#     tot_access = 0
+#     tot_row_access = 0
+#     shift_cycles = 0
+#     ideal_start_cycle = 0
+#     ideal_end_cycle = 0
+
+#     page_sz_word = page_sz_bytes / word_sz_bytes
+#     bw_word = bw_bytes / word_sz_bytes
+
+#     sram_block = []
+#     max_sram_block = sram_sz_word / sram_block_sz_word
+
+#     per_sram_block_cycle = sram_block_sz_word / bw_word
+
+#     requests = open(trace_file, 'r')
+
+#     # index list of row and chip for each access
+#     row_chip_list_new = []
+
+#     first = True
+#     last_burst_end_cycle = -1000000000
+#     cur_burst_start_cycle = 0
+#     previous_cycle = 0
+#     budget_cycles = 0
+
+#     for entry in requests:
+#         elems = entry.strip().split(',')
+#         elems = prune(elems)
+#         elems = [float(x) for x in elems]
+#         valid_word = 0
+
+#         if first == True:
+#             first = False
+#             ideal_start_cycle = elems[0]
+#             previous_cycle = elems[0] - 1
+        
+#         ideal_end_cycle = elems[0]
+#         row_chip_list_old = row_chip_list_new
+#         row_chip_list_new = []
+
+#         # memory row index and chip index generation
+#         for e in range(1, len(elems)): # each element here is a word
+#             # only count legal address
+#             if (elems[e] >= min_addr_word) and (elems[e] < max_addr_word):
+#                 row_idx = int(math.floor((elems[e] - min_addr_word) / page_sz_word))
+#                 # block chipping, LSB of index bits
+#                 chip_idx = int(math.floor((elems[e] - min_addr_word) / (page_sz_word / chip)) % chip)
+#                 row_chip_list_new.append((row_idx, chip_idx))
+#                 valid_word += 1
+
+#         tot_word += valid_word
+#         if max_word < valid_word:
+#             max_word = valid_word
+
+#         # merge access if they have identical chip and row index: the actual access to different blocks
+#         row_chip_list_new = list(set(row_chip_list_new))
+
+#         extra_cycles = -1
+#         # check whether the required row/chip is already in sram
+#         for e in range(len(row_chip_list_new)):
+#             if e in sram_block:
+#                 pass
+#             else:
+#                 if len(sram_block) >= max_sram_block:
+#                     sram_block.pop(0)
+#                 sram_block.append(e)
+#                 extra_cycles += per_sram_block_cycle
+        
+#         budget_cycles -= extra_cycles
+#         if budget_cycles < 0:
+#             shift_cycles += extra_cycles
+        
+#         if extra_cycles > 0:
+#             tot_access += extra_cycles + 1
+#         else:
+#             tot_access += 1
+
+#         # only new row accesses from the last load are counted, as old are already buffered
+#         new_row_access = 0
+#         # only different blocks are accessed, old accesses are buffered already and required no access
+#         for a in range(len(row_chip_list_new)):
+#             if row_chip_list_new[a][0] not in [x for (x, y) in row_chip_list_old]:
+#                 new_row_access += 1
+        
+#         tot_row_access += new_row_access
+        
+#         if previous_cycle + 1 < elems[0]:
+#             # current busrt end, and next burst start
+#             # print("old", last_burst_end_cycle, cur_burst_start_cycle, budget_cycles)
+#             last_burst_end_cycle = previous_cycle
+#             cur_burst_start_cycle = elems[0]
+#             budget_cycles += cur_burst_start_cycle - last_burst_end_cycle
+#             # print("new", last_burst_end_cycle, cur_burst_start_cycle, budget_cycles)
+
+#         previous_cycle = elems[0]
+
+#     if shift_cycles > 0:
+#         shift_cycles = math.ceil(shift_cycles)
+#     else:
+#         shift_cycles = math.floor(shift_cycles)
+    
+#     tot_access = math.ceil(tot_access)
+
+#     return tot_word, max_word, tot_access, tot_row_access, shift_cycles, ideal_start_cycle, ideal_end_cycle
+
+
+# def dram_profiling_no_sram(
+#     trace_file=None,
+#     word_sz_bytes=4,
+#     page_sz_bytes=16, # in byte for a dram row/page
+#     chip=8, # 8 x8 chips, x8 mean each chip provides 8-bit output
+#     bw_bytes=16, # in byte, 64 bits x 2 / 8 = 16 bytes for DDR3, bw per cycle
+#     min_addr_word=0,
+#     max_addr_word=100000
+# ):
+#     """
+#     this code takes non-stalling dram trace and reorganizes the trace to meet the bandwidth requirement.
+#     currently, it does not generate new trace, which can be improved later.
+#     """
+#     # output list
+#     tot_word = 0
+#     max_word = 0
+#     tot_access = 0
+#     tot_row_access = 0
+#     shift_cycles = 0
+#     ideal_start_cycle = 0
+#     ideal_end_cycle = 0
+
+#     page_sz_word = page_sz_bytes / word_sz_bytes
+#     bw_word = bw_bytes / word_sz_bytes
+
+#     requests = open(trace_file, 'r')
+
+#     # index list of row and chip for each access
+#     row_chip_list_new = []
+
+#     first = True
+#     last_burst_end_cycle = -1000000000
+#     cur_burst_start_cycle = 0
+#     previous_cycle = 0
+#     budget_cycles = 0
+
+#     index = 0
+#     for entry in requests:
+#         elems = entry.strip().split(',')
+#         elems = prune(elems)
+#         elems = [float(x) for x in elems]
+#         valid_word = 0
+        
+#         index += 1
+#         if index > 2:
+#             continue
+
+#         if first == True:
+#             first = False
+#             ideal_start_cycle = elems[0]
+#             previous_cycle = elems[0] - 1
+
+#         ideal_end_cycle = elems[0]
+#         row_chip_list_old = row_chip_list_new
+#         row_chip_list_new = []
+
+#         # memory row index and chip index generation
+#         for e in range(1, len(elems)): # each element here is a word
+#             # only count legal address
+#             if (elems[e] >= min_addr_word) and (elems[e] < max_addr_word):
+#                 row_idx = int(math.floor((elems[e] - min_addr_word) / page_sz_word))
+#                 # block chipping, LSB of index bits
+#                 chip_idx = int(math.floor((elems[e] - min_addr_word) / (page_sz_word / chip)) % chip)
+#                 row_chip_list_new.append((row_idx, chip_idx))
+#                 valid_word += 1
+        
+#         tot_word += valid_word
+#         if max_word < valid_word:
+#             max_word = valid_word
+
+#         # merge access if they have identical chip and row index: the actual access to different blocks
+#         row_chip_list_new = list(set(row_chip_list_new))
+        
+#         if len(row_chip_list_new) > 0:
+#             print(elems[1:])
+#             print(row_chip_list_new)
+
+#         # check whether one access can read the data needed
+#         extra_cycles = 0
+#         if len(row_chip_list_new) * 1 / word_sz_bytes > bw_word:
+#             extra_cycles += math.ceil((len(row_chip_list_new) * 1 / word_sz_bytes) / bw_word)
+
+#         budget_cycles -= extra_cycles
+#         if budget_cycles < 0:
+#             shift_cycles += extra_cycles
+        
+#         tot_access += extra_cycles
+
+#         # only new row accesses from the last load are counted, as old are already buffered
+#         new_row_access = 0
+#         # only different blocks are accessed, old accesses are buffered already and required no access
+#         for a in range(len(row_chip_list_new)):
+#             if row_chip_list_new[a][0] not in [x for (x, y) in row_chip_list_old]:
+#                 new_row_access += 1
+        
+#         tot_row_access += new_row_access
+        
+#         if previous_cycle + 1 < elems[0]:
+#             # current busrt end, and next burst start
+#             # print("old", last_burst_end_cycle, cur_burst_start_cycle, budget_cycles)
+#             last_burst_end_cycle = previous_cycle
+#             cur_burst_start_cycle = elems[0]
+#             budget_cycles += cur_burst_start_cycle - last_burst_end_cycle
+#             # print("new", last_burst_end_cycle, cur_burst_start_cycle, budget_cycles)
+
+#         previous_cycle = elems[0]
+
+#     if shift_cycles > 0:
+#         shift_cycles = math.ceil(shift_cycles)
+#     else:
+#         shift_cycles = math.floor(shift_cycles)
+    
+#     tot_access = math.ceil(tot_access)
+
+#     return tot_word, max_word, tot_access, tot_row_access, shift_cycles, ideal_start_cycle, ideal_end_cycle
+
+
+def ddr3_8x8_profiling(
     trace_file=None,
-    word_sz_bytes=4,
-    page_sz_bytes=16, # in byte for a dram row/page
-    chip=8, # 8 x8 chips, x8 mean each chip provides 8-bit output
-    bw_bytes=16, # in byte, 64 bits x 2 / 8 = 16 bytes for DDR3, bw per cycle
-    sram_sz_word=4,
-    sram_block_sz_word=4,
+    word_sz_bytes=1,
+    page_bits=8192, # number of bits for a dram page/row
     min_addr_word=0,
     max_addr_word=100000
 ):
     """
     this code takes non-stalling dram trace and reorganizes the trace to meet the bandwidth requirement.
     currently, it does not generate new trace, which can be improved later.
+    all default values are for ddr3, the output values are used by cacti "main memory" type
+    in this model, the burst behavior in the dram is not modeled, as such the reported cycle count will be larger, i.e., a pessimistic estimation
     """
+    
     # output list
     tot_word = 0
     max_word = 0
@@ -129,222 +369,133 @@ def dram_profiling(
     ideal_start_cycle = 0
     ideal_end_cycle = 0
 
-    page_sz_word = page_sz_bytes / word_sz_bytes
-    bw_word = bw_bytes / word_sz_bytes
+    bank=8 # number of banks in a chip. banks can be interleaved to reduce access latency. not modelled for simplicity.
+    burst=8 # number of bytes for a single bank row and col address, and burst is sequential. not modelled for simplicity.
+    prefetch=8 # number of prefetches/chips, with each chip referring to 1 prefetch. prefetch is parallel
+    io_bits=8 # number of bits provided by all chips, with each chip providing io_bits/prefectch bits, each 8 bit provided by a single bank in the chip
 
-    sram_block = []
-    max_sram_block = sram_sz_word / sram_block_sz_word
+    # number of words per page
+    page_byte = page_bits / 8
 
-    per_sram_block_cycle = sram_block_sz_word / bw_word
+    # per cycle ddr bandwidth in word
+    io_byte = io_bits / 8
 
     requests = open(trace_file, 'r')
 
-    # index list of row and chip for each access
-    row_chip_list_new = []
+    # applied address mapping: row + bank + col + chip
+    # this mapping is just for modeling, and actual implementation can be different
+    # for default ddr3 setting, 14-b row + 3-b bank + 10-b col + 3-b chip
+    # more info about ddr3 can be found here: http://mermaja.act.uji.es/docencia/is37/data/DDR3.pdf page 15
+
+    # parallel prefetch via chip has higher priority than sequential burst in a bank
+    # prefetch_buf format (row idx, col idx, chip idx)
+    # consecutive addresses are transmitted using prefetech instead of burst, as they are from the same bank but different chips
+    # bank interleaving is not simulated here, as they will not incur high access overhead
+    prefetch_buf_new = []
+    prefetch_buf_old = []
+    current_prefetch = []
 
     first = True
-    last_burst_end_cycle = -1000000000
-    cur_burst_start_cycle = 0
-    previous_cycle = 0
-    budget_cycles = 0
+    act_cycles = 0
 
     for entry in requests:
         elems = entry.strip().split(',')
         elems = prune(elems)
         elems = [float(x) for x in elems]
         valid_word = 0
-
+        
         if first == True:
             first = False
             ideal_start_cycle = elems[0]
-            previous_cycle = elems[0] - 1
-        
-        ideal_end_cycle = elems[0]
-        row_chip_list_old = row_chip_list_new
-        row_chip_list_new = []
 
-        # memory row index and chip index generation
+        ideal_end_cycle = elems[0]
+        prefetch_buf_new = []
+
+        # memory row index and col index generation inside a chip
         for e in range(1, len(elems)): # each element here is a word
             # only count legal address
             if (elems[e] >= min_addr_word) and (elems[e] < max_addr_word):
-                row_idx = int(math.floor((elems[e] - min_addr_word) / page_sz_word))
-                # block chipping, LSB of index bits
-                chip_idx = int(math.floor((elems[e] - min_addr_word) / (page_sz_word / chip)) % chip)
-                row_chip_list_new.append((row_idx, chip_idx))
+                # get the byte addr of the element, as dram is byte addressable
+                elem_addr_byte = math.floor((elems[e] - min_addr_word) * word_sz_bytes)
+                # this row index contain both row and bank in the address
+                row_idx = math.floor(elem_addr_byte / page_byte)
+                # col idx inside a chip
+                col_idx = math.floor((elem_addr_byte % page_byte) / prefetch)
+                # chip index
+                chip_idx = math.floor(elem_addr_byte % prefetch)
+                prefetch_buf_new.append((row_idx, col_idx, chip_idx))
                 valid_word += 1
+
+        # print(len(prefetch_buf_new))
+        act_cycles += (len(prefetch_buf_new) > 0)
+
+        # add addresses for multi-byte word
+        tmp_prefetch_buf = list(prefetch_buf_new)
+        for w in range(math.ceil(word_sz_bytes) - 1):
+            for (x, y, z) in tmp_prefetch_buf:
+                # get the byte addr of the element, as dram is byte addressable
+                elem_addr_byte = x * page_byte + y * prefetch + z + (w + 1)
+                # this row index contain both row and bank in the address
+                row_idx = math.floor(elem_addr_byte / page_byte)
+                # col idx inside a chip
+                col_idx = math.floor((elem_addr_byte % page_byte) / prefetch)
+                # chip index
+                chip_idx = math.floor(elem_addr_byte % prefetch)
+                prefetch_buf_new.append((row_idx, col_idx, chip_idx))
 
         tot_word += valid_word
         if max_word < valid_word:
             max_word = valid_word
-
-        # merge access if they have identical chip and row index: the actual access to different blocks
-        row_chip_list_new = list(set(row_chip_list_new))
-
-        extra_cycles = -1
-        # check whether the required row/chip is already in sram
-        for e in range(len(row_chip_list_new)):
-            if e in sram_block:
-                pass
-            else:
-                if len(sram_block) >= max_sram_block:
-                    sram_block.pop(0)
-                sram_block.append(e)
-                extra_cycles += per_sram_block_cycle
         
-        budget_cycles -= extra_cycles
-        if budget_cycles < 0:
-            shift_cycles += extra_cycles
-        
-        if extra_cycles > 0:
-            tot_access += extra_cycles + 1
-        else:
-            tot_access += 1
-
-        # only new row accesses from the last load are counted, as old are already buffered
-        new_row_access = 0
-        # only different blocks are accessed, old accesses are buffered already and required no access
-        for a in range(len(row_chip_list_new)):
-            if row_chip_list_new[a][0] not in [x for (x, y) in row_chip_list_old]:
-                new_row_access += 1
-        
-        tot_row_access += new_row_access
-        
-        if previous_cycle + 1 < elems[0]:
-            # current busrt end, and next burst start
-            # print("old", last_burst_end_cycle, cur_burst_start_cycle, budget_cycles)
-            last_burst_end_cycle = previous_cycle
-            cur_burst_start_cycle = elems[0]
-            budget_cycles += cur_burst_start_cycle - last_burst_end_cycle
-            # print("new", last_burst_end_cycle, cur_burst_start_cycle, budget_cycles)
-
-        previous_cycle = elems[0]
-
-    if shift_cycles > 0:
-        shift_cycles = math.ceil(shift_cycles)
-    else:
-        shift_cycles = math.floor(shift_cycles)
-    
-    tot_access = math.ceil(tot_access)
-
-    return tot_word, max_word, tot_access, tot_row_access, shift_cycles, ideal_start_cycle, ideal_end_cycle
-
-
-def dram_profiling_no_sram(
-    trace_file=None,
-    word_sz_bytes=4,
-    page_sz_bytes=16, # in byte for a dram row/page
-    chip=8, # 8 x8 chips, x8 mean each chip provides 8-bit output
-    bw_bytes=16, # in byte, 64 bits x 2 / 8 = 16 bytes for DDR3, bw per cycle
-    min_addr_word=0,
-    max_addr_word=100000
-):
-    """
-    this code takes non-stalling dram trace and reorganizes the trace to meet the bandwidth requirement.
-    currently, it does not generate new trace, which can be improved later.
-    """
-    # output list
-    tot_word = 0
-    max_word = 0
-    tot_access = 0
-    tot_row_access = 0
-    shift_cycles = 0
-    ideal_start_cycle = 0
-    ideal_end_cycle = 0
-
-    page_sz_word = page_sz_bytes / word_sz_bytes
-    bw_word = bw_bytes / word_sz_bytes
-
-    requests = open(trace_file, 'r')
-
-    # index list of row and chip for each access
-    row_chip_list_new = []
-
-    first = True
-    last_burst_end_cycle = -1000000000
-    cur_burst_start_cycle = 0
-    previous_cycle = 0
-    budget_cycles = 0
-
-    index = 0
-    for entry in requests:
-        elems = entry.strip().split(',')
-        elems = prune(elems)
-        elems = [float(x) for x in elems]
-        valid_word = 0
-        
-        index += 1
-        if index > 5:
-            continue
-
-        if first == True:
-            first = False
-            ideal_start_cycle = elems[0]
-            previous_cycle = elems[0] - 1
-
-        ideal_end_cycle = elems[0]
-        row_chip_list_old = row_chip_list_new
-        row_chip_list_new = []
+        # merge the repeated accesses in byte granularity
+        prefetch_buf_new = list(set(prefetch_buf_new))
 
         # print(elems[1:])
+        # print(prefetch_buf_new)
 
-        # memory row index and chip index generation
-        for e in range(1, len(elems)): # each element here is a word
-            # only count legal address
-            if (elems[e] >= min_addr_word) and (elems[e] < max_addr_word):
-                row_idx = int(math.floor((elems[e] - min_addr_word) / page_sz_word))
-                # block chipping, LSB of index bits
-                chip_idx = int(math.floor((elems[e] - min_addr_word) / (page_sz_word / chip)) % chip)
-                row_chip_list_new.append((row_idx, chip_idx))
-                valid_word += 1
+        new_access = 0
+        # update the prefetch start addr
+        prefetch_row_col_new = list(set([(x, y) for (x, y, z) in prefetch_buf_new]))
+        prefetch_row_col_old = list(set([(x, y) for (x, y, z) in prefetch_buf_old]))
+        for (x, y) in prefetch_row_col_new:
+            # a new start address for prefetch
+            if (x, y) not in prefetch_row_col_old:
+                start_chip = 1000000
+                for (i, j, k) in prefetch_buf_new:
+                    if x == i and j == y and k < start_chip:
+                        # add a new prefetch
+                        start_chip = k
+                current_prefetch.append((x, y))
+                # each prefetch means an access
+                new_access += 1
+        tot_access += new_access
+        # print(new_access)
+        # print(current_prefetch)
+
+        for (x, y) in prefetch_row_col_old:
+            if (x, y) not in prefetch_row_col_new:
+                # remove a prefetch if it's not used anymore
+                current_prefetch.remove((x, y))
+        # print(current_prefetch)
         
-        # print(row_chip_list_new)
-
-        tot_word += valid_word
-        if max_word < valid_word:
-            max_word = valid_word
-
-        # merge access if they have identical chip and row index: the actual access to different blocks
-        row_chip_list_new = list(set(row_chip_list_new))
-
-        # print(row_chip_list_new)
-
-        # check whether one access can read the data needed
-        extra_cycles = 0
-        if len(row_chip_list_new) * 1 / word_sz_bytes > bw_word:
-            extra_cycles += math.ceil((len(row_chip_list_new) * 1 / word_sz_bytes) / bw_word)
-
-        budget_cycles -= extra_cycles
-        if budget_cycles < 0:
-            shift_cycles += extra_cycles
-        
-        tot_access += extra_cycles
-
         # only new row accesses from the last load are counted, as old are already buffered
         new_row_access = 0
         # only different blocks are accessed, old accesses are buffered already and required no access
-        for a in range(len(row_chip_list_new)):
-            if row_chip_list_new[a][0] not in [x for (x, y) in row_chip_list_old]:
+        prefetch_row_new = list(set([x for (x, y, z) in prefetch_buf_new]))
+        prefetch_row_old = list(set([x for (x, y, z) in prefetch_buf_old]))
+        for a in range(len(prefetch_row_new)):
+            if prefetch_row_new[a] not in prefetch_row_old:
                 new_row_access += 1
-        
+            
         tot_row_access += new_row_access
-        
-        if previous_cycle + 1 < elems[0]:
-            # current busrt end, and next burst start
-            # print("old", last_burst_end_cycle, cur_burst_start_cycle, budget_cycles)
-            last_burst_end_cycle = previous_cycle
-            cur_burst_start_cycle = elems[0]
-            budget_cycles += cur_burst_start_cycle - last_burst_end_cycle
-            # print("new", last_burst_end_cycle, cur_burst_start_cycle, budget_cycles)
 
-        previous_cycle = elems[0]
-
-    if shift_cycles > 0:
-        shift_cycles = math.ceil(shift_cycles)
-    else:
-        shift_cycles = math.floor(shift_cycles)
+        prefetch_buf_old = prefetch_buf_new
     
-    tot_access = math.ceil(tot_access)
+    # divided by two because of ddr
+    shift_cycles = max((math.ceil(tot_access / 2) - act_cycles), 0 )
 
+    # print(tot_access / 2)
+    # print(act_cycles)
     return tot_word, max_word, tot_access, tot_row_access, shift_cycles, ideal_start_cycle, ideal_end_cycle
 
 
@@ -361,68 +512,84 @@ def prune(input_list):
 
 
 if __name__ == "__main__":
-    output = sram_profiling(
-        trace_file="outputs/example_run/simArchOut/layer_wise/example_run_Conv1_sram_read.csv", 
-        word_sz_bytes=1,
-        block_sz_bytes=16,
-        bank=4,
-        min_addr_word=00000000, 
-        max_addr_word=10000000,
-        access_buf=True)
-    print("ifmap", output)
+    # output = sram_profiling(
+    #     trace_file="outputs/example_run/simArchOut/layer_wise/example_run_Conv1_sram_read.csv", 
+    #     word_sz_bytes=1,
+    #     block_sz_bytes=16,
+    #     bank=4,
+    #     min_addr_word=00000000, 
+    #     max_addr_word=10000000,
+    #     access_buf=True)
+    # print("ifmap", output)
 
-    output = sram_profiling(
-        trace_file="outputs/example_run/simArchOut/layer_wise/example_run_Conv1_sram_read.csv", 
-        word_sz_bytes=1,
-        block_sz_bytes=16,
-        bank=4,
-        min_addr_word=10000000, 
-        max_addr_word=20000000,
-        access_buf=True)
-    print("weight", output)
+    # output = sram_profiling(
+    #     trace_file="outputs/example_run/simArchOut/layer_wise/example_run_Conv1_sram_read.csv", 
+    #     word_sz_bytes=1,
+    #     block_sz_bytes=16,
+    #     bank=4,
+    #     min_addr_word=10000000, 
+    #     max_addr_word=20000000,
+    #     access_buf=True)
+    # print("weight", output)
 
-    output = sram_profiling(
-        trace_file="outputs/example_run/simArchOut/layer_wise/example_run_Conv1_sram_read.csv", 
-        word_sz_bytes=1,
-        block_sz_bytes=16,
-        bank=4,
-        min_addr_word=20000000, 
-        max_addr_word=30000000,
-        access_buf=True)
-    print("ofmap", output)
+    # output = sram_profiling(
+    #     trace_file="outputs/example_run/simArchOut/layer_wise/example_run_Conv1_sram_read.csv", 
+    #     word_sz_bytes=1,
+    #     block_sz_bytes=16,
+    #     bank=4,
+    #     min_addr_word=20000000, 
+    #     max_addr_word=30000000,
+    #     access_buf=True)
+    # print("ofmap", output)
 
-    output = dram_profiling(
-        trace_file="outputs/example_run/simArchOut/layer_wise/example_run_Conv1_dram_ifmap_read.csv", 
-        word_sz_bytes=1,
-        page_sz_bytes=1024,
-        chip=8,
-        bw_bytes=16,
-        sram_sz_word=1024,
-        sram_block_sz_word=16,
-        min_addr_word=00000000, 
-        max_addr_word=10000000)
-    print("ifmap", output)
+    # output = dram_profiling(
+    #     trace_file="outputs/example_run/simArchOut/layer_wise/example_run_Conv1_dram_ifmap_read.csv", 
+    #     word_sz_bytes=1,
+    #     page_sz_bytes=1024,
+    #     chip=8,
+    #     bw_bytes=16,
+    #     sram_sz_word=1024,
+    #     sram_block_sz_word=16,
+    #     min_addr_word=00000000, 
+    #     max_addr_word=10000000)
+    # print("ifmap", output)
 
-    output = dram_profiling(
-        trace_file="outputs/example_run/simArchOut/layer_wise/example_run_Conv1_dram_filter_read.csv", 
-        word_sz_bytes=1,
-        page_sz_bytes=1024,
-        chip=8,
-        bw_bytes=16,
-        sram_sz_word=1024,
-        sram_block_sz_word=16,
-        min_addr_word=10000000, 
-        max_addr_word=20000000)
-    print("weight", output)
+    # output = dram_profiling(
+    #     trace_file="outputs/example_run/simArchOut/layer_wise/example_run_Conv1_dram_filter_read.csv", 
+    #     word_sz_bytes=1,
+    #     page_sz_bytes=1024,
+    #     chip=8,
+    #     bw_bytes=16,
+    #     sram_sz_word=1024,
+    #     sram_block_sz_word=16,
+    #     min_addr_word=10000000, 
+    #     max_addr_word=20000000)
+    # print("weight", output)
 
-    output = dram_profiling(
-        trace_file="outputs/example_run/simArchOut/layer_wise/example_run_Conv1_dram_ofmap_write.csv", 
-        word_sz_bytes=1,
-        page_sz_bytes=1024,
-        chip=8,
-        bw_bytes=16,
-        sram_sz_word=1024,
-        sram_block_sz_word=16,
-        min_addr_word=20000000, 
-        max_addr_word=30000000)
-    print("ofmap", output)
+    # output = dram_profiling(
+    #     trace_file="outputs/example_run/simArchOut/layer_wise/example_run_Conv1_dram_ofmap_write.csv", 
+    #     word_sz_bytes=1,
+    #     page_sz_bytes=1024,
+    #     chip=8,
+    #     bw_bytes=16,
+    #     sram_sz_word=1024,
+    #     sram_block_sz_word=16,
+    #     min_addr_word=20000000, 
+    #     max_addr_word=30000000)
+    # print("ofmap", output)
+
+    output = ddr3_8x8_profiling(trace_file="config/example_run/test_trace.csv",
+                            word_sz_bytes=2,
+                            page_bits=8192,
+                            min_addr_word=10000000,
+                            max_addr_word=20000000
+                            )
+    print(
+            "\ntot_word", output[0], 
+            "\nmax_word", output[1], 
+            "\ntot_access", output[2], 
+            "\ntot_row_access", output[3], 
+            "\nshift_cycles", output[4], 
+            "\nideal_start_cycle", output[5], 
+            "\nideal_end_cycle", output[6]
+        )
