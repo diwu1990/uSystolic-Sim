@@ -3,11 +3,11 @@ import time
 import configparser as cp
 import simArch.run_nets as r
 import simHw.efficiency as eff
-import simHw.sram_size as sizing
 from absl import flags
 from absl import app
 import platform
 import subprocess
+import warnings
 
 FLAGS = flags.FLAGS
 # name of flag | default | explanation
@@ -20,18 +20,15 @@ flags.DEFINE_string("dram", "./config/example_run/dram.cfg", "DRAM configs for h
 flags.DEFINE_string("pe", "./config/example_run/pe.cfg", "PE area and power data for hardware simulation")
 
 class evaluate:
-    def __init__(self, save = False, simArch = True, simHw = True, resize_sram_ifmap = True, resize_sram_filter = True, resize_sram_ofmap = True, sram_access_buf = False):
+    def __init__(self, save = False, simArch = True, simHw = True):
         self.save_space = save
         self.simArch = simArch
         self.simHw = simHw
-        self.resize_sram_ifmap = resize_sram_ifmap
-        self.resize_sram_filter = resize_sram_filter
-        self.resize_sram_ofmap = resize_sram_ofmap
-        self.sram_access_buf = sram_access_buf
 
     def parse_config(self):
         general = 'general'
         arch_sec = 'architecture_presets'
+        hw_sec = 'hardware_presets'
         config_filename = FLAGS.systolic
         print("Using Architechture from ",config_filename)
 
@@ -84,10 +81,15 @@ class evaluate:
         word_sz_bytes = config.get(arch_sec, 'WordByte')
         self.word_sz_bytes = float(word_sz_bytes.strip())
         
-        self.wgt_bw_opt= config.get(arch_sec, 'WeightBwOpt')
+        self.wgt_bw_opt = to_bool(config.get(arch_sec, 'WeightBwOpt').strip())
 
         # this parameter is used to evaluate power and energy
-        self.computing= config.get(arch_sec, 'Computing')
+        self.computing= config.get(arch_sec, 'Computing').strip()
+
+        self.zero_sram_ifmap = to_bool(config.get(hw_sec, 'ZeroIfmapSram').strip())
+        self.zero_sram_filter = to_bool(config.get(hw_sec, 'ZeroFilterSram').strip())
+        self.zero_sram_ofmap = to_bool(config.get(hw_sec, 'ZeroOfmapSram').strip())
+        self.sram_access_buf = to_bool(config.get(hw_sec, 'SramAccBuf').strip())
 
         self.topology_file = FLAGS.network
 
@@ -115,14 +117,14 @@ class evaluate:
         print("====================================================")
         print("************ uSystolic Architecture Sim ************")
         print("====================================================")
-        print("Array Size: \t" + str(self.ar_h) + "x" + str(self.ar_w))
-        print("SRAM IFMAP: \t" + str(self.isram))
-        print("SRAM Filter: \t" + str(self.fsram))
-        print("SRAM OFMAP: \t" + str(self.osram))
-        print("Word Bytes: \t" + str(self.word_sz_bytes))
-        print("Dataflow: \t" + self.df_string)
+        print("Array Size:    \t" + str(self.ar_h) + "x" + str(self.ar_w))
+        print("SRAM IFMAP:    \t" + str(self.isram))
+        print("SRAM Filter:   \t" + str(self.fsram))
+        print("SRAM OFMAP:    \t" + str(self.osram))
+        print("Word Bytes:    \t" + str(self.word_sz_bytes))
+        print("Dataflow:      \t" + self.df_string)
         print("Weight BW Opt: \t" + str(self.wgt_bw_opt))
-        print("CSV file path: \t" + self.topology_file)
+        print("CSV file:      \t" + self.topology_file)
         print("====================================================")
 
         offset_list = [self.ifmap_offset, self.filter_offset, self.ofmap_offset] # in Word
@@ -144,6 +146,7 @@ class evaluate:
             )
         self.arch_cleanup()
         print("******* uSystolic Architecture Sim Complete ********")
+        print("Results: ./outputs/"+self.run_name+"/simArchOut/")
 
     def run_hw(self):
         print()
@@ -152,22 +155,30 @@ class evaluate:
         print("====================================================")
         print("************** uSystolic Hardware Sim **************")
         print("====================================================")
-        print("Computing: \t" + self.computing)
-        print("Weight BW Opt: \t" + str(self.wgt_bw_opt))
-        print("SRAM file path: \t" + self.sram_file)
-        print("DRAM file path: \t" + self.dram_file)
-        print("PE file path: \t" + self.pe_file)
+        print("Computing:     \t" + self.computing)
+        print("SRAM file:     \t" + self.sram_file)
+        print("DRAM file:     \t" + self.dram_file)
+        print("PE file:       \t" + self.pe_file)
         print("====================================================")
 
-        if self.resize_sram_ifmap is True:
+        if self.zero_sram_ifmap == True:
             # estimate the ifmap sram size to hide latency
-            self.isram = sizing.profiling()
-        if self.resize_sram_filter is True:
+            print("IFMAP  SRAM is disabled in actual hardware.")
+            if self.computing == "BinarySerial" or self.computing == "BinaryParallel":
+                print("\tFor binary computing, this is not suggested!\n")
+            self.isram = 0
+        if self.zero_sram_filter == True:
             # estimate the filter sram size to hide latency
-            self.fsram = sizing.profiling()
-        if self.resize_sram_ofmap is True:
+            print("FILTER SRAM is disabled in actual hardware.")
+            if self.computing == "BinarySerial" or self.computing == "BinaryParallel":
+                print("\tFor binary computing, this is not suggested!\n")
+            self.fsram = 0
+        if self.zero_sram_ofmap == True:
             # estimate the ofmap sram size to hide latency
-            self.osram = sizing.profiling()
+            print("OFMAP  SRAM is disabled in actual hardware.")
+            if self.computing == "BinarySerial" or self.computing == "BinaryParallel":
+                print("\tFor binary computing, this is not suggested!\n")
+            self.osram = 0
         
         eff.estimate(
             array_h = int(self.ar_h),
@@ -189,6 +200,7 @@ class evaluate:
         )
         self.hw_cleanup()
         print("********* uSystolic Hardware Sim Complete **********")
+        print("Results: ./outputs/"+self.run_name+"/simHwOut/")
 
     def arch_cleanup(self):
         if not os.path.exists("./outputs/"):
@@ -248,8 +260,19 @@ class evaluate:
         os.system(cmd)
 
 
+def to_bool(value):
+    """
+       Converts 'something' to boolean. Raises exception for invalid formats
+           Possible True  values: 1, True, "1", "TRue", "yes", "y", "t"
+           Possible False values: 0, False, None, [], {}, "", "0", "faLse", "no", "n", "f", 0.0, ...
+    """
+    if str(value).lower() in ("yes", "y", "true",  "t", "1"): return True
+    if str(value).lower() in ("no",  "n", "false", "f", "0", "0.0", "", "none", "[]", "{}"): return False
+    raise Exception('Invalid value for boolean conversion: ' + str(value))
+
+
 def main(argv):
-    s = evaluate(save = False, simArch = True, simHw = True, resize_sram_ifmap = False, resize_sram_filter = False, resize_sram_ofmap = False, sram_access_buf = False)
+    s = evaluate(save = False, simArch = True, simHw = True)
     s.run_eval()
 
 if __name__ == '__main__':

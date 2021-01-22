@@ -41,7 +41,7 @@ def sram_traffic(
     # input is streamed in from top; output is streamed out from top; weight is streamed in from left
     max_i_bw = math.floor(dimension_rows / mac_cycles)
     max_o_bw = math.floor(dimension_cols / mac_cycles)
-    if wgt_bw_opt is True:
+    if wgt_bw_opt == True:
         # consider bound the input/output bandwidth to the weight bandwidth
         max_w_bw = int(min(math.ceil((dimension_rows + dimension_cols)/mac_cycles), dimension_cols))
     else:
@@ -346,12 +346,12 @@ def gen_trace_ifmap_ofmap_fold(
             rd_entry += rd_entry_ext
         
         rd_entry += "\n"
-        if rd_en is True or rd_en_ofmap is True:
+        if rd_en == True or rd_en_ofmap == True:
             rd_entry = str(cycle) + ", " + rd_entry
             rd_file.write(rd_entry)
 
         wr_entry += "\n"
-        if wr_en is True:
+        if wr_en == True:
             wr_file.write(wr_entry)
         
         cur_cycle += 1

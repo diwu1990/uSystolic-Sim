@@ -463,7 +463,7 @@ def estimate(
     first = True
     for row in param_file:
         # per layer trace profiling to get bw, energy and power
-        if first is True:
+        if first == True:
             first = False
             # skip the header row
             continue

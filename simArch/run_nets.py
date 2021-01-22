@@ -89,7 +89,7 @@ def run_net(
 
             # all trace should be generated in granularity of word, the word size only influence the bandwidth
             # bw_str, detailed_str, util, clk =  \
-            util, clk = gemm_trace.gen_all_traces(  array_h = array_h,
+            util, clk = gemm_trace.gen_all_traces(array_h = array_h,
                                     array_w = array_w,
                                     ifmap_h = ifmap_h,
                                     ifmap_w = ifmap_w,
