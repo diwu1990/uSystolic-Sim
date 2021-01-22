@@ -249,7 +249,7 @@ class evaluate:
 
 
 def main(argv):
-    s = evaluate(save = False, simArch = True, simHw = True, resize_sram_ifmap = True, resize_sram_filter = True, resize_sram_ofmap = True, sram_access_buf = False)
+    s = evaluate(save = False, simArch = True, simHw = True, resize_sram_ifmap = False, resize_sram_filter = False, resize_sram_ofmap = False, sram_access_buf = False)
     s.run_eval()
 
 if __name__ == '__main__':

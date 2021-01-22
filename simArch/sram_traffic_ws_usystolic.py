@@ -231,7 +231,6 @@ def gen_trace_ifmap_ofmap_fold(
     """
     apply HWC format to both ifmap and ofmap
     """
-    print(mac_cycles)
     rd_file = open(sram_read_trace_file, 'a')
     wr_file = open(sram_write_trace_file,'a')
     
@@ -280,7 +279,7 @@ def gen_trace_ifmap_ofmap_fold(
         # ifmap read
         # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
         """
-        top rows are printed first, but bottom rows are first streamed in
+        top rows are generated first, but bottom rows are first streamed in
         """
         rd_entry = ""
         rd_en = False
