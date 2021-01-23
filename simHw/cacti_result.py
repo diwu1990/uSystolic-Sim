@@ -2,14 +2,14 @@ import subprocess
 
 def sram_cacti(
     mem_sz_bytes=16, # in byte
-    src_config_file=None,
+    origin_config_file=None,
     target_config_file=None,
     result_file=None
 ):
     """
     run the cacti with input configuration, work for SRAM, whose size is either calculated to match the bw or pre-specified
     """
-    original = open(src_config_file, 'r')
+    original = open(origin_config_file, 'r')
     target   = open(target_config_file, 'w')
 
     target.write("-size (bytes) " + str(mem_sz_bytes) + "\n")
@@ -85,14 +85,14 @@ def sram_report_extract(
 
 
 def dram_cacti(
-    src_config_file=None,
+    origin_config_file=None,
     target_config_file=None,
     result_file=None
 ):
     """
     run the cacti with input configuration, work for DRAM (DRAM size is pre-specified)
     """
-    original = open(src_config_file, 'r')
+    original = open(origin_config_file, 'r')
     target   = open(target_config_file, 'w')
 
     for entry in original:
@@ -163,7 +163,7 @@ if __name__ == "__main__":
 
     sram_cacti(
         mem_sz_bytes=1024*1024, # in byte
-        src_config_file="./config/example_run/sram.cfg", 
+        origin_config_file="./config/example_run/sram.cfg", 
         target_config_file="./config/example_run/real_sram.cfg",
         result_file="./config/example_run/sram.rpt"
         )

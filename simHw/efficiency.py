@@ -84,8 +84,6 @@ def estimate(
     real_end_cycle_ofmap_wr_dram = 0
 
     # hw
-    dram_bw_bytes = 16
-
     max_freq_dram = 0
     activate_energy_dram = 0
     energy_rd_dram = 0
@@ -94,6 +92,7 @@ def estimate(
     leakage_power_closed_page_dram = 0
     leakage_power_IO_dram = 0
     area_dram = 0
+
     dram_page_bits = 0
     dram_bank = 0
     dram_burst = 0
@@ -104,11 +103,13 @@ def estimate(
     dram_bw_ideal_filter_rd     =   0
     dram_bw_ideal_ofmap_rd      =   0
     dram_bw_ideal_ofmap_wr      =   0
+    dram_bw_ideal_total         =   0
 
     dram_bw_real_ifmap_rd       =   0
     dram_bw_real_filter_rd      =   0
     dram_bw_real_ofmap_rd       =   0
     dram_bw_real_ofmap_wr       =   0
+    dram_bw_real_total          =   0
 
     dram_energy_ifmap_rd        =   0
     dram_energy_filter_rd       =   0
@@ -191,6 +192,8 @@ def estimate(
 
     sram_bank = 0
     sram_block_sz_bytes = 0
+    
+    sram_area_total = 0
 
     sram_energy_ifmap_rd = 0
     sram_energy_filter_rd = 0
@@ -207,8 +210,10 @@ def estimate(
     # working cycles
     ideal_max_clk = 0
     ideal_min_clk = 0
+    ideal_total_cycle = 0
     real_max_clk = 0
     real_min_clk = 0
+    real_total_cycle = 0
     pe_act_cycle = 0
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -218,13 +223,18 @@ def estimate(
     config = cp.ConfigParser()
     config.read(pe_cfg_file)
 
-    src = config.get(computing, 'SRC').split(',')
-    src_area_border     = float(src[0].strip())
-    src_leakage_border  = float(src[1].strip())
-    src_dynamic_border  = float(src[2].strip())
-    src_area_inner      = float(src[3].strip())
-    src_leakage_inner   = float(src[4].strip())
-    src_dynamic_inner   = float(src[5].strip())
+    ireg = config.get(computing, 'IREG').split(',')
+    ireg_area_border     = float(ireg[0].strip())
+    ireg_leakage_border  = float(ireg[1].strip())
+    ireg_dynamic_border  = float(ireg[2].strip())
+    ireg_area_inner      = float(ireg[3].strip())
+    ireg_leakage_inner   = float(ireg[4].strip())
+    ireg_dynamic_inner   = float(ireg[5].strip())
+
+    wreg = config.get(computing, 'WREG').split(',')
+    wreg_area       = float(wreg[0].strip())
+    wreg_leakage    = float(wreg[1].strip())
+    wreg_dynamic    = float(wreg[2].strip())
 
     mul = config.get(computing, 'MUL').split(',')
     mul_area_border     = float(mul[0].strip())
@@ -234,27 +244,32 @@ def estimate(
     mul_leakage_inner   = float(mul[4].strip())
     mul_dynamic_inner   = float(mul[5].strip())
 
-    add = config.get(computing, 'ADD').split(',')
-    add_area     = float(add[0].strip())
-    add_leakage  = float(add[1].strip())
-    add_dynamic  = float(add[2].strip())
+    acc = config.get(computing, 'ACC').split(',')
+    acc_area        = float(acc[0].strip())
+    acc_leakage     = float(acc[1].strip())
+    acc_dynamic     = float(acc[2].strip())
 
-    buf = config.get(computing, 'BUF').split(',')
-    buf_area     = float(buf[0].strip())
-    buf_leakage  = float(buf[1].strip())
-    buf_dynamic  = float(buf[2].strip())
+    sa_area_ireg   =  0
+    sa_area_wreg   =  0
+    sa_area_mul    =  0
+    sa_area_acc    =  0
+    sa_area_tot    =  0
+    
+    sa_enery_ireg   =  0
+    sa_enery_wreg   =  0
+    sa_enery_mul    =  0
+    sa_enery_acc    =  0
+    sa_enery_tot    =  0
 
-    sa_enery_src =  0
-    sa_enery_mul =  0
-    sa_enery_add =  0
-    sa_enery_buf =  0
-    sa_enery_tot =  0
+    sa_power_ireg   = 0
+    sa_power_wreg   = 0
+    sa_power_mul    = 0
+    sa_power_acc    = 0
+    sa_power_tot    = 0
 
-    sa_power_src = 0
-    sa_power_mul = 0
-    sa_power_add = 0
-    sa_power_buf = 0
-    sa_power_tot = 0
+    onchip_area_tot = 0
+    sys_energy_tot = 0
+    sys_power_tot = 0
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
     # output report
@@ -298,19 +313,19 @@ def estimate(
     area_log =      "DRAM Area (mm^2),\t" + \
                     "SRAM I Size (Bytes),\tSRAM F Size (Bytes),\tSRAM O Size (Bytes),\tSRAM Total Size (Bytes),\t" + \
                     "SRAM I Area (mm^2),\tSRAM F Area (mm^2),\tSRAM O Area (mm^2),\tSRAM Total (mm^2),\t" + \
-                    "SRC (mm^2),\tMUL (mm^2),\tADD (mm^2),\tBUF (mm^2),\tSystolic Array Total (mm^2),\t" + \
+                    "IREG (mm^2),\tWREG (mm^2),\tMUL (mm^2),\tACC (mm^2),\tSystolic Array Total (mm^2),\t" + \
                     "On-chip Area Total (mm^2),\t\n"
 
     energy_log =    "Layer,\tType,\t" + \
                     "DRAM I RD (D) (uJ),\tDRAM F RD (D) (uJ),\tDRAM O RD (D) (uJ),\tDRAM O WR (D) (uJ),\tDRAM Total (D) (uJ),\t" + \
                     "SRAM I RD (D) (uJ),\tSRAM F RD (D) (uJ),\tSRAM O RD (D) (uJ),\tSRAM O WR (D) (uJ),\tSRAM Total (D+L) (uJ),\t" + \
-                    "SRC (uJ),\tMUL (uJ),\tADD (uJ),\tBUF (uJ),\tSystolic Array Total (uJ),\t" + \
+                    "IREG (uJ),\tWREG (uJ),\tMUL (uJ),\tACC (uJ),\tSystolic Array Total (uJ),\t" + \
                     "System Total (uJ)\n"
     
     power_log =     "Layer,\tType,\t" + \
                     "DRAM I RD (D) (mW),\tDRAM F RD (D) (mW),\tDRAM O RD (D) (mW),\tDRAM O WR (D) (mW),\tDRAM Total (D) (mW),\t" + \
                     "SRAM I RD (D) (mW),\tSRAM F RD (D) (mW),\tSRAM O RD (D) (mW),\tSRAM O WR (D) (mW),\tSRAM Total (D+L) (mW),\t" + \
-                    "SRC (mW),\tMUL (mW),\tADD (mW),\tBUF (mW),\tSystolic Array Total (mW),\t" + \
+                    "IREG (mW),\tWREG (mW),\tMUL (mW),\tACC (mW),\tSystolic Array Total (mW),\t" + \
                     "System Total (mW)\n"
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -320,7 +335,7 @@ def estimate(
     # those results are for entire ddr3 with multiple chips
     print("Run CACTI7.0 for DRAM")
     cacti.dram_cacti(
-                src_config_file=dram_cfg_file, 
+                origin_config_file=dram_cfg_file, 
                 target_config_file=run_name + "_DRAM.cfg",
                 result_file=run_name + "_DRAM.rpt")
 
@@ -370,7 +385,7 @@ def estimate(
         # sram config for each parameter is fixed all the time
         cacti.sram_cacti(
                     mem_sz_bytes=ifmap_sram_size * word_sz_bytes, # in byte
-                    src_config_file=sram_cfg_file, 
+                    origin_config_file=sram_cfg_file, 
                     target_config_file=run_name + "_SRAM_ifmap.cfg",
                     result_file=run_name + "_SRAM_ifmap.rpt")
 
@@ -386,7 +401,7 @@ def estimate(
         # sram config for each parameter is fixed all the time
         cacti.sram_cacti(
                     mem_sz_bytes=filter_sram_size * word_sz_bytes, # in byte
-                    src_config_file=sram_cfg_file, 
+                    origin_config_file=sram_cfg_file, 
                     target_config_file=run_name + "_SRAM_filter.cfg",
                     result_file=run_name + "_SRAM_filter.rpt")
 
@@ -402,7 +417,7 @@ def estimate(
         # sram config for each parameter is fixed all the time
         cacti.sram_cacti(
                     mem_sz_bytes=ofmap_sram_size * word_sz_bytes, # in byte
-                    src_config_file=sram_cfg_file, 
+                    origin_config_file=sram_cfg_file, 
                     target_config_file=run_name + "_SRAM_ofmap.cfg",
                     result_file=run_name + "_SRAM_ofmap.rpt")
 
@@ -438,11 +453,11 @@ def estimate(
     # systolic array: area
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
     # all calculations here are based on modelling using synthesized data for each components specified in pe.cfg
-    sa_area_src = array_h * src_area_border + array_h * (array_w - 1) * src_area_inner
-    sa_area_mul = array_h * mul_area_border + array_h * (array_w - 1) * mul_area_inner
-    sa_area_add = array_h * array_w * add_area
-    sa_area_buf = array_h * (array_w - 1) * buf_area
-    sa_area_tot = sa_area_src + sa_area_mul + sa_area_add + sa_area_buf
+    sa_area_ireg    = array_h * ireg_area_border + array_h * (array_w - 1) * ireg_area_inner
+    sa_area_wreg    = array_h * array_w * wreg_area
+    sa_area_mul     = array_h * mul_area_border + array_h * (array_w - 1) * mul_area_inner
+    sa_area_acc     = array_h * array_w * acc_area
+    sa_area_tot     = sa_area_ireg + sa_area_wreg + sa_area_mul + sa_area_acc
     
     onchip_area_tot = sram_area_total + sa_area_tot
     area_log += str(area_dram) + ",\t" + \
@@ -453,10 +468,10 @@ def estimate(
                 str(total_area_filter) + ",\t" + \
                 str(total_area_ofmap) + ",\t" + \
                 str(sram_area_total) + ",\t" + \
-                str(sa_area_src) + ",\t" + \
+                str(sa_area_ireg) + ",\t" + \
+                str(sa_area_wreg) + ",\t" + \
                 str(sa_area_mul) + ",\t" + \
-                str(sa_area_add) + ",\t" + \
-                str(sa_area_buf) + ",\t" + \
+                str(sa_area_acc) + ",\t" + \
                 str(sa_area_tot) + ",\t" + \
                 str(onchip_area_tot) + ",\t\n"
 
@@ -479,7 +494,7 @@ def estimate(
         layer_type = elems[1]
 
         print("")
-        print("Commencing run for " + name)
+        print("Commencing trace profiling for " + name)
 
         # at this point, all traces are supposed to be ready in outputs/run_name/simArchOut
         # find all layers
@@ -742,11 +757,14 @@ def estimate(
                         shift_cycles_ifmap_rd_dram - shift_cycles_filter_rd_dram
         real_total_cycle = real_max_clk - real_min_clk
 
-        pe_act_cycle =    max(ideal_end_cycle_ifmap_rd_sram, 
+        pe_act_cycle =      max(ideal_end_cycle_ifmap_rd_sram, 
                                 ideal_end_cycle_filter_rd_sram, 
                                 ideal_end_cycle_ofmap_rd_sram, 
                                 ideal_end_cycle_ofmap_wr_sram) + \
-                            stall_cycles_filter_rd_sram + max(stall_cycles_ifmap_rd_sram, stall_cycles_ofmap_rd_sram) + stall_cycles_ofmap_wr_sram - \
+                            stall_cycles_filter_rd_sram + \
+                            max(stall_cycles_ifmap_rd_sram, 
+                                stall_cycles_ofmap_rd_sram) + \
+                            stall_cycles_ofmap_wr_sram - \
                             min(ideal_start_cycle_ifmap_rd_sram, 
                                 ideal_start_cycle_filter_rd_sram, 
                                 ideal_start_cycle_ofmap_rd_sram, 
@@ -759,11 +777,13 @@ def estimate(
         dram_bw_ideal_filter_rd     =   tot_word_filter_rd_dram /   ideal_total_cycle * word_sz_bytes
         dram_bw_ideal_ofmap_rd      =   tot_word_ofmap_rd_dram  /   ideal_total_cycle * word_sz_bytes
         dram_bw_ideal_ofmap_wr      =   tot_word_ofmap_wr_dram  /   ideal_total_cycle * word_sz_bytes
+        dram_bw_ideal_total         =   dram_bw_ideal_ifmap_rd + dram_bw_ideal_filter_rd + dram_bw_ideal_ofmap_rd + dram_bw_ideal_ofmap_wr
 
         dram_bw_real_ifmap_rd       =   tot_word_ifmap_rd_dram  /   real_total_cycle * word_sz_bytes
         dram_bw_real_filter_rd      =   tot_word_filter_rd_dram /   real_total_cycle * word_sz_bytes
         dram_bw_real_ofmap_rd       =   tot_word_ofmap_rd_dram  /   real_total_cycle * word_sz_bytes
         dram_bw_real_ofmap_wr       =   tot_word_ofmap_wr_dram  /   real_total_cycle * word_sz_bytes
+        dram_bw_real_total          =   dram_bw_real_ifmap_rd + dram_bw_real_filter_rd + dram_bw_real_ofmap_rd + dram_bw_real_ofmap_wr
 
         dram_energy_ifmap_rd        =   (activate_energy_dram + precharge_energy_dram) * tot_row_access_ifmap_rd_dram + \
                                         energy_rd_dram * tot_access_ifmap_rd_dram
@@ -779,7 +799,7 @@ def estimate(
         dram_power_filter_rd        =   dram_energy_filter_rd   /   real_total_cycle
         dram_power_ofmap_rd         =   dram_energy_ofmap_rd    /   real_total_cycle
         dram_power_ofmap_wr         =   dram_energy_ofmap_wr    /   real_total_cycle
-        dram_power_total            =   dram_energy_total       /   real_total_cycle
+        dram_power_total            =   dram_power_ifmap_rd + dram_power_filter_rd + dram_power_ofmap_rd + dram_power_ofmap_wr
 
         # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
         # SRAM: bw, energy, power
@@ -789,19 +809,20 @@ def estimate(
             sram_bw_ideal_ifmap_rd      =   tot_word_ifmap_rd_sram  / ideal_total_cycle * word_sz_bytes
             sram_bw_real_ifmap_rd       =   tot_word_ifmap_rd_sram  /  real_total_cycle * word_sz_bytes
             sram_energy_ifmap_rd        =   tot_access_ifmap_rd_sram * energy_per_block_rd_ifmap + \
-                                            math.floor(tot_word_ifmap_rd_dram / sram_block_sz_word) * energy_per_block_wr_ifmap
+                                            math.ceil(tot_word_ifmap_rd_dram / sram_block_sz_word) * energy_per_block_wr_ifmap
             sram_power_ifmap_rd         =   sram_energy_ifmap_rd    /  real_total_cycle
         else:
             sram_bw_ideal_ifmap_rd      =   0
             sram_bw_real_ifmap_rd       =   0
             sram_energy_ifmap_rd        =   0
             sram_power_ifmap_rd         =   0
+        
         # this dynamic energy actually includes the energy for both writing from dram to sram and reading from sram to systolic array
         if filter_sram_exist == True:
             sram_bw_ideal_filter_rd     =   tot_word_filter_rd_sram / ideal_total_cycle * word_sz_bytes
             sram_bw_real_filter_rd      =   tot_word_filter_rd_sram /  real_total_cycle * word_sz_bytes
             sram_energy_filter_rd       =   tot_access_filter_rd_sram * energy_per_block_rd_filter + \
-                                            math.floor(tot_word_filter_rd_dram / sram_block_sz_word) * energy_per_block_wr_filter
+                                            math.ceil(tot_word_filter_rd_dram / sram_block_sz_word) * energy_per_block_wr_filter
             sram_power_filter_rd        =   sram_energy_filter_rd   /  real_total_cycle
         else:
             sram_bw_ideal_filter_rd     =   0
@@ -819,7 +840,7 @@ def estimate(
             sram_bw_ideal_ofmap_wr      =   tot_word_ofmap_wr_sram  / ideal_total_cycle * word_sz_bytes
             sram_bw_real_ofmap_wr       =   tot_word_ofmap_wr_sram  /  real_total_cycle * word_sz_bytes
             sram_energy_ofmap_wr        =   tot_access_ofmap_wr_sram * energy_per_block_wr_ofmap + \
-                                            math.floor(tot_word_ofmap_wr_dram / sram_block_sz_word) * energy_per_block_rd_ofmap
+                                            math.ceil(tot_word_ofmap_wr_dram / sram_block_sz_word) * energy_per_block_rd_ofmap
             sram_power_ofmap_wr         =   sram_energy_ofmap_rd    /  real_total_cycle
         else:
             sram_bw_ideal_ofmap_rd      =   0
@@ -831,37 +852,42 @@ def estimate(
             sram_bw_real_ofmap_wr       =   0
             sram_energy_ofmap_wr        =   0
             sram_power_ofmap_wr         =   0
-
+        
+        sram_bw_ideal_total = sram_bw_ideal_ifmap_rd + sram_bw_ideal_filter_rd + sram_bw_ideal_ofmap_rd + sram_bw_ideal_ofmap_wr
+        sram_bw_real_total = sram_bw_real_ifmap_rd + sram_bw_real_filter_rd + sram_bw_real_ofmap_rd + sram_bw_real_ofmap_wr
         sram_energy_total           =   leakage_power_ifmap * real_total_cycle + \
                                         leakage_power_filter * real_total_cycle + \
                                         leakage_power_ofmap * real_total_cycle + \
                                         sram_energy_ifmap_rd + sram_energy_filter_rd + sram_energy_ofmap_rd + sram_energy_ofmap_wr
-        sram_power_total            =   sram_energy_total / real_total_cycle
+        sram_power_total            =   sram_power_ifmap_rd + sram_power_filter_rd + sram_power_ofmap_rd + sram_power_ofmap_wr
 
         # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
         # systolic array: energy and power
         # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
         # all calculations here are based on modelling using synthesized data for each components specified in pe.cfg
         computing_stall_cycles = stall_cycles_ifmap_rd_sram + stall_cycles_ofmap_rd_sram + stall_cycles_ofmap_wr_sram
-        # src will work all the time
-        sa_enery_src =  (array_h * src_leakage_border + array_h * (array_w - 1) * src_leakage_inner) * real_total_cycle + \
-                        (array_h * src_dynamic_border + array_h * (array_w - 1) * src_dynamic_inner) * pe_act_cycle
-        # mul and add will work only when computing with no stalls
-        sa_enery_mul =  (array_h * mul_leakage_border + array_h * (array_w - 1) * mul_leakage_inner) * real_total_cycle + \
-                        (array_h * mul_dynamic_border + array_h * (array_w - 1) * mul_dynamic_inner) * (pe_act_cycle - act_cycles_filter_rd_sram - computing_stall_cycles)
-        sa_enery_add =  array_h * array_w * add_leakage * real_total_cycle + \
-                        array_h * array_w * add_dynamic * (pe_act_cycle - act_cycles_filter_rd_sram - computing_stall_cycles)
+        # ireg will work all the time
+        sa_enery_ireg   =   (array_h * ireg_leakage_border + array_h * (array_w - 1) * ireg_leakage_inner) * real_total_cycle + \
+                            (array_h * ireg_dynamic_border + array_h * (array_w - 1) * ireg_dynamic_inner) * pe_act_cycle
         # buf will work only when computing
-        sa_enery_buf =  array_h * (array_w - 1) * buf_leakage * real_total_cycle + \
-                        array_h * (array_w - 1) * buf_dynamic * (pe_act_cycle - act_cycles_filter_rd_sram - computing_stall_cycles)
-        sa_enery_tot =  sa_enery_src + sa_enery_mul + sa_enery_add + sa_enery_buf
-
-        sa_power_src = sa_enery_src / real_total_cycle
-        sa_power_mul = sa_enery_mul / real_total_cycle
-        sa_power_add = sa_enery_add / real_total_cycle
-        sa_power_buf = sa_enery_buf / real_total_cycle
-        sa_power_tot = sa_enery_tot / real_total_cycle
+        sa_enery_wreg   =   array_h * array_w * wreg_leakage * real_total_cycle + \
+                            array_h * array_w * wreg_dynamic * (pe_act_cycle - act_cycles_filter_rd_sram - computing_stall_cycles)
+        # mul and add will work only when computing with no stalls
+        sa_enery_mul    =   (array_h * mul_leakage_border + array_h * (array_w - 1) * mul_leakage_inner) * real_total_cycle + \
+                            (array_h * mul_dynamic_border + array_h * (array_w - 1) * mul_dynamic_inner) * (pe_act_cycle - act_cycles_filter_rd_sram - computing_stall_cycles)
+        sa_enery_acc    =   array_h * array_w * acc_leakage * real_total_cycle + \
+                            array_h * array_w * acc_dynamic * (pe_act_cycle - act_cycles_filter_rd_sram - computing_stall_cycles)
         
+        sa_enery_tot    =  sa_enery_ireg + sa_enery_wreg + sa_enery_mul + sa_enery_acc
+
+        sa_power_ireg   = sa_enery_ireg / real_total_cycle
+        sa_power_wreg   = sa_enery_wreg / real_total_cycle
+        sa_power_mul    = sa_enery_mul / real_total_cycle
+        sa_power_acc    = sa_enery_acc / real_total_cycle
+        sa_power_tot    = sa_power_ireg + sa_power_wreg + sa_power_mul + sa_power_acc
+        
+        sys_energy_tot = dram_energy_total + sram_energy_total + sa_enery_tot
+        sys_power_tot = dram_power_total + sram_power_total + sa_power_tot
         # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
         # log generation
         # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -917,8 +943,6 @@ def estimate(
                             str(real_end_cycle_ofmap_wr_sram) + ",\t" + \
                             str(tot_word_ofmap_wr_sram * word_sz_bytes) + ",\t\n"
 
-        dram_bw_ideal_total = dram_bw_ideal_ifmap_rd + dram_bw_ideal_filter_rd + dram_bw_ideal_ofmap_rd + dram_bw_ideal_ofmap_wr
-        sram_bw_ideal_total = sram_bw_ideal_ifmap_rd + sram_bw_ideal_filter_rd + sram_bw_ideal_ofmap_rd + sram_bw_ideal_ofmap_wr
         bw_ideal_log +=     str(name) + ",\t" + str(layer_type) + ",\t" + \
                             str(dram_bw_ideal_ifmap_rd) + ",\t" + \
                             str(dram_bw_ideal_filter_rd) + ",\t" + \
@@ -931,8 +955,6 @@ def estimate(
                             str(sram_bw_ideal_ofmap_wr) + ",\t" + \
                             str(sram_bw_ideal_total) + ",\t\n"
 
-        dram_bw_real_total = dram_bw_real_ifmap_rd + dram_bw_real_filter_rd + dram_bw_real_ofmap_rd + dram_bw_real_ofmap_wr
-        sram_bw_real_total = sram_bw_real_ifmap_rd + sram_bw_real_filter_rd + sram_bw_real_ofmap_rd + sram_bw_real_ofmap_wr
         bw_real_log +=      str(name) + ",\t" + str(layer_type) + ",\t" + \
                             str(dram_bw_real_ifmap_rd) + ",\t" + \
                             str(dram_bw_real_filter_rd) + ",\t" + \
@@ -956,12 +978,12 @@ def estimate(
                             str(sram_energy_ofmap_rd / 1000) + ",\t" + \
                             str(sram_energy_ofmap_wr / 1000) + ",\t" + \
                             str(sram_energy_total / 1000) + ",\t" + \
-                            str(sa_enery_src / 1000) + ",\t" + \
+                            str(sa_enery_ireg / 1000) + ",\t" + \
                             str(sa_enery_mul / 1000) + ",\t" + \
-                            str(sa_enery_add / 1000) + ",\t" + \
-                            str(sa_enery_buf / 1000) + ",\t" + \
+                            str(sa_enery_acc / 1000) + ",\t" + \
+                            str(sa_enery_wreg / 1000) + ",\t" + \
                             str(sa_enery_tot / 1000) + ",\t" + \
-                            str((dram_energy_total + sram_energy_total + sa_enery_tot) / 1000) + ",\t\n"
+                            str(sys_energy_tot / 1000) + ",\t\n"
 
         power_log +=        str(name) + ",\t" + str(layer_type) + ",\t" + \
                             str(dram_power_ifmap_rd) + ",\t" + \
@@ -974,12 +996,12 @@ def estimate(
                             str(sram_power_ofmap_rd) + ",\t" + \
                             str(sram_power_ofmap_wr) + ",\t" + \
                             str(sram_power_total) + ",\t" + \
-                            str(sa_power_src) + ",\t" + \
+                            str(sa_power_ireg) + ",\t" + \
                             str(sa_power_mul) + ",\t" + \
-                            str(sa_power_add) + ",\t" + \
-                            str(sa_power_buf) + ",\t" + \
+                            str(sa_power_acc) + ",\t" + \
+                            str(sa_power_wreg) + ",\t" + \
                             str(sa_power_tot) + ",\t" + \
-                            str(dram_power_total + sram_power_total + sa_power_tot) + ",\t\n"
+                            str(sys_power_tot) + ",\t\n"
         
         print("All done for " + name)
 

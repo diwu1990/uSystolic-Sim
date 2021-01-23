@@ -81,7 +81,7 @@ def run_net(
             ofmap_base  = offset_list[2] # in word
 
             print("")
-            print("Commencing run for " + name + " with a MAC cycle count " + str(mac_cycles))
+            print("Commencing trace generation for " + name + " with a MAC cycle count of " + str(mac_cycles))
             
             # bw_log = str(ifmap_sram_size * word_size_bytes) +",\t" + str(filter_sram_size * word_size_bytes) + ",\t" + str(ofmap_sram_size * word_size_bytes) + ",\t" + name + ",\t"
             # max_bw_log = bw_log
