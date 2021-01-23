@@ -1,0 +1,73 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : mul_inner
+Version: Q-2019.12-SP3
+Date   : Sat Jan 23 17:48:59 2021
+****************************************
+
+Operating Conditions: NCCOM   Library: tcbn40lpbwptc
+Wire Load Model Mode: segmented
+
+  Startpoint: i_data0[0] (input port)
+  Endpoint: o_data[31] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  mul_inner          TSMC32K_Lowk_Conservative
+                                           tcbn40lpbwptc
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  input external delay                     0.00       0.00 r
+  i_data0[0] (in)                          0.00       0.00 r
+  U890/ZN (CKND0BWP)                       0.04       0.04 f
+  U497/ZN (NR2XD4BWP)                      0.07       0.11 r
+  U430/Z (AO21D1BWP)                       0.06       0.17 r
+  U530/ZN (CKND2D0BWP)                     0.03       0.20 f
+  U528/ZN (CKND2D0BWP)                     0.04       0.24 r
+  mult_9/S1_2_0/CO (FA1D0BWP)              0.08       0.32 r
+  mult_9/S1_3_0/CO (FA1D0BWP)              0.13       0.45 r
+  mult_9/S1_4_0/CO (FA1D0BWP)              0.13       0.58 r
+  mult_9/S1_5_0/CO (FA1D0BWP)              0.13       0.71 r
+  mult_9/S1_6_0/CO (FA1D0BWP)              0.13       0.84 r
+  mult_9/S1_7_0/CO (FA1D0BWP)              0.13       0.97 r
+  mult_9/S1_8_0/CO (FA1D0BWP)              0.13       1.10 r
+  mult_9/S1_9_0/CO (FA1D0BWP)              0.13       1.23 r
+  mult_9/S1_10_0/CO (FA1D0BWP)             0.13       1.36 r
+  mult_9/S1_11_0/CO (FA1D0BWP)             0.13       1.49 r
+  mult_9/S1_12_0/CO (FA1D0BWP)             0.13       1.63 r
+  mult_9/S1_13_0/CO (FA1D0BWP)             0.13       1.76 r
+  mult_9/S1_14_0/CO (FA1D0BWP)             0.13       1.89 r
+  mult_9/S4_0/S (FA1D0BWP)                 0.15       2.04 f
+  mult_9/S14_15_0/CO (FA1D0BWP)            0.08       2.12 f
+  U615/ZN (CKND0BWP)                       0.04       2.16 r
+  U425/ZN (NR2XD0BWP)                      0.05       2.21 f
+  U486/ZN (IOA21D1BWP)                     0.08       2.29 f
+  U426/ZN (AOI21D1BWP)                     0.06       2.35 r
+  U557/ZN (OAI21D1BWP)                     0.05       2.40 f
+  U495/ZN (AOI21D1BWP)                     0.06       2.47 r
+  U554/ZN (OAI21D1BWP)                     0.05       2.52 f
+  U492/ZN (AOI21D1BWP)                     0.06       2.58 r
+  U551/ZN (OAI21D1BWP)                     0.05       2.64 f
+  U494/ZN (AOI21D1BWP)                     0.06       2.70 r
+  U548/ZN (OAI21D1BWP)                     0.05       2.75 f
+  U490/ZN (AOI21D1BWP)                     0.06       2.82 r
+  U545/ZN (OAI21D1BWP)                     0.06       2.87 f
+  U536/ZN (AOI21D2BWP)                     0.05       2.93 r
+  U566/ZN (OAI21D0BWP)                     0.06       2.98 f
+  U562/ZN (OAI21D0BWP)                     0.07       3.05 r
+  U488/Z (XOR3D1BWP)                       0.12       3.17 f
+  U487/Z (CKBD16BWP)                       0.08       3.25 f
+  o_data[31] (out)                         0.00       3.25 f
+  data arrival time                                   3.25
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+1
