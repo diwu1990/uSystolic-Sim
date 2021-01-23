@@ -1,6 +1,6 @@
 # ECE552 Extra Credit
-read_file -format sverilog {cpu.sv}
-set current_design cpu
+read_file -format sverilog {dut.sv}
+set current_design dut
 link
 
 ###########################################
@@ -59,11 +59,11 @@ check_design
 #############################################
 # Take a look at area, max, and min timings #
 #############################################
-report_area > cpu_area.txt
-report_power > cpu_power.txt
-report_timing -delay min > cpu_min_delay.txt
-report_timing -delay max > cpu_max_delay.txt
+report_area > dut_area.txt
+report_power > dut_power.txt
+report_timing -delay min > dut_min_delay.txt
+report_timing -delay max > dut_max_delay.txt
 
 #### write out final netlist ######
-write -format verilog cpu -output cpu.vg
+write -format verilog dut -output dut.vg
 exit
