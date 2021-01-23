@@ -1,0 +1,87 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : acc
+Version: Q-2019.12-SP3
+Date   : Sat Jan 23 17:33:33 2021
+****************************************
+
+Operating Conditions: NCCOM   Library: tcbn40lpbwptc
+Wire Load Model Mode: segmented
+
+  Startpoint: i_data1[0] (input port clocked by clk)
+  Endpoint: o_data_reg[31]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  acc                TSMC32K_Lowk_Conservative
+                                           tcbn40lpbwptc
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  input external delay                     0.25       0.25 f
+  i_data1[0] (in)                          0.00       0.25 f
+  U93/ZN (INVD1BWP)                        0.01       0.26 r
+  U89/ZN (OAI22D1BWP)                      0.04       0.30 f
+  U50/Z (AN2XD1BWP)                        0.05       0.35 f
+  U135/ZN (OAI21D1BWP)                     0.03       0.38 r
+  U90/Z (AO32D1BWP)                        0.09       0.47 r
+  U92/ZN (OAI22D2BWP)                      0.04       0.52 f
+  U39/ZN (AOI32D1BWP)                      0.05       0.57 r
+  U38/ZN (ND2D1BWP)                        0.05       0.62 f
+  U105/ZN (OAI21D1BWP)                     0.05       0.66 r
+  U25/ZN (INVD2BWP)                        0.03       0.70 f
+  U24/ZN (OAI32XD4BWP)                     0.06       0.75 r
+  U91/ZN (OAI22D2BWP)                      0.06       0.81 f
+  U41/ZN (AOI32D1BWP)                      0.06       0.87 r
+  U40/ZN (ND2D1BWP)                        0.05       0.92 f
+  U106/ZN (OAI21D1BWP)                     0.05       0.97 r
+  U32/ZN (INVD2BWP)                        0.03       0.99 f
+  U31/ZN (OAI32D2BWP)                      0.05       1.05 r
+  U97/ZN (MOAI22D1BWP)                     0.05       1.10 f
+  U205/ZN (AOI32D1BWP)                     0.06       1.16 r
+  U206/ZN (OAI21D1BWP)                     0.06       1.22 f
+  U208/ZN (OAI21D1BWP)                     0.04       1.26 r
+  U36/ZN (INVD1BWP)                        0.04       1.30 f
+  U29/ZN (OAI32XD4BWP)                     0.06       1.36 r
+  U28/ZN (OAI22D4BWP)                      0.06       1.42 f
+  U26/ZN (AOI32XD4BWP)                     0.05       1.47 r
+  U94/ZN (OAI21D2BWP)                      0.04       1.51 f
+  U219/Z (XOR2D1BWP)                       0.09       1.60 r
+  U116/ZN (INVD1BWP)                       0.02       1.62 f
+  U130/ZN (MOAI22D1BWP)                    0.06       1.68 r
+  U222/ZN (MAOI222D1BWP)                   0.07       1.75 f
+  U96/ZN (AOI32D0BWP)                      0.08       1.83 r
+  U30/Z (OA21D2BWP)                        0.08       1.92 r
+  U99/ZN (OAI21D1BWP)                      0.04       1.96 f
+  U88/ZN (INVD1BWP)                        0.03       1.99 r
+  U47/ZN (OAI32D2BWP)                      0.03       2.02 f
+  U46/ZN (OAI22D2BWP)                      0.05       2.08 r
+  U237/ZN (AOI32D1BWP)                     0.06       2.14 f
+  U238/ZN (OAI21D1BWP)                     0.04       2.17 r
+  U239/Z (XOR3D1BWP)                       0.10       2.28 f
+  o_data_reg[31]/D (EDFCNQD1BWP)           0.00       2.28 f
+  data arrival time                                   2.28
+
+  clock clk (rise edge)                    2.50       2.50
+  clock network delay (ideal)              0.00       2.50
+  clock uncertainty                       -0.15       2.35
+  o_data_reg[31]/CP (EDFCNQD1BWP)          0.00       2.35 r
+  library setup time                      -0.07       2.28
+  data required time                                  2.28
+  -----------------------------------------------------------
+  data required time                                  2.28
+  data arrival time                                  -2.28
+  -----------------------------------------------------------
+  slack (MET)                                         0.00
+
+
+1

@@ -1,0 +1,38 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay min
+        -max_paths 1
+Design : mul_inner
+Version: Q-2019.12-SP3
+Date   : Sat Jan 23 17:34:21 2021
+****************************************
+
+Operating Conditions: NCCOM   Library: tcbn40lpbwptc
+Wire Load Model Mode: segmented
+
+  Startpoint: i_data0[0] (input port)
+  Endpoint: o_data[0] (output port)
+  Path Group: (none)
+  Path Type: min
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  mul_inner          TSMC32K_Lowk_Conservative
+                                           tcbn40lpbwptc
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  input external delay                     0.00       0.00 f
+  i_data0[0] (in)                          0.00       0.00 f
+  U145/ZN (INVD1BWP)                       0.02       0.02 r
+  U149/Z (OR2D2BWP)                        0.07       0.09 r
+  U150/ZN (CKND16BWP)                      0.06       0.15 f
+  o_data[0] (out)                          0.00       0.15 f
+  data arrival time                                   0.15
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+1
