@@ -32,8 +32,21 @@ Detecting input file type automatically (-rtl or -netlist).
 Reading with Presto HDL Compiler (equivalent to -rtl option).
 Running PRESTO HDLC
 Compiling source file /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/8bit/binaryserial/mul_inner.sv
-Warning:  /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/8bit/binaryserial/mul_inner.sv:28: signed to unsigned conversion occurs. (VER-318)
-Warning:  /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/8bit/binaryserial/mul_inner.sv:16: Netlist for always_ff block does not contain a flip-flop. (ELAB-976)
+
+Inferred memory devices in process
+	in routine mul_inner line 16 in file
+		'/filespace/d/dwu94/Project/uSystolic-Sim/synthesis/8bit/binaryserial/mul_inner.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|       cnt_reg       | Flip-flop |   3   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Statistics for MUX_OPs
+======================================================
+| block name/line  | Inputs | Outputs | # sel inputs |
+======================================================
+|   mul_inner/28   |   8    |    1    |      3       |
+======================================================
 Presto compilation completed successfully.
 Loaded 1 design.
 Current design is 'mul_inner'.
@@ -108,7 +121,7 @@ Information: Evaluating DesignWare library utilization. (UISN-27)
 ============================================================================
 
 
-Information: There are 66 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
+Information: There are 2 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
 
 
 Warning: IO pad 'PVSS3DGZ' is unusable: unknown logic function.  (OPT-1022)
@@ -135,25 +148,33 @@ Warning: The trip points for the library named tpfn45gsgv18tc differ from those 
   Updating timing information
 Information: Updating design information... (UID-85)
 
+  Beginning Implementation Selection
+  ----------------------------------
+  Processing 'mul_inner_DW01_add_0'
+
   Beginning Mapping Optimizations  (Medium effort)
   -------------------------------
+  Mapping Optimization (Phase 1)
 
                                   TOTAL                                      
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:05       0.5      0.00       0.0       0.0                          
-    0:00:06       0.5      0.00       0.0       0.0                          
-    0:00:06       0.5      0.00       0.0       0.0                          
-    0:00:06       0.5      0.00       0.0       0.0                          
-    0:00:06       0.5      0.00       0.0       0.0                          
-    0:00:06       0.5      0.00       0.0       0.0                          
-    0:00:06       0.5      0.00       0.0       0.0                          
-    0:00:06       0.5      0.00       0.0       0.0                          
-    0:00:06       0.5      0.00       0.0       0.0                          
-    0:00:06       0.5      0.00       0.0       0.0                          
-    0:00:06       0.5      0.00       0.0       0.0                          
-    0:00:06       0.5      0.00       0.0       0.0                          
+    0:00:05     146.9      0.00       0.0      12.2                          
+    0:00:05     146.9      0.00       0.0      12.2                          
+    0:00:05     146.9      0.00       0.0      12.2                          
+    0:00:05     146.9      0.00       0.0      12.2                          
+    0:00:05     146.9      0.00       0.0      12.2                          
+    0:00:05     128.4      0.00       0.0      12.2                          
+    0:00:05     128.4      0.00       0.0      12.2                          
+    0:00:05     128.4      0.00       0.0      12.2                          
+    0:00:05     128.4      0.00       0.0      12.2                          
+    0:00:05     128.4      0.00       0.0      12.2                          
+    0:00:05     131.8      0.00       0.0      12.0                          
+    0:00:05     135.3      0.00       0.0      11.8                          
+    0:00:05     135.3      0.00       0.0      11.8                          
+    0:00:05     135.3      0.00       0.0      11.8                          
+    0:00:05     135.3      0.00       0.0      11.8                          
 
 
 
@@ -164,9 +185,20 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:06       0.5      0.00       0.0       0.0                          
-    0:00:06       0.5      0.00       0.0       0.0                          
-    0:00:06       0.5      0.00       0.0       0.0                          
+    0:00:05     135.3      0.00       0.0      11.8                          
+    0:00:05     135.3      0.00       0.0      11.8                          
+    0:00:05     134.6      0.00       0.0      11.8                          
+
+
+  Beginning Design Rule Fixing  (max_transition)  (max_capacitance)
+  ----------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:05     134.6      0.00       0.0      11.8                          
+    0:00:05     182.9      0.00       0.0       0.0                          
 
 
   Beginning Area-Recovery Phase  (cleanup)
@@ -176,17 +208,22 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:06       0.5      0.00       0.0       0.0                          
-    0:00:06       0.5      0.00       0.0       0.0                          
-    0:00:06       0.5      0.00       0.0       0.0                          
-    0:00:06       0.5      0.00       0.0       0.0                          
-    0:00:06       0.5      0.00       0.0       0.0                          
-    0:00:06       0.5      0.00       0.0       0.0                          
-    0:00:06       0.5      0.00       0.0       0.0                          
-    0:00:06       0.5      0.00       0.0       0.0                          
-    0:00:06       0.5      0.00       0.0       0.0                          
-    0:00:06       0.5      0.00       0.0       0.0                          
-    0:00:06       0.5      0.00       0.0       0.0                          
+    0:00:05     182.9      0.00       0.0       0.0                          
+    0:00:05     182.9      0.00       0.0       0.0                          
+    0:00:05     181.3      0.00       0.0       0.0                          
+    0:00:05     180.3      0.00       0.0       0.0                          
+    0:00:05     180.3      0.00       0.0       0.0                          
+    0:00:05     180.3      0.00       0.0       0.0                          
+    0:00:05     180.3      0.00       0.0       0.0                          
+    0:00:05     180.3      0.00       0.0       0.0                          
+    0:00:05     176.4      0.02       0.0       0.0                          
+    0:00:05     175.9      0.01       0.0       0.0                          
+    0:00:05     175.9      0.01       0.0       0.0                          
+    0:00:05     175.9      0.01       0.0       0.0                          
+    0:00:05     175.9      0.01       0.0       0.0                          
+    0:00:05     175.9      0.01       0.0       0.0                          
+    0:00:05     175.9      0.01       0.0       0.0                          
+    0:00:05     178.2      0.00       0.0       0.0                          
 
 
 Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
@@ -200,67 +237,16 @@ check_design
 ****************************************
 check_design summary:
 Version:     Q-2019.12-SP3
-Date:        Sat Jan 23 20:19:20 2021
+Date:        Sat Jan 23 20:33:19 2021
 ****************************************
 
                    Name                                            Total
 --------------------------------------------------------------------------------
-Inputs/Outputs                                                     51
-    Unconnected ports (LINT-28)                                    35
-    Constant outputs (LINT-52)                                     16
+Inputs/Outputs                                                      1
+    Unconnected ports (LINT-28)                                     1
 --------------------------------------------------------------------------------
 
-Warning: In design 'mul_inner', port 'clk' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'rst_n' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'clr' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'i_data0[7]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'i_data0[6]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'i_data0[5]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'i_data0[4]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'i_data0[3]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'i_data0[2]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'i_data0[1]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'i_data0[0]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'i_data1[7]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'i_data1[6]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'i_data1[5]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'i_data1[4]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'i_data1[3]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'i_data1[2]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'i_data1[1]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'i_data1[0]' is not connected to any nets. (LINT-28)
 Warning: In design 'mul_inner', port 'o_data_last[15]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'o_data_last[14]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'o_data_last[13]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'o_data_last[12]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'o_data_last[11]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'o_data_last[10]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'o_data_last[9]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'o_data_last[8]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'o_data_last[7]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'o_data_last[6]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'o_data_last[5]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'o_data_last[4]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'o_data_last[3]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'o_data_last[2]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'o_data_last[1]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'o_data_last[0]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', output port 'o_data[15]' is connected directly to 'logic 0'. (LINT-52)
-Warning: In design 'mul_inner', output port 'o_data[14]' is connected directly to 'logic 0'. (LINT-52)
-Warning: In design 'mul_inner', output port 'o_data[13]' is connected directly to 'logic 0'. (LINT-52)
-Warning: In design 'mul_inner', output port 'o_data[12]' is connected directly to 'logic 0'. (LINT-52)
-Warning: In design 'mul_inner', output port 'o_data[11]' is connected directly to 'logic 0'. (LINT-52)
-Warning: In design 'mul_inner', output port 'o_data[10]' is connected directly to 'logic 0'. (LINT-52)
-Warning: In design 'mul_inner', output port 'o_data[9]' is connected directly to 'logic 0'. (LINT-52)
-Warning: In design 'mul_inner', output port 'o_data[8]' is connected directly to 'logic 0'. (LINT-52)
-Warning: In design 'mul_inner', output port 'o_data[7]' is connected directly to 'logic 0'. (LINT-52)
-Warning: In design 'mul_inner', output port 'o_data[6]' is connected directly to 'logic 0'. (LINT-52)
-Warning: In design 'mul_inner', output port 'o_data[5]' is connected directly to 'logic 0'. (LINT-52)
-Warning: In design 'mul_inner', output port 'o_data[4]' is connected directly to 'logic 0'. (LINT-52)
-Warning: In design 'mul_inner', output port 'o_data[3]' is connected directly to 'logic 0'. (LINT-52)
-Warning: In design 'mul_inner', output port 'o_data[2]' is connected directly to 'logic 0'. (LINT-52)
-Warning: In design 'mul_inner', output port 'o_data[1]' is connected directly to 'logic 0'. (LINT-52)
-Warning: In design 'mul_inner', output port 'o_data[0]' is connected directly to 'logic 0'. (LINT-52)
 1
 # Unflatten design now that its compiled
 ungroup -all -flatten
@@ -273,7 +259,7 @@ set_fix_hold clk
 compile -map_effort high
 Warning: "The variable 'compile_high_effort_area_in_incremental' is supported in DC NXT only. Ignoring this setting." (OPT-1726)
 
-Information: There are 51 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
+Information: There are 1 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
 
 
 Warning: Operating condition NCCOM set on design mul_inner has different process,
@@ -294,18 +280,26 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                              MIN DELAY 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT             COST    
   --------- --------- --------- --------- --------- ------------------------- -----------
-    0:00:08       0.5      0.00       0.0       0.0                                0.00  
-    0:00:08       0.5      0.00       0.0       0.0                                0.00  
-    0:00:08       0.5      0.00       0.0       0.0                                0.00  
-    0:00:09       0.5      0.00       0.0       0.0                                0.00  
-    0:00:09       0.5      0.00       0.0       0.0                                0.00  
-    0:00:09       0.5      0.00       0.0       0.0                                0.00  
-    0:00:09       0.5      0.00       0.0       0.0                                0.00  
-    0:00:09       0.5      0.00       0.0       0.0                                0.00  
-    0:00:09       0.5      0.00       0.0       0.0                                0.00  
-    0:00:09       0.5      0.00       0.0       0.0                                0.00  
-    0:00:09       0.5      0.00       0.0       0.0                                0.00  
-    0:00:09       0.5      0.00       0.0       0.0                                0.00  
+    0:00:08     143.1      0.00       0.0      14.8                                0.00  
+    0:00:08     143.1      0.00       0.0      14.8                                0.00  
+    0:00:08     143.1      0.00       0.0      14.8                                0.00  
+    0:00:08     143.1      0.00       0.0      14.8                                0.00  
+    0:00:08     143.1      0.00       0.0      14.8                                0.00  
+    0:00:08     121.9      0.02       0.0      14.8                                0.00  
+    0:00:08     132.1      0.00       0.0      13.7                                0.00  
+    0:00:08     124.4      0.07       0.1      13.7                                0.00  
+    0:00:08     126.5      0.03       0.0      13.7                                0.00  
+    0:00:08     131.4      0.00       0.0      13.2                                0.00  
+    0:00:08     131.4      0.00       0.0      13.2                                0.00  
+    0:00:08     131.4      0.00       0.0      13.2                                0.00  
+    0:00:08     131.4      0.00       0.0      13.2                                0.00  
+    0:00:08     142.7      0.03       0.1      10.5                                0.00  
+    0:00:08     151.4      0.03       0.1       8.9                                0.00  
+    0:00:08     154.0      0.02       0.0       8.7                                0.00  
+    0:00:08     154.0      0.02       0.0       8.7                                0.00  
+    0:00:08     154.0      0.02       0.0       8.7                                0.00  
+    0:00:08     154.0      0.02       0.0       8.7                                0.00  
+    0:00:08     157.9      0.00       0.0       8.0                                0.00  
 
 
 
@@ -316,9 +310,20 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                              MIN DELAY 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT             COST    
   --------- --------- --------- --------- --------- ------------------------- -----------
-    0:00:09       0.5      0.00       0.0       0.0                                0.00  
-    0:00:09       0.5      0.00       0.0       0.0                                0.00  
-    0:00:09       0.5      0.00       0.0       0.0                                0.00  
+    0:00:08     157.9      0.00       0.0       8.0                                0.00  
+    0:00:08     157.9      0.00       0.0       8.0                                0.00  
+    0:00:08     157.3      0.00       0.0       8.0                                0.00  
+
+
+  Beginning Design Rule Fixing  (max_transition)  (max_capacitance)
+  ----------------------------
+
+                                  TOTAL                                                  
+   ELAPSED            WORST NEG   SETUP    DESIGN                              MIN DELAY 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT             COST    
+  --------- --------- --------- --------- --------- ------------------------- -----------
+    0:00:08     157.3      0.00       0.0       8.0                                0.00  
+    0:00:09     197.0      0.00       0.0       0.0                                0.00  
 
 
   Beginning Area-Recovery Phase  (cleanup)
@@ -328,17 +333,19 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                              MIN DELAY 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT             COST    
   --------- --------- --------- --------- --------- ------------------------- -----------
-    0:00:09       0.5      0.00       0.0       0.0                                0.00  
-    0:00:09       0.5      0.00       0.0       0.0                                0.00  
-    0:00:09       0.5      0.00       0.0       0.0                                0.00  
-    0:00:09       0.5      0.00       0.0       0.0                                0.00  
-    0:00:09       0.5      0.00       0.0       0.0                                0.00  
-    0:00:09       0.5      0.00       0.0       0.0                                0.00  
-    0:00:09       0.5      0.00       0.0       0.0                                0.00  
-    0:00:09       0.5      0.00       0.0       0.0                                0.00  
-    0:00:09       0.5      0.00       0.0       0.0                                0.00  
-    0:00:09       0.5      0.00       0.0       0.0                                0.00  
-    0:00:09       0.5      0.00       0.0       0.0                                0.00  
+    0:00:09     197.0      0.00       0.0       0.0                                0.00  
+    0:00:09     197.0      0.00       0.0       0.0                                0.00  
+    0:00:09     197.0      0.00       0.0       0.0                                0.00  
+    0:00:09     197.0      0.00       0.0       0.0                                0.00  
+    0:00:09     197.0      0.00       0.0       0.0                                0.00  
+    0:00:09     197.0      0.00       0.0       0.0                                0.00  
+    0:00:09     193.9      0.00       0.0       0.0                                0.00  
+    0:00:09     193.9      0.00       0.0       0.0                                0.00  
+    0:00:09     193.9      0.00       0.0       0.0                                0.00  
+    0:00:09     193.9      0.00       0.0       0.0                                0.00  
+    0:00:09     193.9      0.00       0.0       0.0                                0.00  
+    0:00:09     193.9      0.00       0.0       0.0                                0.00  
+    0:00:09     193.9      0.00       0.0       0.0                                0.00  
 
 
 Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
@@ -352,67 +359,16 @@ check_design
 ****************************************
 check_design summary:
 Version:     Q-2019.12-SP3
-Date:        Sat Jan 23 20:19:23 2021
+Date:        Sat Jan 23 20:33:23 2021
 ****************************************
 
                    Name                                            Total
 --------------------------------------------------------------------------------
-Inputs/Outputs                                                     51
-    Unconnected ports (LINT-28)                                    35
-    Constant outputs (LINT-52)                                     16
+Inputs/Outputs                                                      1
+    Unconnected ports (LINT-28)                                     1
 --------------------------------------------------------------------------------
 
-Warning: In design 'mul_inner', port 'clk' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'rst_n' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'clr' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'i_data0[7]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'i_data0[6]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'i_data0[5]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'i_data0[4]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'i_data0[3]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'i_data0[2]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'i_data0[1]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'i_data0[0]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'i_data1[7]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'i_data1[6]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'i_data1[5]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'i_data1[4]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'i_data1[3]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'i_data1[2]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'i_data1[1]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'i_data1[0]' is not connected to any nets. (LINT-28)
 Warning: In design 'mul_inner', port 'o_data_last[15]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'o_data_last[14]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'o_data_last[13]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'o_data_last[12]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'o_data_last[11]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'o_data_last[10]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'o_data_last[9]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'o_data_last[8]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'o_data_last[7]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'o_data_last[6]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'o_data_last[5]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'o_data_last[4]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'o_data_last[3]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'o_data_last[2]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'o_data_last[1]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', port 'o_data_last[0]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_inner', output port 'o_data[15]' is connected directly to 'logic 0'. (LINT-52)
-Warning: In design 'mul_inner', output port 'o_data[14]' is connected directly to 'logic 0'. (LINT-52)
-Warning: In design 'mul_inner', output port 'o_data[13]' is connected directly to 'logic 0'. (LINT-52)
-Warning: In design 'mul_inner', output port 'o_data[12]' is connected directly to 'logic 0'. (LINT-52)
-Warning: In design 'mul_inner', output port 'o_data[11]' is connected directly to 'logic 0'. (LINT-52)
-Warning: In design 'mul_inner', output port 'o_data[10]' is connected directly to 'logic 0'. (LINT-52)
-Warning: In design 'mul_inner', output port 'o_data[9]' is connected directly to 'logic 0'. (LINT-52)
-Warning: In design 'mul_inner', output port 'o_data[8]' is connected directly to 'logic 0'. (LINT-52)
-Warning: In design 'mul_inner', output port 'o_data[7]' is connected directly to 'logic 0'. (LINT-52)
-Warning: In design 'mul_inner', output port 'o_data[6]' is connected directly to 'logic 0'. (LINT-52)
-Warning: In design 'mul_inner', output port 'o_data[5]' is connected directly to 'logic 0'. (LINT-52)
-Warning: In design 'mul_inner', output port 'o_data[4]' is connected directly to 'logic 0'. (LINT-52)
-Warning: In design 'mul_inner', output port 'o_data[3]' is connected directly to 'logic 0'. (LINT-52)
-Warning: In design 'mul_inner', output port 'o_data[2]' is connected directly to 'logic 0'. (LINT-52)
-Warning: In design 'mul_inner', output port 'o_data[1]' is connected directly to 'logic 0'. (LINT-52)
-Warning: In design 'mul_inner', output port 'o_data[0]' is connected directly to 'logic 0'. (LINT-52)
 1
 #############################################
 # Take a look at area, max, and min timings #

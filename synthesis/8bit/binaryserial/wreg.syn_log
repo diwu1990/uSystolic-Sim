@@ -234,7 +234,7 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                              MIN DELAY 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT             COST    
   --------- --------- --------- --------- --------- ------------------------- -----------
-    0:00:08      54.3      0.00       0.0      10.1                                0.00  
+    0:00:09      54.3      0.00       0.0      10.1                                0.00  
     0:00:09      54.3      0.00       0.0      10.1                                0.00  
     0:00:09      54.3      0.00       0.0      10.1                                0.00  
     0:00:09      54.3      0.00       0.0      10.1                                0.00  
