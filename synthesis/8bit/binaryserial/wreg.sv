@@ -4,6 +4,7 @@ module wreg #(
     input logic clk,
     input logic rst_n,
     input logic en,
+    input logic clr,
     input logic signed [WIDTH-1 : 0] i_data,
     output logic signed [WIDTH-1 : 0] o_data
 );
@@ -13,10 +14,14 @@ module wreg #(
         if (~rst_n) begin
             o_data <= 0;
         end else begin
-            if (en) begin
-                o_data <= i_data;
+            if (clr) begin
+                o_data <= 0;
             end else begin
-                o_data <= o_data;
+                if (en) begin
+                    o_data <= i_data;
+                end else begin
+                    o_data <= o_data;
+                end
             end
         end
     end
