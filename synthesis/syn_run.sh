@@ -50,7 +50,7 @@ if ls *.$svsuff; then
         dutname="${dut%.*}"
         echo "Processing design $dutname in $dut..."
         sed -i "s/dut/$dutname/g" $DCSCRIPT
-        dc_shell -f $DCSCRIPT >| $dutname.syn_log
+        dc_shell -f $DCSCRIPT >| $dutname.rpt
         sed -i "s/$dutname/dut/g" $DCSCRIPT
         rm -rf work/ *.vg *.svf
         echo "    Done"
