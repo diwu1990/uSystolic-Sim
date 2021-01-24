@@ -15,7 +15,7 @@ module mul_border #(
     logic bitI;
     logic bitW;
     
-    sobol8 U_sobol_I(
+    sobol16 U_sobol_I(
         .clk(clk),
         .rst_n(rst_n),
         .enable(1'b1),
@@ -24,7 +24,7 @@ module mul_border #(
 
     assign bitI = i_data_i > randI[WIDTH-1 : 1];
 
-    sobol8 U_sobol_W(
+    sobol16 U_sobol_W(
         .clk(clk),
         .rst_n(rst_n),
         .enable(bitI),

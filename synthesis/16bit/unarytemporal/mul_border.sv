@@ -1,4 +1,4 @@
-`include "sobol8.sv"
+`include "sobol16.sv"
 
 module mul_border #(
     parameter WIDTH=16
@@ -35,7 +35,7 @@ module mul_border #(
 
     assign bitI = ~(|cnt == 0);
 
-    sobol8 U_sobol_W(
+    sobol16 U_sobol_W(
         .clk(clk),
         .rst_n(rst_n),
         .enable(bitI),

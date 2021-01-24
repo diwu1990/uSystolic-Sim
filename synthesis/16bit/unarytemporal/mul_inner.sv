@@ -1,4 +1,4 @@
-`include "sobol8.sv"
+`include "sobol16.sv"
 
 module mul_inner #(
     parameter WIDTH=16
@@ -16,7 +16,7 @@ module mul_inner #(
     
     assign bitI = i_bit_i;
 
-    sobol8 U_sobol_W(
+    sobol16 U_sobol_W(
         .clk(clk),
         .rst_n(rst_n),
         .enable(bitI),
