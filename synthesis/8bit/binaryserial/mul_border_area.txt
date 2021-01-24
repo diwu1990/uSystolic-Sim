@@ -3,7 +3,7 @@
 Report : area
 Design : mul_border
 Version: Q-2019.12-SP3
-Date   : Sun Jan 24 02:01:01 2021
+Date   : Sun Jan 24 02:18:59 2021
 ****************************************
 
 Information: Updating design information... (UID-85)
