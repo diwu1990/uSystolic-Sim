@@ -12,7 +12,8 @@ import warnings
 
 FLAGS = flags.FLAGS
 # name of flag | default | explanation
-flags.DEFINE_string("name", "tpu_unaryrate_1B_ddr3_w_SRAM", "indicateing path to get config files")
+flags.DEFINE_string("name", "template_run", "indicateing path to get config files")
+# template is tpu_08b_ur_032c_ddr3_w_sram_alexnet
 # architecture sim input config
 # path/systolic.cfg: file to get systolic array architechture from
 # path/network.csv: consecutive GEMM topologies to read
@@ -297,4 +298,4 @@ def main(argv):
     s.run_eval()
 
 if __name__ == '__main__':
-  app.run(main)
+    app.run(main)
