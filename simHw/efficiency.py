@@ -492,6 +492,10 @@ def estimate(
         
         name = elems[0]
         layer_type = elems[1]
+        if layer_type == "GEMM":
+            mac_cycles = int(elems[10].strip())
+        else:
+            mac_cycles = 1
 
         print("")
         print("Commencing trace profiling for " + name)
@@ -868,10 +872,10 @@ def estimate(
         computing_stall_cycles = stall_cycles_ifmap_rd_sram + stall_cycles_ofmap_rd_sram + stall_cycles_ofmap_wr_sram
         # ireg will work all the time
         sa_enery_ireg   =   (array_h * ireg_leakage_border + array_h * (array_w - 1) * ireg_leakage_inner) * real_total_cycle + \
-                            (array_h * ireg_dynamic_border + array_h * (array_w - 1) * ireg_dynamic_inner) * pe_act_cycle
+                            (array_h * ireg_dynamic_border + array_h * (array_w - 1) * ireg_dynamic_inner) * pe_act_cycle / mac_cycles
         # buf will work only when computing
         sa_enery_wreg   =   array_h * array_w * wreg_leakage * real_total_cycle + \
-                            array_h * array_w * wreg_dynamic * (pe_act_cycle - act_cycles_filter_rd_sram - computing_stall_cycles)
+                            array_h * array_w * wreg_dynamic * act_cycles_filter_rd_sram
         # mul and add will work only when computing with no stalls
         sa_enery_mul    =   (array_h * mul_leakage_border + array_h * (array_w - 1) * mul_leakage_inner) * real_total_cycle + \
                             (array_h * mul_dynamic_border + array_h * (array_w - 1) * mul_dynamic_inner) * (pe_act_cycle - act_cycles_filter_rd_sram - computing_stall_cycles)

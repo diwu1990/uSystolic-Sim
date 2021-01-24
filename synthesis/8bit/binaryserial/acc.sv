@@ -5,6 +5,7 @@ module acc #(
     input logic rst_n,
     input logic en,
     input logic clr,
+    input logic acc,
     input logic signed [WIDTH-1 : 0] i_data0,
     input logic signed [WIDTH-1 : 0] i_data1,
     output logic signed [WIDTH-1 : 0] o_data
@@ -19,7 +20,11 @@ module acc #(
                 o_data <= 0;
             end else begin
                 if (en) begin
-                    o_data <= i_data0 + i_data1;
+                    if (acc) begin
+                        o_data <= i_data0 + i_data1;
+                    end else begin
+                        o_data <= o_data + i_data1;
+                    end
                 end else begin
                     o_data <= o_data;
                 end
