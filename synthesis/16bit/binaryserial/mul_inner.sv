@@ -1,6 +1,6 @@
 module mul_inner #(
-    parameter WIDTH=8
-    parameter DEPTH=3
+    parameter WIDTH=16
+    parameter DEPTH=4
 ) (
     input logic clk,
     input logic rst_n,

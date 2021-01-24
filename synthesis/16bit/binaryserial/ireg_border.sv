@@ -1,5 +1,5 @@
 module ireg_border #(
-    parameter WIDTH=8
+    parameter WIDTH=16
 ) (
     input logic clk,
     input logic rst_n,
