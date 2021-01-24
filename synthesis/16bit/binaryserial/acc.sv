@@ -6,23 +6,23 @@ module acc #(
     input logic en,
     input logic clr,
     input logic acc,
-    input logic signed [WIDTH-1 : 0] i_data0,
-    input logic signed [WIDTH-1 : 0] i_data1,
-    output logic signed [WIDTH-1 : 0] o_data
+    input logic signed [WIDTH-1 : 0] prod,
+    input logic signed [WIDTH-1 : 0] sum_i,
+    output logic signed [WIDTH-1 : 0] sum_o
 );
 
     // this module is the horizontal buffer for control and data signals
     always_ff @(posedge clk or negedge rst_n) begin : acc_proc
         if (~rst_n) begin
-            o_data <= 0;
+            sum_o <= 0;
         end else begin
             if (clr) begin
-                o_data <= 0;
+                sum_o <= 0;
             end else begin
                 if (en) begin
-                    o_data <= (acc ? i_data0 : o_data) + i_data1;
+                    sum_o <= (acc ? prod : sum_o) + sum_i;
                 end else begin
-                    o_data <= o_data;
+                    sum_o <= sum_o;
                 end
             end
         end
