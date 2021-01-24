@@ -6,7 +6,7 @@ Report : timing
         -max_paths 1
 Design : wreg
 Version: Q-2019.12-SP3
-Date   : Sat Jan 23 17:49:12 2021
+Date   : Sat Jan 23 19:31:51 2021
 ****************************************
 
 Operating Conditions: NCCOM   Library: tcbn40lpbwptc
@@ -27,11 +27,11 @@ Wire Load Model Mode: segmented
   -----------------------------------------------------------
   clock clk (rise edge)                    0.00       0.00
   clock network delay (ideal)              0.00       0.00
-  o_data_reg[0]/CP (EDFCNQD1BWP)           0.00       0.00 r
-  o_data_reg[0]/Q (EDFCNQD1BWP)            0.13       0.13 r
-  U17/Z (CKBD16BWP)                        0.09       0.21 r
-  o_data[0] (out)                          0.00       0.21 r
-  data arrival time                                   0.21
+  o_data_reg[0]/CP (DFCND2BWP)             0.00       0.00 r
+  o_data_reg[0]/QN (DFCND2BWP)             0.19       0.19 r
+  U70/ZN (CKND16BWP)                       0.06       0.25 f
+  o_data[0] (out)                          0.00       0.25 f
+  data arrival time                                   0.25
 
   clock clk (rise edge)                    2.50       2.50
   clock network delay (ideal)              0.00       2.50
@@ -40,9 +40,9 @@ Wire Load Model Mode: segmented
   data required time                                  1.85
   -----------------------------------------------------------
   data required time                                  1.85
-  data arrival time                                  -0.21
+  data arrival time                                  -0.25
   -----------------------------------------------------------
-  slack (MET)                                         1.64
+  slack (MET)                                         1.60
 
 
 1

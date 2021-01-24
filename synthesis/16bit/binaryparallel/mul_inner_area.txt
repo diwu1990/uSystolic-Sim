@@ -3,7 +3,7 @@
 Report : area
 Design : mul_inner
 Version: Q-2019.12-SP3
-Date   : Sat Jan 23 17:48:58 2021
+Date   : Sat Jan 23 19:31:38 2021
 ****************************************
 
 Information: Updating design information... (UID-85)
