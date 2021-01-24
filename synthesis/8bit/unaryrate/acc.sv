@@ -17,7 +17,7 @@ module acc #(
     assign neg = sign_i & sign_w;
 
     logic signed [WIDTH-1 : 0] prod;
-    assign prod = neg ? -1 : 1;
+    assign prod = prod_bit ? (neg ? -1 : 1) : 0;
 
     // this module is the horizontal buffer for control and data signals
     always_ff @(posedge clk or negedge rst_n) begin : acc_proc
