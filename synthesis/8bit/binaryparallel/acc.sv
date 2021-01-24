@@ -12,13 +12,17 @@ module acc #(
 
     // this module is the horizontal buffer for control and data signals
     always_ff @(posedge clk or negedge rst_n) begin : acc
-        if (~rst_n | clr) begin
+        if (~rst_n) begin
             o_data <= 0;
         end else begin
-            if (en) begin
-                o_data <= i_data0 + i_data1;
+            if (clr) begin
+                o_data <= 0;
             end else begin
-                o_data <= o_data;
+                if (en) begin
+                    o_data <= i_data0 + i_data1;
+                end else begin
+                    o_data <= o_data;
+                end
             end
         end
     end
