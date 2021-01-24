@@ -1,0 +1,56 @@
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+Warning: Design has unannotated primary inputs. (PWR-414)
+ 
+****************************************
+Report : power
+        -analysis_effort low
+Design : mul_border
+Version: Q-2019.12-SP3
+Date   : Sat Jan 23 20:19:12 2021
+****************************************
+
+
+Library(s) Used:
+
+    tcbn40lpbwptc (File: /cae/apps/data/tsmclibs-2013/digital/Front_End/timing_power_noise/NLDM/tcbn40lpbwp_120b/tcbn40lpbwptc.db)
+
+
+Operating Conditions: NCCOM   Library: tcbn40lpbwptc
+Wire Load Model Mode: segmented
+
+Design        Wire Load Model            Library
+------------------------------------------------
+mul_border             TSMC32K_Lowk_Conservative
+                                         tcbn40lpbwptc
+
+
+Global Operating Voltage = 1.1  
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000pf
+    Time Units = 1ns
+    Dynamic Power Units = 1mW    (derived from V,C,T units)
+    Leakage Power Units = 1nW
+
+
+  Cell Internal Power  =   0.0000 mW        
+  Net Switching Power  =   0.0000 mW        
+                         ---------
+Total Dynamic Power    =   0.0000 mW        
+
+Cell Leakage Power     = 127.9520 pW
+
+
+                 Internal         Switching           Leakage            Total
+Power Group      Power            Power               Power              Power   (   %    )  Attrs
+--------------------------------------------------------------------------------------------------
+io_pad             0.0000            0.0000            0.0000            0.0000  (     N/A)
+memory             0.0000            0.0000            0.0000            0.0000  (     N/A)
+black_box          0.0000            0.0000            0.0000            0.0000  (     N/A)
+clock_network      0.0000            0.0000            0.0000            0.0000  (     N/A)
+register           0.0000            0.0000            0.0000            0.0000  (     N/A)
+sequential         0.0000            0.0000            0.0000            0.0000  (     N/A)
+combinational      0.0000            0.0000            0.0000            0.0000  (     N/A)
+--------------------------------------------------------------------------------------------------
+Total              0.0000 mW         0.0000 mW         0.0000 nW         0.0000 mW
+1

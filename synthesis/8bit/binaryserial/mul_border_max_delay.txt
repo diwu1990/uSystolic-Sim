@@ -1,0 +1,16 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : mul_border
+Version: Q-2019.12-SP3
+Date   : Sat Jan 23 20:19:12 2021
+****************************************
+
+Operating Conditions: NCCOM   Library: tcbn40lpbwptc
+Wire Load Model Mode: segmented
+No paths.
+
+1
