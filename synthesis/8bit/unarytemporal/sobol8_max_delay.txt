@@ -1,0 +1,55 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : sobol8
+Version: Q-2019.12-SP3
+Date   : Sun Jan 24 02:44:45 2021
+****************************************
+
+Operating Conditions: NCCOM   Library: tcbn40lpbwptc
+Wire Load Model Mode: segmented
+
+  Startpoint: cnt_reg[2] (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: sobolSeq_reg[1]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  sobol8             TSMC32K_Lowk_Conservative
+                                           tcbn40lpbwptc
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  cnt_reg[2]/CP (DFCNQD1BWP)               0.00       0.00 r
+  cnt_reg[2]/Q (DFCNQD1BWP)                0.14       0.14 r
+  U80/ZN (ND2D1BWP)                        0.06       0.20 f
+  U78/ZN (IND3D1BWP)                       0.11       0.31 f
+  U111/ZN (AOI21D0BWP)                     0.08       0.38 r
+  U48/Z (OA32D1BWP)                        0.11       0.49 r
+  U103/ZN (ND2D1BWP)                       0.04       0.54 f
+  U116/ZN (NR2D0BWP)                       0.05       0.59 r
+  U91/Z (CKXOR2D0BWP)                      0.09       0.68 r
+  sobolSeq_reg[1]/D (EDFCNQD1BWP)          0.00       0.68 r
+  data arrival time                                   0.68
+
+  clock clk (rise edge)                    2.50       2.50
+  clock network delay (ideal)              0.00       2.50
+  clock uncertainty                       -0.15       2.35
+  sobolSeq_reg[1]/CP (EDFCNQD1BWP)         0.00       2.35 r
+  library setup time                      -0.09       2.26
+  data required time                                  2.26
+  -----------------------------------------------------------
+  data required time                                  2.26
+  data arrival time                                  -0.68
+  -----------------------------------------------------------
+  slack (MET)                                         1.58
+
+
+1

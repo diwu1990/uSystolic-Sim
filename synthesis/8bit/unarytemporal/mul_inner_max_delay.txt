@@ -1,0 +1,56 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : mul_inner
+Version: Q-2019.12-SP3
+Date   : Sun Jan 24 02:44:32 2021
+****************************************
+
+Operating Conditions: NCCOM   Library: tcbn40lpbwptc
+Wire Load Model Mode: segmented
+
+  Startpoint: i_data_w[1]
+              (input port clocked by clk)
+  Endpoint: o_bit (output port clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  mul_inner          TSMC32K_Lowk_Conservative
+                                           tcbn40lpbwptc
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  input external delay                     0.25       0.25 f
+  i_data_w[1] (in)                         0.00       0.25 f
+  U86/ZN (OAI211D1BWP)                     0.04       0.29 r
+  U88/ZN (IOA21D1BWP)                      0.04       0.33 f
+  U10/Z (OR2D1BWP)                         0.06       0.39 f
+  U9/Z (AO222D1BWP)                        0.13       0.52 f
+  U87/Z (OA221D1BWP)                       0.06       0.58 f
+  U7/Z (AO221D1BWP)                        0.13       0.70 f
+  U74/ZN (OAI221D1BWP)                     0.04       0.74 r
+  U72/Z (AO21D2BWP)                        0.09       0.83 r
+  U73/ZN (INVD16BWP)                       0.06       0.88 f
+  o_bit (out)                              0.00       0.88 f
+  data arrival time                                   0.88
+
+  clock clk (rise edge)                    2.50       2.50
+  clock network delay (ideal)              0.00       2.50
+  clock uncertainty                       -0.15       2.35
+  output external delay                   -0.50       1.85
+  data required time                                  1.85
+  -----------------------------------------------------------
+  data required time                                  1.85
+  data arrival time                                  -0.88
+  -----------------------------------------------------------
+  slack (MET)                                         0.97
+
+
+1
