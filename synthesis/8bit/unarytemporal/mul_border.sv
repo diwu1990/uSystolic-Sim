@@ -17,7 +17,7 @@ module mul_border #(
     logic bitI;
     logic bitW;
     
-    always_ff @(posedge clock or negedge rst_n) begin : temporal
+    always_ff @(posedge clk or negedge rst_n) begin : temporal
         if (~rst_n) begin
             cnt <= 0;
         end else begin
