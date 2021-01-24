@@ -13,7 +13,7 @@ module mul_border #(
 
     logic [DEPTH-1 : 0] cnt;
 
-    always_ff @(posedge clk or negedge rst_n) begin : cnt
+    always_ff @(posedge clk or negedge rst_n) begin : cnt_0
         if (~rst_n) begin
             cnt <= 0;
         end else begin
