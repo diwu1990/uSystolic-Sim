@@ -1,0 +1,63 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : ireg_border
+Version: Q-2019.12-SP3
+Date   : Sun Jan 24 02:59:54 2021
+****************************************
+
+Operating Conditions: NCCOM   Library: tcbn40lpbwptc
+Wire Load Model Mode: segmented
+
+  Startpoint: o_data_reg[1]
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: o_data_abs[14]
+            (output port clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  ireg_border        TSMC32K_Lowk_Conservative
+                                           tcbn40lpbwptc
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  o_data_reg[1]/CP (DFCNQD1BWP)            0.00       0.00 r
+  o_data_reg[1]/Q (DFCNQD1BWP)             0.14       0.14 f
+  U127/ZN (NR2XD0BWP)                      0.05       0.19 r
+  U172/ZN (ND2D1BWP)                       0.05       0.24 f
+  U162/ZN (NR2XD0BWP)                      0.05       0.29 r
+  U174/ZN (ND2D1BWP)                       0.05       0.34 f
+  U163/ZN (NR2XD0BWP)                      0.05       0.39 r
+  U175/ZN (ND2D1BWP)                       0.05       0.44 f
+  U164/ZN (NR2XD0BWP)                      0.05       0.49 r
+  U176/ZN (ND2D1BWP)                       0.05       0.54 f
+  U165/ZN (NR2XD0BWP)                      0.05       0.59 r
+  U173/ZN (ND2D1BWP)                       0.05       0.64 f
+  U166/ZN (NR2XD0BWP)                      0.05       0.69 r
+  U177/ZN (ND2D1BWP)                       0.05       0.74 f
+  U129/ZN (OAI21D1BWP)                     0.05       0.79 r
+  U160/ZN (XNR2D2BWP)                      0.10       0.89 f
+  U161/ZN (INVD16BWP)                      0.07       0.96 r
+  o_data_abs[14] (out)                     0.00       0.96 r
+  data arrival time                                   0.96
+
+  clock clk (rise edge)                    2.50       2.50
+  clock network delay (ideal)              0.00       2.50
+  clock uncertainty                       -0.15       2.35
+  output external delay                   -0.50       1.85
+  data required time                                  1.85
+  -----------------------------------------------------------
+  data required time                                  1.85
+  data arrival time                                  -0.96
+  -----------------------------------------------------------
+  slack (MET)                                         0.89
+
+
+1

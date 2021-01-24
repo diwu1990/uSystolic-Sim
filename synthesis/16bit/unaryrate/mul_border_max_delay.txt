@@ -1,0 +1,67 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : mul_border
+Version: Q-2019.12-SP3
+Date   : Sun Jan 24 02:58:16 2021
+****************************************
+
+Operating Conditions: NCCOM   Library: tcbn40lpbwptc
+Wire Load Model Mode: segmented
+
+  Startpoint: i_data_i[1]
+              (input port clocked by clk)
+  Endpoint: o_bit (output port clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  mul_border         TSMC32K_Lowk_Conservative
+                                           tcbn40lpbwptc
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  input external delay                     0.25       0.25 f
+  i_data_i[1] (in)                         0.00       0.25 f
+  U389/ZN (OAI211D1BWP)                    0.04       0.29 r
+  U394/ZN (IOA21D1BWP)                     0.04       0.33 f
+  U128/Z (OR2D1BWP)                        0.06       0.39 f
+  U127/Z (AO222D1BWP)                      0.12       0.51 f
+  U430/Z (OA221D1BWP)                      0.06       0.57 f
+  U125/Z (AO221D1BWP)                      0.12       0.69 f
+  U429/Z (OA221D1BWP)                      0.06       0.75 f
+  U123/Z (AO221D1BWP)                      0.12       0.87 f
+  U400/Z (OA221D1BWP)                      0.06       0.93 f
+  U121/Z (AO221D1BWP)                      0.12       1.06 f
+  U410/Z (OA221D1BWP)                      0.06       1.11 f
+  U119/Z (AO221D1BWP)                      0.12       1.24 f
+  U409/Z (OA221D1BWP)                      0.06       1.29 f
+  U397/ZN (AOI221D4BWP)                    0.16       1.46 r
+  U288/ZN (OAI22D2BWP)                     0.04       1.49 f
+  U395/Z (BUFFD6BWP)                       0.07       1.57 f
+  U329/ZN (INVD1BWP)                       0.06       1.62 r
+  U296/ZN (NR2XD0BWP)                      0.05       1.67 f
+  U297/ZN (NR2D3BWP)                       0.07       1.75 r
+  U294/ZN (CKND16BWP)                      0.07       1.82 f
+  o_bit (out)                              0.00       1.82 f
+  data arrival time                                   1.82
+
+  clock clk (rise edge)                    2.50       2.50
+  clock network delay (ideal)              0.00       2.50
+  clock uncertainty                       -0.15       2.35
+  output external delay                   -0.50       1.85
+  data required time                                  1.85
+  -----------------------------------------------------------
+  data required time                                  1.85
+  data arrival time                                  -1.82
+  -----------------------------------------------------------
+  slack (MET)                                         0.03
+
+
+1

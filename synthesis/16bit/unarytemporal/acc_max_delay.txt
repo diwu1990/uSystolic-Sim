@@ -1,0 +1,85 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : acc
+Version: Q-2019.12-SP3
+Date   : Sun Jan 24 02:59:42 2021
+****************************************
+
+Operating Conditions: NCCOM   Library: tcbn40lpbwptc
+Wire Load Model Mode: segmented
+
+  Startpoint: sign_w (input port clocked by clk)
+  Endpoint: sum_o_reg[31]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  acc                TSMC32K_Lowk_Conservative
+                                           tcbn40lpbwptc
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  input external delay                     0.25       0.25 r
+  sign_w (in)                              0.00       0.25 r
+  U410/ZN (ND3D8BWP)                       0.04       0.29 f
+  U354/ZN (CKND2BWP)                       0.03       0.32 r
+  U447/Z (CKBD1BWP)                        0.04       0.36 r
+  U361/Z (CKBD3BWP)                        0.08       0.44 r
+  U362/ZN (OAI221D1BWP)                    0.09       0.53 f
+  U472/Z (OA21D1BWP)                       0.07       0.60 f
+  U446/Z (OA21D1BWP)                       0.07       0.67 f
+  U413/ZN (OAI21D4BWP)                     0.04       0.71 r
+  U465/ZN (AOI31D1BWP)                     0.05       0.77 f
+  U464/ZN (IIND4D2BWP)                     0.04       0.81 r
+  U575/ZN (IINR4D4BWP)                     0.06       0.86 r
+  U418/ZN (INR3D2BWP)                      0.03       0.89 f
+  U347/ZN (OAI21D2BWP)                     0.04       0.93 r
+  U346/ZN (AOI21D4BWP)                     0.03       0.96 f
+  U594/Z (OA21D1BWP)                       0.06       1.02 f
+  U427/ZN (IAO21D2BWP)                     0.07       1.09 f
+  U245/ZN (IAO21D2BWP)                     0.08       1.17 f
+  U243/ZN (IAO21D2BWP)                     0.08       1.25 f
+  U240/ZN (IAO21D2BWP)                     0.07       1.32 f
+  U372/ZN (INVD1BWP)                       0.03       1.35 r
+  U466/ZN (AOI21D1BWP)                     0.03       1.38 f
+  U234/ZN (IAO21D2BWP)                     0.07       1.45 f
+  U231/ZN (IAO21D2BWP)                     0.07       1.52 f
+  U369/ZN (IAO21D1BWP)                     0.08       1.60 f
+  U368/ZN (INVD1BWP)                       0.03       1.63 r
+  U417/ZN (AOI21D1BWP)                     0.03       1.66 f
+  U370/ZN (IAO21D1BWP)                     0.08       1.73 f
+  U423/ZN (IAO21D2BWP)                     0.08       1.81 f
+  U404/ZN (OAI21D4BWP)                     0.04       1.85 r
+  U403/ZN (AOI21D2BWP)                     0.04       1.89 f
+  U365/ZN (MAOI222D1BWP)                   0.07       1.96 r
+  U366/ZN (INVD0BWP)                       0.05       2.01 f
+  U456/ZN (OAI22D2BWP)                     0.06       2.07 r
+  U420/ZN (CKND2D1BWP)                     0.04       2.11 f
+  U208/ZN (MAOI22D1BWP)                    0.05       2.16 r
+  U204/Z (XOR2D1BWP)                       0.09       2.24 f
+  U469/ZN (OAI22D1BWP)                     0.06       2.30 r
+  sum_o_reg[31]/D (DFCND2BWP)              0.00       2.30 r
+  data arrival time                                   2.30
+
+  clock clk (rise edge)                    2.50       2.50
+  clock network delay (ideal)              0.00       2.50
+  clock uncertainty                       -0.15       2.35
+  sum_o_reg[31]/CP (DFCND2BWP)             0.00       2.35 r
+  library setup time                      -0.04       2.31
+  data required time                                  2.31
+  -----------------------------------------------------------
+  data required time                                  2.31
+  data arrival time                                  -2.30
+  -----------------------------------------------------------
+  slack (MET)                                         0.01
+
+
+1
