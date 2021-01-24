@@ -18,7 +18,7 @@ module mul_border #(
     sobol8 U_sobol_I(
         .clk(clk),
         .rst_n(rst_n),
-        .enable(1),
+        .enable(1'b1),
         .sobolSeq(randI)
     );
 
