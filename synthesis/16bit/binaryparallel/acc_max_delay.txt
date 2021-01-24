@@ -6,7 +6,7 @@ Report : timing
         -max_paths 1
 Design : acc
 Version: Q-2019.12-SP3
-Date   : Sat Jan 23 19:30:48 2021
+Date   : Sat Jan 23 20:52:49 2021
 ****************************************
 
 Operating Conditions: NCCOM   Library: tcbn40lpbwptc

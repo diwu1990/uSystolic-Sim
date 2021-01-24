@@ -61,8 +61,9 @@ else
 fi
 
 echo ""
-echo "Check errors in log:"
+echo "Check potential errors in log:"
 grep -Ri "Error" ./*
+grep -Ri "connected" ./*
 echo ""
 echo "******************************All Done******************************"
 echo ""

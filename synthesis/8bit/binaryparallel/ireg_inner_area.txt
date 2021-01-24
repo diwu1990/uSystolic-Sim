@@ -3,7 +3,7 @@
 Report : area
 Design : ireg_inner
 Version: Q-2019.12-SP3
-Date   : Sat Jan 23 19:33:13 2021
+Date   : Sat Jan 23 20:55:31 2021
 ****************************************
 
 Information: Updating design information... (UID-85)

@@ -1,0 +1,394 @@
+
+                           Design Compiler Graphical 
+                                 DC Ultra (TM)
+                                  DFTMAX (TM)
+                              Power Compiler (TM)
+                                 DesignWare (R)
+                                 DC Expert (TM)
+                               Design Vision (TM)
+                               HDL Compiler (TM)
+                               VHDL Compiler (TM)
+                                  DFT Compiler
+                               Design Compiler(R)
+
+               Version Q-2019.12-SP3 for linux64 - Apr 21, 2020 
+
+                    Copyright (c) 1988 - 2020 Synopsys, Inc.
+   This software and the associated documentation are proprietary to Synopsys,
+ Inc. This software may only be used in accordance with the terms and conditions
+ of a written license agreement with Synopsys, Inc. All other use, reproduction,
+            or distribution of this software is strictly prohibited.
+Initializing...
+# ECE552 Extra Credit
+read_file -format sverilog {mul_border.sv}
+Loading db file '/cae/apps/data/tsmclibs-2013/digital/Front_End/timing_power_noise/NLDM/tcbn40lpbwp_120b/tcbn40lpbwptc.db'
+Loading db file '/cae/apps/data/tsmclibs-2013/digital/Front_End/timing_power_noise/NLDM/tpfn45gsgv18_120a/tpfn45gsgv18tc.db'
+Loading db file '/cae/apps/data/synopsys-2020/syn/Q-2019.12-SP3/libraries/syn/gtech.db'
+Loading db file '/cae/apps/data/synopsys-2020/syn/Q-2019.12-SP3/libraries/syn/standard.sldb'
+  Loading link library 'tcbn40lpbwptc'
+  Loading link library 'tpfn45gsgv18tc'
+  Loading link library 'gtech'
+Detecting input file type automatically (-rtl or -netlist).
+Reading with Presto HDL Compiler (equivalent to -rtl option).
+Running PRESTO HDLC
+Compiling source file /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/16bit/binaryparallel/mul_border.sv
+Presto compilation completed successfully.
+Loaded 1 design.
+Current design is 'mul_border'.
+mul_border
+set current_design mul_border
+mul_border
+link
+
+  Linking design 'mul_border'
+  Using the following designs and libraries:
+  --------------------------------------------------------------------------
+  mul_border                  /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/16bit/binaryparallel/mul_border.db
+  tcbn40lpbwptc (library)     /cae/apps/data/tsmclibs-2013/digital/Front_End/timing_power_noise/NLDM/tcbn40lpbwp_120b/tcbn40lpbwptc.db
+  tpfn45gsgv18tc (library)    /cae/apps/data/tsmclibs-2013/digital/Front_End/timing_power_noise/NLDM/tpfn45gsgv18_120a/tpfn45gsgv18tc.db
+
+1
+###########################################
+# Define clock and set don't mess with it #
+###########################################
+# clk with frequency of 400 MHz
+create_clock -name "clk" -period 2.5 -waveform { 0 1.25 } { clk }
+Warning: Can't find object 'clk' in design 'mul_border'. (UID-95)
+Error: Value for list 'source_objects' must have 1 elements. (CMD-036)
+0
+set_dont_touch_network [find port clk]
+Warning: Can't find port 'clk' in design 'mul_border'. (UID-95)
+Error: Value for list '<object_list>' must have 1 elements. (CMD-036)
+0
+# pointer to all inputs except clk
+set prim_inputs [remove_from_collection [all_inputs] [find port clk]]
+Warning: Can't find port 'clk' in design 'mul_border'. (UID-95)
+{i_data0[15] i_data0[14] i_data0[13] i_data0[12] i_data0[11] i_data0[10] i_data0[9] i_data0[8] i_data0[7] i_data0[6] i_data0[5] i_data0[4] i_data0[3] i_data0[2] i_data0[1] i_data0[0] i_data1[15] i_data1[14] i_data1[13] i_data1[12] i_data1[11] i_data1[10] i_data1[9] i_data1[8] i_data1[7] i_data1[6] i_data1[5] i_data1[4] i_data1[3] i_data1[2] i_data1[1] i_data1[0]}
+# pointer to all inputs except clk and rst_n
+set prim_inputs_no_rst [remove_from_collection $prim_inputs [find port rst_n]]
+Warning: Can't find port 'rst_n' in design 'mul_border'. (UID-95)
+{i_data0[15] i_data0[14] i_data0[13] i_data0[12] i_data0[11] i_data0[10] i_data0[9] i_data0[8] i_data0[7] i_data0[6] i_data0[5] i_data0[4] i_data0[3] i_data0[2] i_data0[1] i_data0[0] i_data1[15] i_data1[14] i_data1[13] i_data1[12] i_data1[11] i_data1[10] i_data1[9] i_data1[8] i_data1[7] i_data1[6] i_data1[5] i_data1[4] i_data1[3] i_data1[2] i_data1[1] i_data1[0]}
+# Set clk uncertainty (skew)
+set_clock_uncertainty 0.15 clk
+Warning: Can't find object 'clk' in design 'mul_border'. (UID-95)
+Error: Value for list 'object_list' must have 1 elements. (CMD-036)
+0
+#########################################
+# Set input delay & drive on all inputs #
+#########################################
+set_input_delay -clock clk 0.25 [copy_collection $prim_inputs]
+Warning: Can't find clock 'clk' in design 'mul_border'. (UID-95)
+Error: Value for list '-clock' must have 1 elements. (CMD-036)
+0
+#set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc $prim_inputs_no_rst
+# rst_n goes to many places so don't touch
+set_dont_touch_network [find port rst_n]
+Warning: Can't find port 'rst_n' in design 'mul_border'. (UID-95)
+Error: Value for list '<object_list>' must have 1 elements. (CMD-036)
+0
+##########################################
+# Set output delay & load on all outputs #
+##########################################
+set_output_delay -clock clk 0.5 [all_outputs]
+Warning: Can't find clock 'clk' in design 'mul_border'. (UID-95)
+Error: Value for list '-clock' must have 1 elements. (CMD-036)
+0
+set_load 0.1 [all_outputs]
+1
+#############################################################
+# Wire load model allows it to estimate internal parasitics #
+#############################################################
+set_wire_load_model -name TSMC32K_Lowk_Conservative -library tcbn40lpbwptc
+1
+######################################################
+# Max transition time is important for Hot-E reasons #
+######################################################
+set_max_transition 0.1 [current_design]
+1
+########################################
+# Now actually synthesize for 1st time #
+########################################
+compile -map_effort medium
+Warning: Setting attribute 'fix_multiple_port_nets' on design 'mul_border'. (UIO-59)
+Information: Evaluating DesignWare library utilization. (UISN-27)
+
+============================================================================
+| DesignWare Building Block Library  |         Version         | Available |
+============================================================================
+| Basic DW Building Blocks           | Q-2019.12-DWBB_201912.3 |     *     |
+| Licensed DW Building Blocks        |                         |           |
+============================================================================
+
+
+Warning: IO pad 'PVSS3DGZ' is unusable: unknown logic function.  (OPT-1022)
+Warning: IO pad 'PVSS2DGZ' is unusable: unknown logic function.  (OPT-1022)
+Warning: IO pad 'PVSS2ANA' is unusable: unknown logic function.  (OPT-1022)
+Warning: IO pad 'PVSS1DGZ' is unusable: unknown logic function.  (OPT-1022)
+Warning: IO pad 'PVSS1ANA' is unusable: unknown logic function.  (OPT-1022)
+Warning: IO pad 'PVDD2POC' is unusable: unknown logic function.  (OPT-1022)
+Warning: IO pad 'PVDD2DGZ' is unusable: unknown logic function.  (OPT-1022)
+Warning: IO pad 'PVDD2ANA' is unusable: unknown logic function.  (OPT-1022)
+Warning: IO pad 'PVDD1DGZ' is unusable: unknown logic function.  (OPT-1022)
+Warning: IO pad 'PVDD1ANA' is unusable: unknown logic function.  (OPT-1022)
+Warning: IO pad 'PCLAMP2ANA' is unusable: unknown logic function.  (OPT-1022)
+Warning: IO pad 'PCLAMP1ANA' is unusable: unknown logic function.  (OPT-1022)
+Warning: Operating condition NCCOM set on design mul_border has different process,
+voltage and temperatures parameters than the parameters at which target library 
+tpfn45gsgv18tc is characterized. Delays may be inaccurate as a result. (OPT-998)
+
+  Beginning Pass 1 Mapping
+  ------------------------
+  Processing 'mul_border'
+Warning: The trip points for the library named tpfn45gsgv18tc differ from those in the library named tcbn40lpbwptc. (TIM-164)
+
+  Updating timing information
+Information: Updating design information... (UID-85)
+Information: Design 'mul_border' has no optimization constraints set. (OPT-108)
+
+  Beginning Implementation Selection
+  ----------------------------------
+  Processing 'mul_border_DW02_mult_0'
+  Processing 'mul_border_DW01_add_0'
+
+  Beginning Mapping Optimizations  (Medium effort)
+  -------------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:06    1537.3      0.00       0.0      51.8                          
+    0:00:06    1537.3      0.00       0.0      51.8                          
+    0:00:06    1537.3      0.00       0.0      51.8                          
+    0:00:06    1537.3      0.00       0.0      51.8                          
+    0:00:06    1537.3      0.00       0.0      51.8                          
+    0:00:06    1322.6      0.00       0.0      51.8                          
+    0:00:06    1322.6      0.00       0.0      51.8                          
+    0:00:06    1322.6      0.00       0.0      51.8                          
+    0:00:06    1322.6      0.00       0.0      51.8                          
+    0:00:06    1322.6      0.00       0.0      51.8                          
+    0:00:06    1393.6      0.00       0.0      22.5                          
+    0:00:06    1398.3      0.00       0.0      20.5                          
+    0:00:06    1398.3      0.00       0.0      20.5                          
+    0:00:06    1398.3      0.00       0.0      20.5                          
+    0:00:06    1398.3      0.00       0.0      20.5                          
+
+
+
+  Beginning Delay Optimization Phase
+  ----------------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:06    1398.3      0.00       0.0      20.5                          
+    0:00:06    1398.3      0.00       0.0      20.5                          
+    0:00:06    1398.3      0.00       0.0      20.5                          
+
+
+  Beginning Design Rule Fixing  (max_transition)  (max_capacitance)
+  ----------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:06    1398.3      0.00       0.0      20.5                          
+    0:00:06    1457.9      0.00       0.0       0.0                          
+
+
+  Beginning Area-Recovery Phase  (cleanup)
+  -----------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:06    1457.9      0.00       0.0       0.0                          
+    0:00:06    1457.9      0.00       0.0       0.0                          
+    0:00:06    1453.9      0.00       0.0       0.0                          
+    0:00:06    1453.9      0.00       0.0       0.0                          
+    0:00:06    1453.9      0.00       0.0       0.0                          
+    0:00:06    1453.9      0.00       0.0       0.0                          
+    0:00:06    1453.9      0.00       0.0       0.0                          
+    0:00:06    1442.6      0.00       0.0       0.0                          
+    0:00:06    1442.6      0.00       0.0       0.0                          
+    0:00:06    1442.6      0.00       0.0       0.0                          
+    0:00:06    1442.6      0.00       0.0       0.0                          
+    0:00:06    1442.6      0.00       0.0       0.0                          
+    0:00:06    1442.6      0.00       0.0       0.0                          
+
+
+Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
+
+
+  Optimization Complete
+  ---------------------
+1
+check_design
+ 
+****************************************
+check_design summary:
+Version:     Q-2019.12-SP3
+Date:        Sat Jan 23 20:53:22 2021
+****************************************
+
+                   Name                                            Total
+--------------------------------------------------------------------------------
+Inputs/Outputs                                                     17
+    Unconnected ports (LINT-28)                                    17
+
+Cells                                                               1
+    Nets connected to multiple pins on same cell (LINT-33)          1
+--------------------------------------------------------------------------------
+
+Warning: In design 'mul_border_DW02_mult_0', port 'TC' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_border_DW01_add_0', port 'B[13]' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_border_DW01_add_0', port 'B[12]' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_border_DW01_add_0', port 'B[11]' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_border_DW01_add_0', port 'B[10]' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_border_DW01_add_0', port 'B[9]' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_border_DW01_add_0', port 'B[8]' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_border_DW01_add_0', port 'B[7]' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_border_DW01_add_0', port 'B[6]' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_border_DW01_add_0', port 'B[5]' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_border_DW01_add_0', port 'B[4]' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_border_DW01_add_0', port 'B[3]' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_border_DW01_add_0', port 'B[2]' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_border_DW01_add_0', port 'B[1]' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_border_DW01_add_0', port 'B[0]' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_border_DW01_add_0', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_border_DW01_add_0', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_border_DW02_mult_0', the same net is connected to more than one pin on submodule 'FS_1'. (LINT-33)
+   Net 'net152' is connected to pins 'B[13]', 'B[12]'', 'B[11]', 'B[10]', 'B[9]', 'B[8]', 'B[7]', 'B[6]', 'B[5]', 'B[4]', 'B[3]', 'B[2]', 'B[1]', 'B[0]', 'CI'.
+1
+# Unflatten design now that its compiled
+ungroup -all -flatten
+Information: Updating graph... (UID-83)
+1
+# force hold time to be met for all flops
+set_fix_hold clk
+Warning: Can't find clock 'clk' in design 'mul_border'. (UID-95)
+Error: Value for list '<clock_list>' must have 1 elements. (CMD-036)
+0
+# Compile again with higher effort
+compile -map_effort high
+Warning: "The variable 'compile_high_effort_area_in_incremental' is supported in DC NXT only. Ignoring this setting." (OPT-1726)
+
+Information: There are 2 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
+
+
+Warning: Operating condition NCCOM set on design mul_border has different process,
+voltage and temperatures parameters than the parameters at which target library 
+tpfn45gsgv18tc is characterized. Delays may be inaccurate as a result. (OPT-998)
+
+  Beginning Pass 1 Mapping
+  ------------------------
+  Processing 'mul_border'
+
+  Updating timing information
+Information: Updating design information... (UID-85)
+Information: Design 'mul_border' has no optimization constraints set. (OPT-108)
+
+  Beginning Mapping Optimizations  (High effort)
+  -------------------------------
+  Structuring 'mul_border'
+  Mapping 'mul_border'
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:09    1477.3      0.00       0.0      98.4                          
+    0:00:09    1477.3      0.00       0.0      98.4                          
+    0:00:09    1477.3      0.00       0.0      98.4                          
+    0:00:09    1477.3      0.00       0.0      98.4                          
+    0:00:09    1477.3      0.00       0.0      98.4                          
+    0:00:09    1302.7      0.00       0.0      94.0                          
+    0:00:09    1302.7      0.00       0.0      94.0                          
+    0:00:09    1302.7      0.00       0.0      94.0                          
+    0:00:09    1302.7      0.00       0.0      94.0                          
+    0:00:09    1302.7      0.00       0.0      94.0                          
+    0:00:10    1391.3      0.00       0.0      40.5                          
+    0:00:10    1404.7      0.00       0.0      27.4                          
+    0:00:10    1414.7      0.00       0.0      22.4                          
+    0:00:10    1415.3      0.00       0.0      22.3                          
+    0:00:10    1415.3      0.00       0.0      22.3                          
+    0:00:10    1415.3      0.00       0.0      22.3                          
+    0:00:10    1415.3      0.00       0.0      22.3                          
+
+
+
+  Beginning Delay Optimization Phase
+  ----------------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:10    1415.3      0.00       0.0      22.3                          
+    0:00:10    1415.3      0.00       0.0      22.3                          
+    0:00:10    1415.3      0.00       0.0      22.3                          
+
+
+  Beginning Design Rule Fixing  (max_transition)  (max_capacitance)
+  ----------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:10    1415.3      0.00       0.0      22.3                          
+    0:00:10    1478.8      0.00       0.0       0.0                          
+
+
+  Beginning Area-Recovery Phase  (cleanup)
+  -----------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:10    1478.8      0.00       0.0       0.0                          
+    0:00:10    1478.8      0.00       0.0       0.0                          
+    0:00:10    1476.8      0.00       0.0       0.0                          
+    0:00:10    1474.5      0.00       0.0       0.0                          
+    0:00:10    1474.5      0.00       0.0       0.0                          
+    0:00:10    1474.5      0.00       0.0       0.0                          
+    0:00:10    1474.5      0.00       0.0       0.0                          
+    0:00:10    1474.5      0.00       0.0       0.0                          
+    0:00:10    1471.4      0.00       0.0       0.0                          
+    0:00:10    1471.4      0.00       0.0       0.0                          
+    0:00:10    1471.4      0.00       0.0       0.0                          
+    0:00:10    1471.4      0.00       0.0       0.0                          
+    0:00:10    1471.4      0.00       0.0       0.0                          
+    0:00:10    1471.4      0.00       0.0       0.0                          
+
+
+Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
+
+
+  Optimization Complete
+  ---------------------
+1
+check_design
+1
+#############################################
+# Take a look at area, max, and min timings #
+#############################################
+report_area > mul_border_area.txt
+report_power > mul_border_power.txt
+report_timing -delay min > mul_border_min_delay.txt
+report_timing -delay max > mul_border_max_delay.txt
+#### write out final netlist ######
+write -format verilog mul_border -output mul_border.vg
+Writing verilog file '/filespace/d/dwu94/Project/uSystolic-Sim/synthesis/16bit/binaryparallel/mul_border.vg'.
+1
+exit
+Memory usage for this session 402 Mbytes.
+Memory usage for this session including child processes 402 Mbytes.
+CPU usage for this session 11 seconds ( 0.00 hours ).
+Elapsed time for this session 13 seconds ( 0.00 hours ).
+
+Thank you...
