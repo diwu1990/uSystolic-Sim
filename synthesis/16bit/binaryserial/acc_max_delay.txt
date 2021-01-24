@@ -6,14 +6,14 @@ Report : timing
         -max_paths 1
 Design : acc
 Version: Q-2019.12-SP3
-Date   : Sun Jan 24 02:02:16 2021
+Date   : Sun Jan 24 02:20:09 2021
 ****************************************
 
 Operating Conditions: NCCOM   Library: tcbn40lpbwptc
 Wire Load Model Mode: segmented
 
-  Startpoint: i_data1[2] (input port clocked by clk)
-  Endpoint: o_data_reg[31]
+  Startpoint: sum_i[1] (input port clocked by clk)
+  Endpoint: sum_o_reg[31]
             (rising edge-triggered flip-flop clocked by clk)
   Path Group: clk
   Path Type: max
@@ -28,62 +28,57 @@ Wire Load Model Mode: segmented
   clock clk (rise edge)                    0.00       0.00
   clock network delay (ideal)              0.00       0.00
   input external delay                     0.25       0.25 f
-  i_data1[2] (in)                          0.00       0.25 f
-  U319/ZN (NR2XD1BWP)                      0.03       0.28 r
-  U320/ZN (INVD1BWP)                       0.03       0.31 f
-  U417/ZN (INR2D4BWP)                      0.04       0.35 f
-  U418/Z (OR2D4BWP)                        0.05       0.40 f
-  U402/ZN (MOAI22D1BWP)                    0.04       0.44 r
-  U433/ZN (OAI21D2BWP)                     0.04       0.48 f
-  U258/ZN (CKND2D2BWP)                     0.03       0.51 r
-  U233/ZN (CKND2D2BWP)                     0.04       0.55 f
-  U420/ZN (AOI31D4BWP)                     0.04       0.59 r
-  U425/ZN (OAI21D4BWP)                     0.03       0.62 f
-  U314/ZN (ND2D1BWP)                       0.04       0.66 r
-  U266/ZN (ND3D1BWP)                       0.05       0.72 f
-  U423/ZN (CKND2D2BWP)                     0.03       0.74 r
-  U431/ZN (OAI21D1BWP)                     0.03       0.77 f
-  U422/ZN (CKND2D1BWP)                     0.04       0.82 r
-  U328/ZN (CKND2BWP)                       0.02       0.84 f
-  U327/Z (OA32D4BWP)                       0.09       0.93 f
-  U427/ZN (MOAI22D2BWP)                    0.08       1.01 f
-  U338/ZN (CKND4BWP)                       0.02       1.03 r
-  U337/ZN (AOI32XD4BWP)                    0.03       1.06 f
-  U237/ZN (ND2D3BWP)                       0.03       1.09 r
-  U257/ZN (MAOI222D1BWP)                   0.05       1.14 f
-  U322/CON (FCICOND2BWP)                   0.13       1.27 r
-  U241/Z (AO32D4BWP)                       0.07       1.35 r
-  U240/ZN (IAO21D4BWP)                     0.02       1.37 f
-  U321/ZN (MAOI222D1BWP)                   0.06       1.43 r
-  U284/Z (AO32D1BWP)                       0.09       1.52 r
-  U282/ZN (IAO21D2BWP)                     0.02       1.54 f
-  U273/ZN (MAOI222D2BWP)                   0.11       1.66 r
-  U272/ZN (INVD1BWP)                       0.02       1.67 f
-  U271/ZN (MAOI222D2BWP)                   0.11       1.79 r
-  U250/ZN (AOI32D2BWP)                     0.04       1.83 f
-  U249/ZN (OAI21D2BWP)                     0.04       1.87 r
-  U313/ZN (INVD1BWP)                       0.03       1.89 f
-  U253/CON (FCICOND2BWP)                   0.11       2.01 r
-  U246/ZN (AOI32D2BWP)                     0.03       2.04 f
-  U262/ZN (OAI21D1BWP)                     0.03       2.07 r
-  U295/Z (XOR2D2BWP)                       0.10       2.17 f
-  U325/ZN (AOI33D1BWP)                     0.08       2.25 r
-  U238/ZN (INR2D4BWP)                      0.06       2.31 r
-  U291/ZN (ND3D2BWP)                       0.03       2.34 f
-  o_data_reg[31]/D (DFCNQD1BWP)            0.00       2.34 f
-  data arrival time                                   2.34
+  sum_i[1] (in)                            0.00       0.25 f
+  U437/ZN (CKND1BWP)                       0.01       0.26 r
+  U435/Z (OA221D1BWP)                      0.09       0.35 r
+  U352/ZN (IAO21D1BWP)                     0.08       0.43 r
+  U378/ZN (IAO21D2BWP)                     0.08       0.51 r
+  U470/ZN (OAI21D1BWP)                     0.04       0.55 f
+  U440/ZN (IND2D1BWP)                      0.03       0.58 r
+  U434/Z (OR2D1BWP)                        0.05       0.63 r
+  U429/ZN (ND2D2BWP)                       0.03       0.66 f
+  U380/ZN (AOI21D2BWP)                     0.04       0.70 r
+  U379/ZN (OAI21D4BWP)                     0.04       0.73 f
+  U474/ZN (AOI21D2BWP)                     0.06       0.79 r
+  U426/ZN (OAI21D4BWP)                     0.03       0.82 f
+  U485/Z (AO21D1BWP)                       0.06       0.88 f
+  U472/ZN (AOI21D1BWP)                     0.04       0.92 r
+  U254/ZN (IAO21D2BWP)                     0.07       0.99 r
+  U432/ZN (OAI21D4BWP)                     0.03       1.02 f
+  U461/Z (AO21D1BWP)                       0.05       1.07 f
+  U460/Z (AO21D1BWP)                       0.05       1.13 f
+  U477/ZN (AOI21D1BWP)                     0.03       1.16 r
+  U449/ZN (IAO21D2BWP)                     0.07       1.23 r
+  U370/ZN (IAO21D2BWP)                     0.07       1.30 r
+  U372/ZN (IAO21D2BWP)                     0.07       1.36 r
+  U371/ZN (IAO21D2BWP)                     0.07       1.43 r
+  U447/ZN (IAO21D2BWP)                     0.07       1.50 r
+  U374/ZN (IAO21D2BWP)                     0.07       1.57 r
+  U376/ZN (IAO21D2BWP)                     0.07       1.63 r
+  U375/ZN (IAO21D2BWP)                     0.07       1.70 r
+  U446/ZN (IAO21D2BWP)                     0.07       1.77 r
+  U347/ZN (IAO21D2BWP)                     0.07       1.83 r
+  U354/ZN (IAO21D1BWP)                     0.09       1.93 r
+  U428/ZN (IAO21D1BWP)                     0.09       2.02 r
+  U596/ZN (IND2D1BWP)                      0.04       2.05 f
+  U349/ZN (MAOI22D1BWP)                    0.05       2.11 r
+  U348/CON (FCICOND1BWP)                   0.06       2.16 f
+  U541/Z (XOR3D1BWP)                       0.08       2.24 f
+  U540/ZN (OAI22D1BWP)                     0.06       2.29 r
+  sum_o_reg[31]/D (DFCND2BWP)              0.00       2.29 r
+  data arrival time                                   2.29
 
   clock clk (rise edge)                    2.50       2.50
   clock network delay (ideal)              0.00       2.50
   clock uncertainty                       -0.15       2.35
-  o_data_reg[31]/CP (DFCNQD1BWP)           0.00       2.35 r
-  library setup time                      -0.01       2.34
-  data required time                                  2.34
+  sum_o_reg[31]/CP (DFCND2BWP)             0.00       2.35 r
+  library setup time                      -0.04       2.31
+  data required time                                  2.31
   -----------------------------------------------------------
-  data required time                                  2.34
-  data arrival time                                  -2.34
+  data required time                                  2.31
+  data arrival time                                  -2.29
   -----------------------------------------------------------
-  slack (MET)                                         0.00
+  slack (MET)                                         0.02
 
 
 1
