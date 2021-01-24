@@ -24,7 +24,7 @@ module mul_inner #(
             end
         end
     end
-    
-    assign o_data = i_data0[cnt] & i_data1 + o_data_last << 1;
+
+    assign o_data = (i_data0[cnt] ? i_data1 : 0) + (o_data_last * 2);
     
 endmodule
