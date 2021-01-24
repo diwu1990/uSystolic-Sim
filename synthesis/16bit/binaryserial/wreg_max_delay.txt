@@ -6,7 +6,7 @@ Report : timing
         -max_paths 1
 Design : wreg
 Version: Q-2019.12-SP3
-Date   : Sat Jan 23 20:49:22 2021
+Date   : Sun Jan 24 02:03:22 2021
 ****************************************
 
 Operating Conditions: NCCOM   Library: tcbn40lpbwptc

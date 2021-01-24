@@ -7,7 +7,7 @@ Report : power
         -analysis_effort low
 Design : ireg_border
 Version: Q-2019.12-SP3
-Date   : Sat Jan 23 20:57:01 2021
+Date   : Sun Jan 24 02:00:37 2021
 ****************************************
 
 

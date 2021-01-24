@@ -7,7 +7,7 @@ Report : power
         -analysis_effort low
 Design : mul_border
 Version: Q-2019.12-SP3
-Date   : Sat Jan 23 20:48:55 2021
+Date   : Sun Jan 24 02:02:55 2021
 ****************************************
 
 

@@ -7,7 +7,7 @@ Report : power
         -analysis_effort low
 Design : mul_inner
 Version: Q-2019.12-SP3
-Date   : Sat Jan 23 20:49:10 2021
+Date   : Sun Jan 24 02:03:10 2021
 ****************************************
 
 
