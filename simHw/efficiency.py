@@ -222,8 +222,8 @@ def estimate(
     # extract pe configuration
     config = cp.ConfigParser()
     config.read(pe_cfg_file)
-    freqency = config.get(computing, 'MHz').split(',')
-    period = 1.0 / freqency
+    frequency = float(config.get("Frequency", 'MHz').split(',')[0].strip())
+    period = 1.0 / frequency
 
     ireg = config.get(computing, 'IREG').split(',')
     ireg_area_border     = float(ireg[0].strip())
@@ -305,12 +305,12 @@ def estimate(
                     "SRAM O WR start,\tSRAM O WR stop,\tSRAM O WR bytes,\t\n"
 
     bw_ideal_log =  "Layer,\tType,\t" + \
-                    "DRAM I RD BW (Bytes/cycle),\tDRAM F RD BW (Bytes/cycle),\tDRAM O RD BW (Bytes/cycle),\tDRAM O WR BW (Bytes/cycle),\tDRAM BW Total (Bytes/cycle),\t" + \
-                    "SRAM I RD BW (Bytes/cycle),\tSRAM F RD BW (Bytes/cycle),\tSRAM O RD BW (Bytes/cycle),\tSRAM O WR BW (Bytes/cycle),\tSRAM BW Total (Bytes/cycle),\t\n"
+                    "DRAM I RD BW (GBytes/sec),\tDRAM F RD BW (GBytes/sec),\tDRAM O RD BW (GBytes/sec),\tDRAM O WR BW (GBytes/sec),\tDRAM BW Total (GBytes/sec),\t" + \
+                    "SRAM I RD BW (GBytes/sec),\tSRAM F RD BW (GBytes/sec),\tSRAM O RD BW (GBytes/sec),\tSRAM O WR BW (GBytes/sec),\tSRAM BW Total (GBytes/sec),\t\n"
     
     bw_real_log =   "Layer,\tType,\t" + \
-                    "DRAM I RD BW (Bytes/cycle),\tDRAM F RD BW (Bytes/cycle),\tDRAM O RD BW (Bytes/cycle),\tDRAM O WR BW (Bytes/cycle),\tDRAM BW Total (Bytes/cycle),\t" + \
-                    "SRAM I RD BW (Bytes/cycle),\tSRAM F RD BW (Bytes/cycle),\tSRAM O RD BW (Bytes/cycle),\tSRAM O WR BW (Bytes/cycle),\tSRAM BW Total (Bytes/cycle),\t\n"
+                    "DRAM I RD BW (GBytes/sec),\tDRAM F RD BW (GBytes/sec),\tDRAM O RD BW (GBytes/sec),\tDRAM O WR BW (GBytes/sec),\tDRAM BW Total (GBytes/sec),\t" + \
+                    "SRAM I RD BW (GBytes/sec),\tSRAM F RD BW (GBytes/sec),\tSRAM O RD BW (GBytes/sec),\tSRAM O WR BW (GBytes/sec),\tSRAM BW Total (GBytes/sec),\t\n"
     
     area_log =      "DRAM Area (mm^2),\t" + \
                     "SRAM I Size (Bytes),\tSRAM F Size (Bytes),\tSRAM O Size (Bytes),\tSRAM Total Size (Bytes),\t" + \
@@ -779,16 +779,16 @@ def estimate(
         # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
         # DRAM: bw, energy, power
         # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
-        dram_bw_ideal_ifmap_rd      =   tot_word_ifmap_rd_dram  /   ideal_total_cycle * word_sz_bytes
-        dram_bw_ideal_filter_rd     =   tot_word_filter_rd_dram /   ideal_total_cycle * word_sz_bytes
-        dram_bw_ideal_ofmap_rd      =   tot_word_ofmap_rd_dram  /   ideal_total_cycle * word_sz_bytes
-        dram_bw_ideal_ofmap_wr      =   tot_word_ofmap_wr_dram  /   ideal_total_cycle * word_sz_bytes
+        dram_bw_ideal_ifmap_rd      =   tot_word_ifmap_rd_dram  /   ideal_total_cycle * word_sz_bytes * frequency * float(10**6) / float(2**30)
+        dram_bw_ideal_filter_rd     =   tot_word_filter_rd_dram /   ideal_total_cycle * word_sz_bytes * frequency * float(10**6) / float(2**30)
+        dram_bw_ideal_ofmap_rd      =   tot_word_ofmap_rd_dram  /   ideal_total_cycle * word_sz_bytes * frequency * float(10**6) / float(2**30)
+        dram_bw_ideal_ofmap_wr      =   tot_word_ofmap_wr_dram  /   ideal_total_cycle * word_sz_bytes * frequency * float(10**6) / float(2**30)
         dram_bw_ideal_total         =   dram_bw_ideal_ifmap_rd + dram_bw_ideal_filter_rd + dram_bw_ideal_ofmap_rd + dram_bw_ideal_ofmap_wr
 
-        dram_bw_real_ifmap_rd       =   tot_word_ifmap_rd_dram  /   real_total_cycle * word_sz_bytes
-        dram_bw_real_filter_rd      =   tot_word_filter_rd_dram /   real_total_cycle * word_sz_bytes
-        dram_bw_real_ofmap_rd       =   tot_word_ofmap_rd_dram  /   real_total_cycle * word_sz_bytes
-        dram_bw_real_ofmap_wr       =   tot_word_ofmap_wr_dram  /   real_total_cycle * word_sz_bytes
+        dram_bw_real_ifmap_rd       =   tot_word_ifmap_rd_dram  /   real_total_cycle * word_sz_bytes * frequency * float(10**6) / float(2**30)
+        dram_bw_real_filter_rd      =   tot_word_filter_rd_dram /   real_total_cycle * word_sz_bytes * frequency * float(10**6) / float(2**30)
+        dram_bw_real_ofmap_rd       =   tot_word_ofmap_rd_dram  /   real_total_cycle * word_sz_bytes * frequency * float(10**6) / float(2**30)
+        dram_bw_real_ofmap_wr       =   tot_word_ofmap_wr_dram  /   real_total_cycle * word_sz_bytes * frequency * float(10**6) / float(2**30)
         dram_bw_real_total          =   dram_bw_real_ifmap_rd + dram_bw_real_filter_rd + dram_bw_real_ofmap_rd + dram_bw_real_ofmap_wr
 
         dram_energy_ifmap_rd        =   (activate_energy_dram + precharge_energy_dram) * tot_row_access_ifmap_rd_dram + \
@@ -812,8 +812,8 @@ def estimate(
         # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
         # this dynamic energy actually includes the energy for both writing from dram to sram and reading from sram to systolic array
         if ifmap_sram_exist == True:
-            sram_bw_ideal_ifmap_rd      =   tot_word_ifmap_rd_sram  / ideal_total_cycle * word_sz_bytes
-            sram_bw_real_ifmap_rd       =   tot_word_ifmap_rd_sram  /  real_total_cycle * word_sz_bytes
+            sram_bw_ideal_ifmap_rd      =   tot_word_ifmap_rd_sram  / ideal_total_cycle * word_sz_bytes * frequency * float(10**6) / float(2**30)
+            sram_bw_real_ifmap_rd       =   tot_word_ifmap_rd_sram  /  real_total_cycle * word_sz_bytes * frequency * float(10**6) / float(2**30)
             sram_energy_ifmap_rd        =   tot_access_ifmap_rd_sram * energy_per_block_rd_ifmap + \
                                             math.ceil(tot_word_ifmap_rd_dram / sram_block_sz_word) * energy_per_block_wr_ifmap
             sram_power_ifmap_rd         =   sram_energy_ifmap_rd    /  (real_total_cycle * period)
@@ -825,8 +825,8 @@ def estimate(
         
         # this dynamic energy actually includes the energy for both writing from dram to sram and reading from sram to systolic array
         if filter_sram_exist == True:
-            sram_bw_ideal_filter_rd     =   tot_word_filter_rd_sram / ideal_total_cycle * word_sz_bytes
-            sram_bw_real_filter_rd      =   tot_word_filter_rd_sram /  real_total_cycle * word_sz_bytes
+            sram_bw_ideal_filter_rd     =   tot_word_filter_rd_sram / ideal_total_cycle * word_sz_bytes * frequency * float(10**6) / float(2**30)
+            sram_bw_real_filter_rd      =   tot_word_filter_rd_sram /  real_total_cycle * word_sz_bytes * frequency * float(10**6) / float(2**30)
             sram_energy_filter_rd       =   tot_access_filter_rd_sram * energy_per_block_rd_filter + \
                                             math.ceil(tot_word_filter_rd_dram / sram_block_sz_word) * energy_per_block_wr_filter
             sram_power_filter_rd        =   sram_energy_filter_rd   /  (real_total_cycle * period)
@@ -838,13 +838,13 @@ def estimate(
         # this dynamic energy actually includes the energy for either writing from dram to sram or reading from sram to systolic array
         # those two situations will not happen simultaneously, if the sram for ofmap is large enough
         if ofmap_sram_exist == True:
-            sram_bw_ideal_ofmap_rd      =   tot_word_ofmap_rd_sram  / ideal_total_cycle * word_sz_bytes
-            sram_bw_real_ofmap_rd       =   tot_word_ofmap_rd_sram  /  real_total_cycle * word_sz_bytes
+            sram_bw_ideal_ofmap_rd      =   tot_word_ofmap_rd_sram  / ideal_total_cycle * word_sz_bytes * frequency * float(10**6) / float(2**30)
+            sram_bw_real_ofmap_rd       =   tot_word_ofmap_rd_sram  /  real_total_cycle * word_sz_bytes * frequency * float(10**6) / float(2**30)
             sram_energy_ofmap_rd        =   tot_access_ofmap_rd_sram * energy_per_block_rd_ofmap
             sram_power_ofmap_rd         =   sram_energy_ofmap_rd    /  (real_total_cycle * period)
 
-            sram_bw_ideal_ofmap_wr      =   tot_word_ofmap_wr_sram  / ideal_total_cycle * word_sz_bytes
-            sram_bw_real_ofmap_wr       =   tot_word_ofmap_wr_sram  /  real_total_cycle * word_sz_bytes
+            sram_bw_ideal_ofmap_wr      =   tot_word_ofmap_wr_sram  / ideal_total_cycle * word_sz_bytes * frequency * float(10**6) / float(2**30)
+            sram_bw_real_ofmap_wr       =   tot_word_ofmap_wr_sram  /  real_total_cycle * word_sz_bytes * frequency * float(10**6) / float(2**30)
             sram_energy_ofmap_wr        =   tot_access_ofmap_wr_sram * energy_per_block_wr_ofmap + \
                                             math.ceil(tot_word_ofmap_wr_dram / sram_block_sz_word) * energy_per_block_rd_ofmap
             sram_power_ofmap_wr         =   sram_energy_ofmap_rd    /  (real_total_cycle * period)

@@ -1,5 +1,6 @@
 import os
 import time
+import math
 import configparser as cp
 import simArch.run_nets as r
 import simHw.efficiency as eff
@@ -11,13 +12,14 @@ import warnings
 
 FLAGS = flags.FLAGS
 # name of flag | default | explanation
+flags.DEFINE_string("name", "tpu_unaryrate_1B_ddr3_w_SRAM", "indicateing path to get config files")
 # architecture sim input config
-flags.DEFINE_string("systolic", "./config/example_run/systolic.cfg", "file to get systolic array architechture from")
-flags.DEFINE_string("network", "./config/example_run/network.csv", "consecutive GEMM topologies to read")
+# path/systolic.cfg: file to get systolic array architechture from
+# path/network.csv: consecutive GEMM topologies to read
 # hardware sim input config
-flags.DEFINE_string("sram", "./config/example_run/sram.cfg", "SRAM configs for hardware simulation. Note that the sizes are specified in systolic.cfg")
-flags.DEFINE_string("dram", "./config/example_run/dram.cfg", "DRAM configs for hardware simulation")
-flags.DEFINE_string("pe", "./config/example_run/pe.cfg", "PE area and power data for hardware simulation")
+# path/sram.cfg: SRAM configs for hardware simulation. Note that the sizes are specified in systolic.cfg
+# path/dram.cfg: DRAM configs for hardware simulation
+# path/pe.cfg: PE area and power data for hardware simulation
 
 class evaluate:
     def __init__(self, save = False, simArch = True, simHw = True):
@@ -29,7 +31,12 @@ class evaluate:
         general = 'general'
         arch_sec = 'architecture_presets'
         hw_sec = 'hardware_presets'
-        config_filename = FLAGS.systolic
+        path = os.getcwd() + "/config/" + FLAGS.name
+
+        if not os.path.exists(path):
+            raise ValueError("Input name is invalid.")
+
+        config_filename = path + "/systolic.cfg"
         print("Using Architechture from ",config_filename)
 
         config = cp.ConfigParser()
@@ -91,13 +98,15 @@ class evaluate:
         self.zero_sram_ofmap = to_bool(config.get(hw_sec, 'ZeroOfmapSram').strip())
         self.sram_access_buf = to_bool(config.get(hw_sec, 'SramAccBuf').strip())
 
-        self.topology_file = FLAGS.network
+        self.topology_file = path + "/network.csv"
 
-        self.sram_file = FLAGS.sram
+        self.sram_file = path + "/sram.cfg"
 
-        self.dram_file = FLAGS.dram
+        self.dram_file = path + "/dram.cfg"
 
-        self.pe_file = FLAGS.pe
+        self.pe_file = path + "/pe.cfg"
+        
+        self.time_stamp = time.time()
 
     def run_eval(self):
         self.parse_config()
@@ -146,6 +155,12 @@ class evaluate:
             )
         self.arch_cleanup()
         print("******* uSystolic Architecture Sim Complete ********")
+        sec = time.time() - self.time_stamp
+        hours = int(math.floor(sec / 3600))
+        mins = int(math.floor((sec % 3600) / 60))
+        secs = int(math.floor(sec % 60))
+        print("Runtime: " + str(hours) + "-hours,    " + str(mins) + "-mins,    " + str(secs) + "-secs")
+        self.time_stamp = time.time()
         print("Results: ./outputs/"+self.run_name+"/simArchOut/")
 
     def run_hw(self):
@@ -200,7 +215,13 @@ class evaluate:
         )
         self.hw_cleanup()
         print("********* uSystolic Hardware Sim Complete **********")
+        sec = time.time() - self.time_stamp
+        hours = int(math.floor(sec / 3600))
+        mins = int(math.floor((sec % 3600) / 60))
+        secs = int(math.floor(sec % 60))
+        print("Runtime: " + str(hours) + "-hours,    " + str(mins) + "-mins,    " + str(secs) + "-secs")
         print("Results: ./outputs/"+self.run_name+"/simHwOut/")
+        print()
 
     def arch_cleanup(self):
         if not os.path.exists("./outputs/"):
