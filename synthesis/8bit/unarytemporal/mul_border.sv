@@ -19,12 +19,12 @@ module mul_border #(
     
     always_ff @(posedge clock or negedge rst_n) begin : temporal
         if (~rst_n) begin
-            cnt <= 0
+            cnt <= 0;
         end else begin
             if (init) begin
                 cnt <= i_data_i;
             end else begin
-                if (clr | bitI) begin
+                if (clr | ~bitI) begin
                     cnt <= 0;
                 end else begin
                     cnt <= cnt - 1;
@@ -33,7 +33,7 @@ module mul_border #(
         end
     end
 
-    assign bitI = (|cnt == 0);
+    assign bitI = ~(|cnt == 0);
 
     sobol8 U_sobol_W(
         .clk(clk),
