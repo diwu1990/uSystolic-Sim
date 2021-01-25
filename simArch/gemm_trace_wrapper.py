@@ -32,7 +32,7 @@ def gen_all_traces(
     util        = 0
     
     assert data_flow == "ws", "Dataflow other than weight stationary is not supported in uSystolic simulator."
-    print("Generate SRAM read/write trace in word...")
+    print("Generate SRAM   read/write trace in word...")
     # SRAM trace is in word granulatiry
     sram_cycles, util = sram_traffic_ws_usystolic.sram_traffic(
                                                             dimension_rows = array_h,
@@ -47,8 +47,6 @@ def gen_all_traces(
                                                             sram_read_trace_file = sram_read_trace_file,
                                                             sram_write_trace_file = sram_write_trace_file
                                                         )
-    print("Average utilization : \t"  + str(util) + " %")
-    print("Cycles for compute  : \t"  + str(sram_cycles) + " cycles")
     # dram data placement: ifmap -> filt -> ofmap
     # ifmap read dram
     print("Generate IFMAP  DRAM read  trace in word...")

@@ -1,9 +1,9 @@
 
-*.ipynb_checkpoints*
-*pycache*
-*.py[cod]
-*outputs*
-*.out
-*.o
+**.ipynb_checkpoints*
+**pycache*
+**.py[cod]
+**outputs*
+**.out
+**.o
 simHw/cacti7/cacti
 simHw/cacti7/obj_dbg
