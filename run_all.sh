@@ -5,8 +5,8 @@ start=`date +%s`
 if ls ./config/; then
     for entry in $(ls ./config/)
     do
-        echo "python3 evaluate.py -name=$entry > ${entry}.log"
-        python3 evaluate.py -name=$entry > ${entry}.log &
+        echo "python3 evaluate.py -name=$entry > ./log/${entry}.log"
+        python3 evaluate.py -name=$entry > ./log/${entry}.log &
     done
 else
     echo "No entry in ./config"
