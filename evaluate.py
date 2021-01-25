@@ -238,16 +238,16 @@ class evaluate:
             os.system("mv " + path + " " + new_path)
             os.system("mkdir -p " + path + "/")
 
-        cmd = "mv *.csv " + path
+        cmd = "mv " + self.run_name + "*.csv " + path
         os.system(cmd)
 
         cmd = "mkdir " + path +"/layer_wise"
         os.system(cmd)
 
-        cmd = "mv " + path +"/*sram* " + path +"/layer_wise"
+        cmd = "mv " + path + "/" + self.run_name + "*sram* " + path +"/layer_wise"
         os.system(cmd)
 
-        cmd = "mv " + path +"/*dram* " + path +"/layer_wise"
+        cmd = "mv " + path + "/" + self.run_name + "*dram* " + path +"/layer_wise"
         os.system(cmd)
 
         if self.save_space == True:
@@ -269,16 +269,13 @@ class evaluate:
             os.system("mv " + path + " " + new_path)
             os.system("mkdir -p " + path + "/")
 
-        cmd = "mv *.rpt " + path
+        cmd = "mv " + self.run_name + "*.rpt " + path
         os.system(cmd)
 
-        cmd = "mv *.cfg " + path
+        cmd = "mv " + self.run_name + "*.cfg* " + path
         os.system(cmd)
 
-        cmd = "mv *.cfg.out " + path
-        os.system(cmd)
-
-        cmd = "mv *.csv " + path
+        cmd = "mv " + self.run_name + "*.csv " + path
         os.system(cmd)
 
 
