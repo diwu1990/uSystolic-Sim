@@ -250,10 +250,6 @@ class evaluate:
         cmd = "mv " + path + "/" + self.run_name + "*dram* " + path +"/layer_wise"
         os.system(cmd)
 
-        if self.save_space == True:
-            cmd = "rm -rf " + path +"/layer_wise"
-            os.system(cmd)
-
     def hw_cleanup(self):
         # for linux os
         if not os.path.exists("./outputs/"):
@@ -277,7 +273,10 @@ class evaluate:
 
         cmd = "mv " + self.run_name + "*.csv " + path
         os.system(cmd)
-
+        
+        if self.save_space == True:
+            cmd = "rm -rf " + "./outputs/" + self.run_name + "/simArchOut" +"/layer_wise"
+            os.system(cmd)
 
 def to_bool(value):
     """

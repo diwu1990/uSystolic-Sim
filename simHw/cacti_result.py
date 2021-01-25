@@ -81,6 +81,7 @@ def sram_report_extract(
     leakage_power = (leakage_power_bank + gate_leakage_power_bank) * bank
     # mm^2
     total_area = area
+    cacti_out.close()
     return block_sz_bytes, max_freq, energy_per_block_rd, energy_per_block_wr, leakage_power, total_area
 
 
@@ -156,6 +157,7 @@ def dram_report_extract(
 
     # MHz
     max_freq = 1 / cycle_time * 1000
+    cacti_out.close()
     return max_freq, activate_energy, energy_rd, energy_wr, precharge_energy, leakage_power_closed_page, leakage_power_IO, area
 
 

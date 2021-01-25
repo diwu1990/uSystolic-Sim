@@ -1030,7 +1030,7 @@ def estimate(
     area.close()
     energy.close()
     power.close()
-    
+    param_file.close()
 
 def prune(input_list):
     l = []

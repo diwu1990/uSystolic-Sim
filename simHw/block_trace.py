@@ -101,7 +101,8 @@ def sram_profiling(
         
         # number of active cycles for data loading
         act_cycles += (len(row_bank_list_new) != 0) + max_bank_conflict
-
+    
+    requests.close()
     return tot_word, max_word, tot_access, max_access, act_cycles, stall_cycles, ideal_start_cycle, ideal_end_cycle
 
 
@@ -185,7 +186,6 @@ def ddr3_8x8_profiling(
                 prefetch_buf_new.append((row_idx, col_idx, chip_idx))
                 valid_word += 1
 
-        # print(len(prefetch_buf_new))
         act_cycles += (len(prefetch_buf_new) > 0)
 
         # add addresses for multi-byte word
@@ -209,9 +209,6 @@ def ddr3_8x8_profiling(
         # merge the repeated accesses in byte granularity
         prefetch_buf_new = list(set(prefetch_buf_new))
 
-        # print(elems[1:])
-        # print(prefetch_buf_new)
-
         new_access = 0
         # update the prefetch start addr
         prefetch_row_col_new = list(set([(x, y) for (x, y, z) in prefetch_buf_new]))
@@ -228,8 +225,6 @@ def ddr3_8x8_profiling(
                 # each prefetch means an access
                 new_access += 1
         tot_access += new_access
-        # print(new_access)
-        # print(current_prefetch)
 
         for (x, y) in prefetch_row_col_old:
             if (x, y) not in prefetch_row_col_new:
@@ -253,8 +248,7 @@ def ddr3_8x8_profiling(
     # divided by two because of ddr
     shift_cycles = max((math.ceil(tot_access / 2) - act_cycles), 0 )
 
-    # print(tot_access / 2)
-    # print(act_cycles)
+    requests.close()
     return tot_word, max_word, tot_access, tot_row_access, shift_cycles, ideal_start_cycle, ideal_end_cycle
 
 

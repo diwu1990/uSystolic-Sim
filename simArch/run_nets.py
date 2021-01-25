@@ -20,29 +20,9 @@ def run_net(
 
     param_file = open(topology_file, 'r')
     
-    # fname = net_name + "_avg_bw.csv"
-    # bw = open(fname, 'w')
-
-    # f2name = net_name + "_max_bw.csv"
-    # maxbw = open(f2name, 'w')
-
-    f3name = net_name + "_mac_util.csv"
-    cycl = open(f3name, 'w')
-
-    # f4name = net_name + "_detail.csv"
-    # detail = open(f4name, 'w')
-
-    # bw.write("IFMAP SRAM Size (Bytes),\tFilter SRAM Size (Bytes),\tOFMAP SRAM Size (Bytes),\tLayer,\tDRAM IFMAP Read BW (Bytes/cycle),\tDRAM Filter Read BW (Bytes/cycle),\tDRAM OFMAP Write BW (Bytes/cycle),\tSRAM Read BW (Bytes/cycle),\tSRAM OFMAP Write BW (Bytes/cycle), \n")
-    # maxbw.write("IFMAP SRAM Size (Bytes),\tFilter SRAM Size (Bytes),\tOFMAP SRAM Size (Bytes),\tLayer,\tMax DRAM IFMAP Read BW (Bytes/cycle),\tMax DRAM Filter Read BW (Bytes/cycle),\tMax DRAM OFMAP Write BW (Bytes/cycle),\tMax SRAM Read BW (Bytes/cycle),\tMax SRAM OFMAP Write BW (Bytes/cycle),\n")
+    fname = net_name + "_mac_util.csv"
+    cycl = open(fname, 'w')
     cycl.write("Layer,\tType,\tCycles,\t% Utilization,\n")
-    # detailed_log = "Layer,\tType\t," +\
-    #              "\tDRAM_IFMAP_start,\tDRAM_IFMAP_stop,\tDRAM_IFMAP_bytes," + \
-    #              "\tDRAM_Filter_start,\tDRAM_Filter_stop,\tDRAM_Filter_bytes," + \
-    #              "\tDRAM_OFMAP_start,\tDRAM_OFMAP_stop,\tDRAM_OFMAP_bytes," + \
-    #              "\tSRAM_read_start,\tSRAM_read_stop,\tSRAM_read_bytes," +\
-    #              "\tSRAM_write_start,\tSRAM_write_stop,\tSRAM_write_bytes,\n"
-
-    # detail.write(detailed_log)
 
     first = True
     for row in param_file:
@@ -83,12 +63,7 @@ def run_net(
             print("")
             print("Commencing trace generation for " + name + " with a MAC cycle count of " + str(mac_cycles))
             
-            # bw_log = str(ifmap_sram_size * word_size_bytes) +",\t" + str(filter_sram_size * word_size_bytes) + ",\t" + str(ofmap_sram_size * word_size_bytes) + ",\t" + name + ",\t"
-            # max_bw_log = bw_log
-            # detailed_log = name + ",\t"
-
             # all trace should be generated in granularity of word, the word size only influence the bandwidth
-            # bw_str, detailed_str, util, clk =  \
             util, clk = gemm_trace.gen_all_traces(array_h = array_h,
                                     array_w = array_w,
                                     ifmap_h = ifmap_h,
@@ -117,33 +92,12 @@ def run_net(
                                 )
             print("All done for " + name)
 
-    #         bw_log += bw_str
-    #         bw.write(bw_log + "\n")
-
-    #         detailed_log += detailed_str
-    #         detail.write(detailed_log + "\n")
-            
-    #         print("Analyze maximum statistics in byte...")
-    #         max_bw_log += gemm_trace.gen_max_bw_numbers(
-    #                                 sram_read_trace_file = net_name + "_" + name + "_sram_read.csv",
-    #                                 sram_write_trace_file= net_name + "_" + name + "_sram_write.csv",
-    #                                 dram_filter_trace_file=net_name + "_" + name + "_dram_filter_read.csv",
-    #                                 dram_ifmap_trace_file= net_name + "_" + name + "_dram_ifmap_read.csv",
-    #                                 dram_ofmap_trace_file= net_name + "_" + name + "_dram_ofmap_write.csv",
-    #                                 word_size_bytes= word_size_bytes
-    #                                 )
-    #         print("All done...")
-    #         maxbw.write(max_bw_log + "\n")
-
             util_str = str(util)
             line = name + ",\t" + layer_type + ",\t" + clk +",\t" + util_str + ",\n"
             cycl.write(line)
 
-    # bw.close()
-    # maxbw.close()
-    # cycl.close()
-    # detail.close()
-    # param_file.close()
+    cycl.close()
+    param_file.close()
 
 
 def prune(input_list):
