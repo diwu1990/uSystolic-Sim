@@ -7,7 +7,7 @@ def gen_run_config():
     network_list = ["alexnet"]
     bit_list = ["8", "16"]
     cycle_list = ["32", "64", "128", "256"]
-    ram_list = ["dram_w__sram", "dram_wo_sram"]
+    ram_list = ["ddr3_w__spm", "ddr3_wo_spm"]
 
     for a in arch_list:
         for b in bit_list:
@@ -62,9 +62,9 @@ def gen_run_config():
                             if len(elems) == 2 and elems[0] == "Computing":
                                 elems[1] = "UnaryRate"
                             if len(elems) == 2 and (elems[0] == "ZeroIfmapSram" or elems[0] == "ZeroFilterSram" or elems[0] == "ZeroOfmapSram"):
-                                if r == "dram_w__sram":
+                                if r == "ddr3_w__spm":
                                     elems[1] = "False"
-                                elif r == "dram_wo_sram":
+                                elif r == "ddr3_wo_spm":
                                     elems[1] = "True"
                                 else:
                                     raise ValueError("Unknown sram setting.")
@@ -148,9 +148,9 @@ def gen_run_config():
                             if len(elems) == 2 and elems[0] == "Computing":
                                 elems[1] = "UnaryTemporal"
                             if len(elems) == 2 and (elems[0] == "ZeroIfmapSram" or elems[0] == "ZeroFilterSram" or elems[0] == "ZeroOfmapSram"):
-                                if r == "dram_w__sram":
+                                if r == "ddr3_w__spm":
                                     elems[1] = "False"
-                                elif r == "dram_wo_sram":
+                                elif r == "ddr3_wo_spm":
                                     elems[1] = "True"
                                 else:
                                     raise ValueError("Unknown sram setting.")
@@ -233,9 +233,9 @@ def gen_run_config():
                         if len(elems) == 2 and elems[0] == "Computing":
                             elems[1] = "BinarySerial"
                         if len(elems) == 2 and (elems[0] == "ZeroIfmapSram" or elems[0] == "ZeroFilterSram" or elems[0] == "ZeroOfmapSram"):
-                            if r == "dram_w__sram":
+                            if r == "ddr3_w__spm":
                                 elems[1] = "False"
-                            elif r == "dram_wo_sram":
+                            elif r == "ddr3_wo_spm":
                                 elems[1] = "True"
                             else:
                                 raise ValueError("Unknown sram setting.")
@@ -318,9 +318,9 @@ def gen_run_config():
                         if len(elems) == 2 and elems[0] == "Computing":
                             elems[1] = "BinaryParallel"
                         if len(elems) == 2 and (elems[0] == "ZeroIfmapSram" or elems[0] == "ZeroFilterSram" or elems[0] == "ZeroOfmapSram"):
-                            if r == "dram_w__sram":
+                            if r == "ddr3_w__spm":
                                 elems[1] = "False"
-                            elif r == "dram_wo_sram":
+                            elif r == "ddr3_wo_spm":
                                 elems[1] = "True"
                             else:
                                 raise ValueError("Unknown sram setting.")
