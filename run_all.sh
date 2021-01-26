@@ -2,6 +2,8 @@
 
 start=`date +%s`
 
+source clean.sh
+
 if ls ./config/; then
     for entry in $(ls ./config/)
     do
@@ -13,6 +15,8 @@ if ls ./config/; then
 else
     echo "No entry in ./config"
 fi
+
+source clean.sh
 
 end=`date +%s`
 runtime=$((end-start))
