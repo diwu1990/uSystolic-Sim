@@ -112,10 +112,6 @@ class evaluate:
     def run_eval(self):
         self.parse_config()
 
-        # clean up first to avoid program stuck
-        os.system("chmod 777 ./clean.sh")
-        os.system("./clean.sh")
-
         if self.simArch == True:
             self.run_arch()
 
