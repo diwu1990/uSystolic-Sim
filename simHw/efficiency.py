@@ -871,7 +871,7 @@ def estimate(
         # systolic array: energy and power
         # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
         # all calculations here are based on modelling using synthesized data for each components specified in pe.cfg
-        computing_stall_cycles = stall_cycles_ifmap_rd_sram + stall_cycles_ofmap_rd_sram + stall_cycles_ofmap_wr_sram
+        computing_stall_cycles = max(stall_cycles_ifmap_rd_sram, stall_cycles_ofmap_rd_sram) + stall_cycles_ofmap_wr_sram
         # ireg will work all the time
         sa_enery_ireg   =   ((array_h * ireg_leakage_border + array_h * (array_w - 1) * ireg_leakage_inner) * real_total_cycle + \
                             (array_h * ireg_dynamic_border + array_h * (array_w - 1) * ireg_dynamic_inner) * pe_act_cycle / mac_cycles) * \
