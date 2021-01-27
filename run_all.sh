@@ -16,8 +16,6 @@ else
     echo "No entry in ./config"
 fi
 
-source clean.sh
-
 end=`date +%s`
 runtime=$((end-start))
 
