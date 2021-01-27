@@ -47,6 +47,7 @@ def estimate(
     max_word_ifmap_rd_dram = 0
     tot_access_ifmap_rd_dram = 0
     tot_row_access_ifmap_rd_dram = 0
+    act_cycles_ifmap_rd_dram = 0
     shift_cycles_ifmap_rd_dram = 0
     ideal_start_cycle_ifmap_rd_dram = 0
     ideal_end_cycle_ifmap_rd_dram = 0
@@ -57,6 +58,7 @@ def estimate(
     max_word_filter_rd_dram = 0
     tot_access_filter_rd_dram = 0
     tot_row_access_filter_rd_dram = 0
+    act_cycles_filter_rd_dram = 0
     shift_cycles_filter_rd_dram = 0
     ideal_start_cycle_filter_rd_dram = 0
     ideal_end_cycle_filter_rd_dram = 0
@@ -67,6 +69,7 @@ def estimate(
     max_word_ofmap_rd_dram = 0
     tot_access_ofmap_rd_dram = 0
     tot_row_access_ofmap_rd_dram = 0
+    act_cycles_ofmap_rd_dram = 0
     shift_cycles_ofmap_rd_dram = 0
     ideal_start_cycle_ofmap_rd_dram = 0
     ideal_end_cycle_ofmap_rd_dram = 0
@@ -77,6 +80,7 @@ def estimate(
     max_word_ofmap_wr_dram = 0
     tot_access_ofmap_wr_dram = 0
     tot_row_access_ofmap_wr_dram = 0
+    act_cycles_ofmap_wr_dram = 0
     shift_cycles_ofmap_wr_dram = 0
     ideal_start_cycle_ofmap_wr_dram = 0
     ideal_end_cycle_ofmap_wr_dram = 0
@@ -214,7 +218,13 @@ def estimate(
     real_max_clk = 0
     real_min_clk = 0
     real_total_cycle = 0
-    pe_act_cycle = 0
+    act_cycle_ifmap_rd = 0
+    act_cycle_filter_rd = 0
+    act_cycle_ofmap_rd = 0
+    act_cycle_ofmap_wr = 0
+    dynamic_cycle_ireg = 0
+    dynamic_cycle_wreg = 0
+    dynamic_cycle_mac = 0
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
     # pe
@@ -520,6 +530,7 @@ def estimate(
         max_word_ifmap_rd_dram, \
         tot_access_ifmap_rd_dram, \
         tot_row_access_ifmap_rd_dram, \
+        act_cycles_ifmap_rd_dram, \
         shift_cycles_ifmap_rd_dram, \
         ideal_start_cycle_ifmap_rd_dram, \
         ideal_end_cycle_ifmap_rd_dram = block_trace.ddr3_8x8_profiling(
@@ -542,6 +553,7 @@ def estimate(
         max_word_filter_rd_dram, \
         tot_access_filter_rd_dram, \
         tot_row_access_filter_rd_dram, \
+        act_cycles_filter_rd_dram, \
         shift_cycles_filter_rd_dram, \
         ideal_start_cycle_filter_rd_dram, \
         ideal_end_cycle_filter_rd_dram = block_trace.ddr3_8x8_profiling(
@@ -561,6 +573,7 @@ def estimate(
             max_word_ofmap_rd_dram = 0
             tot_access_ofmap_rd_dram = 0
             tot_row_access_ofmap_rd_dram = 0
+            act_cycles_ofmap_rd_dram = 0
             shift_cycles_ofmap_rd_dram = 0
             ideal_start_cycle_ofmap_rd_dram = 0
             ideal_end_cycle_ofmap_rd_dram = 0
@@ -572,6 +585,7 @@ def estimate(
             max_word_ofmap_rd_dram, \
             tot_access_ofmap_rd_dram, \
             tot_row_access_ofmap_rd_dram, \
+            act_cycles_ofmap_rd_dram, \
             shift_cycles_ofmap_rd_dram, \
             ideal_start_cycle_ofmap_rd_dram, \
             ideal_end_cycle_ofmap_rd_dram = block_trace.ddr3_8x8_profiling(
@@ -594,6 +608,7 @@ def estimate(
         max_word_ofmap_wr_dram, \
         tot_access_ofmap_wr_dram, \
         tot_row_access_ofmap_wr_dram, \
+        act_cycles_ofmap_wr_dram, \
         shift_cycles_ofmap_wr_dram, \
         ideal_start_cycle_ofmap_wr_dram, \
         ideal_end_cycle_ofmap_wr_dram = block_trace.ddr3_8x8_profiling(
@@ -756,25 +771,15 @@ def estimate(
                             ideal_start_cycle_ofmap_wr_sram)
         ideal_total_cycle = ideal_max_clk - ideal_min_clk
         
+        # sram stall and dram shift have similar meanings: the extra cycle for data access compared to the ideal
+        # sram stall can be overlapped for stall_cycles_ifmap_rd_sram and stall_cycles_ofmap_rd_sram due to multiple copies of sram
+        # dram shift can't be overlapped due to sharing the same dram IO
         real_max_clk =  ideal_max_clk + \
                         stall_cycles_filter_rd_sram + max(stall_cycles_ifmap_rd_sram, stall_cycles_ofmap_rd_sram) + stall_cycles_ofmap_wr_sram + \
                         shift_cycles_ofmap_rd_dram + shift_cycles_ofmap_wr_dram
         real_min_clk =  ideal_min_clk - \
                         shift_cycles_ifmap_rd_dram - shift_cycles_filter_rd_dram
         real_total_cycle = real_max_clk - real_min_clk
-
-        pe_act_cycle =      max(ideal_end_cycle_ifmap_rd_sram, 
-                                ideal_end_cycle_filter_rd_sram, 
-                                ideal_end_cycle_ofmap_rd_sram, 
-                                ideal_end_cycle_ofmap_wr_sram) + \
-                            stall_cycles_filter_rd_sram + \
-                            max(stall_cycles_ifmap_rd_sram, 
-                                stall_cycles_ofmap_rd_sram) + \
-                            stall_cycles_ofmap_wr_sram - \
-                            min(ideal_start_cycle_ifmap_rd_sram, 
-                                ideal_start_cycle_filter_rd_sram, 
-                                ideal_start_cycle_ofmap_rd_sram, 
-                                ideal_start_cycle_ofmap_wr_sram)
 
         # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
         # DRAM: bw, energy, power
@@ -871,21 +876,49 @@ def estimate(
         # systolic array: energy and power
         # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
         # all calculations here are based on modelling using synthesized data for each components specified in pe.cfg
-        computing_stall_cycles = max(stall_cycles_ifmap_rd_sram, stall_cycles_ofmap_rd_sram) + stall_cycles_ofmap_wr_sram
+        # cycles for pe to be active: during ifmap streaming and ofmap streaming
+        act_cycle_ifmap_rd = 0
+        if ifmap_sram_exist == True:
+            act_cycle_ifmap_rd += act_cycles_ifmap_rd_sram
+        else:
+            act_cycle_ifmap_rd += act_cycles_ifmap_rd_dram
+        
+        act_cycle_filter_rd = 0
+        if filter_sram_exist == True:
+            act_cycle_filter_rd += act_cycles_filter_rd_sram
+        else:
+            act_cycle_filter_rd += act_cycles_filter_rd_dram
+
+        act_cycle_ofmap_rd = 0
+        if ofmap_sram_exist == True:
+            act_cycle_ofmap_rd += act_cycles_ofmap_rd_sram
+        else:
+            act_cycle_ofmap_rd += act_cycles_ofmap_rd_dram
+
+        act_cycle_ofmap_wr = 0
+        if ofmap_sram_exist == True:
+            act_cycle_ofmap_wr += act_cycles_ofmap_wr_sram
+        else:
+            act_cycle_ofmap_wr += act_cycles_ofmap_wr_dram
+
+        dynamic_cycle_ireg = act_cycle_ifmap_rd
+        dynamic_cycle_wreg = act_cycle_filter_rd
+        dynamic_cycle_mac = max(act_cycle_ifmap_rd, act_cycle_ofmap_rd, act_cycle_ofmap_wr)
+
         # ireg will work all the time
         sa_enery_ireg   =   ((array_h * ireg_leakage_border + array_h * (array_w - 1) * ireg_leakage_inner) * real_total_cycle + \
-                            (array_h * ireg_dynamic_border + array_h * (array_w - 1) * ireg_dynamic_inner) * pe_act_cycle / mac_cycles) * \
+                            (array_h * ireg_dynamic_border + array_h * (array_w - 1) * ireg_dynamic_inner) * dynamic_cycle_ireg / mac_cycles) * \
                             period
         # buf will work only when computing
         sa_enery_wreg   =   (array_h * array_w * wreg_leakage * real_total_cycle + \
-                            array_h * array_w * wreg_dynamic * act_cycles_filter_rd_sram) * \
+                            array_h * array_w * wreg_dynamic * dynamic_cycle_wreg) * \
                             period
         # mul and add will work only when computing with no stalls
         sa_enery_mul    =   ((array_h * mul_leakage_border + array_h * (array_w - 1) * mul_leakage_inner) * real_total_cycle + \
-                            (array_h * mul_dynamic_border + array_h * (array_w - 1) * mul_dynamic_inner) * (pe_act_cycle - act_cycles_filter_rd_sram - computing_stall_cycles)) * \
+                            (array_h * mul_dynamic_border + array_h * (array_w - 1) * mul_dynamic_inner) * dynamic_cycle_mac) * \
                             period
         sa_enery_acc    =   (array_h * array_w * acc_leakage * real_total_cycle + \
-                            array_h * array_w * acc_dynamic * (pe_act_cycle - act_cycles_filter_rd_sram - computing_stall_cycles)) * \
+                            array_h * array_w * acc_dynamic * dynamic_cycle_mac) * \
                             period
         
         sa_enery_tot    =  sa_enery_ireg + sa_enery_wreg + sa_enery_mul + sa_enery_acc

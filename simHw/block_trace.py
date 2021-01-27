@@ -100,7 +100,7 @@ def sram_profiling(
         stall_cycles += max_bank_conflict
         
         # number of active cycles for data loading
-        act_cycles += (len(row_bank_list_new) != 0) + max_bank_conflict
+        act_cycles += (len(row_bank_list_new) != 0)
     
     requests.close()
     return tot_word, max_word, tot_access, max_access, act_cycles, stall_cycles, ideal_start_cycle, ideal_end_cycle
@@ -125,6 +125,7 @@ def ddr3_8x8_profiling(
     max_word = 0
     tot_access = 0
     tot_row_access = 0
+    act_cycles = 0
     shift_cycles = 0
     ideal_start_cycle = 0
     ideal_end_cycle = 0
@@ -156,7 +157,6 @@ def ddr3_8x8_profiling(
     current_prefetch = []
 
     first = True
-    act_cycles = 0
 
     for entry in requests:
         elems = entry.strip().split(',')
@@ -249,7 +249,7 @@ def ddr3_8x8_profiling(
     shift_cycles = max((math.ceil(tot_access / 2) - act_cycles), 0 )
 
     requests.close()
-    return tot_word, max_word, tot_access, tot_row_access, shift_cycles, ideal_start_cycle, ideal_end_cycle
+    return tot_word, max_word, tot_access, tot_row_access, act_cycles, shift_cycles, ideal_start_cycle, ideal_end_cycle
 
 
 def prune(input_list):
