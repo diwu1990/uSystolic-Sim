@@ -905,15 +905,15 @@ def estimate(
         dynamic_cycle_wreg = act_cycle_filter_rd
         dynamic_cycle_mac = max(act_cycle_ifmap_rd, act_cycle_ofmap_rd, act_cycle_ofmap_wr)
 
-        # ireg will work all the time
+        # ireg will toggle only when loading ifmaps
         sa_enery_ireg   =   ((array_h * ireg_leakage_border + array_h * (array_w - 1) * ireg_leakage_inner) * real_total_cycle + \
                             (array_h * ireg_dynamic_border + array_h * (array_w - 1) * ireg_dynamic_inner) * dynamic_cycle_ireg / mac_cycles) * \
                             period
-        # buf will work only when computing
+        # wreg will toggle only when loading filters
         sa_enery_wreg   =   (array_h * array_w * wreg_leakage * real_total_cycle + \
                             array_h * array_w * wreg_dynamic * dynamic_cycle_wreg) * \
                             period
-        # mul and add will work only when computing with no stalls
+        # mul and add (mac) will work only when computing with no stalls
         sa_enery_mul    =   ((array_h * mul_leakage_border + array_h * (array_w - 1) * mul_leakage_inner) * real_total_cycle + \
                             (array_h * mul_dynamic_border + array_h * (array_w - 1) * mul_dynamic_inner) * dynamic_cycle_mac) * \
                             period
