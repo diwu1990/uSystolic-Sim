@@ -1022,9 +1022,9 @@ def estimate(
                             str(sram_energy_ofmap_wr) + ",\t" + \
                             str(sram_energy_total) + ",\t" + \
                             str(sa_enery_ireg) + ",\t" + \
+                            str(sa_enery_wreg) + ",\t" + \
                             str(sa_enery_mul) + ",\t" + \
                             str(sa_enery_acc) + ",\t" + \
-                            str(sa_enery_wreg) + ",\t" + \
                             str(sa_enery_tot) + ",\t" + \
                             str(sys_energy_tot) + ",\t\n"
 
@@ -1040,9 +1040,9 @@ def estimate(
                             str(sram_power_ofmap_wr) + ",\t" + \
                             str(sram_power_total) + ",\t" + \
                             str(sa_power_ireg) + ",\t" + \
+                            str(sa_power_wreg) + ",\t" + \
                             str(sa_power_mul) + ",\t" + \
                             str(sa_power_acc) + ",\t" + \
-                            str(sa_power_wreg) + ",\t" + \
                             str(sa_power_tot) + ",\t" + \
                             str(sys_power_tot) + ",\t\n"
         
