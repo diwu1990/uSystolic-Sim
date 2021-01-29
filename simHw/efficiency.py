@@ -806,7 +806,7 @@ def estimate(
                         word_sz_bytes=word_sz_bytes,
                         page_bits=dram_page_bits,
                         min_addr_word=ofmap_base,
-                        max_addr_word=ofmap_base + 10000000)
+                        max_addr_word=ofmap_base + filter_base - ifmap_base)
             real_start_cycle_ofmap_rd_dram = ideal_start_cycle_ofmap_rd_dram
             real_end_cycle_ofmap_rd_dram = ideal_end_cycle_ofmap_rd_dram + shift_cycles_ofmap_rd_dram
 
@@ -829,7 +829,7 @@ def estimate(
                     word_sz_bytes=word_sz_bytes,
                     page_bits=dram_page_bits,
                     min_addr_word=ofmap_base,
-                    max_addr_word=ofmap_base + 10000000)
+                    max_addr_word=ofmap_base + filter_base - ifmap_base)
         real_start_cycle_ofmap_wr_dram = ideal_start_cycle_ofmap_wr_dram
         real_end_cycle_ofmap_wr_dram = ideal_end_cycle_ofmap_wr_dram + shift_cycles_ofmap_wr_dram
 
@@ -916,7 +916,7 @@ def estimate(
                         block_sz_bytes=sram_block_sz_bytes,
                         bank=sram_bank,
                         min_addr_word=ofmap_base,
-                        max_addr_word=ofmap_base + 10000000,
+                        max_addr_word=ofmap_base + filter_base - ifmap_base,
                         access_buf=sram_access_buf)
             real_start_cycle_ofmap_rd_sram = ideal_start_cycle_ofmap_rd_sram
             real_end_cycle_ofmap_rd_sram = ideal_end_cycle_ofmap_rd_sram + stall_cycles_ofmap_rd_sram
@@ -936,7 +936,7 @@ def estimate(
                         block_sz_bytes=sram_block_sz_bytes,
                         bank=sram_bank,
                         min_addr_word=ofmap_base,
-                        max_addr_word=ofmap_base + 10000000,
+                        max_addr_word=ofmap_base + filter_base - ifmap_base,
                         access_buf=sram_access_buf)
             real_start_cycle_ofmap_wr_sram = ideal_start_cycle_ofmap_wr_sram
             real_end_cycle_ofmap_wr_sram = ideal_end_cycle_ofmap_wr_sram + stall_cycles_ofmap_wr_sram
