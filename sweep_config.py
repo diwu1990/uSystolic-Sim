@@ -4,7 +4,8 @@ import os
 def gen_run_config():
 
     arch_list = ["tpu", "eyeriss"]
-    network_list = ["alexnet"]
+    # network_list = ["alexnet"]
+    network_list = ["test"]
     bit_list = ["8", "16"]
     cycle_list = ["32", "64", "128", "256"]
     ram_list = ["ddr3_w__spm", "ddr3_wo_spm"]

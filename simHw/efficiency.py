@@ -88,6 +88,11 @@ def estimate(
     real_start_cycle_ofmap_wr_dram = 0
     real_end_cycle_ofmap_wr_dram = 0
 
+    tot_word_ifmap_rd_dram_all = 0
+    tot_word_filter_rd_dram_all = 0
+    tot_word_ofmap_rd_dram_all = 0
+    tot_word_ofmap_wr_dram_all = 0
+
     # hw
     max_freq_dram = 0
     activate_energy_dram = 0
@@ -110,11 +115,23 @@ def estimate(
     dram_bw_ideal_ofmap_wr      =   0
     dram_bw_ideal_total         =   0
 
+    dram_bw_ideal_ifmap_rd_all      =   0
+    dram_bw_ideal_filter_rd_all     =   0
+    dram_bw_ideal_ofmap_rd_all      =   0
+    dram_bw_ideal_ofmap_wr_all      =   0
+    dram_bw_ideal_total_all         =   0
+
     dram_bw_real_ifmap_rd       =   0
     dram_bw_real_filter_rd      =   0
     dram_bw_real_ofmap_rd       =   0
     dram_bw_real_ofmap_wr       =   0
     dram_bw_real_total          =   0
+
+    dram_bw_real_ifmap_rd_all       =   0
+    dram_bw_real_filter_rd_all      =   0
+    dram_bw_real_ofmap_rd_all       =   0
+    dram_bw_real_ofmap_wr_all       =   0
+    dram_bw_real_total_all          =   0
 
     dram_energy_ifmap_rd        =   0
     dram_energy_filter_rd       =   0
@@ -122,11 +139,23 @@ def estimate(
     dram_energy_ofmap_wr        =   0
     dram_energy_total_dynamic   =   0
 
+    dram_energy_ifmap_rd_all        =   0
+    dram_energy_filter_rd_all       =   0
+    dram_energy_ofmap_rd_all        =   0
+    dram_energy_ofmap_wr_all        =   0
+    dram_energy_total_dynamic_all   =   0
+
     dram_power_ifmap_rd         =   0
     dram_power_filter_rd        =   0
     dram_power_ofmap_rd         =   0
     dram_power_ofmap_wr         =   0
     dram_power_total_dynamic    =   0
+
+    dram_power_ifmap_rd_all         =   0
+    dram_power_filter_rd_all        =   0
+    dram_power_ofmap_rd_all         =   0
+    dram_power_ofmap_wr_all         =   0
+    dram_power_total_dynamic_all    =   0
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
     # sram
@@ -176,6 +205,11 @@ def estimate(
     real_start_cycle_ofmap_wr_sram = 0
     real_end_cycle_ofmap_wr_sram = 0
 
+    tot_word_ifmap_rd_sram_all = 0
+    tot_word_filter_rd_sram_all = 0
+    tot_word_ofmap_rd_sram_all = 0
+    tot_word_ofmap_wr_sram_all = 0
+
     # hw
     max_freq_ifmap = 0
     energy_per_block_rd_ifmap = 0
@@ -200,11 +234,41 @@ def estimate(
     
     sram_area_total = 0
 
+    sram_bw_ideal_ifmap_rd      =   0
+    sram_bw_ideal_filter_rd     =   0
+    sram_bw_ideal_ofmap_rd      =   0
+    sram_bw_ideal_ofmap_wr      =   0
+    sram_bw_ideal_total         =   0
+
+    sram_bw_ideal_ifmap_rd_all      =   0
+    sram_bw_ideal_filter_rd_all     =   0
+    sram_bw_ideal_ofmap_rd_all      =   0
+    sram_bw_ideal_ofmap_wr_all      =   0
+    sram_bw_ideal_total_all         =   0
+
+    sram_bw_real_ifmap_rd       =   0
+    sram_bw_real_filter_rd      =   0
+    sram_bw_real_ofmap_rd       =   0
+    sram_bw_real_ofmap_wr       =   0
+    sram_bw_real_total          =   0
+
+    sram_bw_real_ifmap_rd_all       =   0
+    sram_bw_real_filter_rd_all      =   0
+    sram_bw_real_ofmap_rd_all       =   0
+    sram_bw_real_ofmap_wr_all       =   0
+    sram_bw_real_total_all          =   0
+
     sram_energy_ifmap_rd = 0
     sram_energy_filter_rd = 0
     sram_energy_ofmap_rd = 0
     sram_energy_ofmap_wr = 0
     sram_energy_dynamic = 0
+
+    sram_energy_ifmap_rd_all = 0
+    sram_energy_filter_rd_all = 0
+    sram_energy_ofmap_rd_all = 0
+    sram_energy_ofmap_wr_all = 0
+    sram_energy_dynamic_all = 0
 
     sram_energy_ifmap_l = 0
     sram_energy_filter_l = 0
@@ -212,11 +276,23 @@ def estimate(
     sram_energy_leakage = 0
     sram_energy_total = 0
 
+    sram_energy_ifmap_l_all = 0
+    sram_energy_filter_l_all = 0
+    sram_energy_ofmap_l_all = 0
+    sram_energy_leakage_all = 0
+    sram_energy_total_all = 0
+
     sram_power_ifmap_rd = 0
     sram_power_filter_rd = 0
     sram_power_ofmap_rd = 0
     sram_power_ofmap_wr = 0
     sram_power_dynamic = 0
+
+    sram_power_ifmap_rd_all = 0
+    sram_power_filter_rd_all = 0
+    sram_power_ofmap_rd_all = 0
+    sram_power_ofmap_wr_all = 0
+    sram_power_dynamic_all = 0
 
     sram_power_ifmap_l = 0
     sram_power_filter_l = 0
@@ -224,26 +300,32 @@ def estimate(
     sram_power_leakage = 0
     sram_power_total = 0
 
+    sram_power_ifmap_l_all = 0
+    sram_power_filter_l_all = 0
+    sram_power_ofmap_l_all = 0
+    sram_power_leakage_all = 0
+    sram_power_total_all = 0
+
     # working cycles
     ideal_max_clk = 0
     ideal_min_clk = 0
-    ideal_total_cycle = 0
-    ideal_total_sec = 0
-    ideal_total_throughput = 0
+    ideal_layer_cycle = 0
+    ideal_layer_sec = 0
+    ideal_layer_throughput = 0
 
-    ideal_cycle = 0
-    ideal_sec = 0
-    ideal_throughput = 0
+    ideal_cycle_all = 0
+    ideal_sec_all = 0
+    ideal_throughput_all = 0
 
     real_max_clk = 0
     real_min_clk = 0
-    real_total_cycle = 0
-    real_total_sec = 0
-    real_throughput = 0
+    real_layer_cycle = 0
+    real_layer_sec = 0
+    real_layer_throughput = 0
 
-    real_cycle = 0
-    real_sec = 0
-    real_throughput = 0
+    real_cycle_all = 0
+    real_sec_all = 0
+    real_throughput_all = 0
 
     act_cycle_ifmap_rd = 0
     act_cycle_filter_rd = 0
@@ -299,41 +381,81 @@ def estimate(
     sa_energy_ireg_l     =  0
     sa_energy_ireg       =  0
 
+    sa_energy_ireg_d_all     =  0
+    sa_energy_ireg_l_all     =  0
+    sa_energy_ireg_all       =  0
+
     sa_energy_wreg_d     =  0
     sa_energy_wreg_l     =  0
     sa_energy_wreg       =  0
+
+    sa_energy_wreg_d_all     =  0
+    sa_energy_wreg_l_all     =  0
+    sa_energy_wreg_all       =  0
 
     sa_energy_mul_d      =  0
     sa_energy_mul_l      =  0
     sa_energy_mul        =  0
 
+    sa_energy_mul_d_all      =  0
+    sa_energy_mul_l_all      =  0
+    sa_energy_mul_all        =  0
+
     sa_energy_acc_d      =  0
     sa_energy_acc_l      =  0
     sa_energy_acc        =  0
+
+    sa_energy_acc_d_all      =  0
+    sa_energy_acc_l_all      =  0
+    sa_energy_acc_all        =  0
 
     sa_energy_dynamic    =  0
     sa_energy_leakage    =  0
     sa_energy_tot        =  0
 
+    sa_energy_dynamic_all    =  0
+    sa_energy_leakage_all    =  0
+    sa_energy_tot_all        =  0
+
     sa_power_ireg_d     = 0
     sa_power_ireg_l     = 0
     sa_power_ireg       = 0
+
+    sa_power_ireg_d_all     = 0
+    sa_power_ireg_l_all     = 0
+    sa_power_ireg_all       = 0
 
     sa_power_wreg_d     = 0
     sa_power_wreg_l     = 0
     sa_power_wreg       = 0
 
+    sa_power_wreg_d_all     = 0
+    sa_power_wreg_l_all     = 0
+    sa_power_wreg_all       = 0
+
     sa_power_mul_d      = 0
     sa_power_mul_l      = 0
     sa_power_mul        = 0
 
+    sa_power_mul_d_all      = 0
+    sa_power_mul_l_all      = 0
+    sa_power_mul_all        = 0
+
     sa_power_acc_d      = 0
     sa_power_acc_l      = 0
     sa_power_acc        = 0
+
+    sa_power_acc_d_all      = 0
+    sa_power_acc_l_all      = 0
+    sa_power_acc_all        = 0
     
     sa_power_dynamic    = 0
     sa_power_leakage    = 0
     sa_power_tot        = 0
+
+    sa_power_dynamic_all    = 0
+    sa_power_leakage_all    = 0
+    sa_power_tot_all        = 0
 
     onchip_area_tot = 0
 
@@ -341,9 +463,17 @@ def estimate(
     sys_energy_leakage = 0
     sys_energy_tot = 0
 
+    sys_energy_dynamic_all = 0
+    sys_energy_leakage_all = 0
+    sys_energy_tot_all = 0
+
     sys_power_dynamic = 0
     sys_power_leakage = 0
     sys_power_tot = 0
+
+    sys_power_dynamic_all = 0
+    sys_power_leakage_all = 0
+    sys_power_tot_all = 0
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
     # output report
@@ -852,11 +982,11 @@ def estimate(
                             ideal_start_cycle_filter_rd_sram, 
                             ideal_start_cycle_ofmap_rd_sram, 
                             ideal_start_cycle_ofmap_wr_sram)
-        ideal_total_cycle = ideal_max_clk - ideal_min_clk + 1
-        ideal_total_sec = ideal_total_cycle * period / float(10**6)
-        ideal_total_throughput = 1 / ideal_total_sec
-        ideal_cycle += ideal_total_cycle
-        ideal_sec += ideal_total_sec
+        ideal_layer_cycle = ideal_max_clk - ideal_min_clk + 1
+        ideal_layer_sec = ideal_layer_cycle * period / float(10**6)
+        ideal_layer_throughput = 1 / ideal_layer_sec
+        ideal_cycle_all += ideal_layer_cycle
+        ideal_sec_all += ideal_layer_sec
         # sram stall and dram shift have similar meanings: the extra cycle for data access compared to the ideal
         # sram stall can be overlapped for stall_cycles_ifmap_rd_sram and stall_cycles_ofmap_rd_sram due to multiple copies of sram
         # dram shift can't be overlapped due to sharing the same dram IO
@@ -865,25 +995,25 @@ def estimate(
                         shift_cycles_ofmap_rd_dram + shift_cycles_ofmap_wr_dram
         real_min_clk =  ideal_min_clk - \
                         shift_cycles_ifmap_rd_dram - shift_cycles_filter_rd_dram
-        real_total_cycle = real_max_clk - real_min_clk + 1
-        real_total_sec = real_total_cycle * period / float(10**6)
-        real_total_throughput = 1 / real_total_sec
-        real_cycle += real_total_cycle
-        real_sec += real_total_sec
+        real_layer_cycle = real_max_clk - real_min_clk + 1
+        real_layer_sec = real_layer_cycle * period / float(10**6)
+        real_layer_throughput = 1 / real_layer_sec
+        real_cycle_all += real_layer_cycle
+        real_sec_all += real_layer_sec
 
         # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
         # DRAM: bw, energy, power
-        # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
-        dram_bw_ideal_ifmap_rd      =   tot_word_ifmap_rd_dram  * word_sz_bytes / float(2**30) / (ideal_total_cycle * period / float(10**6))
-        dram_bw_ideal_filter_rd     =   tot_word_filter_rd_dram * word_sz_bytes / float(2**30) / (ideal_total_cycle * period / float(10**6))
-        dram_bw_ideal_ofmap_rd      =   tot_word_ofmap_rd_dram  * word_sz_bytes / float(2**30) / (ideal_total_cycle * period / float(10**6))
-        dram_bw_ideal_ofmap_wr      =   tot_word_ofmap_wr_dram  * word_sz_bytes / float(2**30) / (ideal_total_cycle * period / float(10**6))
+        # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+        dram_bw_ideal_ifmap_rd      =   tot_word_ifmap_rd_dram  * word_sz_bytes / float(2**30) / ideal_layer_sec
+        dram_bw_ideal_filter_rd     =   tot_word_filter_rd_dram * word_sz_bytes / float(2**30) / ideal_layer_sec
+        dram_bw_ideal_ofmap_rd      =   tot_word_ofmap_rd_dram  * word_sz_bytes / float(2**30) / ideal_layer_sec
+        dram_bw_ideal_ofmap_wr      =   tot_word_ofmap_wr_dram  * word_sz_bytes / float(2**30) / ideal_layer_sec
         dram_bw_ideal_total         =   dram_bw_ideal_ifmap_rd + dram_bw_ideal_filter_rd + dram_bw_ideal_ofmap_rd + dram_bw_ideal_ofmap_wr
 
-        dram_bw_real_ifmap_rd       =   tot_word_ifmap_rd_dram  * word_sz_bytes / float(2**30) / ( real_total_cycle * period / float(10**6))
-        dram_bw_real_filter_rd      =   tot_word_filter_rd_dram * word_sz_bytes / float(2**30) / ( real_total_cycle * period / float(10**6))
-        dram_bw_real_ofmap_rd       =   tot_word_ofmap_rd_dram  * word_sz_bytes / float(2**30) / ( real_total_cycle * period / float(10**6))
-        dram_bw_real_ofmap_wr       =   tot_word_ofmap_wr_dram  * word_sz_bytes / float(2**30) / ( real_total_cycle * period / float(10**6))
+        dram_bw_real_ifmap_rd       =   tot_word_ifmap_rd_dram  * word_sz_bytes / float(2**30) / real_layer_sec
+        dram_bw_real_filter_rd      =   tot_word_filter_rd_dram * word_sz_bytes / float(2**30) / real_layer_sec
+        dram_bw_real_ofmap_rd       =   tot_word_ofmap_rd_dram  * word_sz_bytes / float(2**30) / real_layer_sec
+        dram_bw_real_ofmap_wr       =   tot_word_ofmap_wr_dram  * word_sz_bytes / float(2**30) / real_layer_sec
         dram_bw_real_total          =   dram_bw_real_ifmap_rd + dram_bw_real_filter_rd + dram_bw_real_ofmap_rd + dram_bw_real_ofmap_wr
 
         dram_energy_ifmap_rd        =   (activate_energy_dram + precharge_energy_dram) * tot_row_access_ifmap_rd_dram + \
@@ -896,22 +1026,33 @@ def estimate(
                                         energy_wr_dram * tot_access_ofmap_wr_dram
         dram_energy_total_dynamic   =   dram_energy_ifmap_rd + dram_energy_filter_rd + dram_energy_ofmap_rd + dram_energy_ofmap_wr
 
-        dram_power_ifmap_rd         =   dram_energy_ifmap_rd        /   (real_total_cycle * period)
-        dram_power_filter_rd        =   dram_energy_filter_rd       /   (real_total_cycle * period)
-        dram_power_ofmap_rd         =   dram_energy_ofmap_rd        /   (real_total_cycle * period)
-        dram_power_ofmap_wr         =   dram_energy_ofmap_wr        /   (real_total_cycle * period)
-        dram_power_total_dynamic    =   dram_energy_total_dynamic   /   (real_total_cycle * period)
+        dram_power_ifmap_rd         =   dram_energy_ifmap_rd        /   (real_layer_cycle * period)
+        dram_power_filter_rd        =   dram_energy_filter_rd       /   (real_layer_cycle * period)
+        dram_power_ofmap_rd         =   dram_energy_ofmap_rd        /   (real_layer_cycle * period)
+        dram_power_ofmap_wr         =   dram_energy_ofmap_wr        /   (real_layer_cycle * period)
+        dram_power_total_dynamic    =   dram_energy_total_dynamic   /   (real_layer_cycle * period)
+
+        tot_word_ifmap_rd_dram_all  += tot_word_ifmap_rd_dram
+        tot_word_filter_rd_dram_all += tot_word_filter_rd_dram
+        tot_word_ofmap_rd_dram_all  += tot_word_ofmap_rd_dram
+        tot_word_ofmap_wr_dram_all  += tot_word_ofmap_wr_dram
+
+        dram_energy_ifmap_rd_all    += dram_energy_ifmap_rd
+        dram_energy_filter_rd_all   += dram_energy_filter_rd
+        dram_energy_ofmap_rd_all    += dram_energy_ofmap_rd
+        dram_energy_ofmap_wr_all    += dram_energy_ofmap_wr
+        dram_energy_total_dynamic_all += dram_energy_total_dynamic
 
         # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
         # SRAM: bw, energy, power
         # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
         # this dynamic energy actually includes the energy for both writing from dram to sram and reading from sram to systolic array
         if ifmap_sram_exist == True:
-            sram_bw_ideal_ifmap_rd  =   tot_word_ifmap_rd_sram  * word_sz_bytes / float(2**30) / (ideal_total_cycle * period / float(10**6))
-            sram_bw_real_ifmap_rd   =   tot_word_ifmap_rd_sram  * word_sz_bytes / float(2**30) / ( real_total_cycle * period / float(10**6))
+            sram_bw_ideal_ifmap_rd  =   tot_word_ifmap_rd_sram  * word_sz_bytes / float(2**30) / ideal_layer_sec
+            sram_bw_real_ifmap_rd   =   tot_word_ifmap_rd_sram  * word_sz_bytes / float(2**30) / real_layer_sec
             sram_energy_ifmap_rd    =   tot_access_ifmap_rd_sram * energy_per_block_rd_ifmap + \
                                         math.ceil(tot_word_ifmap_rd_dram / sram_block_sz_word) * energy_per_block_wr_ifmap
-            sram_power_ifmap_rd     =   sram_energy_ifmap_rd    /  (real_total_cycle * period)
+            sram_power_ifmap_rd     =   sram_energy_ifmap_rd    /  (real_layer_cycle * period)
         else:
             sram_bw_ideal_ifmap_rd  =   0
             sram_bw_real_ifmap_rd   =   0
@@ -920,11 +1061,11 @@ def estimate(
         
         # this dynamic energy actually includes the energy for both writing from dram to sram and reading from sram to systolic array
         if filter_sram_exist == True:
-            sram_bw_ideal_filter_rd =   tot_word_filter_rd_sram  * word_sz_bytes / float(2**30) / (ideal_total_cycle * period / float(10**6))
-            sram_bw_real_filter_rd  =   tot_word_filter_rd_sram  * word_sz_bytes / float(2**30) / ( real_total_cycle * period / float(10**6))
+            sram_bw_ideal_filter_rd =   tot_word_filter_rd_sram  * word_sz_bytes / float(2**30) / ideal_layer_sec
+            sram_bw_real_filter_rd  =   tot_word_filter_rd_sram  * word_sz_bytes / float(2**30) / real_layer_sec
             sram_energy_filter_rd   =   tot_access_filter_rd_sram * energy_per_block_rd_filter + \
                                         math.ceil(tot_word_filter_rd_dram / sram_block_sz_word) * energy_per_block_wr_filter
-            sram_power_filter_rd    =   sram_energy_filter_rd   /  (real_total_cycle * period)
+            sram_power_filter_rd    =   sram_energy_filter_rd   /  (real_layer_cycle * period)
         else:
             sram_bw_ideal_filter_rd =   0
             sram_bw_real_filter_rd  =   0
@@ -933,16 +1074,16 @@ def estimate(
         # this dynamic energy actually includes the energy for either writing from dram to sram or reading from sram to systolic array
         # those two situations will not happen simultaneously, if the sram for ofmap is large enough
         if ofmap_sram_exist == True:
-            sram_bw_ideal_ofmap_rd  =   tot_word_ofmap_rd_sram   * word_sz_bytes / float(2**30) / (ideal_total_cycle * period / float(10**6))
-            sram_bw_real_ofmap_rd   =   tot_word_ofmap_rd_sram   * word_sz_bytes / float(2**30) / ( real_total_cycle * period / float(10**6))
+            sram_bw_ideal_ofmap_rd  =   tot_word_ofmap_rd_sram   * word_sz_bytes / float(2**30) / ideal_layer_sec
+            sram_bw_real_ofmap_rd   =   tot_word_ofmap_rd_sram   * word_sz_bytes / float(2**30) / real_layer_sec
             sram_energy_ofmap_rd    =   tot_access_ofmap_rd_sram * energy_per_block_rd_ofmap
-            sram_power_ofmap_rd     =   sram_energy_ofmap_rd    /  (real_total_cycle * period)
+            sram_power_ofmap_rd     =   sram_energy_ofmap_rd    /  (real_layer_cycle * period)
 
-            sram_bw_ideal_ofmap_wr  =   tot_word_ofmap_wr_sram   * word_sz_bytes / float(2**30) / (ideal_total_cycle * period / float(10**6))
-            sram_bw_real_ofmap_wr   =   tot_word_ofmap_wr_sram   * word_sz_bytes / float(2**30) / ( real_total_cycle * period / float(10**6))
+            sram_bw_ideal_ofmap_wr  =   tot_word_ofmap_wr_sram   * word_sz_bytes / float(2**30) / ideal_layer_sec
+            sram_bw_real_ofmap_wr   =   tot_word_ofmap_wr_sram   * word_sz_bytes / float(2**30) / real_layer_sec
             sram_energy_ofmap_wr    =   tot_access_ofmap_wr_sram * energy_per_block_wr_ofmap + \
                                         math.ceil(tot_word_ofmap_wr_dram / sram_block_sz_word) * energy_per_block_rd_ofmap
-            sram_power_ofmap_wr     =   sram_energy_ofmap_wr    /  (real_total_cycle * period)
+            sram_power_ofmap_wr     =   sram_energy_ofmap_wr    /  (real_layer_cycle * period)
         else:
             sram_bw_ideal_ofmap_rd  =   0
             sram_bw_real_ofmap_rd   =   0
@@ -959,20 +1100,37 @@ def estimate(
 
         sram_energy_dynamic         =   sram_energy_ifmap_rd + sram_energy_filter_rd + sram_energy_ofmap_rd + sram_energy_ofmap_wr
 
-        sram_energy_ifmap_l         =   leakage_power_ifmap  * (real_total_cycle * period)
-        sram_energy_filter_l        =   leakage_power_filter * (real_total_cycle * period)
-        sram_energy_ofmap_l         =   leakage_power_ofmap  * (real_total_cycle * period)
+        sram_energy_ifmap_l         =   leakage_power_ifmap  * (real_layer_cycle * period)
+        sram_energy_filter_l        =   leakage_power_filter * (real_layer_cycle * period)
+        sram_energy_ofmap_l         =   leakage_power_ofmap  * (real_layer_cycle * period)
         sram_energy_leakage         =   sram_energy_ifmap_l + sram_energy_filter_l + sram_energy_ofmap_l
         sram_energy_total           =   sram_energy_dynamic + sram_energy_leakage
 
-        sram_power_dynamic          =   sram_energy_dynamic     / (real_total_cycle * period)
+        sram_power_dynamic          =   sram_energy_dynamic     / (real_layer_cycle * period)
 
-        sram_power_ifmap_l          =   sram_energy_ifmap_l     / (real_total_cycle * period)
-        sram_power_filter_l         =   sram_energy_filter_l    / (real_total_cycle * period)
-        sram_power_ofmap_l          =   sram_energy_ofmap_l     / (real_total_cycle * period)
-        sram_power_leakage          =   sram_energy_leakage     / (real_total_cycle * period)
-        sram_power_total            =   sram_energy_total       / (real_total_cycle * period)
+        sram_power_ifmap_l          =   sram_energy_ifmap_l     / (real_layer_cycle * period)
+        sram_power_filter_l         =   sram_energy_filter_l    / (real_layer_cycle * period)
+        sram_power_ofmap_l          =   sram_energy_ofmap_l     / (real_layer_cycle * period)
+        sram_power_leakage          =   sram_energy_leakage     / (real_layer_cycle * period)
+        sram_power_total            =   sram_energy_total       / (real_layer_cycle * period)
         
+        tot_word_ifmap_rd_sram_all  += tot_word_ifmap_rd_sram
+        tot_word_filter_rd_sram_all += tot_word_filter_rd_sram
+        tot_word_ofmap_rd_sram_all  += tot_word_ofmap_rd_sram
+        tot_word_ofmap_wr_sram_all  += tot_word_ofmap_wr_sram
+
+        sram_energy_ifmap_rd_all    += sram_energy_ifmap_rd
+        sram_energy_filter_rd_all   += sram_energy_filter_rd
+        sram_energy_ofmap_rd_all    += sram_energy_ofmap_rd
+        sram_energy_ofmap_wr_all    += sram_energy_ofmap_wr
+        sram_energy_dynamic_all     += sram_energy_dynamic
+
+        sram_energy_ifmap_l_all     += sram_energy_ifmap_l
+        sram_energy_filter_l_all    += sram_energy_filter_l
+        sram_energy_ofmap_l_all     += sram_energy_ofmap_l
+        sram_energy_leakage_all     += sram_energy_leakage
+        sram_energy_total_all       += sram_energy_total
+
         # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
         # systolic array: energy and power
         # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -1004,37 +1162,57 @@ def estimate(
 
         # ireg will toggle only when loading ifmaps
         sa_energy_ireg_d =   (array_h * ireg_dynamic_border + array_h * (array_w - 1) * ireg_dynamic_inner) * dynamic_cycle_ireg / mac_cycles * period
-        sa_energy_ireg_l =   (array_h * ireg_leakage_border + array_h * (array_w - 1) * ireg_leakage_inner) * (real_total_cycle * period)
+        sa_energy_ireg_l =   (array_h * ireg_leakage_border + array_h * (array_w - 1) * ireg_leakage_inner) * (real_layer_cycle * period)
         sa_energy_ireg   =   sa_energy_ireg_d + sa_energy_ireg_l
+        
+        sa_energy_ireg_d_all    +=  sa_energy_ireg_d
+        sa_energy_ireg_l_all    +=  sa_energy_ireg_l
+        sa_energy_ireg_all      +=  sa_energy_ireg
         # wreg will toggle only when loading filters
         sa_energy_wreg_d =   array_h * array_w * wreg_dynamic * dynamic_cycle_wreg * period
-        sa_energy_wreg_l =   array_h * array_w * wreg_leakage * (real_total_cycle * period)
+        sa_energy_wreg_l =   array_h * array_w * wreg_leakage * (real_layer_cycle * period)
         sa_energy_wreg   =   sa_energy_wreg_d + sa_energy_wreg_l
+
+        sa_energy_wreg_d_all    +=  sa_energy_wreg_d
+        sa_energy_wreg_l_all    +=  sa_energy_wreg_l
+        sa_energy_wreg_all      +=  sa_energy_wreg
         # mul and add (mac) will work only when computing with no stalls
         sa_energy_mul_d  =   (array_h * mul_dynamic_border + array_h * (array_w - 1) * mul_dynamic_inner) * dynamic_cycle_mac * period
-        sa_energy_mul_l  =   (array_h * mul_leakage_border + array_h * (array_w - 1) * mul_leakage_inner) * (real_total_cycle * period)
+        sa_energy_mul_l  =   (array_h * mul_leakage_border + array_h * (array_w - 1) * mul_leakage_inner) * (real_layer_cycle * period)
         sa_energy_mul    =   sa_energy_mul_d + sa_energy_mul_l
 
+        sa_energy_mul_d_all    +=  sa_energy_mul_d
+        sa_energy_mul_l_all    +=  sa_energy_mul_l
+        sa_energy_mul_all      +=  sa_energy_mul
+
         sa_energy_acc_d  =   array_h * array_w * acc_dynamic * dynamic_cycle_mac * period
-        sa_energy_acc_l  =   array_h * array_w * acc_leakage * (real_total_cycle * period)
+        sa_energy_acc_l  =   array_h * array_w * acc_leakage * (real_layer_cycle * period)
         sa_energy_acc    =   sa_energy_acc_d + sa_energy_acc_l
         
+        sa_energy_acc_d_all    +=  sa_energy_acc_d
+        sa_energy_acc_l_all    +=  sa_energy_acc_l
+        sa_energy_acc_all      +=  sa_energy_acc
+
         sa_energy_dynamic=  sa_energy_ireg_d + sa_energy_wreg_d + sa_energy_mul_d + sa_energy_acc_d
         sa_energy_leakage=  sa_energy_ireg_l + sa_energy_wreg_l + sa_energy_mul_l + sa_energy_acc_l
         sa_energy_tot    =  sa_energy_dynamic + sa_energy_leakage
 
-        sa_power_ireg_d = sa_energy_ireg_d   / (real_total_cycle * period)
-        sa_power_ireg_l = sa_energy_ireg_l   / (real_total_cycle * period)
-        sa_power_ireg   = sa_energy_ireg     / (real_total_cycle * period)
-        sa_power_wreg_d = sa_energy_wreg_d   / (real_total_cycle * period)
-        sa_power_wreg_l = sa_energy_wreg_l   / (real_total_cycle * period)
-        sa_power_wreg   = sa_energy_wreg     / (real_total_cycle * period)
-        sa_power_mul_d  = sa_energy_mul_d    / (real_total_cycle * period)
-        sa_power_mul_l  = sa_energy_mul_l    / (real_total_cycle * period)
-        sa_power_mul    = sa_energy_mul      / (real_total_cycle * period)
-        sa_power_acc_d  = sa_energy_acc_d    / (real_total_cycle * period)
-        sa_power_acc_l  = sa_energy_acc_l    / (real_total_cycle * period)
-        sa_power_acc    = sa_energy_acc      / (real_total_cycle * period)
+        sa_energy_dynamic_all    +=  sa_energy_dynamic
+        sa_energy_leakage_all    +=  sa_energy_leakage
+        sa_energy_tot_all      +=  sa_energy_tot
+
+        sa_power_ireg_d = sa_energy_ireg_d   / (real_layer_cycle * period)
+        sa_power_ireg_l = sa_energy_ireg_l   / (real_layer_cycle * period)
+        sa_power_ireg   = sa_energy_ireg     / (real_layer_cycle * period)
+        sa_power_wreg_d = sa_energy_wreg_d   / (real_layer_cycle * period)
+        sa_power_wreg_l = sa_energy_wreg_l   / (real_layer_cycle * period)
+        sa_power_wreg   = sa_energy_wreg     / (real_layer_cycle * period)
+        sa_power_mul_d  = sa_energy_mul_d    / (real_layer_cycle * period)
+        sa_power_mul_l  = sa_energy_mul_l    / (real_layer_cycle * period)
+        sa_power_mul    = sa_energy_mul      / (real_layer_cycle * period)
+        sa_power_acc_d  = sa_energy_acc_d    / (real_layer_cycle * period)
+        sa_power_acc_l  = sa_energy_acc_l    / (real_layer_cycle * period)
+        sa_power_acc    = sa_energy_acc      / (real_layer_cycle * period)
         sa_power_dynamic= sa_power_ireg_d + sa_power_wreg_d + sa_power_mul_d + sa_power_acc_d
         sa_power_leakage= sa_power_ireg_l + sa_power_wreg_l + sa_power_mul_l + sa_power_acc_l
         sa_power_tot    = sa_power_dynamic + sa_power_leakage
@@ -1042,9 +1220,13 @@ def estimate(
         sys_energy_dynamic  = dram_energy_total_dynamic + sram_energy_dynamic + sa_energy_dynamic
         sys_energy_leakage  = sram_energy_leakage + sa_energy_leakage
         sys_energy_tot      = sys_energy_dynamic + sys_energy_leakage
+
+        sys_energy_dynamic_all  += sys_energy_dynamic
+        sys_energy_leakage_all  += sys_energy_leakage
+        sys_energy_tot_all      += sys_energy_tot
         
-        sys_power_dynamic   = sys_energy_dynamic / (real_total_cycle * period)
-        sys_power_leakage   = sys_energy_leakage / (real_total_cycle * period)
+        sys_power_dynamic   = sys_energy_dynamic / (real_layer_cycle * period)
+        sys_power_leakage   = sys_energy_leakage / (real_layer_cycle * period)
         sys_power_tot       = sys_power_dynamic + sys_power_leakage
         # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
         # log generation
@@ -1126,14 +1308,14 @@ def estimate(
                             str(sram_bw_real_total) + ",\t\n"
         
         tp_ideal_log +=     str(name) + ",\t" + str(layer_type) + ",\t" + \
-                            str(ideal_total_cycle) + ",\t" + \
-                            str(ideal_total_sec) + ",\t" + \
-                            str(ideal_total_throughput) + ",\t\n"
+                            str(ideal_layer_cycle) + ",\t" + \
+                            str(ideal_layer_sec) + ",\t" + \
+                            str(ideal_layer_throughput) + ",\t\n"
         
         tp_real_log +=      str(name) + ",\t" + str(layer_type) + ",\t" + \
-                            str(real_total_cycle) + ",\t" + \
-                            str(real_total_sec) + ",\t" + \
-                            str(real_total_throughput) + ",\t\n"
+                            str(real_layer_cycle) + ",\t" + \
+                            str(real_layer_sec) + ",\t" + \
+                            str(real_layer_throughput) + ",\t\n"
 
         energy_log +=       str(name) + ",\t" + str(layer_type) + ",\t" + \
                             str(dram_energy_ifmap_rd) + ",\t" + \
@@ -1207,17 +1389,169 @@ def estimate(
         
         print("All done for " + name)
 
-    ideal_throughput = 1 / ideal_sec
+    dram_bw_ideal_ifmap_rd_all      =   tot_word_ifmap_rd_dram_all  * word_sz_bytes / float(2**30) / ideal_sec_all
+    dram_bw_ideal_filter_rd_all     =   tot_word_filter_rd_dram_all * word_sz_bytes / float(2**30) / ideal_sec_all
+    dram_bw_ideal_ofmap_rd_all      =   tot_word_ofmap_rd_dram_all  * word_sz_bytes / float(2**30) / ideal_sec_all
+    dram_bw_ideal_ofmap_wr_all      =   tot_word_ofmap_wr_dram_all  * word_sz_bytes / float(2**30) / ideal_sec_all
+    dram_bw_ideal_total_all         =   dram_bw_ideal_ifmap_rd_all + dram_bw_ideal_filter_rd_all + dram_bw_ideal_ofmap_rd_all + dram_bw_ideal_ofmap_wr_all
+
+    dram_bw_real_ifmap_rd_all       =   tot_word_ifmap_rd_dram_all  * word_sz_bytes / float(2**30) / real_sec_all
+    dram_bw_real_filter_rd_all      =   tot_word_filter_rd_dram_all * word_sz_bytes / float(2**30) / real_sec_all
+    dram_bw_real_ofmap_rd_all       =   tot_word_ofmap_rd_dram_all  * word_sz_bytes / float(2**30) / real_sec_all
+    dram_bw_real_ofmap_wr_all       =   tot_word_ofmap_wr_dram_all  * word_sz_bytes / float(2**30) / real_sec_all
+    dram_bw_real_total_all          =   dram_bw_real_ifmap_rd_all + dram_bw_real_filter_rd_all + dram_bw_real_ofmap_rd_all + dram_bw_real_ofmap_wr_all
+
+    sram_bw_ideal_ifmap_rd_all      =   tot_word_ifmap_rd_sram_all  * word_sz_bytes / float(2**30) / ideal_sec_all
+    sram_bw_ideal_filter_rd_all     =   tot_word_filter_rd_sram_all  * word_sz_bytes / float(2**30) / ideal_sec_all
+    sram_bw_ideal_ofmap_rd_all      =   tot_word_ofmap_rd_sram_all  * word_sz_bytes / float(2**30) / ideal_sec_all
+    sram_bw_ideal_ofmap_wr_all      =   tot_word_ofmap_wr_sram_all  * word_sz_bytes / float(2**30) / ideal_sec_all
+    sram_bw_ideal_total_all         =   sram_bw_ideal_ifmap_rd_all + sram_bw_ideal_filter_rd_all + sram_bw_ideal_ofmap_rd_all + sram_bw_ideal_ofmap_wr_all
+
+    sram_bw_real_ifmap_rd_all       =   tot_word_ifmap_rd_sram_all  * word_sz_bytes / float(2**30) / real_sec_all
+    sram_bw_real_filter_rd_all      =   tot_word_filter_rd_sram_all  * word_sz_bytes / float(2**30) / real_sec_all
+    sram_bw_real_ofmap_rd_all       =   tot_word_ofmap_rd_sram_all  * word_sz_bytes / float(2**30) / real_sec_all
+    sram_bw_real_ofmap_wr_all       =   tot_word_ofmap_wr_sram_all  * word_sz_bytes / float(2**30) / real_sec_all
+    sram_bw_real_total_all          =   sram_bw_real_ifmap_rd_all + sram_bw_real_filter_rd_all + sram_bw_real_ofmap_rd_all + sram_bw_real_ofmap_wr_all
+
+    bw_ideal_log +=     str(run_name) + ",\t" + "All" + ",\t" + \
+                        str(dram_bw_ideal_ifmap_rd_all) + ",\t" + \
+                        str(dram_bw_ideal_filter_rd_all) + ",\t" + \
+                        str(dram_bw_ideal_ofmap_rd_all) + ",\t" + \
+                        str(dram_bw_ideal_ofmap_wr_all) + ",\t" + \
+                        str(dram_bw_ideal_total_all) + ",\t" + \
+                        str(sram_bw_ideal_ifmap_rd_all) + ",\t" + \
+                        str(sram_bw_ideal_filter_rd_all) + ",\t" + \
+                        str(sram_bw_ideal_ofmap_rd_all) + ",\t" + \
+                        str(sram_bw_ideal_ofmap_wr_all) + ",\t" + \
+                        str(sram_bw_ideal_total_all) + ",\t\n"
+
+    bw_real_log +=      str(run_name) + ",\t" + "All" + ",\t" + \
+                        str(dram_bw_real_ifmap_rd_all) + ",\t" + \
+                        str(dram_bw_real_filter_rd_all) + ",\t" + \
+                        str(dram_bw_real_ofmap_rd_all) + ",\t" + \
+                        str(dram_bw_real_ofmap_wr_all) + ",\t" + \
+                        str(dram_bw_real_total_all) + ",\t" + \
+                        str(sram_bw_real_ifmap_rd_all) + ",\t" + \
+                        str(sram_bw_real_filter_rd_all) + ",\t" + \
+                        str(sram_bw_real_ofmap_rd_all) + ",\t" + \
+                        str(sram_bw_real_ofmap_wr_all) + ",\t" + \
+                        str(sram_bw_real_total_all) + ",\t\n"
+
+    ideal_throughput_all = 1 / ideal_sec_all
     tp_ideal_log +=     str(run_name) + ",\t" + "All" + ",\t" + \
-                        str(ideal_cycle) + ",\t" + \
-                        str(ideal_sec) + ",\t" + \
-                        str(ideal_throughput) + ",\t\n"
+                        str(ideal_cycle_all) + ",\t" + \
+                        str(ideal_sec_all) + ",\t" + \
+                        str(ideal_throughput_all) + ",\t\n"
     
-    real_throughput = 1 / real_sec
+    real_throughput_all = 1 / real_sec_all
     tp_real_log +=      str(run_name) + ",\t" + "All" + ",\t" + \
-                        str(real_cycle) + ",\t" + \
-                        str(real_sec) + ",\t" + \
-                        str(real_throughput) + ",\t\n"
+                        str(real_cycle_all) + ",\t" + \
+                        str(real_sec_all) + ",\t" + \
+                        str(real_throughput_all) + ",\t\n"
+    
+    dram_power_ifmap_rd_all         = dram_energy_ifmap_rd_all      / (real_cycle_all * period)
+    dram_power_filter_rd_all        = dram_energy_filter_rd_all     / (real_cycle_all * period)
+    dram_power_ofmap_rd_all         = dram_energy_ofmap_rd_all      / (real_cycle_all * period)
+    dram_power_ofmap_wr_all         = dram_energy_ofmap_wr_all      / (real_cycle_all * period)
+    dram_power_total_dynamic_all    = dram_energy_total_dynamic_all / (real_cycle_all * period)
+    sram_power_ifmap_rd_all         = sram_energy_ifmap_rd_all      / (real_cycle_all * period)
+    sram_power_filter_rd_all        = sram_energy_filter_rd_all     / (real_cycle_all * period)
+    sram_power_ofmap_rd_all         = sram_energy_ofmap_rd_all      / (real_cycle_all * period)
+    sram_power_ofmap_wr_all         = sram_energy_ofmap_wr_all      / (real_cycle_all * period)
+    sram_power_dynamic_all          = sram_energy_dynamic_all       / (real_cycle_all * period)
+    sram_power_ifmap_l_all          = sram_energy_ifmap_l_all       / (real_cycle_all * period)
+    sram_power_filter_l_all         = sram_energy_filter_l_all      / (real_cycle_all * period)
+    sram_power_ofmap_l_all          = sram_energy_ofmap_l_all       / (real_cycle_all * period)
+    sram_power_leakage_all          = sram_energy_leakage_all       / (real_cycle_all * period)
+    sram_power_total_all            = sram_energy_total_all         / (real_cycle_all * period)
+    sa_power_ireg_d_all             = sa_energy_ireg_d_all          / (real_cycle_all * period)
+    sa_power_ireg_l_all             = sa_energy_ireg_l_all          / (real_cycle_all * period)
+    sa_power_ireg_all               = sa_energy_ireg_all            / (real_cycle_all * period)
+    sa_power_wreg_d_all             = sa_energy_wreg_d_all          / (real_cycle_all * period)
+    sa_power_wreg_l_all             = sa_energy_wreg_l_all          / (real_cycle_all * period)
+    sa_power_wreg_all               = sa_energy_wreg_all            / (real_cycle_all * period)
+    sa_power_mul_d_all              = sa_energy_mul_d_all           / (real_cycle_all * period)
+    sa_power_mul_l_all              = sa_energy_mul_l_all           / (real_cycle_all * period)
+    sa_power_mul_all                = sa_energy_mul_all             / (real_cycle_all * period)
+    sa_power_acc_d_all              = sa_energy_acc_d_all           / (real_cycle_all * period)
+    sa_power_acc_l_all              = sa_energy_acc_l_all           / (real_cycle_all * period)
+    sa_power_acc_all                = sa_energy_acc_all             / (real_cycle_all * period)
+    sa_power_dynamic_all            = sa_energy_dynamic_all         / (real_cycle_all * period)
+    sa_power_leakage_all            = sa_energy_leakage_all         / (real_cycle_all * period)
+    sa_power_tot_all                = sa_energy_tot_all             / (real_cycle_all * period)
+    sys_power_dynamic_all           = sys_energy_dynamic_all        / (real_cycle_all * period)
+    sys_power_leakage_all           = sys_energy_leakage_all        / (real_cycle_all * period)
+    sys_power_tot_all               = sys_energy_tot_all            / (real_cycle_all * period)
+
+    energy_log +=       str(run_name) + ",\t" + "All" + ",\t" + \
+                        str(dram_energy_ifmap_rd_all) + ",\t" + \
+                        str(dram_energy_filter_rd_all) + ",\t" + \
+                        str(dram_energy_ofmap_rd_all) + ",\t" + \
+                        str(dram_energy_ofmap_wr_all) + ",\t" + \
+                        str(dram_energy_total_dynamic_all) + ",\t" + \
+                        str(sram_energy_ifmap_rd_all) + ",\t" + \
+                        str(sram_energy_filter_rd_all) + ",\t" + \
+                        str(sram_energy_ofmap_rd_all) + ",\t" + \
+                        str(sram_energy_ofmap_wr_all) + ",\t" + \
+                        str(sram_energy_dynamic_all) + ",\t" + \
+                        str(sram_energy_ifmap_l_all) + ",\t" + \
+                        str(sram_energy_filter_l_all) + ",\t" + \
+                        str(sram_energy_ofmap_l_all) + ",\t" + \
+                        str(sram_energy_leakage_all) + ",\t" + \
+                        str(sram_energy_total_all) + ",\t" + \
+                        str(sa_energy_ireg_d_all) + ",\t" + \
+                        str(sa_energy_ireg_l_all) + ",\t" + \
+                        str(sa_energy_ireg_all) + ",\t" + \
+                        str(sa_energy_wreg_d_all) + ",\t" + \
+                        str(sa_energy_wreg_l_all) + ",\t" + \
+                        str(sa_energy_wreg_all) + ",\t" + \
+                        str(sa_energy_mul_d_all) + ",\t" + \
+                        str(sa_energy_mul_l_all) + ",\t" + \
+                        str(sa_energy_mul_all) + ",\t" + \
+                        str(sa_energy_acc_d_all) + ",\t" + \
+                        str(sa_energy_acc_l_all) + ",\t" + \
+                        str(sa_energy_acc_all) + ",\t" + \
+                        str(sa_energy_dynamic_all) + ",\t" + \
+                        str(sa_energy_leakage_all) + ",\t" + \
+                        str(sa_energy_tot_all) + ",\t" + \
+                        str(sys_energy_dynamic_all) + ",\t" + \
+                        str(sys_energy_leakage_all) + ",\t" + \
+                        str(sys_energy_tot_all) + ",\t\n"
+
+    power_log +=        str(run_name) + ",\t" + "All" + ",\t" + \
+                        str(dram_power_ifmap_rd_all) + ",\t" + \
+                        str(dram_power_filter_rd_all) + ",\t" + \
+                        str(dram_power_ofmap_rd_all) + ",\t" + \
+                        str(dram_power_ofmap_wr_all) + ",\t" + \
+                        str(dram_power_total_dynamic_all) + ",\t" + \
+                        str(sram_power_ifmap_rd_all) + ",\t" + \
+                        str(sram_power_filter_rd_all) + ",\t" + \
+                        str(sram_power_ofmap_rd_all) + ",\t" + \
+                        str(sram_power_ofmap_wr_all) + ",\t" + \
+                        str(sram_power_dynamic_all) + ",\t" + \
+                        str(sram_power_ifmap_l_all) + ",\t" + \
+                        str(sram_power_filter_l_all) + ",\t" + \
+                        str(sram_power_ofmap_l_all) + ",\t" + \
+                        str(sram_power_leakage_all) + ",\t" + \
+                        str(sram_power_total_all) + ",\t" + \
+                        str(sa_power_ireg_d_all) + ",\t" + \
+                        str(sa_power_ireg_l_all) + ",\t" + \
+                        str(sa_power_ireg_all) + ",\t" + \
+                        str(sa_power_wreg_d_all) + ",\t" + \
+                        str(sa_power_wreg_l_all) + ",\t" + \
+                        str(sa_power_wreg_all) + ",\t" + \
+                        str(sa_power_mul_d_all) + ",\t" + \
+                        str(sa_power_mul_l_all) + ",\t" + \
+                        str(sa_power_mul_all) + ",\t" + \
+                        str(sa_power_acc_d_all) + ",\t" + \
+                        str(sa_power_acc_l_all) + ",\t" + \
+                        str(sa_power_acc_all) + ",\t" + \
+                        str(sa_power_dynamic_all) + ",\t" + \
+                        str(sa_power_leakage_all) + ",\t" + \
+                        str(sa_power_tot_all) + ",\t" + \
+                        str(sys_power_dynamic_all) + ",\t" + \
+                        str(sys_power_leakage_all) + ",\t" + \
+                        str(sys_power_tot_all) + ",\t\n"
 
     detail_ideal.write(detail_ideal_log)
     detail_real.write(detail_real_log)
