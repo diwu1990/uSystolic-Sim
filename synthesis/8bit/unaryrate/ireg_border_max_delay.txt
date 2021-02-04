@@ -6,13 +6,13 @@ Report : timing
         -max_paths 1
 Design : ireg_border
 Version: Q-2019.12-SP3
-Date   : Sun Jan 24 02:27:53 2021
+Date   : Thu Feb  4 11:16:16 2021
 ****************************************
 
-Operating Conditions: NCCOM   Library: tcbn40lpbwptc
-Wire Load Model Mode: segmented
+Operating Conditions: tt0p85v25c   Library: saed32rvt_tt0p85v25c
+Wire Load Model Mode: enclosed
 
-  Startpoint: o_data_reg[1]
+  Startpoint: o_data_reg[0]
               (rising edge-triggered flip-flop clocked by clk)
   Endpoint: o_data_abs[6]
             (output port clocked by clk)
@@ -21,24 +21,22 @@ Wire Load Model Mode: segmented
 
   Des/Clust/Port     Wire Load Model       Library
   ------------------------------------------------
-  ireg_border        TSMC32K_Lowk_Conservative
-                                           tcbn40lpbwptc
+  ireg_border        ForQA                 saed32rvt_tt0p85v25c
 
   Point                                    Incr       Path
   -----------------------------------------------------------
   clock clk (rise edge)                    0.00       0.00
   clock network delay (ideal)              0.00       0.00
-  o_data_reg[1]/CP (DFCND1BWP)             0.00       0.00 r
-  o_data_reg[1]/Q (DFCND1BWP)              0.13       0.13 f
-  U84/ZN (NR2XD0BWP)                       0.05       0.17 r
-  U86/ZN (ND2D1BWP)                        0.04       0.22 f
-  U83/ZN (NR2XD0BWP)                       0.05       0.27 r
-  U85/ZN (ND2D1BWP)                        0.04       0.32 f
-  U62/ZN (OAI21D1BWP)                      0.05       0.37 r
-  U76/ZN (XNR2D2BWP)                       0.10       0.47 f
-  U77/ZN (INVD16BWP)                       0.07       0.54 r
-  o_data_abs[6] (out)                      0.00       0.54 r
-  data arrival time                                   0.54
+  o_data_reg[0]/CLK (DFFARX1_RVT)          0.00       0.00 r
+  o_data_reg[0]/Q (DFFARX1_RVT)            0.16       0.16 f
+  U34/Y (OR2X1_RVT)                        0.09       0.25 f
+  U32/Y (OR2X1_RVT)                        0.08       0.32 f
+  U30/Y (OR2X1_RVT)                        0.08       0.40 f
+  U28/Y (OR2X1_RVT)                        0.08       0.48 f
+  U53/Y (OA21X1_RVT)                       0.09       0.57 f
+  U52/Y (XNOR2X1_RVT)                      0.12       0.69 r
+  o_data_abs[6] (out)                      0.01       0.70 r
+  data arrival time                                   0.70
 
   clock clk (rise edge)                    2.50       2.50
   clock network delay (ideal)              0.00       2.50
@@ -47,9 +45,9 @@ Wire Load Model Mode: segmented
   data required time                                  1.85
   -----------------------------------------------------------
   data required time                                  1.85
-  data arrival time                                  -0.54
+  data arrival time                                  -0.70
   -----------------------------------------------------------
-  slack (MET)                                         1.31
+  slack (MET)                                         1.15
 
 
 1
