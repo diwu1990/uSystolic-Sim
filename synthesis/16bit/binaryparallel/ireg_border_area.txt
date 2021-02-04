@@ -3,29 +3,29 @@
 Report : area
 Design : ireg_border
 Version: Q-2019.12-SP3
-Date   : Sat Jan 23 20:53:00 2021
+Date   : Thu Feb  4 11:20:59 2021
 ****************************************
 
 Information: Updating design information... (UID-85)
 Library(s) Used:
 
-    tcbn40lpbwptc (File: /cae/apps/data/tsmclibs-2013/digital/Front_End/timing_power_noise/NLDM/tcbn40lpbwp_120b/tcbn40lpbwptc.db)
+    saed32rvt_tt0p85v25c (File: /cae/apps/data/saed32_edk-2018/lib/stdcell_rvt/db_nldm/saed32rvt_tt0p85v25c.db)
 
 Number of ports:                           36
-Number of nets:                            70
-Number of cells:                           50
-Number of combinational cells:             34
+Number of nets:                            54
+Number of cells:                           34
+Number of combinational cells:             18
 Number of sequential cells:                16
 Number of macros/black boxes:               0
-Number of buf/inv:                         16
-Number of references:                       6
+Number of buf/inv:                          0
+Number of references:                       3
 
-Combinational area:                 93.139201
-Buf/Inv area:                       62.092800
-Noncombinational area:              84.671997
+Combinational area:                 46.254208
+Buf/Inv area:                        0.000000
+Noncombinational area:             113.856514
 Macro/Black Box area:                0.000000
-Net Interconnect area:      undefined  (Wire load has zero net area)
+Net Interconnect area:              16.307764
 
-Total cell area:                   177.811198
-Total area:                 undefined
+Total cell area:                   160.110722
+Total area:                        176.418486
 1

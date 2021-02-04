@@ -6,66 +6,62 @@ Report : timing
         -max_paths 1
 Design : mul_inner
 Version: Q-2019.12-SP3
-Date   : Sat Jan 23 20:53:41 2021
+Date   : Thu Feb  4 11:21:21 2021
 ****************************************
 
-Operating Conditions: NCCOM   Library: tcbn40lpbwptc
-Wire Load Model Mode: segmented
+Operating Conditions: tt0p85v25c   Library: saed32rvt_tt0p85v25c
+Wire Load Model Mode: enclosed
 
-  Startpoint: i_data0[0] (input port)
+  Startpoint: i_data0[1] (input port)
   Endpoint: o_data[31] (output port)
   Path Group: (none)
   Path Type: max
 
   Des/Clust/Port     Wire Load Model       Library
   ------------------------------------------------
-  mul_inner          TSMC32K_Lowk_Conservative
-                                           tcbn40lpbwptc
+  mul_inner          8000                  saed32rvt_tt0p85v25c
 
   Point                                    Incr       Path
   -----------------------------------------------------------
   input external delay                     0.00       0.00 r
-  i_data0[0] (in)                          0.00       0.00 r
-  U890/ZN (CKND0BWP)                       0.04       0.04 f
-  U497/ZN (NR2XD4BWP)                      0.07       0.11 r
-  U430/Z (AO21D1BWP)                       0.06       0.17 r
-  U530/ZN (CKND2D0BWP)                     0.03       0.20 f
-  U528/ZN (CKND2D0BWP)                     0.04       0.24 r
-  mult_9/S1_2_0/CO (FA1D0BWP)              0.08       0.32 r
-  mult_9/S1_3_0/CO (FA1D0BWP)              0.13       0.45 r
-  mult_9/S1_4_0/CO (FA1D0BWP)              0.13       0.58 r
-  mult_9/S1_5_0/CO (FA1D0BWP)              0.13       0.71 r
-  mult_9/S1_6_0/CO (FA1D0BWP)              0.13       0.84 r
-  mult_9/S1_7_0/CO (FA1D0BWP)              0.13       0.97 r
-  mult_9/S1_8_0/CO (FA1D0BWP)              0.13       1.10 r
-  mult_9/S1_9_0/CO (FA1D0BWP)              0.13       1.23 r
-  mult_9/S1_10_0/CO (FA1D0BWP)             0.13       1.36 r
-  mult_9/S1_11_0/CO (FA1D0BWP)             0.13       1.49 r
-  mult_9/S1_12_0/CO (FA1D0BWP)             0.13       1.63 r
-  mult_9/S1_13_0/CO (FA1D0BWP)             0.13       1.76 r
-  mult_9/S1_14_0/CO (FA1D0BWP)             0.13       1.89 r
-  mult_9/S4_0/S (FA1D0BWP)                 0.15       2.04 f
-  mult_9/S14_15_0/CO (FA1D0BWP)            0.08       2.12 f
-  U615/ZN (CKND0BWP)                       0.04       2.16 r
-  U425/ZN (NR2XD0BWP)                      0.05       2.21 f
-  U486/ZN (IOA21D1BWP)                     0.08       2.29 f
-  U426/ZN (AOI21D1BWP)                     0.06       2.35 r
-  U557/ZN (OAI21D1BWP)                     0.05       2.40 f
-  U495/ZN (AOI21D1BWP)                     0.06       2.47 r
-  U554/ZN (OAI21D1BWP)                     0.05       2.52 f
-  U492/ZN (AOI21D1BWP)                     0.06       2.58 r
-  U551/ZN (OAI21D1BWP)                     0.05       2.64 f
-  U494/ZN (AOI21D1BWP)                     0.06       2.70 r
-  U548/ZN (OAI21D1BWP)                     0.05       2.75 f
-  U490/ZN (AOI21D1BWP)                     0.06       2.82 r
-  U545/ZN (OAI21D1BWP)                     0.06       2.87 f
-  U536/ZN (AOI21D2BWP)                     0.05       2.93 r
-  U566/ZN (OAI21D0BWP)                     0.06       2.98 f
-  U562/ZN (OAI21D0BWP)                     0.07       3.05 r
-  U488/Z (XOR3D1BWP)                       0.12       3.17 f
-  U487/Z (CKBD16BWP)                       0.08       3.25 f
-  o_data[31] (out)                         0.00       3.25 f
-  data arrival time                                   3.25
+  i_data0[1] (in)                          0.00       0.00 r
+  U774/Y (INVX0_RVT)                       0.06       0.06 f
+  U773/Y (AND2X1_RVT)                      0.10       0.15 f
+  U760/Y (AO21X1_RVT)                      0.09       0.24 f
+  U757/Y (AO22X1_RVT)                      0.09       0.33 f
+  mult_9/S2_2_12/S (FADDX1_RVT)            0.17       0.50 r
+  mult_9/S2_3_11/S (FADDX1_RVT)            0.17       0.66 f
+  mult_9/S2_4_10/S (FADDX1_RVT)            0.17       0.84 r
+  mult_9/S2_5_9/S (FADDX1_RVT)             0.17       1.01 f
+  mult_9/S2_6_8/S (FADDX1_RVT)             0.17       1.18 r
+  mult_9/S2_7_7/S (FADDX1_RVT)             0.17       1.35 f
+  mult_9/S2_8_6/S (FADDX1_RVT)             0.17       1.52 r
+  mult_9/S2_9_5/S (FADDX1_RVT)             0.17       1.69 f
+  mult_9/S2_10_4/S (FADDX1_RVT)            0.17       1.86 r
+  mult_9/S2_11_3/S (FADDX1_RVT)            0.17       2.03 f
+  mult_9/S2_12_2/S (FADDX1_RVT)            0.17       2.21 r
+  mult_9/S2_13_1/CO (FADDX1_RVT)           0.12       2.33 r
+  mult_9/S2_14_1/S (FADDX1_RVT)            0.18       2.51 f
+  mult_9/S4_0/S (FADDX1_RVT)               0.17       2.69 r
+  mult_9/S14_15_0/CO (FADDX1_RVT)          0.12       2.80 r
+  U487/Y (NAND3X0_RVT)                     0.08       2.88 f
+  U482/Y (AO21X1_RVT)                      0.11       2.99 f
+  U470/Y (OA21X1_RVT)                      0.09       3.09 f
+  U460/Y (OA21X1_RVT)                      0.08       3.17 f
+  U451/Y (OA21X1_RVT)                      0.08       3.25 f
+  U447/Y (OA21X1_RVT)                      0.09       3.34 f
+  U445/Y (AO21X1_RVT)                      0.09       3.43 f
+  U441/Y (AO21X1_RVT)                      0.09       3.51 f
+  U429/Y (OA21X1_RVT)                      0.09       3.61 f
+  U422/Y (OA21X1_RVT)                      0.08       3.69 f
+  U415/Y (OA21X1_RVT)                      0.08       3.78 f
+  U408/Y (OA21X1_RVT)                      0.08       3.86 f
+  U402/Y (OAI21X1_RVT)                     0.12       3.98 r
+  U399/Y (AO221X1_RVT)                     0.11       4.09 r
+  U395/Y (NAND2X0_RVT)                     0.06       4.15 f
+  U394/Y (XNOR3X1_RVT)                     0.10       4.25 r
+  o_data[31] (out)                         0.00       4.25 r
+  data arrival time                                   4.25
   -----------------------------------------------------------
   (Path is unconstrained)
 
