@@ -6,11 +6,11 @@ Report : timing
         -max_paths 1
 Design : wreg
 Version: Q-2019.12-SP3
-Date   : Sun Jan 24 02:58:54 2021
+Date   : Thu Feb  4 11:26:32 2021
 ****************************************
 
-Operating Conditions: NCCOM   Library: tcbn40lpbwptc
-Wire Load Model Mode: segmented
+Operating Conditions: tt0p85v25c   Library: saed32rvt_tt0p85v25c
+Wire Load Model Mode: enclosed
 
   Startpoint: o_data_reg[14]
               (rising edge-triggered flip-flop clocked by clk)
@@ -21,31 +21,29 @@ Wire Load Model Mode: segmented
 
   Des/Clust/Port     Wire Load Model       Library
   ------------------------------------------------
-  wreg               TSMC32K_Lowk_Conservative
-                                           tcbn40lpbwptc
+  wreg               8000                  saed32rvt_tt0p85v25c
 
   Point                                    Incr       Path
   -----------------------------------------------------------
   clock clk (rise edge)                    0.00       0.00
   clock network delay (ideal)              0.00       0.00
-  o_data_reg[14]/CP (DFCNQD1BWP)           0.00       0.00 r
-  o_data_reg[14]/Q (DFCNQD1BWP)            0.13       0.13 f
-  U213/ZN (INVD1BWP)                       0.03       0.15 r
-  U211/ZN (MOAI22D0BWP)                    0.04       0.19 f
-  o_data_reg[14]/D (DFCNQD1BWP)            0.00       0.19 f
-  data arrival time                                   0.19
+  o_data_reg[14]/CLK (DFFARX1_RVT)         0.00       0.00 r
+  o_data_reg[14]/Q (DFFARX1_RVT)           0.14       0.14 f
+  U81/Y (AO22X1_RVT)                       0.08       0.22 f
+  o_data_reg[14]/D (DFFARX1_RVT)           0.01       0.23 f
+  data arrival time                                   0.23
 
   clock clk (rise edge)                    0.00       0.00
   clock network delay (ideal)              0.00       0.00
   clock uncertainty                        0.15       0.15
-  o_data_reg[14]/CP (DFCNQD1BWP)           0.00       0.15 r
-  library hold time                        0.02       0.17
-  data required time                                  0.17
+  o_data_reg[14]/CLK (DFFARX1_RVT)         0.00       0.15 r
+  library hold time                       -0.01       0.14
+  data required time                                  0.14
   -----------------------------------------------------------
-  data required time                                  0.17
-  data arrival time                                  -0.19
+  data required time                                  0.14
+  data arrival time                                  -0.23
   -----------------------------------------------------------
-  slack (MET)                                         0.01
+  slack (MET)                                         0.09
 
 
 1

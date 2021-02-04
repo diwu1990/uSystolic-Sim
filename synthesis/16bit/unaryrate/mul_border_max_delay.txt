@@ -6,62 +6,69 @@ Report : timing
         -max_paths 1
 Design : mul_border
 Version: Q-2019.12-SP3
-Date   : Sun Jan 24 02:58:16 2021
+Date   : Thu Feb  4 11:26:12 2021
 ****************************************
 
-Operating Conditions: NCCOM   Library: tcbn40lpbwptc
-Wire Load Model Mode: segmented
+Operating Conditions: tt0p85v25c   Library: saed32rvt_tt0p85v25c
+Wire Load Model Mode: enclosed
 
   Startpoint: i_data_i[1]
               (input port clocked by clk)
-  Endpoint: o_bit (output port clocked by clk)
+  Endpoint: U_sobol_W/cnt_reg[15]
+            (rising edge-triggered flip-flop clocked by clk)
   Path Group: clk
   Path Type: max
 
   Des/Clust/Port     Wire Load Model       Library
   ------------------------------------------------
-  mul_border         TSMC32K_Lowk_Conservative
-                                           tcbn40lpbwptc
+  mul_border         8000                  saed32rvt_tt0p85v25c
 
-  Point                                    Incr       Path
-  -----------------------------------------------------------
-  clock clk (rise edge)                    0.00       0.00
-  clock network delay (ideal)              0.00       0.00
-  input external delay                     0.25       0.25 f
-  i_data_i[1] (in)                         0.00       0.25 f
-  U389/ZN (OAI211D1BWP)                    0.04       0.29 r
-  U394/ZN (IOA21D1BWP)                     0.04       0.33 f
-  U128/Z (OR2D1BWP)                        0.06       0.39 f
-  U127/Z (AO222D1BWP)                      0.12       0.51 f
-  U430/Z (OA221D1BWP)                      0.06       0.57 f
-  U125/Z (AO221D1BWP)                      0.12       0.69 f
-  U429/Z (OA221D1BWP)                      0.06       0.75 f
-  U123/Z (AO221D1BWP)                      0.12       0.87 f
-  U400/Z (OA221D1BWP)                      0.06       0.93 f
-  U121/Z (AO221D1BWP)                      0.12       1.06 f
-  U410/Z (OA221D1BWP)                      0.06       1.11 f
-  U119/Z (AO221D1BWP)                      0.12       1.24 f
-  U409/Z (OA221D1BWP)                      0.06       1.29 f
-  U397/ZN (AOI221D4BWP)                    0.16       1.46 r
-  U288/ZN (OAI22D2BWP)                     0.04       1.49 f
-  U395/Z (BUFFD6BWP)                       0.07       1.57 f
-  U329/ZN (INVD1BWP)                       0.06       1.62 r
-  U296/ZN (NR2XD0BWP)                      0.05       1.67 f
-  U297/ZN (NR2D3BWP)                       0.07       1.75 r
-  U294/ZN (CKND16BWP)                      0.07       1.82 f
-  o_bit (out)                              0.00       1.82 f
-  data arrival time                                   1.82
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                    0.25       0.25 r
+  i_data_i[1] (in)                                        0.00       0.25 r
+  U240/Y (OA21X1_RVT)                                     0.06       0.31 r
+  U239/Y (AO22X1_RVT)                                     0.07       0.39 r
+  U238/Y (OR2X1_RVT)                                      0.06       0.45 r
+  U382/Y (AOI222X1_RVT)                                   0.12       0.57 f
+  U381/Y (AO221X1_RVT)                                    0.07       0.63 f
+  U383/Y (NAND3X0_RVT)                                    0.05       0.68 r
+  U234/Y (OA221X1_RVT)                                    0.07       0.76 r
+  U233/Y (AO221X1_RVT)                                    0.08       0.83 r
+  U396/Y (AND3X1_RVT)                                     0.07       0.90 r
+  U231/Y (AO221X1_RVT)                                    0.08       0.98 r
+  U393/Y (NAND3X0_RVT)                                    0.05       1.03 f
+  U390/Y (NAND3X0_RVT)                                    0.05       1.09 r
+  U389/Y (OAI221X1_RVT)                                   0.09       1.18 f
+  U386/Y (NAND3X0_RVT)                                    0.04       1.22 r
+  U226/Y (OA221X1_RVT)                                    0.07       1.30 r
+  U408/Y (AO21X2_RVT)                                     0.08       1.38 r
+  U223/Y (AND3X1_RVT)                                     0.10       1.48 r
+  U221/Y (AND3X1_RVT)                                     0.09       1.57 r
+  U219/Y (AND3X1_RVT)                                     0.09       1.67 r
+  U349/Y (AND3X1_RVT)                                     0.08       1.75 r
+  U348/Y (AND2X1_RVT)                                     0.07       1.82 r
+  U214/Y (NAND3X0_RVT)                                    0.08       1.90 f
+  U213/Y (NOR2X0_RVT)                                     0.12       2.02 r
+  U211/Y (NAND3X0_RVT)                                    0.06       2.08 f
+  U210/Y (OR2X1_RVT)                                      0.08       2.16 f
+  U347/Y (XOR2X1_RVT)                                     0.11       2.28 r
+  U_sobol_W/cnt_reg[15]/D (DFFARX1_RVT)                   0.01       2.29 r
+  data arrival time                                                  2.29
 
-  clock clk (rise edge)                    2.50       2.50
-  clock network delay (ideal)              0.00       2.50
-  clock uncertainty                       -0.15       2.35
-  output external delay                   -0.50       1.85
-  data required time                                  1.85
-  -----------------------------------------------------------
-  data required time                                  1.85
-  data arrival time                                  -1.82
-  -----------------------------------------------------------
-  slack (MET)                                         0.03
+  clock clk (rise edge)                                   2.50       2.50
+  clock network delay (ideal)                             0.00       2.50
+  clock uncertainty                                      -0.15       2.35
+  U_sobol_W/cnt_reg[15]/CLK (DFFARX1_RVT)                 0.00       2.35 r
+  library setup time                                     -0.06       2.29
+  data required time                                                 2.29
+  --------------------------------------------------------------------------
+  data required time                                                 2.29
+  data arrival time                                                 -2.29
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
 
 
 1

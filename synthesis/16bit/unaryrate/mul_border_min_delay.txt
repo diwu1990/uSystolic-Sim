@@ -6,11 +6,11 @@ Report : timing
         -max_paths 1
 Design : mul_border
 Version: Q-2019.12-SP3
-Date   : Sun Jan 24 02:58:16 2021
+Date   : Thu Feb  4 11:26:12 2021
 ****************************************
 
-Operating Conditions: NCCOM   Library: tcbn40lpbwptc
-Wire Load Model Mode: segmented
+Operating Conditions: tt0p85v25c   Library: saed32rvt_tt0p85v25c
+Wire Load Model Mode: enclosed
 
   Startpoint: U_sobol_I/cnt_reg[0]
               (rising edge-triggered flip-flop clocked by clk)
@@ -21,30 +21,29 @@ Wire Load Model Mode: segmented
 
   Des/Clust/Port     Wire Load Model       Library
   ------------------------------------------------
-  mul_border         TSMC32K_Lowk_Conservative
-                                           tcbn40lpbwptc
+  mul_border         8000                  saed32rvt_tt0p85v25c
 
   Point                                                   Incr       Path
   --------------------------------------------------------------------------
   clock clk (rise edge)                                   0.00       0.00
   clock network delay (ideal)                             0.00       0.00
-  U_sobol_I/cnt_reg[0]/CP (DFCNQD1BWP)                    0.00       0.00 r
-  U_sobol_I/cnt_reg[0]/Q (DFCNQD1BWP)                     0.14       0.14 r
-  U282/ZN (CKND0BWP)                                      0.03       0.18 f
-  U_sobol_I/cnt_reg[0]/D (DFCNQD1BWP)                     0.00       0.18 f
-  data arrival time                                                  0.18
+  U_sobol_I/cnt_reg[0]/CLK (DFFARX1_RVT)                  0.00       0.00 r
+  U_sobol_I/cnt_reg[0]/QN (DFFARX1_RVT)                   0.09       0.09 f
+  U303/Y (NBUFFX2_RVT)                                    0.06       0.15 f
+  U_sobol_I/cnt_reg[0]/D (DFFARX1_RVT)                    0.01       0.16 f
+  data arrival time                                                  0.16
 
   clock clk (rise edge)                                   0.00       0.00
   clock network delay (ideal)                             0.00       0.00
   clock uncertainty                                       0.15       0.15
-  U_sobol_I/cnt_reg[0]/CP (DFCNQD1BWP)                    0.00       0.15 r
-  library hold time                                       0.03       0.18
-  data required time                                                 0.18
+  U_sobol_I/cnt_reg[0]/CLK (DFFARX1_RVT)                  0.00       0.15 r
+  library hold time                                      -0.01       0.14
+  data required time                                                 0.14
   --------------------------------------------------------------------------
-  data required time                                                 0.18
-  data arrival time                                                 -0.18
+  data required time                                                 0.14
+  data arrival time                                                 -0.16
   --------------------------------------------------------------------------
-  slack (MET)                                                        0.00
+  slack (MET)                                                        0.02
 
 
 1
