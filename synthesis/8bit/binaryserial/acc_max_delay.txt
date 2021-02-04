@@ -6,13 +6,13 @@ Report : timing
         -max_paths 1
 Design : acc
 Version: Q-2019.12-SP3
-Date   : Sun Jan 24 02:18:23 2021
+Date   : Thu Feb  4 11:13:39 2021
 ****************************************
 
-Operating Conditions: NCCOM   Library: tcbn40lpbwptc
-Wire Load Model Mode: segmented
+Operating Conditions: tt0p85v25c   Library: saed32rvt_tt0p85v25c
+Wire Load Model Mode: enclosed
 
-  Startpoint: sum_i[1] (input port clocked by clk)
+  Startpoint: acc (input port clocked by clk)
   Endpoint: sum_o_reg[31]
             (rising edge-triggered flip-flop clocked by clk)
   Path Group: clk
@@ -20,65 +20,59 @@ Wire Load Model Mode: segmented
 
   Des/Clust/Port     Wire Load Model       Library
   ------------------------------------------------
-  acc                TSMC32K_Lowk_Conservative
-                                           tcbn40lpbwptc
+  acc                8000                  saed32rvt_tt0p85v25c
 
   Point                                    Incr       Path
   -----------------------------------------------------------
   clock clk (rise edge)                    0.00       0.00
   clock network delay (ideal)              0.00       0.00
-  input external delay                     0.25       0.25 f
-  sum_i[1] (in)                            0.00       0.25 f
-  U437/ZN (CKND1BWP)                       0.01       0.26 r
-  U435/Z (OA221D1BWP)                      0.09       0.35 r
-  U352/ZN (IAO21D1BWP)                     0.08       0.43 r
-  U378/ZN (IAO21D2BWP)                     0.08       0.51 r
-  U470/ZN (OAI21D1BWP)                     0.04       0.55 f
-  U440/ZN (IND2D1BWP)                      0.03       0.58 r
-  U434/Z (OR2D1BWP)                        0.05       0.63 r
-  U429/ZN (ND2D2BWP)                       0.03       0.66 f
-  U380/ZN (AOI21D2BWP)                     0.04       0.70 r
-  U379/ZN (OAI21D4BWP)                     0.04       0.73 f
-  U474/ZN (AOI21D2BWP)                     0.06       0.79 r
-  U426/ZN (OAI21D4BWP)                     0.03       0.82 f
-  U485/Z (AO21D1BWP)                       0.06       0.88 f
-  U472/ZN (AOI21D1BWP)                     0.04       0.92 r
-  U254/ZN (IAO21D2BWP)                     0.07       0.99 r
-  U432/ZN (OAI21D4BWP)                     0.03       1.02 f
-  U461/Z (AO21D1BWP)                       0.05       1.07 f
-  U460/Z (AO21D1BWP)                       0.05       1.13 f
-  U477/ZN (AOI21D1BWP)                     0.03       1.16 r
-  U449/ZN (IAO21D2BWP)                     0.07       1.23 r
-  U370/ZN (IAO21D2BWP)                     0.07       1.30 r
-  U372/ZN (IAO21D2BWP)                     0.07       1.36 r
-  U371/ZN (IAO21D2BWP)                     0.07       1.43 r
-  U447/ZN (IAO21D2BWP)                     0.07       1.50 r
-  U374/ZN (IAO21D2BWP)                     0.07       1.57 r
-  U376/ZN (IAO21D2BWP)                     0.07       1.63 r
-  U375/ZN (IAO21D2BWP)                     0.07       1.70 r
-  U446/ZN (IAO21D2BWP)                     0.07       1.77 r
-  U347/ZN (IAO21D2BWP)                     0.07       1.83 r
-  U354/ZN (IAO21D1BWP)                     0.09       1.93 r
-  U428/ZN (IAO21D1BWP)                     0.09       2.02 r
-  U596/ZN (IND2D1BWP)                      0.04       2.05 f
-  U349/ZN (MAOI22D1BWP)                    0.05       2.11 r
-  U348/CON (FCICOND1BWP)                   0.06       2.16 f
-  U541/Z (XOR3D1BWP)                       0.08       2.24 f
-  U540/ZN (OAI22D1BWP)                     0.06       2.29 r
-  sum_o_reg[31]/D (DFCND2BWP)              0.00       2.29 r
+  input external delay                     0.25       0.25 r
+  acc (in)                                 0.00       0.25 r
+  U330/Y (MUX21X2_RVT)                     0.12       0.37 f
+  U486/Y (NAND2X0_RVT)                     0.07       0.44 r
+  U369/Y (INVX0_RVT)                       0.04       0.48 f
+  U367/Y (NAND2X0_RVT)                     0.06       0.53 r
+  U348/Y (NAND3X0_RVT)                     0.06       0.59 f
+  U350/Y (NAND3X0_RVT)                     0.07       0.66 r
+  U352/Y (NAND2X0_RVT)                     0.05       0.71 f
+  U353/Y (NAND2X0_RVT)                     0.05       0.76 r
+  U355/Y (AO22X1_RVT)                      0.07       0.83 r
+  U346/Y (NAND2X0_RVT)                     0.04       0.88 f
+  U555/Y (AO221X1_RVT)                     0.10       0.98 f
+  U389/Y (NAND2X0_RVT)                     0.05       1.03 r
+  U328/Y (NAND2X0_RVT)                     0.06       1.09 f
+  U392/Y (NAND2X0_RVT)                     0.06       1.15 r
+  U393/Y (AND2X1_RVT)                      0.06       1.21 r
+  U461/Y (AND2X1_RVT)                      0.06       1.27 r
+  U390/Y (NAND2X0_RVT)                     0.05       1.32 f
+  U383/Y (NAND2X0_RVT)                     0.06       1.38 r
+  U384/Y (AND2X1_RVT)                      0.06       1.44 r
+  U616/Y (NAND3X0_RVT)                     0.07       1.50 f
+  U622/Y (NAND2X0_RVT)                     0.08       1.59 r
+  U637/Y (NAND2X0_RVT)                     0.05       1.63 f
+  U638/Y (NAND3X0_RVT)                     0.05       1.69 r
+  U639/Y (NAND3X0_RVT)                     0.07       1.76 f
+  U642/Y (NAND2X0_RVT)                     0.08       1.84 r
+  U658/Y (NAND2X0_RVT)                     0.04       1.88 f
+  U391/Y (NAND2X0_RVT)                     0.05       1.94 r
+  U310/Y (OAI221X2_RVT)                    0.10       2.04 f
+  U308/Y (OAI21X1_RVT)                     0.12       2.16 r
+  U327/Y (NAND3X0_RVT)                     0.06       2.22 f
+  U667/Y (NAND4X0_RVT)                     0.06       2.28 r
+  sum_o_reg[31]/D (DFFARX1_RVT)            0.01       2.29 r
   data arrival time                                   2.29
 
   clock clk (rise edge)                    2.50       2.50
   clock network delay (ideal)              0.00       2.50
   clock uncertainty                       -0.15       2.35
-  sum_o_reg[31]/CP (DFCND2BWP)             0.00       2.35 r
-  library setup time                      -0.04       2.31
-  data required time                                  2.31
+  sum_o_reg[31]/CLK (DFFARX1_RVT)          0.00       2.35 r
+  library setup time                      -0.06       2.29
+  data required time                                  2.29
   -----------------------------------------------------------
-  data required time                                  2.31
+  data required time                                  2.29
   data arrival time                                  -2.29
   -----------------------------------------------------------
-  slack (MET)                                         0.02
+  slack (VIOLATED: increase significant digits)       0.00
 
 
 1

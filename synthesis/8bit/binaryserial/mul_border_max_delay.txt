@@ -6,51 +6,48 @@ Report : timing
         -max_paths 1
 Design : mul_border
 Version: Q-2019.12-SP3
-Date   : Sun Jan 24 02:19:00 2021
+Date   : Thu Feb  4 11:14:02 2021
 ****************************************
 
-Operating Conditions: NCCOM   Library: tcbn40lpbwptc
-Wire Load Model Mode: segmented
+Operating Conditions: tt0p85v25c   Library: saed32rvt_tt0p85v25c
+Wire Load Model Mode: enclosed
 
-  Startpoint: i_data0[1] (input port clocked by clk)
+  Startpoint: cnt_reg[0] (rising edge-triggered flip-flop clocked by clk)
   Endpoint: o_data[15] (output port clocked by clk)
   Path Group: clk
   Path Type: max
 
   Des/Clust/Port     Wire Load Model       Library
   ------------------------------------------------
-  mul_border         TSMC32K_Lowk_Conservative
-                                           tcbn40lpbwptc
+  mul_border         ForQA                 saed32rvt_tt0p85v25c
 
   Point                                    Incr       Path
   -----------------------------------------------------------
   clock clk (rise edge)                    0.00       0.00
   clock network delay (ideal)              0.00       0.00
-  input external delay                     0.25       0.25 f
-  i_data0[1] (in)                          0.00       0.25 f
-  U114/Z (AO33D1BWP)                       0.09       0.34 f
-  U102/ZN (AOI221D4BWP)                    0.16       0.50 r
-  U100/ZN (NR2D3BWP)                       0.02       0.52 f
-  U99/ZN (NR2XD2BWP)                       0.06       0.58 r
-  U120/ZN (INR3D0BWP)                      0.05       0.64 f
-  U64/CO (FA1D1BWP)                        0.07       0.71 f
-  add_28/U1_3/CO (FA1D1BWP)                0.07       0.78 f
-  U26/CO (FA1D1BWP)                        0.07       0.84 f
-  U48/CO (FA1D1BWP)                        0.07       0.91 f
-  U45/CO (FA1D1BWP)                        0.06       0.97 f
-  U27/CO (FA1D0BWP)                        0.08       1.06 f
-  U28/CO (FA1D0BWP)                        0.09       1.15 f
-  U29/CO (FA1D1BWP)                        0.08       1.22 f
-  U104/ZN (CKND2D0BWP)                     0.04       1.26 r
-  U103/ZN (ND3D1BWP)                       0.05       1.31 f
-  U42/CO (FA1D0BWP)                        0.09       1.40 f
-  U39/CO (FA1D0BWP)                        0.08       1.48 f
-  U36/CO (FA1D0BWP)                        0.08       1.57 f
-  U24/CO (FA1D0BWP)                        0.09       1.65 f
-  U23/Z (XOR3D1BWP)                        0.10       1.75 r
-  U88/Z (CKBD16BWP)                        0.09       1.84 r
-  o_data[15] (out)                         0.00       1.84 r
-  data arrival time                                   1.84
+  cnt_reg[0]/CLK (DFFARX1_RVT)             0.00       0.00 r
+  cnt_reg[0]/Q (DFFARX1_RVT)               0.16       0.16 r
+  U51/Y (AND2X1_RVT)                       0.08       0.24 r
+  U41/Y (AO22X1_RVT)                       0.09       0.33 r
+  U40/Y (AO221X1_RVT)                      0.09       0.42 r
+  U137/Y (MUX21X2_RVT)                     0.11       0.53 r
+  U109/Y (AND3X1_RVT)                      0.09       0.62 r
+  U113/Y (AO21X1_RVT)                      0.06       0.69 r
+  U114/Y (AO21X1_RVT)                      0.08       0.77 r
+  U115/Y (AO21X1_RVT)                      0.08       0.85 r
+  U116/Y (AO21X1_RVT)                      0.08       0.93 r
+  U117/Y (AO21X1_RVT)                      0.08       1.01 r
+  U118/Y (AO21X1_RVT)                      0.08       1.09 r
+  U119/Y (AO21X1_RVT)                      0.08       1.17 r
+  U120/Y (AO21X1_RVT)                      0.08       1.25 r
+  U110/Y (AND2X1_RVT)                      0.06       1.31 r
+  U95/Y (OA21X1_RVT)                       0.08       1.39 r
+  add_28/U1_12/CO (FADDX1_RVT)             0.12       1.51 r
+  add_28/U1_13/CO (FADDX1_RVT)             0.12       1.63 r
+  add_28/U1_14/CO (FADDX1_RVT)             0.12       1.75 r
+  U54/Y (XNOR3X1_RVT)                      0.10       1.85 r
+  o_data[15] (out)                         0.01       1.85 r
+  data arrival time                                   1.85
 
   clock clk (rise edge)                    2.50       2.50
   clock network delay (ideal)              0.00       2.50
@@ -59,9 +56,9 @@ Wire Load Model Mode: segmented
   data required time                                  1.85
   -----------------------------------------------------------
   data required time                                  1.85
-  data arrival time                                  -1.84
+  data arrival time                                  -1.85
   -----------------------------------------------------------
-  slack (MET)                                         0.01
+  slack (VIOLATED: increase significant digits)       0.00
 
 
 1
