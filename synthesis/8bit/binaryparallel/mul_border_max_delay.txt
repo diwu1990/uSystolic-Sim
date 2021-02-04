@@ -6,47 +6,48 @@ Report : timing
         -max_paths 1
 Design : mul_border
 Version: Q-2019.12-SP3
-Date   : Sat Jan 23 20:55:45 2021
+Date   : Thu Feb  4 11:10:32 2021
 ****************************************
 
-Operating Conditions: NCCOM   Library: tcbn40lpbwptc
-Wire Load Model Mode: segmented
+Operating Conditions: tt0p85v25c   Library: saed32rvt_tt0p85v25c
+Wire Load Model Mode: enclosed
 
-  Startpoint: i_data1[1] (input port)
-  Endpoint: o_data[14] (output port)
+  Startpoint: i_data0[0] (input port)
+  Endpoint: o_data[15] (output port)
   Path Group: (none)
   Path Type: max
 
   Des/Clust/Port     Wire Load Model       Library
   ------------------------------------------------
-  mul_border         TSMC32K_Lowk_Conservative
-                                           tcbn40lpbwptc
+  mul_border         8000                  saed32rvt_tt0p85v25c
 
   Point                                    Incr       Path
   -----------------------------------------------------------
   input external delay                     0.00       0.00 r
-  i_data1[1] (in)                          0.00       0.00 r
-  U226/ZN (CKND2D0BWP)                     0.05       0.05 f
-  U225/ZN (NR3D0BWP)                       0.08       0.13 r
-  mult_9/S1_2_0/CO (FA1D0BWP)              0.15       0.28 r
-  mult_9/S1_3_0/CO (FA1D0BWP)              0.13       0.41 r
-  mult_9/S1_4_0/CO (FA1D0BWP)              0.13       0.54 r
-  mult_9/S1_5_0/CO (FA1D0BWP)              0.13       0.67 r
-  mult_9/S1_6_0/CO (FA1D0BWP)              0.13       0.80 r
-  mult_9/S4_0/S (FA1D0BWP)                 0.15       0.95 f
-  mult_9/S14_7_0/CO (FA1D0BWP)             0.08       1.03 f
-  U215/ZN (CKND0BWP)                       0.04       1.07 r
-  U146/ZN (NR2XD0BWP)                      0.05       1.13 f
-  U171/ZN (OAI21D1BWP)                     0.06       1.19 r
-  U209/Z (OA21D0BWP)                       0.08       1.27 r
-  U203/ZN (IOA21D0BWP)                     0.08       1.35 r
-  U201/Z (OA21D0BWP)                       0.08       1.43 r
-  U167/ZN (AOI21D1BWP)                     0.04       1.48 f
-  U197/ZN (NR2D0BWP)                       0.07       1.54 r
-  U174/Z (XOR2D2BWP)                       0.12       1.66 f
-  U175/ZN (INVD16BWP)                      0.07       1.73 r
-  o_data[14] (out)                         0.00       1.73 r
-  data arrival time                                   1.73
+  i_data0[0] (in)                          0.00       0.00 r
+  U233/Y (INVX0_RVT)                       0.04       0.04 f
+  U232/Y (NAND2X0_RVT)                     0.05       0.09 r
+  U221/Y (AND2X1_RVT)                      0.07       0.15 r
+  U220/Y (MUX21X1_RVT)                     0.08       0.23 r
+  U219/Y (AO21X1_RVT)                      0.06       0.30 r
+  mult_9/S2_2_5/S (FADDX1_RVT)             0.17       0.46 f
+  mult_9/S2_3_4/S (FADDX1_RVT)             0.17       0.64 r
+  mult_9/S2_4_3/S (FADDX1_RVT)             0.17       0.80 f
+  mult_9/S2_5_2/S (FADDX1_RVT)             0.17       0.98 r
+  mult_9/S2_6_1/S (FADDX1_RVT)             0.17       1.14 f
+  mult_9/S4_0/S (FADDX1_RVT)               0.17       1.32 r
+  mult_9/S14_7_0/CO (FADDX1_RVT)           0.12       1.43 r
+  U166/Y (NAND3X0_RVT)                     0.07       1.50 f
+  U165/Y (NAND2X0_RVT)                     0.08       1.58 r
+  U164/Y (NAND2X0_RVT)                     0.07       1.65 f
+  U152/Y (OA21X1_RVT)                      0.11       1.75 f
+  U145/Y (OA21X1_RVT)                      0.08       1.84 f
+  U139/Y (OAI21X1_RVT)                     0.12       1.96 r
+  U136/Y (AO221X1_RVT)                     0.11       2.07 r
+  U132/Y (NAND2X0_RVT)                     0.06       2.13 f
+  U131/Y (XNOR3X1_RVT)                     0.10       2.23 r
+  o_data[15] (out)                         0.00       2.23 r
+  data arrival time                                   2.23
   -----------------------------------------------------------
   (Path is unconstrained)
 
