@@ -33,8 +33,7 @@ set_load 0.1 [all_outputs]
 #############################################################
 # Wire load model allows it to estimate internal parasitics #
 #############################################################
-set_wire_load_model -name TSMC32K_Lowk_Conservative \
--library tcbn40lpbwptc
+# set_wire_load_model -name TSMC32K_Lowk_Conservative -library tcbn40lpbwptc
 
 ######################################################
 # Max transition time is important for Hot-E reasons #

@@ -16,8 +16,8 @@
 
 # Select target Vt by uncommenting one of the lines below:
 # _lvt => Low Vt (fast but leaky)  _rvt => Regular Vt  _hvt => high Vt (slower # but low leakage)
-set VT lvt
-# set VT rvt
+# set VT lvt
+set VT rvt
 # set VT hvt
 #
 # Select process corner for NMOS/PMOS by uncommenting one of the lines below:
