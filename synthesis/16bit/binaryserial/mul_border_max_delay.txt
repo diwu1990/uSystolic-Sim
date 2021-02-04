@@ -6,65 +6,50 @@ Report : timing
         -max_paths 1
 Design : mul_border
 Version: Q-2019.12-SP3
-Date   : Sun Jan 24 02:20:48 2021
+Date   : Thu Feb  4 11:23:53 2021
 ****************************************
 
-Operating Conditions: NCCOM   Library: tcbn40lpbwptc
-Wire Load Model Mode: segmented
+Operating Conditions: tt0p85v25c   Library: saed32rvt_tt0p85v25c
+Wire Load Model Mode: enclosed
 
-  Startpoint: i_data0[3] (input port clocked by clk)
-  Endpoint: o_data[29] (output port clocked by clk)
+  Startpoint: cnt_reg[1] (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: o_data[31] (output port clocked by clk)
   Path Group: clk
   Path Type: max
 
   Des/Clust/Port     Wire Load Model       Library
   ------------------------------------------------
-  mul_border         TSMC32K_Lowk_Conservative
-                                           tcbn40lpbwptc
+  mul_border         8000                  saed32rvt_tt0p85v25c
 
   Point                                    Incr       Path
   -----------------------------------------------------------
   clock clk (rise edge)                    0.00       0.00
   clock network delay (ideal)              0.00       0.00
-  input external delay                     0.25       0.25 f
-  i_data0[3] (in)                          0.00       0.25 f
-  U299/ZN (ND2D1BWP)                       0.01       0.26 r
-  U220/ZN (ND3D1BWP)                       0.04       0.30 f
-  U219/Z (AO221D1BWP)                      0.14       0.44 f
-  U408/Z (AN4D4BWP)                        0.07       0.51 f
-  U364/ZN (CKND12BWP)                      0.03       0.54 r
-  U478/ZN (OAI21D1BWP)                     0.03       0.57 f
-  U291/ZN (CKND1BWP)                       0.03       0.60 r
-  U322/Z (OA21D1BWP)                       0.07       0.67 r
-  U316/ZN (INVD2BWP)                       0.02       0.69 f
-  U222/ZN (ND3D1BWP)                       0.02       0.71 r
-  U221/ZN (ND2D1BWP)                       0.04       0.75 f
-  U223/ZN (ND2D1BWP)                       0.04       0.79 r
-  U211/ZN (CKND2BWP)                       0.02       0.81 f
-  U298/ZN (OAI31D2BWP)                     0.05       0.86 r
-  U297/ZN (OAI32D2BWP)                     0.05       0.91 f
-  U292/ZN (CKND2BWP)                       0.03       0.93 r
-  U307/ZN (CKND2D3BWP)                     0.02       0.96 f
-  U304/Z (AN3D4BWP)                        0.05       1.01 f
-  U305/ZN (NR2XD4BWP)                      0.02       1.03 r
-  U309/ZN (OAI211D4BWP)                    0.05       1.08 f
-  U360/ZN (OAI21D1BWP)                     0.06       1.13 r
-  U212/ZN (IOA21D2BWP)                     0.04       1.17 f
-  U336/ZN (ND2D2BWP)                       0.03       1.21 r
-  U335/ZN (ND4D2BWP)                       0.06       1.26 f
-  U345/ZN (IIND4D2BWP)                     0.04       1.30 r
-  U311/ZN (OAI211D2BWP)                    0.05       1.36 f
-  U462/ZN (MAOI222D1BWP)                   0.07       1.42 r
-  U457/ZN (OAI21D1BWP)                     0.05       1.48 f
-  U310/ZN (CKND2BWP)                       0.02       1.50 r
-  U456/ZN (INVD1BWP)                       0.02       1.52 f
-  U463/ZN (IOA21D0BWP)                     0.03       1.55 r
-  U330/ZN (ND2D1BWP)                       0.04       1.59 f
-  U321/ZN (CKND1BWP)                       0.03       1.62 r
-  U445/Z (OA21D1BWP)                       0.06       1.67 r
-  U237/Z (XOR3D4BWP)                       0.11       1.78 f
-  U405/ZN (CKND16BWP)                      0.07       1.85 r
-  o_data[29] (out)                         0.00       1.85 r
+  cnt_reg[1]/CLK (DFFARX1_RVT)             0.00       0.00 r
+  cnt_reg[1]/Q (DFFARX1_RVT)               0.16       0.16 r
+  U369/Y (NAND2X0_RVT)                     0.05       0.21 f
+  U318/Y (NOR2X1_RVT)                      0.10       0.31 r
+  U412/Y (AO221X1_RVT)                     0.10       0.41 r
+  U413/Y (NAND2X0_RVT)                     0.05       0.46 f
+  U324/Y (AND2X1_RVT)                      0.08       0.54 f
+  U335/Y (NAND2X4_RVT)                     0.11       0.65 r
+  U304/Y (NAND2X0_RVT)                     0.12       0.77 f
+  U302/Y (NBUFFX2_RVT)                     0.13       0.90 f
+  U463/Y (NAND2X0_RVT)                     0.12       1.02 r
+  U334/Y (NAND3X0_RVT)                     0.07       1.09 f
+  U306/Y (INVX0_RVT)                       0.05       1.15 r
+  U310/Y (AND2X1_RVT)                      0.06       1.21 r
+  U307/Y (NAND2X0_RVT)                     0.04       1.25 f
+  U308/Y (NAND2X0_RVT)                     0.05       1.30 r
+  U527/Y (NAND3X0_RVT)                     0.06       1.36 f
+  U303/Y (INVX0_RVT)                       0.05       1.41 r
+  U288/Y (AO21X1_RVT)                      0.08       1.49 r
+  U277/Y (AOI22X1_RVT)                     0.10       1.59 f
+  U286/Y (AO21X1_RVT)                      0.06       1.65 f
+  U388/Y (NAND2X0_RVT)                     0.05       1.70 r
+  U544/Y (OA221X1_RVT)                     0.07       1.78 r
+  U545/Y (OA221X1_RVT)                     0.07       1.84 r
+  o_data[31] (out)                         0.00       1.85 r
   data arrival time                                   1.85
 
   clock clk (rise edge)                    2.50       2.50

@@ -6,11 +6,11 @@ Report : timing
         -max_paths 1
 Design : mul_inner
 Version: Q-2019.12-SP3
-Date   : Sun Jan 24 02:21:03 2021
+Date   : Thu Feb  4 11:24:03 2021
 ****************************************
 
-Operating Conditions: NCCOM   Library: tcbn40lpbwptc
-Wire Load Model Mode: segmented
+Operating Conditions: tt0p85v25c   Library: saed32rvt_tt0p85v25c
+Wire Load Model Mode: enclosed
 
   Startpoint: cnt_reg[0] (rising edge-triggered flip-flop clocked by clk)
   Endpoint: cnt_reg[0] (rising edge-triggered flip-flop clocked by clk)
@@ -19,30 +19,30 @@ Wire Load Model Mode: segmented
 
   Des/Clust/Port     Wire Load Model       Library
   ------------------------------------------------
-  mul_inner          TSMC32K_Lowk_Conservative
-                                           tcbn40lpbwptc
+  mul_inner          8000                  saed32rvt_tt0p85v25c
 
   Point                                    Incr       Path
   -----------------------------------------------------------
   clock clk (rise edge)                    0.00       0.00
   clock network delay (ideal)              0.00       0.00
-  cnt_reg[0]/CP (DFCND1BWP)                0.00       0.00 r
-  cnt_reg[0]/QN (DFCND1BWP)                0.16       0.16 f
-  U467/Z (AN2XD1BWP)                       0.04       0.20 f
-  cnt_reg[0]/D (DFCND1BWP)                 0.00       0.20 f
-  data arrival time                                   0.20
+  cnt_reg[0]/CLK (DFFARX1_RVT)             0.00       0.00 r
+  cnt_reg[0]/QN (DFFARX1_RVT)              0.11       0.11 f
+  U395/Y (NAND2X0_RVT)                     0.07       0.18 r
+  U396/Y (INVX1_RVT)                       0.03       0.21 f
+  cnt_reg[0]/D (DFFARX1_RVT)               0.01       0.22 f
+  data arrival time                                   0.22
 
   clock clk (rise edge)                    0.00       0.00
   clock network delay (ideal)              0.00       0.00
   clock uncertainty                        0.15       0.15
-  cnt_reg[0]/CP (DFCND1BWP)                0.00       0.15 r
-  library hold time                        0.03       0.18
-  data required time                                  0.18
+  cnt_reg[0]/CLK (DFFARX1_RVT)             0.00       0.15 r
+  library hold time                       -0.02       0.13
+  data required time                                  0.13
   -----------------------------------------------------------
-  data required time                                  0.18
-  data arrival time                                  -0.20
+  data required time                                  0.13
+  data arrival time                                  -0.22
   -----------------------------------------------------------
-  slack (MET)                                         0.02
+  slack (MET)                                         0.08
 
 
 1
