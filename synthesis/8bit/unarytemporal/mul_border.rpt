@@ -21,12 +21,12 @@
 Initializing...
 # ECE552 Extra Credit
 read_file -format sverilog {mul_border.sv}
-Loading db file '/cae/apps/data/tsmclibs-2013/digital/Front_End/timing_power_noise/NLDM/tcbn40lpbwp_120b/tcbn40lpbwptc.db'
-Loading db file '/cae/apps/data/tsmclibs-2013/digital/Front_End/timing_power_noise/NLDM/tpfn45gsgv18_120a/tpfn45gsgv18tc.db'
+Loading db file '/cae/apps/data/saed32_edk-2018/lib/stdcell_rvt/db_nldm/saed32rvt_tt0p85v25c.db'
+Loading db file '/cae/apps/data/saed32_edk-2018/lib/io_std/db_nldm/saed32io_wb_tt1p05v25c_2p5v.db'
 Loading db file '/cae/apps/data/synopsys-2020/syn/Q-2019.12-SP3/libraries/syn/gtech.db'
 Loading db file '/cae/apps/data/synopsys-2020/syn/Q-2019.12-SP3/libraries/syn/standard.sldb'
-  Loading link library 'tcbn40lpbwptc'
-  Loading link library 'tpfn45gsgv18tc'
+  Loading link library 'saed32rvt_tt0p85v25c'
+  Loading link library 'saed32io_wb_tt1p05v25c_2p5v'
   Loading link library 'gtech'
 Detecting input file type automatically (-rtl or -netlist).
 Reading with Presto HDL Compiler (equivalent to -rtl option).
@@ -86,8 +86,8 @@ link
   Using the following designs and libraries:
   --------------------------------------------------------------------------
   mul_border                  /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/8bit/unarytemporal/mul_border.db
-  tcbn40lpbwptc (library)     /cae/apps/data/tsmclibs-2013/digital/Front_End/timing_power_noise/NLDM/tcbn40lpbwp_120b/tcbn40lpbwptc.db
-  tpfn45gsgv18tc (library)    /cae/apps/data/tsmclibs-2013/digital/Front_End/timing_power_noise/NLDM/tpfn45gsgv18_120a/tpfn45gsgv18tc.db
+  saed32rvt_tt0p85v25c (library) /cae/apps/data/saed32_edk-2018/lib/stdcell_rvt/db_nldm/saed32rvt_tt0p85v25c.db
+  saed32io_wb_tt1p05v25c_2p5v (library) /cae/apps/data/saed32_edk-2018/lib/io_std/db_nldm/saed32io_wb_tt1p05v25c_2p5v.db
   sobol8                      /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/8bit/unarytemporal/sobol8.db
 
 1
@@ -127,8 +127,7 @@ set_load 0.1 [all_outputs]
 #############################################################
 # Wire load model allows it to estimate internal parasitics #
 #############################################################
-set_wire_load_model -name TSMC32K_Lowk_Conservative -library tcbn40lpbwptc
-1
+# set_wire_load_model -name TSMC32K_Lowk_Conservative -library tcbn40lpbwptc
 ######################################################
 # Max transition time is important for Hot-E reasons #
 ######################################################
@@ -152,26 +151,13 @@ Information: Evaluating DesignWare library utilization. (UISN-27)
 Information: There are 3 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
 
 
-Warning: IO pad 'PVSS3DGZ' is unusable: unknown logic function.  (OPT-1022)
-Warning: IO pad 'PVSS2DGZ' is unusable: unknown logic function.  (OPT-1022)
-Warning: IO pad 'PVSS2ANA' is unusable: unknown logic function.  (OPT-1022)
-Warning: IO pad 'PVSS1DGZ' is unusable: unknown logic function.  (OPT-1022)
-Warning: IO pad 'PVSS1ANA' is unusable: unknown logic function.  (OPT-1022)
-Warning: IO pad 'PVDD2POC' is unusable: unknown logic function.  (OPT-1022)
-Warning: IO pad 'PVDD2DGZ' is unusable: unknown logic function.  (OPT-1022)
-Warning: IO pad 'PVDD2ANA' is unusable: unknown logic function.  (OPT-1022)
-Warning: IO pad 'PVDD1DGZ' is unusable: unknown logic function.  (OPT-1022)
-Warning: IO pad 'PVDD1ANA' is unusable: unknown logic function.  (OPT-1022)
-Warning: IO pad 'PCLAMP2ANA' is unusable: unknown logic function.  (OPT-1022)
-Warning: IO pad 'PCLAMP1ANA' is unusable: unknown logic function.  (OPT-1022)
-Warning: Operating condition NCCOM set on design mul_border has different process,
+Warning: Operating condition tt0p85v25c set on design mul_border has different process,
 voltage and temperatures parameters than the parameters at which target library 
-tpfn45gsgv18tc is characterized. Delays may be inaccurate as a result. (OPT-998)
+saed32io_wb_tt1p05v25c_2p5v is characterized. Delays may be inaccurate as a result. (OPT-998)
 
   Beginning Pass 1 Mapping
   ------------------------
   Processing 'sobol8'
-Warning: The trip points for the library named tpfn45gsgv18tc differ from those in the library named tcbn40lpbwptc. (TIM-164)
   Processing 'mul_border'
 
   Updating timing information
@@ -191,22 +177,19 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:06     235.8      0.00       0.0       0.3                          
-    0:00:06     235.8      0.00       0.0       0.3                          
-    0:00:06     235.8      0.00       0.0       0.3                          
-    0:00:06     235.8      0.00       0.0       0.3                          
-    0:00:06     235.8      0.00       0.0       0.3                          
-    0:00:06     219.1      0.00       0.0       0.2                          
-    0:00:06     218.6      0.00       0.0       0.2                          
-    0:00:06     218.6      0.00       0.0       0.2                          
-    0:00:06     218.6      0.00       0.0       0.2                          
-    0:00:06     218.6      0.00       0.0       0.2                          
-    0:00:06     218.6      0.00       0.0       0.2                          
-    0:00:06     218.6      0.00       0.0       0.2                          
-    0:00:06     221.6      0.00       0.0       0.0                          
-    0:00:06     221.6      0.00       0.0       0.0                          
-    0:00:06     221.6      0.00       0.0       0.0                          
-    0:00:06     221.6      0.00       0.0       0.0                          
+    0:00:04     422.1      0.00       0.0       0.0                          
+    0:00:04     422.1      0.00       0.0       0.0                          
+    0:00:04     422.1      0.00       0.0       0.0                          
+    0:00:04     422.1      0.00       0.0       0.0                          
+    0:00:04     422.1      0.00       0.0       0.0                          
+    0:00:04     413.7      0.00       0.0       0.0                          
+    0:00:04     413.7      0.00       0.0       0.0                          
+    0:00:04     413.7      0.00       0.0       0.0                          
+    0:00:04     413.7      0.00       0.0       0.0                          
+    0:00:04     413.7      0.00       0.0       0.0                          
+    0:00:04     413.7      0.00       0.0       0.0                          
+    0:00:04     413.7      0.00       0.0       0.0                          
+    0:00:04     413.7      0.00       0.0       0.0                          
 
 
 
@@ -217,9 +200,9 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:06     221.6      0.00       0.0       0.0                          
-    0:00:06     221.6      0.00       0.0       0.0                          
-    0:00:06     221.6      0.00       0.0       0.0                          
+    0:00:04     413.7      0.00       0.0       0.0                          
+    0:00:04     413.7      0.00       0.0       0.0                          
+    0:00:04     406.1      0.00       0.0       0.0                          
 
 
   Beginning Area-Recovery Phase  (cleanup)
@@ -229,19 +212,18 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:06     221.6      0.00       0.0       0.0                          
-    0:00:06     221.6      0.00       0.0       0.0                          
-    0:00:06     221.0      0.00       0.0       0.0                          
-    0:00:06     221.0      0.00       0.0       0.0                          
-    0:00:06     221.0      0.00       0.0       0.0                          
-    0:00:06     221.0      0.00       0.0       0.0                          
-    0:00:06     221.0      0.00       0.0       0.0                          
-    0:00:06     221.0      0.00       0.0       0.0                          
-    0:00:06     221.0      0.00       0.0       0.0                          
-    0:00:06     221.0      0.00       0.0       0.0                          
-    0:00:06     221.0      0.00       0.0       0.0                          
-    0:00:06     221.0      0.00       0.0       0.0                          
-    0:00:06     221.0      0.00       0.0       0.0                          
+    0:00:04     406.1      0.00       0.0       0.0                          
+    0:00:04     406.1      0.00       0.0       0.0                          
+    0:00:04     403.6      0.00       0.0       0.0                          
+    0:00:04     403.6      0.00       0.0       0.0                          
+    0:00:04     403.6      0.00       0.0       0.0                          
+    0:00:04     403.6      0.00       0.0       0.0                          
+    0:00:04     403.6      0.00       0.0       0.0                          
+    0:00:04     403.6      0.00       0.0       0.0                          
+    0:00:04     403.6      0.00       0.0       0.0                          
+    0:00:04     403.6      0.00       0.0       0.0                          
+    0:00:04     403.6      0.00       0.0       0.0                          
+    0:00:04     403.6      0.00       0.0       0.0                          
 
 
 Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
@@ -263,9 +245,12 @@ set_fix_hold clk
 compile -map_effort high
 Warning: "The variable 'compile_high_effort_area_in_incremental' is supported in DC NXT only. Ignoring this setting." (OPT-1726)
 
-Warning: Operating condition NCCOM set on design mul_border has different process,
+Information: There are 1 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
+
+
+Warning: Operating condition tt0p85v25c set on design mul_border has different process,
 voltage and temperatures parameters than the parameters at which target library 
-tpfn45gsgv18tc is characterized. Delays may be inaccurate as a result. (OPT-998)
+saed32io_wb_tt1p05v25c_2p5v is characterized. Delays may be inaccurate as a result. (OPT-998)
 
   Beginning Pass 1 Mapping
   ------------------------
@@ -282,21 +267,19 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                              MIN DELAY 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT             COST    
   --------- --------- --------- --------- --------- ------------------------- -----------
-    0:00:09     265.5      0.00       0.0       0.6                                0.00  
-    0:00:09     265.5      0.00       0.0       0.6                                0.00  
-    0:00:09     265.5      0.00       0.0       0.6                                0.00  
-    0:00:09     265.5      0.00       0.0       0.6                                0.00  
-    0:00:09     265.5      0.00       0.0       0.6                                0.00  
-    0:00:09     212.4      0.00       0.0       0.6                                0.00  
-    0:00:09     211.3      0.00       0.0       0.6                                0.00  
-    0:00:09     211.3      0.00       0.0       0.6                                0.00  
-    0:00:09     211.3      0.00       0.0       0.6                                0.00  
-    0:00:09     211.3      0.00       0.0       0.6                                0.00  
-    0:00:09     211.3      0.00       0.0       0.6                                0.00  
-    0:00:09     209.7      0.00       0.0       0.0                                0.00  
-    0:00:09     209.7      0.00       0.0       0.0                                0.00  
-    0:00:09     209.7      0.00       0.0       0.0                                0.00  
-    0:00:09     209.7      0.00       0.0       0.0                                0.00  
+    0:00:05     391.1      0.00       0.0       0.0                                0.00  
+    0:00:05     391.1      0.00       0.0       0.0                                0.00  
+    0:00:05     391.1      0.00       0.0       0.0                                0.00  
+    0:00:05     391.1      0.00       0.0       0.0                                0.00  
+    0:00:05     391.1      0.00       0.0       0.0                                0.00  
+    0:00:05     380.5      0.00       0.0       0.0                                0.00  
+    0:00:05     380.5      0.00       0.0       0.0                                0.00  
+    0:00:05     380.5      0.00       0.0       0.0                                0.00  
+    0:00:05     380.5      0.00       0.0       0.0                                0.00  
+    0:00:05     380.5      0.00       0.0       0.0                                0.00  
+    0:00:05     380.5      0.00       0.0       0.0                                0.00  
+    0:00:05     380.5      0.00       0.0       0.0                                0.00  
+    0:00:05     380.5      0.00       0.0       0.0                                0.00  
 
 
 
@@ -307,9 +290,9 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                              MIN DELAY 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT             COST    
   --------- --------- --------- --------- --------- ------------------------- -----------
-    0:00:09     209.7      0.00       0.0       0.0                                0.00  
-    0:00:09     209.7      0.00       0.0       0.0                                0.00  
-    0:00:09     207.3      0.00       0.0       0.0                                0.00  
+    0:00:05     380.5      0.00       0.0       0.0                                0.00  
+    0:00:05     380.5      0.00       0.0       0.0                                0.00  
+    0:00:05     363.9      0.00       0.0       0.0                                0.00  
 
 
   Beginning Area-Recovery Phase  (cleanup)
@@ -319,19 +302,17 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                              MIN DELAY 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT             COST    
   --------- --------- --------- --------- --------- ------------------------- -----------
-    0:00:09     207.3      0.00       0.0       0.0                                0.00  
-    0:00:09     207.3      0.00       0.0       0.0                                0.00  
-    0:00:09     207.3      0.00       0.0       0.0                                0.00  
-    0:00:09     207.3      0.00       0.0       0.0                                0.00  
-    0:00:09     207.3      0.00       0.0       0.0                                0.00  
-    0:00:09     207.3      0.00       0.0       0.0                                0.00  
-    0:00:09     202.3      0.00       0.0       0.0                                0.00  
-    0:00:09     202.3      0.00       0.0       0.0                                0.00  
-    0:00:09     202.3      0.00       0.0       0.0                                0.00  
-    0:00:09     202.3      0.00       0.0       0.0                                0.00  
-    0:00:09     202.3      0.00       0.0       0.0                                0.00  
-    0:00:09     202.3      0.00       0.0       0.0                                0.00  
-    0:00:09     202.3      0.00       0.0       0.0                                0.00  
+    0:00:05     363.9      0.00       0.0       0.0                                0.00  
+    0:00:05     363.9      0.00       0.0       0.0                                0.00  
+    0:00:05     363.9      0.00       0.0       0.0                                0.00  
+    0:00:05     363.9      0.00       0.0       0.0                                0.00  
+    0:00:05     363.9      0.00       0.0       0.0                                0.00  
+    0:00:05     363.9      0.00       0.0       0.0                                0.00  
+    0:00:05     363.9      0.00       0.0       0.0                                0.00  
+    0:00:05     363.9      0.00       0.0       0.0                                0.00  
+    0:00:05     363.9      0.00       0.0       0.0                                0.00  
+    0:00:05     363.9      0.00       0.0       0.0                                0.00  
+    0:00:05     363.9      0.00       0.0       0.0                                0.00  
 
 
 Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
@@ -354,9 +335,9 @@ write -format verilog mul_border -output mul_border.vg
 Writing verilog file '/filespace/d/dwu94/Project/uSystolic-Sim/synthesis/8bit/unarytemporal/mul_border.vg'.
 1
 exit
-Memory usage for this session 403 Mbytes.
-Memory usage for this session including child processes 403 Mbytes.
-CPU usage for this session 10 seconds ( 0.00 hours ).
-Elapsed time for this session 13 seconds ( 0.00 hours ).
+Memory usage for this session 142 Mbytes.
+Memory usage for this session including child processes 142 Mbytes.
+CPU usage for this session 4 seconds ( 0.00 hours ).
+Elapsed time for this session 7 seconds ( 0.00 hours ).
 
 Thank you...

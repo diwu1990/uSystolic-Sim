@@ -6,11 +6,11 @@ Report : timing
         -max_paths 1
 Design : mul_border
 Version: Q-2019.12-SP3
-Date   : Sun Jan 24 02:44:20 2021
+Date   : Thu Feb  4 11:19:12 2021
 ****************************************
 
-Operating Conditions: NCCOM   Library: tcbn40lpbwptc
-Wire Load Model Mode: segmented
+Operating Conditions: tt0p85v25c   Library: saed32rvt_tt0p85v25c
+Wire Load Model Mode: enclosed
 
   Startpoint: i_data_w[1]
               (input port clocked by clk)
@@ -20,26 +20,24 @@ Wire Load Model Mode: segmented
 
   Des/Clust/Port     Wire Load Model       Library
   ------------------------------------------------
-  mul_border         TSMC32K_Lowk_Conservative
-                                           tcbn40lpbwptc
+  mul_border         8000                  saed32rvt_tt0p85v25c
 
   Point                                    Incr       Path
   -----------------------------------------------------------
   clock clk (rise edge)                    0.00       0.00
   clock network delay (ideal)              0.00       0.00
-  input external delay                     0.25       0.25 f
-  i_data_w[1] (in)                         0.00       0.25 f
-  U136/ZN (OAI211D1BWP)                    0.04       0.29 r
-  U143/ZN (IOA21D1BWP)                     0.04       0.33 f
-  U22/Z (OR2D1BWP)                         0.06       0.39 f
-  U21/Z (AO222D1BWP)                       0.13       0.52 f
-  U142/Z (OA221D1BWP)                      0.06       0.58 f
-  U19/Z (AO221D1BWP)                       0.13       0.70 f
-  U113/ZN (OAI221D1BWP)                    0.04       0.74 r
-  U111/Z (AO21D2BWP)                       0.09       0.83 r
-  U112/ZN (INVD16BWP)                      0.06       0.88 f
-  o_bit (out)                              0.00       0.88 f
-  data arrival time                                   0.88
+  input external delay                     0.25       0.25 r
+  i_data_w[1] (in)                         0.00       0.25 r
+  U66/Y (OA21X1_RVT)                       0.07       0.32 r
+  U65/Y (AO22X1_RVT)                       0.07       0.39 r
+  U64/Y (OR2X1_RVT)                        0.07       0.46 r
+  U63/Y (AO222X1_RVT)                      0.10       0.55 r
+  U62/Y (OA221X1_RVT)                      0.08       0.63 r
+  U61/Y (AO221X1_RVT)                      0.08       0.71 r
+  U60/Y (OA221X1_RVT)                      0.07       0.78 r
+  U58/Y (OA21X1_RVT)                       0.07       0.86 r
+  o_bit (out)                              0.00       0.86 r
+  data arrival time                                   0.86
 
   clock clk (rise edge)                    2.50       2.50
   clock network delay (ideal)              0.00       2.50
@@ -48,9 +46,9 @@ Wire Load Model Mode: segmented
   data required time                                  1.85
   -----------------------------------------------------------
   data required time                                  1.85
-  data arrival time                                  -0.88
+  data arrival time                                  -0.86
   -----------------------------------------------------------
-  slack (MET)                                         0.97
+  slack (MET)                                         0.99
 
 
 1
