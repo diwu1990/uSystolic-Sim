@@ -21,12 +21,12 @@
 Initializing...
 # ECE552 Extra Credit
 read_file -format sverilog {acc.sv}
-Loading db file '/cae/apps/data/tsmclibs-2013/digital/Front_End/timing_power_noise/NLDM/tcbn40lpbwp_120b/tcbn40lpbwptc.db'
-Loading db file '/cae/apps/data/tsmclibs-2013/digital/Front_End/timing_power_noise/NLDM/tpfn45gsgv18_120a/tpfn45gsgv18tc.db'
+Loading db file '/cae/apps/data/saed32_edk-2018/lib/stdcell_rvt/db_nldm/saed32rvt_tt0p85v25c.db'
+Loading db file '/cae/apps/data/saed32_edk-2018/lib/io_std/db_nldm/saed32io_wb_tt1p05v25c_2p5v.db'
 Loading db file '/cae/apps/data/synopsys-2020/syn/Q-2019.12-SP3/libraries/syn/gtech.db'
 Loading db file '/cae/apps/data/synopsys-2020/syn/Q-2019.12-SP3/libraries/syn/standard.sldb'
-  Loading link library 'tcbn40lpbwptc'
-  Loading link library 'tpfn45gsgv18tc'
+  Loading link library 'saed32rvt_tt0p85v25c'
+  Loading link library 'saed32io_wb_tt1p05v25c_2p5v'
   Loading link library 'gtech'
 Detecting input file type automatically (-rtl or -netlist).
 Reading with Presto HDL Compiler (equivalent to -rtl option).
@@ -53,8 +53,8 @@ link
   Using the following designs and libraries:
   --------------------------------------------------------------------------
   acc                         /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/16bit/unarytemporal/acc.db
-  tcbn40lpbwptc (library)     /cae/apps/data/tsmclibs-2013/digital/Front_End/timing_power_noise/NLDM/tcbn40lpbwp_120b/tcbn40lpbwptc.db
-  tpfn45gsgv18tc (library)    /cae/apps/data/tsmclibs-2013/digital/Front_End/timing_power_noise/NLDM/tpfn45gsgv18_120a/tpfn45gsgv18tc.db
+  saed32rvt_tt0p85v25c (library) /cae/apps/data/saed32_edk-2018/lib/stdcell_rvt/db_nldm/saed32rvt_tt0p85v25c.db
+  saed32io_wb_tt1p05v25c_2p5v (library) /cae/apps/data/saed32_edk-2018/lib/io_std/db_nldm/saed32io_wb_tt1p05v25c_2p5v.db
 
 1
 ###########################################
@@ -93,8 +93,7 @@ set_load 0.1 [all_outputs]
 #############################################################
 # Wire load model allows it to estimate internal parasitics #
 #############################################################
-set_wire_load_model -name TSMC32K_Lowk_Conservative -library tcbn40lpbwptc
-1
+# set_wire_load_model -name TSMC32K_Lowk_Conservative -library tcbn40lpbwptc
 ######################################################
 # Max transition time is important for Hot-E reasons #
 ######################################################
@@ -118,26 +117,13 @@ Information: Evaluating DesignWare library utilization. (UISN-27)
 Information: There are 1 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
 
 
-Warning: IO pad 'PVSS3DGZ' is unusable: unknown logic function.  (OPT-1022)
-Warning: IO pad 'PVSS2DGZ' is unusable: unknown logic function.  (OPT-1022)
-Warning: IO pad 'PVSS2ANA' is unusable: unknown logic function.  (OPT-1022)
-Warning: IO pad 'PVSS1DGZ' is unusable: unknown logic function.  (OPT-1022)
-Warning: IO pad 'PVSS1ANA' is unusable: unknown logic function.  (OPT-1022)
-Warning: IO pad 'PVDD2POC' is unusable: unknown logic function.  (OPT-1022)
-Warning: IO pad 'PVDD2DGZ' is unusable: unknown logic function.  (OPT-1022)
-Warning: IO pad 'PVDD2ANA' is unusable: unknown logic function.  (OPT-1022)
-Warning: IO pad 'PVDD1DGZ' is unusable: unknown logic function.  (OPT-1022)
-Warning: IO pad 'PVDD1ANA' is unusable: unknown logic function.  (OPT-1022)
-Warning: IO pad 'PCLAMP2ANA' is unusable: unknown logic function.  (OPT-1022)
-Warning: IO pad 'PCLAMP1ANA' is unusable: unknown logic function.  (OPT-1022)
-Warning: Operating condition NCCOM set on design acc has different process,
+Warning: Operating condition tt0p85v25c set on design acc has different process,
 voltage and temperatures parameters than the parameters at which target library 
-tpfn45gsgv18tc is characterized. Delays may be inaccurate as a result. (OPT-998)
+saed32io_wb_tt1p05v25c_2p5v is characterized. Delays may be inaccurate as a result. (OPT-998)
 
   Beginning Pass 1 Mapping
   ------------------------
   Processing 'acc'
-Warning: The trip points for the library named tpfn45gsgv18tc differ from those in the library named tcbn40lpbwptc. (TIM-164)
 
   Updating timing information
 Information: Updating design information... (UID-85)
@@ -154,23 +140,20 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:06     746.3      0.00       0.0      40.8                          
-    0:00:06     746.3      0.00       0.0      40.8                          
-    0:00:06     746.3      0.00       0.0      40.8                          
-    0:00:06     746.3      0.00       0.0      40.8                          
-    0:00:06     746.3      0.00       0.0      40.8                          
-    0:00:06     493.0      0.15       0.4      40.7                          
-    0:00:06     493.6      0.01       0.0      38.9                          
-    0:00:06     498.7      0.00       0.0      36.9                          
-    0:00:06     496.9      0.00       0.0      36.9                          
-    0:00:06     496.9      0.00       0.0      36.9                          
-    0:00:06     496.9      0.00       0.0      36.9                          
-    0:00:06     496.9      0.00       0.0      36.9                          
-    0:00:06     496.9      0.00       0.0      36.9                          
-    0:00:06     614.4      0.00       0.0       0.0                          
-    0:00:06     614.4      0.00       0.0       0.0                          
-    0:00:06     614.4      0.00       0.0       0.0                          
-    0:00:06     614.4      0.00       0.0       0.0                          
+    0:00:04    1028.5      0.15       0.2       0.0                          
+    0:00:04    1028.5      0.15       0.2       0.0                          
+    0:00:04    1028.5      0.15       0.2       0.0                          
+    0:00:04    1028.5      0.15       0.2       0.0                          
+    0:00:04    1028.5      0.15       0.2       0.0                          
+    0:00:04     903.7      0.13       0.2       0.0                          
+    0:00:04     902.5      0.14       0.2       0.0                          
+    0:00:04     902.5      0.14       0.2       0.0                          
+    0:00:04     902.5      0.14       0.2       0.0                          
+    0:00:04     902.5      0.14       0.2       0.0                          
+    0:00:04     902.5      0.14       0.2       0.0                          
+    0:00:04     902.5      0.14       0.2       0.0                          
+    0:00:04     902.5      0.14       0.2       0.0                          
+    0:00:04     902.5      0.14       0.2       0.0                          
 
 
 
@@ -181,20 +164,17 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:06     614.4      0.00       0.0       0.0                          
-    0:00:06     614.4      0.00       0.0       0.0                          
-    0:00:06     608.8      0.00       0.0       0.7                          
-
-
-  Beginning Design Rule Fixing  (max_transition)
-  ----------------------------
-
-                                  TOTAL                                      
-   ELAPSED            WORST NEG   SETUP    DESIGN                            
-    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
-  --------- --------- --------- --------- --------- -------------------------
-    0:00:06     608.8      0.00       0.0       0.7                          
-    0:00:07     631.3      0.00       0.0       0.0                          
+    0:00:04     902.5      0.14       0.2       0.0                          
+    0:00:04     922.0      0.05       0.0       0.0 sum_o_reg[31]/D          
+    0:00:04     927.6      0.02       0.0       0.0 sum_o_reg[31]/D          
+    0:00:04     929.7      0.02       0.0       0.0 sum_o_reg[31]/D          
+    0:00:04     930.9      0.02       0.0       0.0 sum_o_reg[31]/D          
+    0:00:04     938.8      0.02       0.0       0.0 sum_o_reg[31]/D          
+    0:00:04     936.8      0.02       0.0       0.0 sum_o_reg[31]/D          
+    0:00:05     937.5      0.01       0.0       0.0 sum_o_reg[31]/D          
+    0:00:05     937.5      0.01       0.0       0.0                          
+    0:00:05     937.5      0.01       0.0       0.0                          
+    0:00:05     937.5      0.00       0.0       0.0                          
 
 
   Beginning Area-Recovery Phase  (cleanup)
@@ -204,21 +184,25 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:07     631.3      0.00       0.0       0.0                          
-    0:00:07     631.3      0.00       0.0       0.0                          
-    0:00:07     621.1      0.00       0.0       0.0                          
-    0:00:07     619.5      0.00       0.0       0.0                          
-    0:00:07     619.5      0.00       0.0       0.0                          
-    0:00:07     619.5      0.00       0.0       0.0                          
-    0:00:07     619.5      0.00       0.0       0.0                          
-    0:00:07     619.5      0.00       0.0       0.0                          
-    0:00:07     615.3      0.00       0.0       0.0                          
-    0:00:07     615.3      0.00       0.0       0.0                          
-    0:00:07     615.3      0.00       0.0       0.0                          
-    0:00:07     615.3      0.00       0.0       0.0                          
-    0:00:07     615.3      0.00       0.0       0.0                          
-    0:00:07     615.3      0.00       0.0       0.0                          
-    0:00:07     615.3      0.00       0.0       0.0                          
+    0:00:05     937.5      0.00       0.0       0.0                          
+    0:00:05     937.5      0.00       0.0       0.0                          
+    0:00:05     913.9      0.01       0.0       0.0                          
+    0:00:05     911.4      0.01       0.0       0.0                          
+    0:00:05     910.1      0.01       0.0       0.0                          
+    0:00:05     908.8      0.01       0.0       0.0                          
+    0:00:05     907.5      0.02       0.0       0.0                          
+    0:00:05     907.5      0.02       0.0       0.0                          
+    0:00:05     924.1      0.01       0.0       0.0                          
+    0:00:05     924.1      0.01       0.0       0.0                          
+    0:00:05     904.5      0.02       0.0       0.0                          
+    0:00:05     898.1      0.04       0.0       0.0                          
+    0:00:05     898.1      0.04       0.0       0.0                          
+    0:00:05     898.1      0.04       0.0       0.0                          
+    0:00:05     898.1      0.04       0.0       0.0                          
+    0:00:05     898.1      0.04       0.0       0.0                          
+    0:00:05     898.1      0.04       0.0       0.0                          
+    0:00:05     915.9      0.01       0.0       0.0 sum_o_reg[31]/D          
+    0:00:06     921.8      0.01       0.0       0.0 sum_o_reg[31]/D          
 
 
 Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
@@ -232,36 +216,69 @@ check_design
 ****************************************
 check_design summary:
 Version:     Q-2019.12-SP3
-Date:        Sun Jan 24 02:59:36 2021
+Date:        Thu Feb  4 11:27:36 2021
 ****************************************
 
                    Name                                            Total
 --------------------------------------------------------------------------------
-Inputs/Outputs                                                     16
-    Unloaded inputs (LINT-8)                                       14
+Inputs/Outputs                                                     32
+    Unloaded inputs (LINT-8)                                       30
     Unconnected ports (LINT-28)                                     2
 
-Cells                                                               1
+Cells                                                               2
+    Connected to power or ground (LINT-32)                          1
     Nets connected to multiple pins on same cell (LINT-33)          1
 
-Nets                                                               14
-    Unloaded nets (LINT-2)                                         14
+Nets                                                               30
+    Unloaded nets (LINT-2)                                         30
 --------------------------------------------------------------------------------
 
-Warning: In design 'acc', net 'add_31/B[2]' driven by pin 'add_31/B[2]' has no loads. (LINT-2)
-Warning: In design 'acc', net 'add_31/B[3]' driven by pin 'add_31/B[3]' has no loads. (LINT-2)
-Warning: In design 'acc', net 'add_31/B[4]' driven by pin 'add_31/B[4]' has no loads. (LINT-2)
-Warning: In design 'acc', net 'add_31/B[5]' driven by pin 'add_31/B[5]' has no loads. (LINT-2)
-Warning: In design 'acc', net 'add_31/B[6]' driven by pin 'add_31/B[6]' has no loads. (LINT-2)
-Warning: In design 'acc', net 'add_31/B[7]' driven by pin 'add_31/B[7]' has no loads. (LINT-2)
-Warning: In design 'acc', net 'add_31/B[8]' driven by pin 'add_31/B[8]' has no loads. (LINT-2)
-Warning: In design 'acc', net 'add_31/B[10]' driven by pin 'add_31/B[10]' has no loads. (LINT-2)
-Warning: In design 'acc', net 'add_31/B[11]' driven by pin 'add_31/B[11]' has no loads. (LINT-2)
-Warning: In design 'acc', net 'add_31/B[12]' driven by pin 'add_31/B[12]' has no loads. (LINT-2)
-Warning: In design 'acc', net 'add_31/B[13]' driven by pin 'add_31/B[13]' has no loads. (LINT-2)
-Warning: In design 'acc', net 'add_31/B[14]' driven by pin 'add_31/B[14]' has no loads. (LINT-2)
+Warning: In design 'acc', net 'add_31/B[30]' driven by pin 'add_31/B[30]' has no loads. (LINT-2)
+Warning: In design 'acc', net 'add_31/B[26]' driven by pin 'add_31/B[26]' has no loads. (LINT-2)
+Warning: In design 'acc', net 'add_31/B[22]' driven by pin 'add_31/B[22]' has no loads. (LINT-2)
+Warning: In design 'acc', net 'add_31/B[18]' driven by pin 'add_31/B[18]' has no loads. (LINT-2)
 Warning: In design 'acc', net 'add_31/B[15]' driven by pin 'add_31/B[15]' has no loads. (LINT-2)
+Warning: In design 'acc', net 'add_31/B[11]' driven by pin 'add_31/B[11]' has no loads. (LINT-2)
+Warning: In design 'acc', net 'add_31/B[7]' driven by pin 'add_31/B[7]' has no loads. (LINT-2)
+Warning: In design 'acc', net 'add_31/B[31]' driven by pin 'add_31/B[31]' has no loads. (LINT-2)
+Warning: In design 'acc', net 'add_31/B[27]' driven by pin 'add_31/B[27]' has no loads. (LINT-2)
+Warning: In design 'acc', net 'add_31/B[23]' driven by pin 'add_31/B[23]' has no loads. (LINT-2)
+Warning: In design 'acc', net 'add_31/B[19]' driven by pin 'add_31/B[19]' has no loads. (LINT-2)
 Warning: In design 'acc', net 'add_31/B[1]' driven by pin 'add_31/B[1]' has no loads. (LINT-2)
+Warning: In design 'acc', net 'add_31/B[12]' driven by pin 'add_31/B[12]' has no loads. (LINT-2)
+Warning: In design 'acc', net 'add_31/B[8]' driven by pin 'add_31/B[8]' has no loads. (LINT-2)
+Warning: In design 'acc', net 'add_31/B[4]' driven by pin 'add_31/B[4]' has no loads. (LINT-2)
+Warning: In design 'acc', net 'add_31/B[28]' driven by pin 'add_31/B[28]' has no loads. (LINT-2)
+Warning: In design 'acc', net 'add_31/B[24]' driven by pin 'add_31/B[24]' has no loads. (LINT-2)
+Warning: In design 'acc', net 'add_31/B[20]' driven by pin 'add_31/B[20]' has no loads. (LINT-2)
+Warning: In design 'acc', net 'add_31/B[16]' driven by pin 'add_31/B[16]' has no loads. (LINT-2)
+Warning: In design 'acc', net 'add_31/B[13]' driven by pin 'add_31/B[13]' has no loads. (LINT-2)
+Warning: In design 'acc', net 'add_31/B[3]' driven by pin 'add_31/B[3]' has no loads. (LINT-2)
+Warning: In design 'acc', net 'add_31/B[5]' driven by pin 'add_31/B[5]' has no loads. (LINT-2)
+Warning: In design 'acc', net 'add_31/B[29]' driven by pin 'add_31/B[29]' has no loads. (LINT-2)
+Warning: In design 'acc', net 'add_31/B[25]' driven by pin 'add_31/B[25]' has no loads. (LINT-2)
+Warning: In design 'acc', net 'add_31/B[21]' driven by pin 'add_31/B[21]' has no loads. (LINT-2)
+Warning: In design 'acc', net 'add_31/B[17]' driven by pin 'add_31/B[17]' has no loads. (LINT-2)
+Warning: In design 'acc', net 'add_31/B[14]' driven by pin 'add_31/B[14]' has no loads. (LINT-2)
+Warning: In design 'acc', net 'add_31/B[10]' driven by pin 'add_31/B[10]' has no loads. (LINT-2)
+Warning: In design 'acc', net 'add_31/B[6]' driven by pin 'add_31/B[6]' has no loads. (LINT-2)
+Warning: In design 'acc', net 'add_31/B[2]' driven by pin 'add_31/B[2]' has no loads. (LINT-2)
+Warning: In design 'acc_DW01_add_1', input port 'B[31]' is unloaded. (LINT-8)
+Warning: In design 'acc_DW01_add_1', input port 'B[30]' is unloaded. (LINT-8)
+Warning: In design 'acc_DW01_add_1', input port 'B[29]' is unloaded. (LINT-8)
+Warning: In design 'acc_DW01_add_1', input port 'B[28]' is unloaded. (LINT-8)
+Warning: In design 'acc_DW01_add_1', input port 'B[27]' is unloaded. (LINT-8)
+Warning: In design 'acc_DW01_add_1', input port 'B[26]' is unloaded. (LINT-8)
+Warning: In design 'acc_DW01_add_1', input port 'B[25]' is unloaded. (LINT-8)
+Warning: In design 'acc_DW01_add_1', input port 'B[24]' is unloaded. (LINT-8)
+Warning: In design 'acc_DW01_add_1', input port 'B[23]' is unloaded. (LINT-8)
+Warning: In design 'acc_DW01_add_1', input port 'B[22]' is unloaded. (LINT-8)
+Warning: In design 'acc_DW01_add_1', input port 'B[21]' is unloaded. (LINT-8)
+Warning: In design 'acc_DW01_add_1', input port 'B[20]' is unloaded. (LINT-8)
+Warning: In design 'acc_DW01_add_1', input port 'B[19]' is unloaded. (LINT-8)
+Warning: In design 'acc_DW01_add_1', input port 'B[18]' is unloaded. (LINT-8)
+Warning: In design 'acc_DW01_add_1', input port 'B[17]' is unloaded. (LINT-8)
+Warning: In design 'acc_DW01_add_1', input port 'B[16]' is unloaded. (LINT-8)
 Warning: In design 'acc_DW01_add_1', input port 'B[15]' is unloaded. (LINT-8)
 Warning: In design 'acc_DW01_add_1', input port 'B[14]' is unloaded. (LINT-8)
 Warning: In design 'acc_DW01_add_1', input port 'B[13]' is unloaded. (LINT-8)
@@ -278,8 +295,10 @@ Warning: In design 'acc_DW01_add_1', input port 'B[2]' is unloaded. (LINT-8)
 Warning: In design 'acc_DW01_add_1', input port 'B[1]' is unloaded. (LINT-8)
 Warning: In design 'acc_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
 Warning: In design 'acc_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc', a pin on submodule 'add_31' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
 Warning: In design 'acc', the same net is connected to more than one pin on submodule 'add_31'. (LINT-33)
-   Net 'n113' is connected to pins 'B[31]', 'B[30]'', 'B[29]', 'B[28]', 'B[27]', 'B[26]', 'B[25]', 'B[24]', 'B[23]', 'B[22]', 'B[21]', 'B[20]', 'B[19]', 'B[18]', 'B[17]', 'B[16]', 'B[15]', 'B[14]', 'B[13]', 'B[12]', 'B[11]', 'B[10]', 'B[9]', 'B[8]', 'B[7]', 'B[6]', 'B[5]', 'B[4]', 'B[3]', 'B[2]', 'B[1]'.
+   Net 'n39' is connected to pins 'B[31]', 'B[30]'', 'B[29]', 'B[28]', 'B[27]', 'B[26]', 'B[25]', 'B[24]', 'B[23]', 'B[22]', 'B[21]', 'B[20]', 'B[19]', 'B[18]', 'B[17]', 'B[16]', 'B[15]', 'B[14]', 'B[13]', 'B[12]', 'B[11]', 'B[10]', 'B[9]', 'B[8]', 'B[7]', 'B[6]', 'B[5]', 'B[4]', 'B[3]', 'B[2]', 'B[1]'.
 1
 # Unflatten design now that its compiled
 ungroup -all -flatten
@@ -295,9 +314,9 @@ Warning: "The variable 'compile_high_effort_area_in_incremental' is supported in
 Information: There are 1 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
 
 
-Warning: Operating condition NCCOM set on design acc has different process,
+Warning: Operating condition tt0p85v25c set on design acc has different process,
 voltage and temperatures parameters than the parameters at which target library 
-tpfn45gsgv18tc is characterized. Delays may be inaccurate as a result. (OPT-998)
+saed32io_wb_tt1p05v25c_2p5v is characterized. Delays may be inaccurate as a result. (OPT-998)
 
   Beginning Pass 1 Mapping
   ------------------------
@@ -313,34 +332,22 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                              MIN DELAY 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT             COST    
   --------- --------- --------- --------- --------- ------------------------- -----------
-    0:00:10     942.7      0.00       0.0      18.5                                0.00  
-    0:00:10     942.7      0.00       0.0      18.5                                0.00  
-    0:00:10     942.7      0.00       0.0      18.5                                0.00  
-    0:00:10     942.7      0.00       0.0      18.5                                0.00  
-    0:00:10     942.7      0.00       0.0      18.5                                0.00  
-    0:00:10     584.2      0.25       0.6      16.4                                0.00  
-    0:00:10     584.6      0.18       0.3      16.4                                0.00  
-    0:00:10     586.0      0.16       0.3      16.4                                0.00  
-    0:00:10     585.6      0.15       0.3      16.4                                0.00  
-    0:00:10     586.4      0.13       0.3      16.4                                0.00  
-    0:00:10     587.1      0.09       0.2      16.4                                0.00  
-    0:00:10     592.4      0.07       0.1      15.8                                0.00  
-    0:00:10     595.4      0.06       0.1      15.5                                0.00  
-    0:00:10     597.8      0.04       0.1      15.0                                0.00  
-    0:00:10     598.9      0.04       0.1      15.0                                0.00  
-    0:00:10     601.0      0.02       0.0      15.0                                0.00  
-    0:00:10     603.8      0.02       0.0      15.0                                0.00  
-    0:00:10     604.9      0.02       0.0      15.0                                0.00  
-    0:00:10     611.9      0.00       0.0      15.0                                0.00  
-    0:00:10     611.9      0.00       0.0      15.0                                0.00  
-    0:00:10     611.9      0.00       0.0      15.0                                0.00  
-    0:00:10     611.9      0.00       0.0      15.0                                0.00  
-    0:00:11     701.9      0.00       0.0       0.1                                0.00  
-    0:00:11     702.4      0.00       0.0       0.0                                0.00  
-    0:00:11     703.3      0.00       0.0       0.0                                0.00  
-    0:00:11     703.3      0.00       0.0       0.0                                0.00  
-    0:00:11     703.3      0.00       0.0       0.0                                0.00  
-    0:00:11     703.3      0.00       0.0       0.0                                0.00  
+    0:00:08     993.4      0.38       0.8       0.0                                0.00  
+    0:00:08     993.4      0.38       0.8       0.0                                0.00  
+    0:00:08     993.4      0.38       0.8       0.0                                0.00  
+    0:00:08     993.4      0.38       0.8       0.0                                0.00  
+    0:00:08     993.4      0.38       0.8       0.0                                0.00  
+    0:00:08     879.8      0.39       0.8       0.0                                0.00  
+    0:00:08     880.9      0.38       0.8       0.0                                0.00  
+    0:00:08     880.9      0.38       0.8       0.0                                0.00  
+    0:00:08     880.9      0.38       0.7       0.0                                0.00  
+    0:00:08     880.9      0.38       0.7       0.0                                0.00  
+    0:00:08     880.9      0.38       0.7       0.0                                0.00  
+    0:00:08     880.9      0.38       0.7       0.0                                0.00  
+    0:00:08     880.9      0.38       0.7       0.0                                0.00  
+    0:00:08     880.9      0.38       0.7       0.0                                0.00  
+    0:00:08     880.9      0.38       0.7       0.0                                0.00  
+    0:00:08     882.1      0.38       0.7       0.0                                0.00  
 
 
 
@@ -351,20 +358,36 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                              MIN DELAY 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT             COST    
   --------- --------- --------- --------- --------- ------------------------- -----------
-    0:00:11     703.3      0.00       0.0       0.0                                0.00  
-    0:00:11     703.3      0.00       0.0       0.0                                0.00  
-    0:00:11     680.7      0.00       0.0       0.7                                0.00  
-
-
-  Beginning Design Rule Fixing  (max_transition)
-  ----------------------------
-
-                                  TOTAL                                                  
-   ELAPSED            WORST NEG   SETUP    DESIGN                              MIN DELAY 
-    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT             COST    
-  --------- --------- --------- --------- --------- ------------------------- -----------
-    0:00:11     680.7      0.00       0.0       0.7                                0.00  
-    0:00:11     703.3      0.00       0.0       0.0                                0.00  
+    0:00:08     882.1      0.38       0.7       0.0                                0.00  
+    0:00:08     893.6      0.33       0.6       0.0 sum_o_reg[31]/D                0.00  
+    0:00:08     938.0      0.27       0.5       0.0 sum_o_reg[31]/D                0.00  
+    0:00:08     948.5      0.24       0.4       0.0 sum_o_reg[31]/D                0.00  
+    0:00:08     953.5      0.22       0.3       0.0 sum_o_reg[31]/D                0.00  
+    0:00:08     956.1      0.20       0.3       0.0 sum_o_reg[31]/D                0.00  
+    0:00:09     965.2      0.17       0.2       0.0 sum_o_reg[31]/D                0.00  
+    0:00:09     969.3      0.16       0.2       0.0 sum_o_reg[31]/D                0.00  
+    0:00:09     973.6      0.15       0.2       0.0 sum_o_reg[31]/D                0.00  
+    0:00:09     997.0      0.13       0.2       0.0 sum_o_reg[31]/D                0.00  
+    0:00:09    1016.3      0.13       0.2       0.0 sum_o_reg[31]/D                0.00  
+    0:00:09    1016.6      0.12       0.1       0.0 sum_o_reg[31]/D                0.00  
+    0:00:09    1029.0      0.10       0.1       0.0 sum_o_reg[31]/D                0.00  
+    0:00:09    1044.3      0.09       0.1       0.0 sum_o_reg[31]/D                0.00  
+    0:00:09    1048.9      0.09       0.1       0.0 sum_o_reg[31]/D                0.00  
+    0:00:09    1037.9      0.09       0.1       0.0 sum_o_reg[31]/D                0.00  
+    0:00:10    1053.4      0.06       0.1       0.0 sum_o_reg[31]/D                0.00  
+    0:00:10    1059.3      0.05       0.1       0.0 sum_o_reg[31]/D                0.00  
+    0:00:10    1068.9      0.05       0.0       0.0 sum_o_reg[31]/D                0.00  
+    0:00:10    1070.7      0.04       0.0       0.0 sum_o_reg[31]/D                0.00  
+    0:00:10    1080.6      0.04       0.0       0.0 sum_o_reg[31]/D                0.00  
+    0:00:11    1150.8      0.02       0.0       0.0                                0.00  
+    0:00:11    1161.4      0.02       0.0       0.0 sum_o_reg[31]/D                0.00  
+    0:00:11    1159.9      0.02       0.0       0.0 sum_o_reg[31]/D                0.00  
+    0:00:11    1159.7      0.01       0.0       0.0 sum_o_reg[31]/D                0.00  
+    0:00:11    1156.9      0.01       0.0       0.0 sum_o_reg[31]/D                0.00  
+    0:00:12    1186.9      0.01       0.0       0.0                                0.00  
+    0:00:12    1181.8      0.01       0.0       0.0 sum_o_reg[31]/D                0.00  
+    0:00:12    1164.0      0.00       0.0       0.0                                0.00  
+    0:00:12    1156.4      0.00       0.0       0.0                                0.00  
 
 
   Beginning Area-Recovery Phase  (cleanup)
@@ -374,23 +397,25 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                              MIN DELAY 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT             COST    
   --------- --------- --------- --------- --------- ------------------------- -----------
-    0:00:11     703.3      0.00       0.0       0.0                                0.00  
-    0:00:11     703.3      0.00       0.0       0.0                                0.00  
-    0:00:11     691.7      0.01       0.0       0.0                                0.00  
-    0:00:11     691.1      0.01       0.0       0.0                                0.00  
-    0:00:11     690.4      0.01       0.0       0.0                                0.00  
-    0:00:11     689.4      0.01       0.0       0.0                                0.00  
-    0:00:11     688.1      0.01       0.0       0.0                                0.00  
-    0:00:11     688.1      0.01       0.0       0.0                                0.00  
-    0:00:11     689.5      0.00       0.0       0.0                                0.00  
-    0:00:11     671.7      0.01       0.0       0.0                                0.00  
-    0:00:11     669.3      0.01       0.0       0.0                                0.00  
-    0:00:11     669.3      0.01       0.0       0.0                                0.00  
-    0:00:11     669.3      0.01       0.0       0.0                                0.00  
-    0:00:11     669.3      0.01       0.0       0.0                                0.00  
-    0:00:11     669.3      0.01       0.0       0.0                                0.00  
-    0:00:11     669.3      0.01       0.0       0.0                                0.00  
-    0:00:11     672.1      0.00       0.0       0.0                                0.00  
+    0:00:12    1156.4      0.00       0.0       0.0                                0.00  
+    0:00:12    1156.4      0.00       0.0       0.0                                0.00  
+    0:00:12    1086.7      0.01       0.0       0.0                                0.00  
+    0:00:12    1079.1      0.01       0.0       0.0                                0.00  
+    0:00:12    1076.6      0.01       0.0       0.0                                0.00  
+    0:00:12    1072.7      0.01       0.0       0.0                                0.00  
+    0:00:12    1071.5      0.01       0.0       0.0                                0.00  
+    0:00:12    1071.5      0.01       0.0       0.0                                0.00  
+    0:00:12    1082.4      0.01       0.0       0.0                                0.00  
+    0:00:12    1027.0      0.01       0.0       0.0                                0.00  
+    0:00:12     986.1      0.01       0.0       0.0                                0.00  
+    0:00:12     986.1      0.01       0.0       0.0                                0.00  
+    0:00:12     986.1      0.01       0.0       0.0                                0.00  
+    0:00:12     986.1      0.01       0.0       0.0                                0.00  
+    0:00:12     986.1      0.01       0.0       0.0                                0.00  
+    0:00:12     986.1      0.01       0.0       0.0                                0.00  
+    0:00:13     984.8      0.01       0.0       0.0 sum_o_reg[31]/D                0.00  
+    0:00:13     978.2      0.01       0.0       0.0                                0.00  
+    0:00:13     972.1      0.01       0.0       0.0                                0.00  
 
 
 Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
@@ -411,11 +436,12 @@ report_timing -delay max > acc_max_delay.txt
 #### write out final netlist ######
 write -format verilog acc -output acc.vg
 Writing verilog file '/filespace/d/dwu94/Project/uSystolic-Sim/synthesis/16bit/unarytemporal/acc.vg'.
+Warning: Verilog 'assign' or 'tran' statements are written out. (VO-4)
 1
 exit
-Memory usage for this session 407 Mbytes.
-Memory usage for this session including child processes 407 Mbytes.
-CPU usage for this session 12 seconds ( 0.00 hours ).
+Memory usage for this session 142 Mbytes.
+Memory usage for this session including child processes 142 Mbytes.
+CPU usage for this session 13 seconds ( 0.00 hours ).
 Elapsed time for this session 15 seconds ( 0.00 hours ).
 
 Thank you...
