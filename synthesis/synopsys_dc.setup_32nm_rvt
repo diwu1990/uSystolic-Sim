@@ -1,0 +1,157 @@
+#=====================================================================
+#   FOR USE ON ECE NETWORKED COMPUTERS WITH /APP MOUNTED
+#
+#   -To be placed in home directory and/or project directory
+#
+# NOTES:
+#   -Order of setup file lookup: system -> home -> project
+#   -Latter setup files override settings in earlier setup files
+#   -System-Wide .synopsys_dc.setup located at $SYNOPSYS/admin/setup
+#   -This script supports Synopsys Reference 32nm library
+#
+# Department of Electrical and Computer Engineering
+# University of Wisconsin-Madison
+# Revised by E. Hoffman
+#=====================================================================
+
+# Select target Vt by uncommenting one of the lines below:
+# _lvt => Low Vt (fast but leaky)  _rvt => Regular Vt  _hvt => high Vt (slower # but low leakage)
+# set VT lvt
+set VT rvt
+# set VT hvt
+#
+# Select process corner for NMOS/PMOS by uncommenting one of the lines below:
+# ff => fast/fast  ss => slow/slow  tt => typical/typical
+# set PROCESS ff
+# set PROCESS ss
+set PROCESS tt
+#
+# Select operating voltage by uncommenting one of the lines below:
+# high => 1.05V (fast high power)  med => 0.85V   low => 0.78V (slower low power)
+#
+# set_VOLT high
+set VOLT med
+# set VOLT low
+#
+# Select operating temperature by uncommenting one of the lines below:
+#
+# hot => 125C  room => 25C  cold => -40C
+# set TEMP hot
+set TEMP room
+# set TEMP cold
+#
+switch $VT {
+        lvt {
+	    switch $PROCESS {
+		ff {
+		    set IO_LIB saed32io_wb_ff1p16v25c_2p75v
+	            set TECH_FILE saed32lvt_ff0p95v25c.db
+		    set IO_FILE ${IO_LIB}.db
+		}
+		ss {
+		    set IO_LIB saed32io_wb_ss0p95v25c_2p25v
+	            set TECH_FILE saed32lvt_ss0p75v25c.db
+		    set IO_FILE ${IO_LIB}.db
+		}
+	        tt {
+		    set IO_LIB saed32io_wb_tt1p05v25c_2p5v
+	            set TECH_FILE saed32lvt_tt0p85v25c.db
+		    set IO_FILE ${IO_LIB}.db
+		}
+	    }
+	}
+	rvt {
+	    switch $PROCESS {
+		ff {
+		    set IO_LIB saed32io_wb_ff1p16v25c_2p75v
+	            set TECH_FILE saed32rvt_ff0p95v25c.db
+		    set IO_FILE ${IO_LIB}.db
+		}
+		ss {
+		    set IO_LIB saed32io_wb_ss0p95v25c_2p25v
+	            set TECH_FILE saed32rvt_ss0p75v25c.db
+		    set IO_FILE ${IO_LIB}.db
+		}
+	        tt {
+		    set IO_LIB saed32io_wb_tt1p05v25c_2p5v
+	            set TECH_FILE saed32rvt_tt0p85v25c.db
+		    set IO_FILE ${IO_LIB}.db
+		}
+	    }
+	}
+	hvt {
+	    switch $PROCESS {
+		ff {
+		    set IO_LIB saed32io_wb_ff1p16v25c_2p75v
+	            set TECH_FILE saed32hvt_ff0p95v25c.db
+		    set IO_FILE ${IO_LIB}.db
+		}
+		ss {
+		    set IO_LIB saed32io_wb_ss0p95v25c_2p25v
+	            set TECH_FILE saed32hvt_ss0p75v25c.db
+		    set IO_FILE ${IO_LIB}.db
+		}
+	        tt {
+		    set IO_LIB saed32io_wb_tt1p05v25c_2p5v
+	            set TECH_FILE saed32hvt_tt0p85v25c.db
+		    set IO_FILE ${IO_LIB}.db
+		}
+	    }
+	}
+}
+
+# User Identity
+set designer [get_unix_variable USER]
+set company  "ECE Dept., UW-Madison"
+
+# Search Path
+set search_path ". /cae/apps/data/saed32_edk-2018/lib/stdcell_rvt/db_nldm /cae/apps/data/saed32_edk-2018/lib/stdcell_lvt/db_nldm /cae/apps/data/saed32_edk-2018/lib/stdcell_hvt/db_nldm /cae/apps/data/saed32_edk-2018/lib/io_std/db_nldm"
+
+
+# Setup Libraries
+set target_library "$TECH_FILE $IO_FILE"
+# IMPORTANT: First library listed in link_library is the main library.
+#            Defaults properties are determined from this library.
+set link_library      "$target_library *"
+set symbol_library    generic.sdb
+
+# HDL Compiler Settings
+set hdlin_translate_off_skip_text true
+set edifout_netlist_only true
+set verilogout_no_tri true
+set hdlin_auto_save_templates true
+set compile_fix_multiple_port_nets true
+
+set hdlin_allow_mixed_blocking_and_nonblocking false
+set hdlin_check_no_latch                       true
+#set hdlin_ff_always_async_set_reset            false
+#set hdlin_ff_always_sync_set_reset             true
+set hdlin_infer_decoders                       true
+#set hdlin_infer_multibit                       default_all
+#set hdlin_infer_mux                            all
+set hdlin_use_carry_in                         true
+set hdlin_use_syn_shifter                      true
+
+# Other Synopsys Settings
+#set compile_auto_ungroup_area_num_cells     30
+#set compile_automatic_clock_phase_inference relaxed
+#set compile_seqmap_enable_output_inversion  true
+set compile_seqmap_propagate_constants      true
+#set compile_sequential_area_recovery        true
+set hlo_resource_implementation             constraint_driven
+set hlo_transform_constant_multiplication   true
+set sh_continue_on_error                    false
+#set sh_source_logging                       true
+set verbose_messages                        false
+
+# Disable Log Files
+set view_command_log_file /dev/null
+if {$dc_shell_mode == "default"} {
+    set command_log_file /dev/null
+} else {  # else dc_shell_mode == "tcl"
+    set sh_command_log_file /dev/null
+}
+
+# Define Work Library Location
+#file mkdir work
+#define_design_lib WORK -path {./work}

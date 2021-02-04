@@ -1,0 +1,120 @@
+#=====================================================================
+#   FOR USE ON ECE NETWORKED COMPUTERS WITH /APP MOUNTED
+#
+#   -To be placed in home directory and/or project directory
+#
+# NOTES:
+#   -Order of setup file lookup: system -> home -> project
+#   -Latter setup files override settings in earlier setup files
+#   -System-Wide .synopsys_dc.setup located at $SYNOPSYS/admin/setup
+#   -This script supports TSMC 40, 45, and 65 nm libraries
+#
+# Department of Electrical and Computer Engineering
+# University of Wisconsin-Madison
+# Revised by T. Gregerson
+#=====================================================================
+
+# Target Technology Library
+# tcbn40lpbwp    - TSMC 40nm General Purpose  non-well biased with UPF and Multi-Voltage Nominal Vt
+# tcbn40lpbwp12t - TSMC 40nm High Performance non-well biased with UPF and Multi-Voltage Nominal Vt
+# tcbn45gsbwp    - TSMC 45nm General Purpose  non-well biased with UPF and Multi-Voltage Nominal Vt
+# tcbn45gsbwphvt - TSMC 45nm General Purpose  non-well biased with UPF and Multi-Voltage High Vt
+# tcbn65gplus    - TSMC 65nm General Purpose
+# Uncomment ONE of the TECH_LIB assignments or set variable via command line:
+#set TECH_LIB tcbn40lpbwptc
+#set TECH_LIB tcbn40lpbwp12ttc
+set TECH_LIB tcbn45gsbwptc
+#set TECH_LIB tcbn45gsbwphvttc
+#set TECH_LIB tcbn65gplustc
+switch $TECH_LIB {
+        tcbn40lpbwptc {
+                set IO_LIB tpfn45gsgv18tc
+                set TECH_FILE ${TECH_LIB}.db
+                set IO_FILE ${IO_LIB}.db }
+        tcbn40lpbwp12ttc {
+                set IO_LIB tpfn45gsgv18tc
+                set TECH_FILE ${TECH_LIB}.db
+                set IO_FILE ${IO_LIB}.db }
+        tcbn45gsbwptc {
+                set IO_LIB tpfn45gsgv18tc
+                set TECH_FILE ${TECH_LIB}.db
+                set IO_FILE ${IO_LIB}.db }
+        tcbn45gsbwphvttc {
+                set IO_LIB tpfn45gsgv18tc
+                set TECH_FILE ${TECH_LIB}.db
+                set IO_FILE ${IO_LIB}.db }
+				tcbn65gplustc {
+                set IO_LIB ${TECH_LIB}
+                set TECH_FILE ${TECH_LIB}.db
+                set IO_FILE ${IO_LIB}.db } 
+}
+
+# User Identity
+set designer [get_unix_variable USER]
+set company  "ECE Dept., UW-Madison"
+
+# Search Path
+set search_path ". /cae/apps/data/synopsys-2011/E-2010.12-SP5/libraries/syn /cae/apps/data/synopsys-2011/E-2010.12-SP5/dw/syn_ver /cae/apps/data/synopsys-2011/E-2010.12-SP5/dw/sim_ver"
+switch $TECH_LIB {
+	 tcbn40lpbwptc  {lappend search_path "/cae/apps/data/tsmclibs-2013/digital/Front_End/timing_power_noise/NLDM/tcbn40lpbwp_120b"}
+	 tcbn40lpbwp12ttc  {lappend search_path "/cae/apps/data/tsmclibs-2013/digital/Front_End/timing_power_noise/NLDM/tcbn40lpbwp12t_110b"}
+	 tcbn45gsbwptc  {lappend search_path "/cae/apps/data/tsmclibs-2013/digital/Front_End/timing_power_noise/NLDM/tcbn45gsbwp_120a"}
+	 tcbn45gsbwphvttc  {lappend search_path "/cae/apps/data/tsmclibs-2013/digital/Front_End/timing_power_noise/NLDM/tcbn45gsbwphvt_120a"}
+	 tcbn65gplustc  {lappend search_path "/cae/apps/data/tsmclibs-2013/digital/Front_End/timing_power/tcbn65gplus_121a"}
+}
+
+switch $IO_LIB {
+        tpfn45gsgv18tc  {lappend search_path " /cae/apps/data/tsmclibs-2013/digital/Front_End/timing_power_noise/NLDM/tpfn45gsgv18_120a"}
+}
+
+set MEMORY_FILE ${TECH_LIB}.db
+
+linsert ${search_path} 0 "../../"
+
+# Setup Libraries
+set target_library "$TECH_FILE $IO_FILE $MEMORY_FILE"
+# IMPORTANT: First library listed in link_library is the main library.
+#            Defaults properties are determined from this library.
+set link_library      "$target_library *"
+set symbol_library    generic.sdb
+
+# HDL Compiler Settings
+set hdlin_translate_off_skip_text true
+set edifout_netlist_only true
+set verilogout_no_tri true
+set hdlin_auto_save_templates true
+set compile_fix_multiple_port_nets true
+
+set hdlin_allow_mixed_blocking_and_nonblocking false
+set hdlin_check_no_latch                       true
+#set hdlin_ff_always_async_set_reset            false
+#set hdlin_ff_always_sync_set_reset             true
+set hdlin_infer_decoders                       true
+#set hdlin_infer_multibit                       default_all
+#set hdlin_infer_mux                            all
+set hdlin_use_carry_in                         true
+set hdlin_use_syn_shifter                      true
+
+# Other Synopsys Settings
+#set compile_auto_ungroup_area_num_cells     30
+#set compile_automatic_clock_phase_inference relaxed
+#set compile_seqmap_enable_output_inversion  true
+set compile_seqmap_propagate_constants      true
+#set compile_sequential_area_recovery        true
+set hlo_resource_implementation             constraint_driven
+set hlo_transform_constant_multiplication   true
+set sh_continue_on_error                    false
+#set sh_source_logging                       true
+set verbose_messages                        false
+
+# Disable Log Files
+set view_command_log_file /dev/null
+if {$dc_shell_mode == "default"} {
+    set command_log_file /dev/null
+} else {  # else dc_shell_mode == "tcl"
+    set sh_command_log_file /dev/null
+}
+
+# Define Work Library Location
+file mkdir work
+define_design_lib WORK -path {./work}
