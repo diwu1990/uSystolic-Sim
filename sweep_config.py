@@ -435,5 +435,5 @@ def prune(input_list):
 
 
 if __name__ == '__main__':
-    gen_run_config(tech_node="32nm_rvt")
-    # gen_run_config(tech_node="45nm_rvt")
+    # gen_run_config(tech_node="32nm_rvt")
+    gen_run_config(tech_node="45nm_rvt")
