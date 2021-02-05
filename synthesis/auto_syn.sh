@@ -3,6 +3,9 @@
 set -e
 set -o noclobber
 
+alias cp="cp -i"
+unalias cp
+
 for dir in $(ls -d */)
 do
     dir="${dir%/}"
@@ -10,24 +13,31 @@ do
     dir="${dir%/}"
     echo "Process technode: $dir"
 
-    cd dir
+    cd $dir
     for subdir in $(ls -d */)
     do
         subdir="${subdir%/}"
         subdir="${subdir%/}"
         subdir="${subdir%/}"
-        echo "Process subdir: $subdir"
+        echo "Process dir: $dir/$subdir"
 
-        cd subdir
+        cd $subdir
         for subsubdir in $(ls -d */)
         do
             subsubdir="${subsubdir%/}"
             subsubdir="${subsubdir%/}"
             subsubdir="${subsubdir%/}"
-            echo "Process subsubdir: $subsubdir"
-
+            cd $subsubdir
+            echo "Process dir: $dir/$subdir/$subsubdir"
+            rm -rf syn* .syn*
+            cp ../../../syn_* .
+            cp ../../../synopsys_dc.setup_$dir .synopsys_dc.setup
+            source syn_run.sh
+            cd ..
         done
+        cd ..
     done
+    cd ..
 done
 
 # # rename *.v to *.sv
