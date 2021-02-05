@@ -41,5 +41,7 @@ end=`date +%s`
 runtime=$((end-start))
 
 echo ""
+echo "All checked!"
+echo ""
 echo "Total runtime: $runtime"
 echo ""
