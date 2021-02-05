@@ -6,11 +6,11 @@ Report : timing
         -max_paths 1
 Design : acc
 Version: Q-2019.12-SP3
-Date   : Thu Feb  4 11:13:39 2021
+Date   : Thu Feb  4 20:27:13 2021
 ****************************************
 
-Operating Conditions: tt0p85v25c   Library: saed32rvt_tt0p85v25c
-Wire Load Model Mode: enclosed
+Operating Conditions: NCCOM   Library: tcbn45gsbwptc
+Wire Load Model Mode: segmented
 
   Startpoint: acc (input port clocked by clk)
   Endpoint: sum_o_reg[31]
@@ -20,59 +20,61 @@ Wire Load Model Mode: enclosed
 
   Des/Clust/Port     Wire Load Model       Library
   ------------------------------------------------
-  acc                8000                  saed32rvt_tt0p85v25c
+  acc                ZeroWireload          tcbn45gsbwptc
 
   Point                                    Incr       Path
   -----------------------------------------------------------
   clock clk (rise edge)                    0.00       0.00
   clock network delay (ideal)              0.00       0.00
-  input external delay                     0.25       0.25 r
-  acc (in)                                 0.00       0.25 r
-  U330/Y (MUX21X2_RVT)                     0.12       0.37 f
-  U486/Y (NAND2X0_RVT)                     0.07       0.44 r
-  U369/Y (INVX0_RVT)                       0.04       0.48 f
-  U367/Y (NAND2X0_RVT)                     0.06       0.53 r
-  U348/Y (NAND3X0_RVT)                     0.06       0.59 f
-  U350/Y (NAND3X0_RVT)                     0.07       0.66 r
-  U352/Y (NAND2X0_RVT)                     0.05       0.71 f
-  U353/Y (NAND2X0_RVT)                     0.05       0.76 r
-  U355/Y (AO22X1_RVT)                      0.07       0.83 r
-  U346/Y (NAND2X0_RVT)                     0.04       0.88 f
-  U555/Y (AO221X1_RVT)                     0.10       0.98 f
-  U389/Y (NAND2X0_RVT)                     0.05       1.03 r
-  U328/Y (NAND2X0_RVT)                     0.06       1.09 f
-  U392/Y (NAND2X0_RVT)                     0.06       1.15 r
-  U393/Y (AND2X1_RVT)                      0.06       1.21 r
-  U461/Y (AND2X1_RVT)                      0.06       1.27 r
-  U390/Y (NAND2X0_RVT)                     0.05       1.32 f
-  U383/Y (NAND2X0_RVT)                     0.06       1.38 r
-  U384/Y (AND2X1_RVT)                      0.06       1.44 r
-  U616/Y (NAND3X0_RVT)                     0.07       1.50 f
-  U622/Y (NAND2X0_RVT)                     0.08       1.59 r
-  U637/Y (NAND2X0_RVT)                     0.05       1.63 f
-  U638/Y (NAND3X0_RVT)                     0.05       1.69 r
-  U639/Y (NAND3X0_RVT)                     0.07       1.76 f
-  U642/Y (NAND2X0_RVT)                     0.08       1.84 r
-  U658/Y (NAND2X0_RVT)                     0.04       1.88 f
-  U391/Y (NAND2X0_RVT)                     0.05       1.94 r
-  U310/Y (OAI221X2_RVT)                    0.10       2.04 f
-  U308/Y (OAI21X1_RVT)                     0.12       2.16 r
-  U327/Y (NAND3X0_RVT)                     0.06       2.22 f
-  U667/Y (NAND4X0_RVT)                     0.06       2.28 r
-  sum_o_reg[31]/D (DFFARX1_RVT)            0.01       2.29 r
-  data arrival time                                   2.29
+  input external delay                     0.25       0.25 f
+  acc (in)                                 0.00       0.25 f
+  U336/ZN (MOAI22D0BWP)                    0.03       0.28 f
+  add_23/U1_1/CO (FA1D0BWP)                0.07       0.35 f
+  add_23/U1_2/CO (FA1D0BWP)                0.04       0.39 f
+  add_23/U1_3/CO (FA1D0BWP)                0.04       0.42 f
+  add_23/U1_4/CO (FA1D0BWP)                0.04       0.46 f
+  add_23/U1_5/CO (FA1D0BWP)                0.04       0.49 f
+  add_23/U1_6/CO (FA1D0BWP)                0.04       0.53 f
+  add_23/U1_7/CO (FA1D0BWP)                0.04       0.56 f
+  add_23/U1_8/CO (FA1D0BWP)                0.04       0.60 f
+  add_23/U1_9/CO (FA1D0BWP)                0.04       0.63 f
+  add_23/U1_10/CO (FA1D0BWP)               0.04       0.67 f
+  add_23/U1_11/CO (FA1D0BWP)               0.04       0.70 f
+  add_23/U1_12/CO (FA1D0BWP)               0.04       0.74 f
+  add_23/U1_13/CO (FA1D0BWP)               0.04       0.77 f
+  add_23/U1_14/CO (FA1D0BWP)               0.04       0.81 f
+  add_23/U1_15/CO (FA1D0BWP)               0.04       0.84 f
+  add_23/U1_16/CO (FA1D0BWP)               0.04       0.88 f
+  add_23/U1_17/CO (FA1D0BWP)               0.04       0.92 f
+  add_23/U1_18/CO (FA1D0BWP)               0.04       0.95 f
+  add_23/U1_19/CO (FA1D0BWP)               0.04       0.99 f
+  add_23/U1_20/CO (FA1D0BWP)               0.04       1.02 f
+  add_23/U1_21/CO (FA1D0BWP)               0.04       1.06 f
+  add_23/U1_22/CO (FA1D0BWP)               0.04       1.09 f
+  add_23/U1_23/CO (FA1D0BWP)               0.04       1.13 f
+  add_23/U1_24/CO (FA1D0BWP)               0.04       1.16 f
+  add_23/U1_25/CO (FA1D0BWP)               0.04       1.20 f
+  add_23/U1_26/CO (FA1D0BWP)               0.04       1.23 f
+  add_23/U1_27/CO (FA1D0BWP)               0.04       1.27 f
+  add_23/U1_28/CO (FA1D0BWP)               0.04       1.30 f
+  add_23/U1_29/CO (FA1D0BWP)               0.04       1.34 f
+  add_23/U1_30/CO (FA1D0BWP)               0.04       1.37 f
+  add_23/U1_31/Z (XOR3D1BWP)               0.04       1.41 r
+  U332/ZN (MOAI22D0BWP)                    0.03       1.44 r
+  sum_o_reg[31]/D (DFCNQD1BWP)             0.00       1.44 r
+  data arrival time                                   1.44
 
   clock clk (rise edge)                    2.50       2.50
   clock network delay (ideal)              0.00       2.50
   clock uncertainty                       -0.15       2.35
-  sum_o_reg[31]/CLK (DFFARX1_RVT)          0.00       2.35 r
-  library setup time                      -0.06       2.29
-  data required time                                  2.29
+  sum_o_reg[31]/CP (DFCNQD1BWP)            0.00       2.35 r
+  library setup time                      -0.02       2.33
+  data required time                                  2.33
   -----------------------------------------------------------
-  data required time                                  2.29
-  data arrival time                                  -2.29
+  data required time                                  2.33
+  data arrival time                                  -1.44
   -----------------------------------------------------------
-  slack (VIOLATED: increase significant digits)       0.00
+  slack (MET)                                         0.89
 
 
 1

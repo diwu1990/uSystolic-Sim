@@ -31,12 +31,12 @@ Loading db file '/cae/apps/data/synopsys-2020/syn/Q-2019.12-SP3/libraries/syn/st
 Detecting input file type automatically (-rtl or -netlist).
 Reading with Presto HDL Compiler (equivalent to -rtl option).
 Running PRESTO HDLC
-Compiling source file /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/8bit/unaryrate/ireg_border.sv
-Warning:  /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/8bit/unaryrate/ireg_border.sv:35: signed to unsigned part selection occurs. (VER-318)
+Compiling source file /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/8bit/unaryrate/ireg_border.sv
+Warning:  /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/8bit/unaryrate/ireg_border.sv:35: signed to unsigned part selection occurs. (VER-318)
 
 Inferred memory devices in process
 	in routine ireg_border line 17 in file
-		'/filespace/d/dwu94/Project/uSystolic-Sim/synthesis/8bit/unaryrate/ireg_border.sv'.
+		'/filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/8bit/unaryrate/ireg_border.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===============================================================================
@@ -53,7 +53,7 @@ link
   Linking design 'ireg_border'
   Using the following designs and libraries:
   --------------------------------------------------------------------------
-  ireg_border                 /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/8bit/unaryrate/ireg_border.db
+  ireg_border                 /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/8bit/unaryrate/ireg_border.db
   saed32rvt_tt0p85v25c (library) /cae/apps/data/saed32_edk-2018/lib/stdcell_rvt/db_nldm/saed32rvt_tt0p85v25c.db
   saed32io_wb_tt1p05v25c_2p5v (library) /cae/apps/data/saed32_edk-2018/lib/io_std/db_nldm/saed32io_wb_tt1p05v25c_2p5v.db
 
@@ -287,7 +287,7 @@ report_timing -delay min > ireg_border_min_delay.txt
 report_timing -delay max > ireg_border_max_delay.txt
 #### write out final netlist ######
 write -format verilog ireg_border -output ireg_border.vg
-Writing verilog file '/filespace/d/dwu94/Project/uSystolic-Sim/synthesis/8bit/unaryrate/ireg_border.vg'.
+Writing verilog file '/filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/8bit/unaryrate/ireg_border.vg'.
 1
 exit
 Memory usage for this session 142 Mbytes.

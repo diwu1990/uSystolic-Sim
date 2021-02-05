@@ -6,13 +6,13 @@ Report : timing
         -max_paths 1
 Design : ireg_border
 Version: Q-2019.12-SP3
-Date   : Thu Feb  4 11:16:16 2021
+Date   : Thu Feb  4 20:28:40 2021
 ****************************************
 
-Operating Conditions: tt0p85v25c   Library: saed32rvt_tt0p85v25c
-Wire Load Model Mode: enclosed
+Operating Conditions: NCCOM   Library: tcbn45gsbwptc
+Wire Load Model Mode: segmented
 
-  Startpoint: o_data_reg[0]
+  Startpoint: o_data_reg[2]
               (rising edge-triggered flip-flop clocked by clk)
   Endpoint: o_data_abs[6]
             (output port clocked by clk)
@@ -21,22 +21,24 @@ Wire Load Model Mode: enclosed
 
   Des/Clust/Port     Wire Load Model       Library
   ------------------------------------------------
-  ireg_border        ForQA                 saed32rvt_tt0p85v25c
+  ireg_border        ZeroWireload          tcbn45gsbwptc
 
   Point                                    Incr       Path
   -----------------------------------------------------------
   clock clk (rise edge)                    0.00       0.00
   clock network delay (ideal)              0.00       0.00
-  o_data_reg[0]/CLK (DFFARX1_RVT)          0.00       0.00 r
-  o_data_reg[0]/Q (DFFARX1_RVT)            0.16       0.16 f
-  U34/Y (OR2X1_RVT)                        0.09       0.25 f
-  U32/Y (OR2X1_RVT)                        0.08       0.32 f
-  U30/Y (OR2X1_RVT)                        0.08       0.40 f
-  U28/Y (OR2X1_RVT)                        0.08       0.48 f
-  U53/Y (OA21X1_RVT)                       0.09       0.57 f
-  U52/Y (XNOR2X1_RVT)                      0.12       0.69 r
-  o_data_abs[6] (out)                      0.01       0.70 r
-  data arrival time                                   0.70
+  o_data_reg[2]/CP (DFCNQD1BWP)            0.00       0.00 r
+  o_data_reg[2]/Q (DFCNQD1BWP)             0.07       0.07 f
+  U66/Z (DEL175D1BWP)                      0.15       0.21 f
+  U95/ZN (INVD1BWP)                        0.02       0.23 r
+  U86/ZN (ND2D1BWP)                        0.01       0.24 f
+  U94/ZN (NR2D1BWP)                        0.03       0.27 r
+  U87/ZN (ND2D1BWP)                        0.02       0.29 f
+  U91/ZN (OAI21D0BWP)                      0.03       0.32 r
+  U84/ZN (XNR2D1BWP)                       0.04       0.36 f
+  U85/ZN (INVD6BWP)                        0.06       0.42 r
+  o_data_abs[6] (out)                      0.00       0.42 r
+  data arrival time                                   0.42
 
   clock clk (rise edge)                    2.50       2.50
   clock network delay (ideal)              0.00       2.50
@@ -45,9 +47,9 @@ Wire Load Model Mode: enclosed
   data required time                                  1.85
   -----------------------------------------------------------
   data required time                                  1.85
-  data arrival time                                  -0.70
+  data arrival time                                  -0.42
   -----------------------------------------------------------
-  slack (MET)                                         1.15
+  slack (MET)                                         1.43
 
 
 1

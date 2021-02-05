@@ -31,11 +31,11 @@ Loading db file '/cae/apps/data/synopsys-2020/syn/Q-2019.12-SP3/libraries/syn/st
 Detecting input file type automatically (-rtl or -netlist).
 Reading with Presto HDL Compiler (equivalent to -rtl option).
 Running PRESTO HDLC
-Compiling source file /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/16bit/binaryserial/mul_border.sv
+Compiling source file /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/16bit/binaryserial/mul_border.sv
 
 Inferred memory devices in process
 	in routine mul_border line 16 in file
-		'/filespace/d/dwu94/Project/uSystolic-Sim/synthesis/16bit/binaryserial/mul_border.sv'.
+		'/filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/16bit/binaryserial/mul_border.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===============================================================================
@@ -58,7 +58,7 @@ link
   Linking design 'mul_border'
   Using the following designs and libraries:
   --------------------------------------------------------------------------
-  mul_border                  /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/16bit/binaryserial/mul_border.db
+  mul_border                  /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/16bit/binaryserial/mul_border.db
   saed32rvt_tt0p85v25c (library) /cae/apps/data/saed32_edk-2018/lib/stdcell_rvt/db_nldm/saed32rvt_tt0p85v25c.db
   saed32io_wb_tt1p05v25c_2p5v (library) /cae/apps/data/saed32_edk-2018/lib/io_std/db_nldm/saed32io_wb_tt1p05v25c_2p5v.db
 
@@ -146,19 +146,19 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:03     655.7      0.12       0.2       0.0                          
-    0:00:03     652.6      0.12       0.2       0.0                          
-    0:00:03     652.6      0.12       0.2       0.0                          
-    0:00:03     652.6      0.12       0.2       0.0                          
-    0:00:03     652.6      0.12       0.2       0.0                          
-    0:00:03     612.2      0.12       0.2       0.0                          
-    0:00:03     611.7      0.12       0.2       0.0                          
-    0:00:03     611.7      0.12       0.2       0.0                          
-    0:00:03     611.7      0.12       0.2       0.0                          
-    0:00:03     611.7      0.12       0.2       0.0                          
-    0:00:03     611.7      0.12       0.2       0.0                          
-    0:00:03     611.7      0.12       0.2       0.0                          
-    0:00:03     611.7      0.12       0.2       0.0                          
+    0:00:04     655.7      0.12       0.2       0.0                          
+    0:00:04     652.6      0.12       0.2       0.0                          
+    0:00:04     652.6      0.12       0.2       0.0                          
+    0:00:04     652.6      0.12       0.2       0.0                          
+    0:00:04     652.6      0.12       0.2       0.0                          
+    0:00:04     612.2      0.12       0.2       0.0                          
+    0:00:04     611.7      0.12       0.2       0.0                          
+    0:00:04     611.7      0.12       0.2       0.0                          
+    0:00:04     611.7      0.12       0.2       0.0                          
+    0:00:04     611.7      0.12       0.2       0.0                          
+    0:00:04     611.7      0.12       0.2       0.0                          
+    0:00:04     611.7      0.12       0.2       0.0                          
+    0:00:04     611.7      0.12       0.2       0.0                          
     0:00:04     611.7      0.12       0.2       0.0                          
     0:00:04     611.7      0.12       0.2       0.0                          
     0:00:04     619.3      0.12       0.2       0.0                          
@@ -184,15 +184,15 @@ Information: Updating design information... (UID-85)
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
     0:00:04     632.1      0.06       0.1       0.0                          
-    0:00:04     630.3      0.03       0.0       0.0 o_data[31]               
-    0:00:04     633.1      0.02       0.0       0.0 o_data[31]               
-    0:00:04     639.4      0.02       0.0       0.2 o_data[31]               
-    0:00:04     640.2      0.01       0.0       0.0 o_data[31]               
-    0:00:04     639.7      0.01       0.0       0.0 o_data[31]               
-    0:00:04     636.6      0.00       0.0       0.0 o_data[31]               
-    0:00:04     634.9      0.00       0.0       0.0                          
-    0:00:04     632.3      0.00       0.0       0.0                          
-    0:00:04     634.3      0.00       0.0       0.0                          
+    0:00:05     630.3      0.03       0.0       0.0 o_data[31]               
+    0:00:05     633.1      0.02       0.0       0.0 o_data[31]               
+    0:00:05     639.4      0.02       0.0       0.2 o_data[31]               
+    0:00:05     640.2      0.01       0.0       0.0 o_data[31]               
+    0:00:05     639.7      0.01       0.0       0.0 o_data[31]               
+    0:00:05     636.6      0.00       0.0       0.0 o_data[31]               
+    0:00:05     634.9      0.00       0.0       0.0                          
+    0:00:05     632.3      0.00       0.0       0.0                          
+    0:00:05     634.3      0.00       0.0       0.0                          
 
 
   Beginning Area-Recovery Phase  (cleanup)
@@ -202,20 +202,20 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:04     634.3      0.00       0.0       0.0                          
-    0:00:04     634.3      0.00       0.0       0.0                          
-    0:00:04     625.2      0.01       0.0       0.0                          
-    0:00:04     625.2      0.01       0.0       0.0                          
-    0:00:04     625.2      0.01       0.0       0.0                          
-    0:00:04     625.2      0.01       0.0       0.0                          
-    0:00:04     627.5      0.00       0.0       0.0                          
-    0:00:04     616.6      0.01       0.0       0.0                          
-    0:00:04     616.6      0.01       0.0       0.0                          
-    0:00:04     616.6      0.01       0.0       0.0                          
-    0:00:04     616.6      0.01       0.0       0.0                          
-    0:00:04     616.6      0.01       0.0       0.0                          
-    0:00:04     616.6      0.01       0.0       0.0                          
-    0:00:05     614.5      0.01       0.0       0.0                          
+    0:00:05     634.3      0.00       0.0       0.0                          
+    0:00:05     634.3      0.00       0.0       0.0                          
+    0:00:05     625.2      0.01       0.0       0.0                          
+    0:00:05     625.2      0.01       0.0       0.0                          
+    0:00:05     625.2      0.01       0.0       0.0                          
+    0:00:05     625.2      0.01       0.0       0.0                          
+    0:00:05     627.5      0.00       0.0       0.0                          
+    0:00:05     616.6      0.01       0.0       0.0                          
+    0:00:05     616.6      0.01       0.0       0.0                          
+    0:00:05     616.6      0.01       0.0       0.0                          
+    0:00:05     616.6      0.01       0.0       0.0                          
+    0:00:05     616.6      0.01       0.0       0.0                          
+    0:00:05     616.6      0.01       0.0       0.0                          
+    0:00:06     614.5      0.01       0.0       0.0                          
 
 
 Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
@@ -229,7 +229,7 @@ check_design
 ****************************************
 check_design summary:
 Version:     Q-2019.12-SP3
-Date:        Thu Feb  4 11:23:49 2021
+Date:        Thu Feb  4 20:14:36 2021
 ****************************************
 
                    Name                                            Total
@@ -322,23 +322,23 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                              MIN DELAY 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT             COST    
   --------- --------- --------- --------- --------- ------------------------- -----------
-    0:00:07     791.7      0.32       1.3       0.0                                0.00  
-    0:00:07     786.3      0.33       1.4       0.0                                0.00  
-    0:00:07     786.3      0.33       1.4       0.0                                0.00  
-    0:00:07     786.3      0.33       1.4       0.0                                0.00  
-    0:00:07     786.3      0.33       1.4       0.0                                0.00  
-    0:00:07     649.8      0.33       1.2       0.0                                0.00  
-    0:00:07     657.0      0.29       0.9       0.0                                0.00  
-    0:00:07     663.8      0.22       0.6       0.0                                0.00  
-    0:00:07     664.8      0.22       0.6       0.0                                0.00  
-    0:00:07     664.8      0.22       0.6       0.0                                0.00  
-    0:00:07     667.6      0.22       0.6       0.0                                0.00  
-    0:00:07     667.6      0.22       0.6       0.0                                0.00  
-    0:00:07     667.6      0.22       0.6       0.0                                0.00  
-    0:00:07     667.6      0.22       0.6       0.0                                0.00  
-    0:00:07     667.6      0.22       0.6       0.0                                0.00  
-    0:00:07     667.6      0.22       0.6       0.0                                0.00  
-    0:00:07     667.6      0.22       0.6       0.0                                0.00  
+    0:00:08     791.7      0.32       1.3       0.0                                0.00  
+    0:00:08     786.3      0.33       1.4       0.0                                0.00  
+    0:00:08     786.3      0.33       1.4       0.0                                0.00  
+    0:00:08     786.3      0.33       1.4       0.0                                0.00  
+    0:00:08     786.3      0.33       1.4       0.0                                0.00  
+    0:00:08     649.8      0.33       1.2       0.0                                0.00  
+    0:00:08     657.0      0.29       0.9       0.0                                0.00  
+    0:00:08     663.8      0.22       0.6       0.0                                0.00  
+    0:00:08     664.8      0.22       0.6       0.0                                0.00  
+    0:00:08     664.8      0.22       0.6       0.0                                0.00  
+    0:00:08     667.6      0.22       0.6       0.0                                0.00  
+    0:00:08     667.6      0.22       0.6       0.0                                0.00  
+    0:00:08     667.6      0.22       0.6       0.0                                0.00  
+    0:00:08     667.6      0.22       0.6       0.0                                0.00  
+    0:00:08     667.6      0.22       0.6       0.0                                0.00  
+    0:00:08     667.6      0.22       0.6       0.0                                0.00  
+    0:00:08     667.6      0.22       0.6       0.0                                0.00  
 
 
 
@@ -349,16 +349,16 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                              MIN DELAY 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT             COST    
   --------- --------- --------- --------- --------- ------------------------- -----------
-    0:00:07     667.6      0.22       0.6       0.0                                0.00  
-    0:00:07     680.3      0.19       0.5       0.0 o_data[31]                     0.00  
-    0:00:07     697.6      0.18       0.4       0.0 o_data[31]                     0.00  
-    0:00:07     697.6      0.16       0.4       0.0 o_data[31]                     0.00  
-    0:00:07     718.5      0.13       0.2       0.0 o_data[31]                     0.00  
+    0:00:08     667.6      0.22       0.6       0.0                                0.00  
+    0:00:08     680.3      0.19       0.5       0.0 o_data[31]                     0.00  
+    0:00:08     697.6      0.18       0.4       0.0 o_data[31]                     0.00  
+    0:00:08     697.6      0.16       0.4       0.0 o_data[31]                     0.00  
+    0:00:08     718.5      0.13       0.2       0.0 o_data[31]                     0.00  
     0:00:08     722.8      0.09       0.1       0.0 o_data[31]                     0.00  
     0:00:08     730.2      0.02       0.0       0.0 o_data[31]                     0.00  
-    0:00:08     750.5      0.00       0.0       0.0                                0.00  
-    0:00:08     750.5      0.00       0.0       0.0                                0.00  
-    0:00:08     744.4      0.00       0.0       0.0                                0.00  
+    0:00:09     750.5      0.00       0.0       0.0                                0.00  
+    0:00:09     750.5      0.00       0.0       0.0                                0.00  
+    0:00:09     744.4      0.00       0.0       0.0                                0.00  
 
 
   Beginning Design Rule Fixing  (max_transition)
@@ -368,8 +368,8 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                              MIN DELAY 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT             COST    
   --------- --------- --------- --------- --------- ------------------------- -----------
-    0:00:08     744.4      0.00       0.0       0.0                                0.00  
-    0:00:08     744.1      0.00       0.0       0.0                                0.00  
+    0:00:09     744.4      0.00       0.0       0.0                                0.00  
+    0:00:09     744.1      0.00       0.0       0.0                                0.00  
 
 
   Beginning Area-Recovery Phase  (cleanup)
@@ -379,23 +379,23 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                              MIN DELAY 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT             COST    
   --------- --------- --------- --------- --------- ------------------------- -----------
-    0:00:08     744.1      0.00       0.0       0.0                                0.00  
-    0:00:08     744.1      0.00       0.0       0.0                                0.00  
-    0:00:08     713.4      0.00       0.0       0.0                                0.00  
-    0:00:08     710.1      0.00       0.0       0.0                                0.00  
-    0:00:08     705.8      0.00       0.0       0.0                                0.00  
-    0:00:08     705.8      0.00       0.0       0.0                                0.00  
-    0:00:08     705.8      0.00       0.0       0.0                                0.00  
-    0:00:08     705.8      0.00       0.0       0.0                                0.00  
-    0:00:08     705.8      0.00       0.0       0.0                                0.00  
-    0:00:08     689.2      0.00       0.0       0.0                                0.00  
-    0:00:08     673.2      0.00       0.0       0.0                                0.00  
-    0:00:08     673.2      0.00       0.0       0.0                                0.00  
-    0:00:08     673.2      0.00       0.0       0.0                                0.00  
-    0:00:08     673.2      0.00       0.0       0.0                                0.00  
-    0:00:08     673.2      0.00       0.0       0.0                                0.00  
-    0:00:08     673.2      0.00       0.0       0.0                                0.00  
-    0:00:08     673.2      0.00       0.0       0.0                                0.00  
+    0:00:09     744.1      0.00       0.0       0.0                                0.00  
+    0:00:09     744.1      0.00       0.0       0.0                                0.00  
+    0:00:09     713.4      0.00       0.0       0.0                                0.00  
+    0:00:09     710.1      0.00       0.0       0.0                                0.00  
+    0:00:09     705.8      0.00       0.0       0.0                                0.00  
+    0:00:09     705.8      0.00       0.0       0.0                                0.00  
+    0:00:09     705.8      0.00       0.0       0.0                                0.00  
+    0:00:09     705.8      0.00       0.0       0.0                                0.00  
+    0:00:09     705.8      0.00       0.0       0.0                                0.00  
+    0:00:09     689.2      0.00       0.0       0.0                                0.00  
+    0:00:09     673.2      0.00       0.0       0.0                                0.00  
+    0:00:09     673.2      0.00       0.0       0.0                                0.00  
+    0:00:09     673.2      0.00       0.0       0.0                                0.00  
+    0:00:09     673.2      0.00       0.0       0.0                                0.00  
+    0:00:09     673.2      0.00       0.0       0.0                                0.00  
+    0:00:09     673.2      0.00       0.0       0.0                                0.00  
+    0:00:09     673.2      0.00       0.0       0.0                                0.00  
 
 
 Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
@@ -409,7 +409,7 @@ check_design
 ****************************************
 check_design summary:
 Version:     Q-2019.12-SP3
-Date:        Thu Feb  4 11:23:52 2021
+Date:        Thu Feb  4 20:14:39 2021
 ****************************************
 
                    Name                                            Total
@@ -429,12 +429,12 @@ report_timing -delay min > mul_border_min_delay.txt
 report_timing -delay max > mul_border_max_delay.txt
 #### write out final netlist ######
 write -format verilog mul_border -output mul_border.vg
-Writing verilog file '/filespace/d/dwu94/Project/uSystolic-Sim/synthesis/16bit/binaryserial/mul_border.vg'.
+Writing verilog file '/filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/16bit/binaryserial/mul_border.vg'.
 1
 exit
 Memory usage for this session 142 Mbytes.
 Memory usage for this session including child processes 142 Mbytes.
 CPU usage for this session 8 seconds ( 0.00 hours ).
-Elapsed time for this session 10 seconds ( 0.00 hours ).
+Elapsed time for this session 11 seconds ( 0.00 hours ).
 
 Thank you...

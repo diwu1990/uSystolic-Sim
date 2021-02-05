@@ -31,11 +31,11 @@ Loading db file '/cae/apps/data/synopsys-2020/syn/Q-2019.12-SP3/libraries/syn/st
 Detecting input file type automatically (-rtl or -netlist).
 Reading with Presto HDL Compiler (equivalent to -rtl option).
 Running PRESTO HDLC
-Compiling source file /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/8bit/binaryserial/mul_inner.sv
+Compiling source file /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/8bit/binaryserial/mul_inner.sv
 
 Inferred memory devices in process
 	in routine mul_inner line 16 in file
-		'/filespace/d/dwu94/Project/uSystolic-Sim/synthesis/8bit/binaryserial/mul_inner.sv'.
+		'/filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/8bit/binaryserial/mul_inner.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===============================================================================
@@ -58,7 +58,7 @@ link
   Linking design 'mul_inner'
   Using the following designs and libraries:
   --------------------------------------------------------------------------
-  mul_inner                   /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/8bit/binaryserial/mul_inner.db
+  mul_inner                   /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/8bit/binaryserial/mul_inner.db
   saed32rvt_tt0p85v25c (library) /cae/apps/data/saed32_edk-2018/lib/stdcell_rvt/db_nldm/saed32rvt_tt0p85v25c.db
   saed32io_wb_tt1p05v25c_2p5v (library) /cae/apps/data/saed32_edk-2018/lib/io_std/db_nldm/saed32io_wb_tt1p05v25c_2p5v.db
 
@@ -175,7 +175,7 @@ Information: Updating design information... (UID-85)
     0:00:03     188.1      0.35       0.9       0.0 o_data[15]               
     0:00:03     188.1      0.35       0.9       0.0                          
     0:00:03     186.8      0.35       0.9       0.0                          
-    0:00:04     187.0      0.35       0.9       0.0                          
+    0:00:03     187.0      0.35       0.9       0.0                          
 
 
   Beginning Area-Recovery Phase  (cleanup)
@@ -185,19 +185,19 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:04     187.0      0.35       0.9       0.0                          
-    0:00:04     187.0      0.35       0.9       0.0                          
-    0:00:04     184.0      0.35       0.9       0.0                          
-    0:00:04     184.0      0.35       0.9       0.0                          
-    0:00:04     184.0      0.35       0.9       0.0                          
-    0:00:04     184.0      0.35       0.9       0.0                          
-    0:00:04     183.7      0.35       0.9       0.0                          
-    0:00:04     183.7      0.35       0.9       0.0                          
-    0:00:04     183.7      0.35       0.9       0.0                          
-    0:00:04     183.7      0.35       0.9       0.0                          
-    0:00:04     183.7      0.35       0.9       0.0                          
-    0:00:04     183.7      0.35       0.9       0.0                          
-    0:00:04     188.8      0.35       0.9       0.0                          
+    0:00:03     187.0      0.35       0.9       0.0                          
+    0:00:03     187.0      0.35       0.9       0.0                          
+    0:00:03     184.0      0.35       0.9       0.0                          
+    0:00:03     184.0      0.35       0.9       0.0                          
+    0:00:03     184.0      0.35       0.9       0.0                          
+    0:00:03     184.0      0.35       0.9       0.0                          
+    0:00:03     183.7      0.35       0.9       0.0                          
+    0:00:03     183.7      0.35       0.9       0.0                          
+    0:00:03     183.7      0.35       0.9       0.0                          
+    0:00:03     183.7      0.35       0.9       0.0                          
+    0:00:03     183.7      0.35       0.9       0.0                          
+    0:00:03     183.7      0.35       0.9       0.0                          
+    0:00:03     188.8      0.35       0.9       0.0                          
     0:00:04     196.5      0.33       0.8       0.0                          
 
 
@@ -212,7 +212,7 @@ check_design
 ****************************************
 check_design summary:
 Version:     Q-2019.12-SP3
-Date:        Thu Feb  4 11:14:07 2021
+Date:        Thu Feb  4 20:18:09 2021
 ****************************************
 
                    Name                                            Total
@@ -334,7 +334,7 @@ check_design
 ****************************************
 check_design summary:
 Version:     Q-2019.12-SP3
-Date:        Thu Feb  4 11:14:09 2021
+Date:        Thu Feb  4 20:18:11 2021
 ****************************************
 
                    Name                                            Total
@@ -354,7 +354,7 @@ report_timing -delay min > mul_inner_min_delay.txt
 report_timing -delay max > mul_inner_max_delay.txt
 #### write out final netlist ######
 write -format verilog mul_inner -output mul_inner.vg
-Writing verilog file '/filespace/d/dwu94/Project/uSystolic-Sim/synthesis/8bit/binaryserial/mul_inner.vg'.
+Writing verilog file '/filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/8bit/binaryserial/mul_inner.vg'.
 1
 exit
 Memory usage for this session 142 Mbytes.

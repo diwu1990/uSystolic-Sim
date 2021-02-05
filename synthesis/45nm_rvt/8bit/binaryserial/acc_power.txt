@@ -7,38 +7,38 @@ Report : power
         -analysis_effort low
 Design : acc
 Version: Q-2019.12-SP3
-Date   : Thu Feb  4 11:13:39 2021
+Date   : Thu Feb  4 20:27:13 2021
 ****************************************
 
 
 Library(s) Used:
 
-    saed32rvt_tt0p85v25c (File: /cae/apps/data/saed32_edk-2018/lib/stdcell_rvt/db_nldm/saed32rvt_tt0p85v25c.db)
+    tcbn45gsbwptc (File: /cae/apps/data/tsmclibs-2013/digital/Front_End/timing_power_noise/NLDM/tcbn45gsbwp_120a/tcbn45gsbwptc.db)
 
 
-Operating Conditions: tt0p85v25c   Library: saed32rvt_tt0p85v25c
-Wire Load Model Mode: enclosed
+Operating Conditions: NCCOM   Library: tcbn45gsbwptc
+Wire Load Model Mode: segmented
 
 Design        Wire Load Model            Library
 ------------------------------------------------
-acc                    8000              saed32rvt_tt0p85v25c
+acc                    ZeroWireload      tcbn45gsbwptc
 
 
-Global Operating Voltage = 0.85 
+Global Operating Voltage = 0.9  
 Power-specific unit information :
     Voltage Units = 1V
-    Capacitance Units = 1.000000ff
+    Capacitance Units = 1.000000pf
     Time Units = 1ns
-    Dynamic Power Units = 1uW    (derived from V,C,T units)
-    Leakage Power Units = 1pW
+    Dynamic Power Units = 1mW    (derived from V,C,T units)
+    Leakage Power Units = 1nW
 
 
-  Cell Internal Power  =  79.9403 uW   (90%)
-  Net Switching Power  =   8.9628 uW   (10%)
+  Cell Internal Power  =  74.8149 uW   (67%)
+  Net Switching Power  =  36.5664 uW   (33%)
                          ---------
-Total Dynamic Power    =  88.9032 uW  (100%)
+Total Dynamic Power    = 111.3813 uW  (100%)
 
-Cell Leakage Power     =  22.1558 uW
+Cell Leakage Power     =   6.0835 uW
 
 
                  Internal         Switching           Leakage            Total
@@ -48,9 +48,9 @@ io_pad             0.0000            0.0000            0.0000            0.0000 
 memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
 black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
 clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)
-register          58.2169            0.4009        7.5955e+06           66.2134  (  59.62%)
+register       5.1959e-02        1.5337e-04        1.0895e+03        5.3202e-02  (  45.29%)
 sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)
-combinational     21.7234            8.5619        1.4560e+07           44.8456  (  40.38%)
+combinational  2.2856e-02        3.6413e-02        4.9940e+03        6.4263e-02  (  54.71%)
 --------------------------------------------------------------------------------------------------
-Total             79.9404 uW         8.9628 uW     2.2156e+07 pW       111.0590 uW
+Total          7.4815e-02 mW     3.6566e-02 mW     6.0835e+03 nW         0.1175 mW
 1

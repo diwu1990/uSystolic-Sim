@@ -31,10 +31,10 @@ Loading db file '/cae/apps/data/synopsys-2020/syn/Q-2019.12-SP3/libraries/syn/st
 Detecting input file type automatically (-rtl or -netlist).
 Reading with Presto HDL Compiler (equivalent to -rtl option).
 Running PRESTO HDLC
-Compiling source file /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/8bit/unarytemporal/sobol8.sv
+Compiling source file /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/8bit/unarytemporal/sobol8.sv
 
 Statistics for case statements in always block at line 70 in file
-	'/filespace/d/dwu94/Project/uSystolic-Sim/synthesis/8bit/unarytemporal/sobol8.sv'
+	'/filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/8bit/unarytemporal/sobol8.sv'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
@@ -43,7 +43,7 @@ Statistics for case statements in always block at line 70 in file
 
 Inferred memory devices in process
 	in routine sobol8 line 17 in file
-		'/filespace/d/dwu94/Project/uSystolic-Sim/synthesis/8bit/unarytemporal/sobol8.sv'.
+		'/filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/8bit/unarytemporal/sobol8.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===============================================================================
@@ -52,7 +52,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine sobol8 line 46 in file
-		'/filespace/d/dwu94/Project/uSystolic-Sim/synthesis/8bit/unarytemporal/sobol8.sv'.
+		'/filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/8bit/unarytemporal/sobol8.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===============================================================================
@@ -75,7 +75,7 @@ link
   Linking design 'sobol8'
   Using the following designs and libraries:
   --------------------------------------------------------------------------
-  sobol8                      /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/8bit/unarytemporal/sobol8.db
+  sobol8                      /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/8bit/unarytemporal/sobol8.db
   saed32rvt_tt0p85v25c (library) /cae/apps/data/saed32_edk-2018/lib/stdcell_rvt/db_nldm/saed32rvt_tt0p85v25c.db
   saed32io_wb_tt1p05v25c_2p5v (library) /cae/apps/data/saed32_edk-2018/lib/io_std/db_nldm/saed32io_wb_tt1p05v25c_2p5v.db
 
@@ -248,19 +248,19 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                              MIN DELAY 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT             COST    
   --------- --------- --------- --------- --------- ------------------------- -----------
-    0:00:04     264.6      0.00       0.0       0.0                                0.00  
-    0:00:04     264.6      0.00       0.0       0.0                                0.00  
-    0:00:04     264.6      0.00       0.0       0.0                                0.00  
-    0:00:04     264.6      0.00       0.0       0.0                                0.00  
-    0:00:04     264.6      0.00       0.0       0.0                                0.00  
-    0:00:04     258.0      0.00       0.0       0.0                                0.00  
-    0:00:04     258.0      0.00       0.0       0.0                                0.00  
-    0:00:04     258.0      0.00       0.0       0.0                                0.00  
-    0:00:04     258.0      0.00       0.0       0.0                                0.00  
-    0:00:04     258.0      0.00       0.0       0.0                                0.00  
-    0:00:04     258.0      0.00       0.0       0.0                                0.00  
-    0:00:04     258.0      0.00       0.0       0.0                                0.00  
-    0:00:04     258.0      0.00       0.0       0.0                                0.00  
+    0:00:05     264.6      0.00       0.0       0.0                                0.00  
+    0:00:05     264.6      0.00       0.0       0.0                                0.00  
+    0:00:05     264.6      0.00       0.0       0.0                                0.00  
+    0:00:05     264.6      0.00       0.0       0.0                                0.00  
+    0:00:05     264.6      0.00       0.0       0.0                                0.00  
+    0:00:05     258.0      0.00       0.0       0.0                                0.00  
+    0:00:05     258.0      0.00       0.0       0.0                                0.00  
+    0:00:05     258.0      0.00       0.0       0.0                                0.00  
+    0:00:05     258.0      0.00       0.0       0.0                                0.00  
+    0:00:05     258.0      0.00       0.0       0.0                                0.00  
+    0:00:05     258.0      0.00       0.0       0.0                                0.00  
+    0:00:05     258.0      0.00       0.0       0.0                                0.00  
+    0:00:05     258.0      0.00       0.0       0.0                                0.00  
 
 
 
@@ -271,9 +271,9 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                              MIN DELAY 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT             COST    
   --------- --------- --------- --------- --------- ------------------------- -----------
-    0:00:04     258.0      0.00       0.0       0.0                                0.00  
-    0:00:04     258.0      0.00       0.0       0.0                                0.00  
-    0:00:04     250.3      0.00       0.0       0.0                                0.00  
+    0:00:05     258.0      0.00       0.0       0.0                                0.00  
+    0:00:05     258.0      0.00       0.0       0.0                                0.00  
+    0:00:05     250.3      0.00       0.0       0.0                                0.00  
 
 
   Beginning Area-Recovery Phase  (cleanup)
@@ -283,17 +283,17 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                              MIN DELAY 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT             COST    
   --------- --------- --------- --------- --------- ------------------------- -----------
-    0:00:04     250.3      0.00       0.0       0.0                                0.00  
-    0:00:04     250.3      0.00       0.0       0.0                                0.00  
-    0:00:04     250.3      0.00       0.0       0.0                                0.00  
-    0:00:04     250.3      0.00       0.0       0.0                                0.00  
-    0:00:04     250.3      0.00       0.0       0.0                                0.00  
-    0:00:04     250.3      0.00       0.0       0.0                                0.00  
-    0:00:04     250.3      0.00       0.0       0.0                                0.00  
-    0:00:04     250.3      0.00       0.0       0.0                                0.00  
-    0:00:04     250.3      0.00       0.0       0.0                                0.00  
-    0:00:04     250.3      0.00       0.0       0.0                                0.00  
-    0:00:04     250.3      0.00       0.0       0.0                                0.00  
+    0:00:05     250.3      0.00       0.0       0.0                                0.00  
+    0:00:05     250.3      0.00       0.0       0.0                                0.00  
+    0:00:05     250.3      0.00       0.0       0.0                                0.00  
+    0:00:05     250.3      0.00       0.0       0.0                                0.00  
+    0:00:05     250.3      0.00       0.0       0.0                                0.00  
+    0:00:05     250.3      0.00       0.0       0.0                                0.00  
+    0:00:05     250.3      0.00       0.0       0.0                                0.00  
+    0:00:05     250.3      0.00       0.0       0.0                                0.00  
+    0:00:05     250.3      0.00       0.0       0.0                                0.00  
+    0:00:05     250.3      0.00       0.0       0.0                                0.00  
+    0:00:05     250.3      0.00       0.0       0.0                                0.00  
 
 
 Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
@@ -313,12 +313,12 @@ report_timing -delay min > sobol8_min_delay.txt
 report_timing -delay max > sobol8_max_delay.txt
 #### write out final netlist ######
 write -format verilog sobol8 -output sobol8.vg
-Writing verilog file '/filespace/d/dwu94/Project/uSystolic-Sim/synthesis/8bit/unarytemporal/sobol8.vg'.
+Writing verilog file '/filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/8bit/unarytemporal/sobol8.vg'.
 1
 exit
 Memory usage for this session 142 Mbytes.
 Memory usage for this session including child processes 142 Mbytes.
 CPU usage for this session 4 seconds ( 0.00 hours ).
-Elapsed time for this session 6 seconds ( 0.00 hours ).
+Elapsed time for this session 7 seconds ( 0.00 hours ).
 
 Thank you...

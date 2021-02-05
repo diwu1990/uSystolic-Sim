@@ -31,7 +31,7 @@ Loading db file '/cae/apps/data/synopsys-2020/syn/Q-2019.12-SP3/libraries/syn/st
 Detecting input file type automatically (-rtl or -netlist).
 Reading with Presto HDL Compiler (equivalent to -rtl option).
 Running PRESTO HDLC
-Compiling source file /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/8bit/unarytemporal/mul_inner.sv
+Compiling source file /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/8bit/unarytemporal/mul_inner.sv
 Opening include file sobol8.sv
 
 Statistics for case statements in always block at line 70 in file
@@ -76,10 +76,10 @@ link
   Linking design 'mul_inner'
   Using the following designs and libraries:
   --------------------------------------------------------------------------
-  mul_inner                   /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/8bit/unarytemporal/mul_inner.db
+  mul_inner                   /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/8bit/unarytemporal/mul_inner.db
   saed32rvt_tt0p85v25c (library) /cae/apps/data/saed32_edk-2018/lib/stdcell_rvt/db_nldm/saed32rvt_tt0p85v25c.db
   saed32io_wb_tt1p05v25c_2p5v (library) /cae/apps/data/saed32_edk-2018/lib/io_std/db_nldm/saed32io_wb_tt1p05v25c_2p5v.db
-  sobol8                      /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/8bit/unarytemporal/sobol8.db
+  sobol8                      /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/8bit/unarytemporal/sobol8.db
 
 1
 ###########################################
@@ -167,19 +167,19 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:03     305.5      0.00       0.0       0.0                          
-    0:00:03     305.5      0.00       0.0       0.0                          
-    0:00:03     305.5      0.00       0.0       0.0                          
-    0:00:03     305.5      0.00       0.0       0.0                          
-    0:00:03     305.5      0.00       0.0       0.0                          
-    0:00:03     299.1      0.00       0.0       0.0                          
-    0:00:03     299.1      0.00       0.0       0.0                          
-    0:00:03     299.1      0.00       0.0       0.0                          
-    0:00:03     299.1      0.00       0.0       0.0                          
-    0:00:03     299.1      0.00       0.0       0.0                          
-    0:00:03     299.1      0.00       0.0       0.0                          
-    0:00:03     299.1      0.00       0.0       0.0                          
-    0:00:03     299.1      0.00       0.0       0.0                          
+    0:00:04     305.5      0.00       0.0       0.0                          
+    0:00:04     305.5      0.00       0.0       0.0                          
+    0:00:04     305.5      0.00       0.0       0.0                          
+    0:00:04     305.5      0.00       0.0       0.0                          
+    0:00:04     305.5      0.00       0.0       0.0                          
+    0:00:04     299.1      0.00       0.0       0.0                          
+    0:00:04     299.1      0.00       0.0       0.0                          
+    0:00:04     299.1      0.00       0.0       0.0                          
+    0:00:04     299.1      0.00       0.0       0.0                          
+    0:00:04     299.1      0.00       0.0       0.0                          
+    0:00:04     299.1      0.00       0.0       0.0                          
+    0:00:04     299.1      0.00       0.0       0.0                          
+    0:00:04     299.1      0.00       0.0       0.0                          
 
 
 
@@ -190,9 +190,9 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:03     299.1      0.00       0.0       0.0                          
-    0:00:03     299.1      0.00       0.0       0.0                          
-    0:00:03     291.5      0.00       0.0       0.0                          
+    0:00:04     299.1      0.00       0.0       0.0                          
+    0:00:04     299.1      0.00       0.0       0.0                          
+    0:00:04     291.5      0.00       0.0       0.0                          
 
 
   Beginning Area-Recovery Phase  (cleanup)
@@ -202,17 +202,17 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:03     291.5      0.00       0.0       0.0                          
-    0:00:03     291.5      0.00       0.0       0.0                          
-    0:00:03     291.5      0.00       0.0       0.0                          
-    0:00:03     291.5      0.00       0.0       0.0                          
-    0:00:03     291.5      0.00       0.0       0.0                          
-    0:00:03     291.5      0.00       0.0       0.0                          
-    0:00:03     291.5      0.00       0.0       0.0                          
-    0:00:03     291.5      0.00       0.0       0.0                          
-    0:00:03     291.5      0.00       0.0       0.0                          
-    0:00:03     291.5      0.00       0.0       0.0                          
-    0:00:03     291.5      0.00       0.0       0.0                          
+    0:00:04     291.5      0.00       0.0       0.0                          
+    0:00:04     291.5      0.00       0.0       0.0                          
+    0:00:04     291.5      0.00       0.0       0.0                          
+    0:00:04     291.5      0.00       0.0       0.0                          
+    0:00:04     291.5      0.00       0.0       0.0                          
+    0:00:04     291.5      0.00       0.0       0.0                          
+    0:00:04     291.5      0.00       0.0       0.0                          
+    0:00:04     291.5      0.00       0.0       0.0                          
+    0:00:04     291.5      0.00       0.0       0.0                          
+    0:00:04     291.5      0.00       0.0       0.0                          
+    0:00:04     291.5      0.00       0.0       0.0                          
 
 
 Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
@@ -321,12 +321,12 @@ report_timing -delay min > mul_inner_min_delay.txt
 report_timing -delay max > mul_inner_max_delay.txt
 #### write out final netlist ######
 write -format verilog mul_inner -output mul_inner.vg
-Writing verilog file '/filespace/d/dwu94/Project/uSystolic-Sim/synthesis/8bit/unarytemporal/mul_inner.vg'.
+Writing verilog file '/filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/8bit/unarytemporal/mul_inner.vg'.
 1
 exit
 Memory usage for this session 142 Mbytes.
 Memory usage for this session including child processes 142 Mbytes.
 CPU usage for this session 4 seconds ( 0.00 hours ).
-Elapsed time for this session 6 seconds ( 0.00 hours ).
+Elapsed time for this session 7 seconds ( 0.00 hours ).
 
 Thank you...

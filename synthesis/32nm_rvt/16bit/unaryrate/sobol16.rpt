@@ -31,10 +31,10 @@ Loading db file '/cae/apps/data/synopsys-2020/syn/Q-2019.12-SP3/libraries/syn/st
 Detecting input file type automatically (-rtl or -netlist).
 Reading with Presto HDL Compiler (equivalent to -rtl option).
 Running PRESTO HDLC
-Compiling source file /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/16bit/unaryrate/sobol16.sv
+Compiling source file /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/16bit/unaryrate/sobol16.sv
 
 Statistics for case statements in always block at line 78 in file
-	'/filespace/d/dwu94/Project/uSystolic-Sim/synthesis/16bit/unaryrate/sobol16.sv'
+	'/filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/16bit/unaryrate/sobol16.sv'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
@@ -43,7 +43,7 @@ Statistics for case statements in always block at line 78 in file
 
 Inferred memory devices in process
 	in routine sobol16 line 17 in file
-		'/filespace/d/dwu94/Project/uSystolic-Sim/synthesis/16bit/unaryrate/sobol16.sv'.
+		'/filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/16bit/unaryrate/sobol16.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===============================================================================
@@ -52,7 +52,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine sobol16 line 46 in file
-		'/filespace/d/dwu94/Project/uSystolic-Sim/synthesis/16bit/unaryrate/sobol16.sv'.
+		'/filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/16bit/unaryrate/sobol16.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===============================================================================
@@ -69,7 +69,7 @@ link
   Linking design 'sobol16'
   Using the following designs and libraries:
   --------------------------------------------------------------------------
-  sobol16                     /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/16bit/unaryrate/sobol16.db
+  sobol16                     /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/16bit/unaryrate/sobol16.db
   saed32rvt_tt0p85v25c (library) /cae/apps/data/saed32_edk-2018/lib/stdcell_rvt/db_nldm/saed32rvt_tt0p85v25c.db
   saed32io_wb_tt1p05v25c_2p5v (library) /cae/apps/data/saed32_edk-2018/lib/io_std/db_nldm/saed32io_wb_tt1p05v25c_2p5v.db
 
@@ -157,18 +157,18 @@ Information: Updating design information... (UID-85)
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
     0:00:03     534.5      0.00       0.0       0.0                          
-    0:00:03     534.5      0.00       0.0       0.0                          
-    0:00:03     534.5      0.00       0.0       0.0                          
-    0:00:03     534.5      0.00       0.0       0.0                          
-    0:00:03     534.5      0.00       0.0       0.0                          
-    0:00:03     524.3      0.00       0.0       0.0                          
-    0:00:03     524.3      0.00       0.0       0.0                          
-    0:00:03     524.3      0.00       0.0       0.0                          
-    0:00:03     524.3      0.00       0.0       0.0                          
-    0:00:03     524.3      0.00       0.0       0.0                          
-    0:00:03     524.3      0.00       0.0       0.0                          
-    0:00:03     524.3      0.00       0.0       0.0                          
-    0:00:03     524.3      0.00       0.0       0.0                          
+    0:00:04     534.5      0.00       0.0       0.0                          
+    0:00:04     534.5      0.00       0.0       0.0                          
+    0:00:04     534.5      0.00       0.0       0.0                          
+    0:00:04     534.5      0.00       0.0       0.0                          
+    0:00:04     524.3      0.00       0.0       0.0                          
+    0:00:04     524.3      0.00       0.0       0.0                          
+    0:00:04     524.3      0.00       0.0       0.0                          
+    0:00:04     524.3      0.00       0.0       0.0                          
+    0:00:04     524.3      0.00       0.0       0.0                          
+    0:00:04     524.3      0.00       0.0       0.0                          
+    0:00:04     524.3      0.00       0.0       0.0                          
+    0:00:04     524.3      0.00       0.0       0.0                          
 
 
 
@@ -179,9 +179,9 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:03     524.3      0.00       0.0       0.0                          
-    0:00:03     524.3      0.00       0.0       0.0                          
-    0:00:03     524.3      0.00       0.0       0.0                          
+    0:00:04     524.3      0.00       0.0       0.0                          
+    0:00:04     524.3      0.00       0.0       0.0                          
+    0:00:04     524.3      0.00       0.0       0.0                          
 
 
   Beginning Area-Recovery Phase  (cleanup)
@@ -191,20 +191,20 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:03     524.3      0.00       0.0       0.0                          
-    0:00:03     524.3      0.00       0.0       0.0                          
-    0:00:03     516.7      0.00       0.0       0.0                          
-    0:00:03     515.4      0.00       0.0       0.0                          
-    0:00:03     515.4      0.00       0.0       0.0                          
-    0:00:03     515.4      0.00       0.0       0.0                          
-    0:00:03     515.4      0.00       0.0       0.0                          
-    0:00:03     515.4      0.00       0.0       0.0                          
-    0:00:03     515.4      0.00       0.0       0.0                          
-    0:00:03     515.4      0.00       0.0       0.0                          
-    0:00:03     515.4      0.00       0.0       0.0                          
-    0:00:03     515.4      0.00       0.0       0.0                          
-    0:00:03     515.4      0.00       0.0       0.0                          
-    0:00:03     515.4      0.00       0.0       0.0                          
+    0:00:04     524.3      0.00       0.0       0.0                          
+    0:00:04     524.3      0.00       0.0       0.0                          
+    0:00:04     516.7      0.00       0.0       0.0                          
+    0:00:04     515.4      0.00       0.0       0.0                          
+    0:00:04     515.4      0.00       0.0       0.0                          
+    0:00:04     515.4      0.00       0.0       0.0                          
+    0:00:04     515.4      0.00       0.0       0.0                          
+    0:00:04     515.4      0.00       0.0       0.0                          
+    0:00:04     515.4      0.00       0.0       0.0                          
+    0:00:04     515.4      0.00       0.0       0.0                          
+    0:00:04     515.4      0.00       0.0       0.0                          
+    0:00:04     515.4      0.00       0.0       0.0                          
+    0:00:04     515.4      0.00       0.0       0.0                          
+    0:00:04     515.4      0.00       0.0       0.0                          
 
 
 Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
@@ -320,7 +320,7 @@ report_timing -delay min > sobol16_min_delay.txt
 report_timing -delay max > sobol16_max_delay.txt
 #### write out final netlist ######
 write -format verilog sobol16 -output sobol16.vg
-Writing verilog file '/filespace/d/dwu94/Project/uSystolic-Sim/synthesis/16bit/unaryrate/sobol16.vg'.
+Writing verilog file '/filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/16bit/unaryrate/sobol16.vg'.
 1
 exit
 Memory usage for this session 142 Mbytes.

@@ -3,7 +3,7 @@
 Report : area
 Design : wreg
 Version: Q-2019.12-SP3
-Date   : Thu Feb  4 11:16:49 2021
+Date   : Thu Feb  4 20:19:13 2021
 ****************************************
 
 Information: Updating design information... (UID-85)

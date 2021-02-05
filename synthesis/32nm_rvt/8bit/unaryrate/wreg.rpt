@@ -31,12 +31,12 @@ Loading db file '/cae/apps/data/synopsys-2020/syn/Q-2019.12-SP3/libraries/syn/st
 Detecting input file type automatically (-rtl or -netlist).
 Reading with Presto HDL Compiler (equivalent to -rtl option).
 Running PRESTO HDLC
-Compiling source file /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/8bit/unaryrate/wreg.sv
-Warning:  /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/8bit/unaryrate/wreg.sv:35: signed to unsigned part selection occurs. (VER-318)
+Compiling source file /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/8bit/unaryrate/wreg.sv
+Warning:  /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/8bit/unaryrate/wreg.sv:35: signed to unsigned part selection occurs. (VER-318)
 
 Inferred memory devices in process
 	in routine wreg line 17 in file
-		'/filespace/d/dwu94/Project/uSystolic-Sim/synthesis/8bit/unaryrate/wreg.sv'.
+		'/filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/8bit/unaryrate/wreg.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===============================================================================
@@ -53,7 +53,7 @@ link
   Linking design 'wreg'
   Using the following designs and libraries:
   --------------------------------------------------------------------------
-  wreg                        /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/8bit/unaryrate/wreg.db
+  wreg                        /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/8bit/unaryrate/wreg.db
   saed32rvt_tt0p85v25c (library) /cae/apps/data/saed32_edk-2018/lib/stdcell_rvt/db_nldm/saed32rvt_tt0p85v25c.db
   saed32io_wb_tt1p05v25c_2p5v (library) /cae/apps/data/saed32_edk-2018/lib/io_std/db_nldm/saed32io_wb_tt1p05v25c_2p5v.db
 
@@ -222,19 +222,19 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                              MIN DELAY 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT             COST    
   --------- --------- --------- --------- --------- ------------------------- -----------
-    0:00:05     129.1      0.00       0.0       0.0                                0.00  
-    0:00:05     129.1      0.00       0.0       0.0                                0.00  
-    0:00:05     129.1      0.00       0.0       0.0                                0.00  
-    0:00:05     129.1      0.00       0.0       0.0                                0.00  
-    0:00:05     129.1      0.00       0.0       0.0                                0.00  
-    0:00:05     126.6      0.00       0.0       0.0                                0.00  
-    0:00:05     126.6      0.00       0.0       0.0                                0.00  
-    0:00:05     126.6      0.00       0.0       0.0                                0.00  
-    0:00:05     126.6      0.00       0.0       0.0                                0.00  
-    0:00:05     126.6      0.00       0.0       0.0                                0.00  
-    0:00:05     126.6      0.00       0.0       0.0                                0.00  
-    0:00:05     126.6      0.00       0.0       0.0                                0.00  
-    0:00:05     126.6      0.00       0.0       0.0                                0.00  
+    0:00:04     129.1      0.00       0.0       0.0                                0.00  
+    0:00:04     129.1      0.00       0.0       0.0                                0.00  
+    0:00:04     129.1      0.00       0.0       0.0                                0.00  
+    0:00:04     129.1      0.00       0.0       0.0                                0.00  
+    0:00:04     129.1      0.00       0.0       0.0                                0.00  
+    0:00:04     126.6      0.00       0.0       0.0                                0.00  
+    0:00:04     126.6      0.00       0.0       0.0                                0.00  
+    0:00:04     126.6      0.00       0.0       0.0                                0.00  
+    0:00:04     126.6      0.00       0.0       0.0                                0.00  
+    0:00:04     126.6      0.00       0.0       0.0                                0.00  
+    0:00:04     126.6      0.00       0.0       0.0                                0.00  
+    0:00:04     126.6      0.00       0.0       0.0                                0.00  
+    0:00:04     126.6      0.00       0.0       0.0                                0.00  
 
 
 
@@ -245,9 +245,9 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                              MIN DELAY 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT             COST    
   --------- --------- --------- --------- --------- ------------------------- -----------
-    0:00:05     126.6      0.00       0.0       0.0                                0.00  
-    0:00:05     126.6      0.00       0.0       0.0                                0.00  
-    0:00:05     126.6      0.00       0.0       0.0                                0.00  
+    0:00:04     126.6      0.00       0.0       0.0                                0.00  
+    0:00:04     126.6      0.00       0.0       0.0                                0.00  
+    0:00:04     126.6      0.00       0.0       0.0                                0.00  
 
 
   Beginning Area-Recovery Phase  (cleanup)
@@ -257,17 +257,17 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                              MIN DELAY 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT             COST    
   --------- --------- --------- --------- --------- ------------------------- -----------
-    0:00:05     126.6      0.00       0.0       0.0                                0.00  
-    0:00:05     126.6      0.00       0.0       0.0                                0.00  
-    0:00:05     126.6      0.00       0.0       0.0                                0.00  
-    0:00:05     126.6      0.00       0.0       0.0                                0.00  
-    0:00:05     126.6      0.00       0.0       0.0                                0.00  
-    0:00:05     126.6      0.00       0.0       0.0                                0.00  
-    0:00:05     126.6      0.00       0.0       0.0                                0.00  
-    0:00:05     126.6      0.00       0.0       0.0                                0.00  
-    0:00:05     126.6      0.00       0.0       0.0                                0.00  
-    0:00:05     126.6      0.00       0.0       0.0                                0.00  
-    0:00:05     126.6      0.00       0.0       0.0                                0.00  
+    0:00:04     126.6      0.00       0.0       0.0                                0.00  
+    0:00:04     126.6      0.00       0.0       0.0                                0.00  
+    0:00:04     126.6      0.00       0.0       0.0                                0.00  
+    0:00:04     126.6      0.00       0.0       0.0                                0.00  
+    0:00:04     126.6      0.00       0.0       0.0                                0.00  
+    0:00:04     126.6      0.00       0.0       0.0                                0.00  
+    0:00:04     126.6      0.00       0.0       0.0                                0.00  
+    0:00:04     126.6      0.00       0.0       0.0                                0.00  
+    0:00:04     126.6      0.00       0.0       0.0                                0.00  
+    0:00:04     126.6      0.00       0.0       0.0                                0.00  
+    0:00:04     126.6      0.00       0.0       0.0                                0.00  
 
 
 Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
@@ -287,7 +287,7 @@ report_timing -delay min > wreg_min_delay.txt
 report_timing -delay max > wreg_max_delay.txt
 #### write out final netlist ######
 write -format verilog wreg -output wreg.vg
-Writing verilog file '/filespace/d/dwu94/Project/uSystolic-Sim/synthesis/8bit/unaryrate/wreg.vg'.
+Writing verilog file '/filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/8bit/unaryrate/wreg.vg'.
 1
 exit
 Memory usage for this session 142 Mbytes.

@@ -31,11 +31,11 @@ Loading db file '/cae/apps/data/synopsys-2020/syn/Q-2019.12-SP3/libraries/syn/st
 Detecting input file type automatically (-rtl or -netlist).
 Reading with Presto HDL Compiler (equivalent to -rtl option).
 Running PRESTO HDLC
-Compiling source file /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/16bit/unarytemporal/acc.sv
+Compiling source file /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/16bit/unarytemporal/acc.sv
 
 Inferred memory devices in process
 	in routine acc line 23 in file
-		'/filespace/d/dwu94/Project/uSystolic-Sim/synthesis/16bit/unarytemporal/acc.sv'.
+		'/filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/16bit/unarytemporal/acc.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===============================================================================
@@ -52,7 +52,7 @@ link
   Linking design 'acc'
   Using the following designs and libraries:
   --------------------------------------------------------------------------
-  acc                         /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/16bit/unarytemporal/acc.db
+  acc                         /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/16bit/unarytemporal/acc.db
   saed32rvt_tt0p85v25c (library) /cae/apps/data/saed32_edk-2018/lib/stdcell_rvt/db_nldm/saed32rvt_tt0p85v25c.db
   saed32io_wb_tt1p05v25c_2p5v (library) /cae/apps/data/saed32_edk-2018/lib/io_std/db_nldm/saed32io_wb_tt1p05v25c_2p5v.db
 
@@ -216,7 +216,7 @@ check_design
 ****************************************
 check_design summary:
 Version:     Q-2019.12-SP3
-Date:        Thu Feb  4 11:27:36 2021
+Date:        Thu Feb  4 20:16:01 2021
 ****************************************
 
                    Name                                            Total
@@ -363,7 +363,7 @@ Information: Updating design information... (UID-85)
     0:00:08     938.0      0.27       0.5       0.0 sum_o_reg[31]/D                0.00  
     0:00:08     948.5      0.24       0.4       0.0 sum_o_reg[31]/D                0.00  
     0:00:08     953.5      0.22       0.3       0.0 sum_o_reg[31]/D                0.00  
-    0:00:08     956.1      0.20       0.3       0.0 sum_o_reg[31]/D                0.00  
+    0:00:09     956.1      0.20       0.3       0.0 sum_o_reg[31]/D                0.00  
     0:00:09     965.2      0.17       0.2       0.0 sum_o_reg[31]/D                0.00  
     0:00:09     969.3      0.16       0.2       0.0 sum_o_reg[31]/D                0.00  
     0:00:09     973.6      0.15       0.2       0.0 sum_o_reg[31]/D                0.00  
@@ -435,7 +435,7 @@ report_timing -delay min > acc_min_delay.txt
 report_timing -delay max > acc_max_delay.txt
 #### write out final netlist ######
 write -format verilog acc -output acc.vg
-Writing verilog file '/filespace/d/dwu94/Project/uSystolic-Sim/synthesis/16bit/unarytemporal/acc.vg'.
+Writing verilog file '/filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/16bit/unarytemporal/acc.vg'.
 Warning: Verilog 'assign' or 'tran' statements are written out. (VO-4)
 1
 exit

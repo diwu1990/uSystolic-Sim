@@ -3,7 +3,7 @@
 Report : area
 Design : ireg_border
 Version: Q-2019.12-SP3
-Date   : Thu Feb  4 11:25:57 2021
+Date   : Thu Feb  4 20:15:18 2021
 ****************************************
 
 Information: Updating design information... (UID-85)

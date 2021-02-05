@@ -3,7 +3,7 @@
 Report : area
 Design : acc
 Version: Q-2019.12-SP3
-Date   : Thu Feb  4 11:20:52 2021
+Date   : Thu Feb  4 20:13:31 2021
 ****************************************
 
 Information: Updating design information... (UID-85)

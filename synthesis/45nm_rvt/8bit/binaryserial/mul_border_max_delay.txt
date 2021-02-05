@@ -6,48 +6,48 @@ Report : timing
         -max_paths 1
 Design : mul_border
 Version: Q-2019.12-SP3
-Date   : Thu Feb  4 11:14:02 2021
+Date   : Thu Feb  4 20:27:50 2021
 ****************************************
 
-Operating Conditions: tt0p85v25c   Library: saed32rvt_tt0p85v25c
-Wire Load Model Mode: enclosed
+Operating Conditions: NCCOM   Library: tcbn45gsbwptc
+Wire Load Model Mode: segmented
 
-  Startpoint: cnt_reg[0] (rising edge-triggered flip-flop clocked by clk)
+  Startpoint: i_data0[2] (input port clocked by clk)
   Endpoint: o_data[15] (output port clocked by clk)
   Path Group: clk
   Path Type: max
 
   Des/Clust/Port     Wire Load Model       Library
   ------------------------------------------------
-  mul_border         ForQA                 saed32rvt_tt0p85v25c
+  mul_border         ZeroWireload          tcbn45gsbwptc
 
   Point                                    Incr       Path
   -----------------------------------------------------------
   clock clk (rise edge)                    0.00       0.00
   clock network delay (ideal)              0.00       0.00
-  cnt_reg[0]/CLK (DFFARX1_RVT)             0.00       0.00 r
-  cnt_reg[0]/Q (DFFARX1_RVT)               0.16       0.16 r
-  U51/Y (AND2X1_RVT)                       0.08       0.24 r
-  U41/Y (AO22X1_RVT)                       0.09       0.33 r
-  U40/Y (AO221X1_RVT)                      0.09       0.42 r
-  U137/Y (MUX21X2_RVT)                     0.11       0.53 r
-  U109/Y (AND3X1_RVT)                      0.09       0.62 r
-  U113/Y (AO21X1_RVT)                      0.06       0.69 r
-  U114/Y (AO21X1_RVT)                      0.08       0.77 r
-  U115/Y (AO21X1_RVT)                      0.08       0.85 r
-  U116/Y (AO21X1_RVT)                      0.08       0.93 r
-  U117/Y (AO21X1_RVT)                      0.08       1.01 r
-  U118/Y (AO21X1_RVT)                      0.08       1.09 r
-  U119/Y (AO21X1_RVT)                      0.08       1.17 r
-  U120/Y (AO21X1_RVT)                      0.08       1.25 r
-  U110/Y (AND2X1_RVT)                      0.06       1.31 r
-  U95/Y (OA21X1_RVT)                       0.08       1.39 r
-  add_28/U1_12/CO (FADDX1_RVT)             0.12       1.51 r
-  add_28/U1_13/CO (FADDX1_RVT)             0.12       1.63 r
-  add_28/U1_14/CO (FADDX1_RVT)             0.12       1.75 r
-  U54/Y (XNOR3X1_RVT)                      0.10       1.85 r
-  o_data[15] (out)                         0.01       1.85 r
-  data arrival time                                   1.85
+  input external delay                     0.25       0.25 f
+  i_data0[2] (in)                          0.00       0.25 f
+  U41/Z (AO33D1BWP)                        0.04       0.29 f
+  U103/ZN (AOI221D1BWP)                    0.05       0.33 r
+  U101/ZN (OAI22D1BWP)                     0.05       0.38 f
+  U36/Z (AN2XD1BWP)                        0.03       0.41 f
+  U61/CO (FA1D0BWP)                        0.07       0.48 f
+  U58/CO (FA1D0BWP)                        0.04       0.51 f
+  U55/CO (FA1D0BWP)                        0.04       0.55 f
+  U52/CO (FA1D0BWP)                        0.04       0.58 f
+  U49/CO (FA1D0BWP)                        0.04       0.62 f
+  U46/CO (FA1D0BWP)                        0.04       0.65 f
+  U43/CO (FA1D0BWP)                        0.04       0.69 f
+  U40/CO (FA1D0BWP)                        0.04       0.72 f
+  U37/CO (FA1D0BWP)                        0.04       0.76 f
+  U34/CO (FA1D0BWP)                        0.04       0.79 f
+  U31/CO (FA1D0BWP)                        0.04       0.83 f
+  U28/CO (FA1D0BWP)                        0.04       0.86 f
+  U25/CO (FA1D0BWP)                        0.04       0.90 f
+  U96/ZN (XNR3D1BWP)                       0.09       0.99 r
+  U97/ZN (INVD6BWP)                        0.05       1.04 f
+  o_data[15] (out)                         0.00       1.04 f
+  data arrival time                                   1.04
 
   clock clk (rise edge)                    2.50       2.50
   clock network delay (ideal)              0.00       2.50
@@ -56,9 +56,9 @@ Wire Load Model Mode: enclosed
   data required time                                  1.85
   -----------------------------------------------------------
   data required time                                  1.85
-  data arrival time                                  -1.85
+  data arrival time                                  -1.04
   -----------------------------------------------------------
-  slack (VIOLATED: increase significant digits)       0.00
+  slack (MET)                                         0.81
 
 
 1

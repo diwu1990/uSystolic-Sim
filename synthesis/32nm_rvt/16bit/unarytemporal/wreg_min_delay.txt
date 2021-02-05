@@ -6,7 +6,7 @@ Report : timing
         -max_paths 1
 Design : wreg
 Version: Q-2019.12-SP3
-Date   : Thu Feb  4 11:28:26 2021
+Date   : Thu Feb  4 20:16:51 2021
 ****************************************
 
 Operating Conditions: tt0p85v25c   Library: saed32rvt_tt0p85v25c

@@ -31,7 +31,7 @@ Loading db file '/cae/apps/data/synopsys-2020/syn/Q-2019.12-SP3/libraries/syn/st
 Detecting input file type automatically (-rtl or -netlist).
 Reading with Presto HDL Compiler (equivalent to -rtl option).
 Running PRESTO HDLC
-Compiling source file /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/16bit/unarytemporal/mul_border.sv
+Compiling source file /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/16bit/unarytemporal/mul_border.sv
 Opening include file sobol16.sv
 
 Statistics for case statements in always block at line 78 in file
@@ -62,7 +62,7 @@ Inferred memory devices in process
 
 Inferred memory devices in process
 	in routine mul_border line 20 in file
-		'/filespace/d/dwu94/Project/uSystolic-Sim/synthesis/16bit/unarytemporal/mul_border.sv'.
+		'/filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/16bit/unarytemporal/mul_border.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===============================================================================
@@ -79,10 +79,10 @@ link
   Linking design 'mul_border'
   Using the following designs and libraries:
   --------------------------------------------------------------------------
-  mul_border                  /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/16bit/unarytemporal/mul_border.db
+  mul_border                  /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/16bit/unarytemporal/mul_border.db
   saed32rvt_tt0p85v25c (library) /cae/apps/data/saed32_edk-2018/lib/stdcell_rvt/db_nldm/saed32rvt_tt0p85v25c.db
   saed32io_wb_tt1p05v25c_2p5v (library) /cae/apps/data/saed32_edk-2018/lib/io_std/db_nldm/saed32io_wb_tt1p05v25c_2p5v.db
-  sobol16                     /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/16bit/unarytemporal/sobol16.db
+  sobol16                     /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/16bit/unarytemporal/sobol16.db
 
 1
 ###########################################
@@ -196,7 +196,7 @@ Information: Updating design information... (UID-85)
   --------- --------- --------- --------- --------- -------------------------
     0:00:03     837.9      0.00       0.0       0.0                          
     0:00:03     837.9      0.00       0.0       0.0                          
-    0:00:04     837.9      0.00       0.0       0.0                          
+    0:00:03     837.9      0.00       0.0       0.0                          
 
 
   Beginning Area-Recovery Phase  (cleanup)
@@ -206,20 +206,20 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:04     837.9      0.00       0.0       0.0                          
-    0:00:04     837.9      0.00       0.0       0.0                          
-    0:00:04     830.3      0.00       0.0       0.0                          
-    0:00:04     829.0      0.00       0.0       0.0                          
-    0:00:04     829.0      0.00       0.0       0.0                          
-    0:00:04     829.0      0.00       0.0       0.0                          
-    0:00:04     829.0      0.00       0.0       0.0                          
-    0:00:04     829.0      0.00       0.0       0.0                          
-    0:00:04     829.0      0.00       0.0       0.0                          
-    0:00:04     829.0      0.00       0.0       0.0                          
-    0:00:04     829.0      0.00       0.0       0.0                          
-    0:00:04     829.0      0.00       0.0       0.0                          
-    0:00:04     829.0      0.00       0.0       0.0                          
-    0:00:04     829.0      0.00       0.0       0.0                          
+    0:00:03     837.9      0.00       0.0       0.0                          
+    0:00:03     837.9      0.00       0.0       0.0                          
+    0:00:03     830.3      0.00       0.0       0.0                          
+    0:00:03     829.0      0.00       0.0       0.0                          
+    0:00:03     829.0      0.00       0.0       0.0                          
+    0:00:03     829.0      0.00       0.0       0.0                          
+    0:00:03     829.0      0.00       0.0       0.0                          
+    0:00:03     829.0      0.00       0.0       0.0                          
+    0:00:03     829.0      0.00       0.0       0.0                          
+    0:00:03     829.0      0.00       0.0       0.0                          
+    0:00:03     829.0      0.00       0.0       0.0                          
+    0:00:03     829.0      0.00       0.0       0.0                          
+    0:00:03     829.0      0.00       0.0       0.0                          
+    0:00:03     829.0      0.00       0.0       0.0                          
 
 
 Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
@@ -332,7 +332,7 @@ report_timing -delay min > mul_border_min_delay.txt
 report_timing -delay max > mul_border_max_delay.txt
 #### write out final netlist ######
 write -format verilog mul_border -output mul_border.vg
-Writing verilog file '/filespace/d/dwu94/Project/uSystolic-Sim/synthesis/16bit/unarytemporal/mul_border.vg'.
+Writing verilog file '/filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/16bit/unarytemporal/mul_border.vg'.
 1
 exit
 Memory usage for this session 142 Mbytes.

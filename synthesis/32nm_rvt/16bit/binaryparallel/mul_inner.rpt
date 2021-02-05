@@ -31,7 +31,7 @@ Loading db file '/cae/apps/data/synopsys-2020/syn/Q-2019.12-SP3/libraries/syn/st
 Detecting input file type automatically (-rtl or -netlist).
 Reading with Presto HDL Compiler (equivalent to -rtl option).
 Running PRESTO HDLC
-Compiling source file /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/16bit/binaryparallel/mul_inner.sv
+Compiling source file /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/16bit/binaryparallel/mul_inner.sv
 Presto compilation completed successfully.
 Loaded 1 design.
 Current design is 'mul_inner'.
@@ -43,7 +43,7 @@ link
   Linking design 'mul_inner'
   Using the following designs and libraries:
   --------------------------------------------------------------------------
-  mul_inner                   /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/16bit/binaryparallel/mul_inner.db
+  mul_inner                   /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/16bit/binaryparallel/mul_inner.db
   saed32rvt_tt0p85v25c (library) /cae/apps/data/saed32_edk-2018/lib/stdcell_rvt/db_nldm/saed32rvt_tt0p85v25c.db
   saed32io_wb_tt1p05v25c_2p5v (library) /cae/apps/data/saed32_edk-2018/lib/io_std/db_nldm/saed32io_wb_tt1p05v25c_2p5v.db
 
@@ -203,7 +203,7 @@ check_design
 ****************************************
 check_design summary:
 Version:     Q-2019.12-SP3
-Date:        Thu Feb  4 11:21:19 2021
+Date:        Thu Feb  4 20:13:58 2021
 ****************************************
 
                    Name                                            Total
@@ -372,7 +372,7 @@ report_timing -delay min > mul_inner_min_delay.txt
 report_timing -delay max > mul_inner_max_delay.txt
 #### write out final netlist ######
 write -format verilog mul_inner -output mul_inner.vg
-Writing verilog file '/filespace/d/dwu94/Project/uSystolic-Sim/synthesis/16bit/binaryparallel/mul_inner.vg'.
+Writing verilog file '/filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/16bit/binaryparallel/mul_inner.vg'.
 1
 exit
 Memory usage for this session 142 Mbytes.

@@ -6,50 +6,43 @@ Report : timing
         -max_paths 1
 Design : sobol8
 Version: Q-2019.12-SP3
-Date   : Thu Feb  4 11:19:25 2021
+Date   : Thu Feb  4 20:30:59 2021
 ****************************************
 
-Operating Conditions: tt0p85v25c   Library: saed32rvt_tt0p85v25c
-Wire Load Model Mode: enclosed
+Operating Conditions: NCCOM   Library: tcbn45gsbwptc
+Wire Load Model Mode: segmented
 
-  Startpoint: cnt_reg[3] (rising edge-triggered flip-flop clocked by clk)
-  Endpoint: sobolSeq_reg[1]
-            (rising edge-triggered flip-flop clocked by clk)
+  Startpoint: sobolSeq_reg[1]
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: sobolSeq[1]
+            (output port clocked by clk)
   Path Group: clk
   Path Type: max
 
   Des/Clust/Port     Wire Load Model       Library
   ------------------------------------------------
-  sobol8             8000                  saed32rvt_tt0p85v25c
+  sobol8             ZeroWireload          tcbn45gsbwptc
 
   Point                                    Incr       Path
   -----------------------------------------------------------
   clock clk (rise edge)                    0.00       0.00
   clock network delay (ideal)              0.00       0.00
-  cnt_reg[3]/CLK (DFFARX1_RVT)             0.00       0.00 r
-  cnt_reg[3]/QN (DFFARX1_RVT)              0.10       0.10 f
-  U94/Y (NOR2X0_RVT)                       0.10       0.21 r
-  U89/Y (NAND3X0_RVT)                      0.07       0.28 f
-  U85/Y (AO21X1_RVT)                       0.10       0.38 f
-  U82/Y (AO22X1_RVT)                       0.09       0.46 f
-  U102/Y (INVX1_RVT)                       0.05       0.51 r
-  U75/Y (AND2X1_RVT)                       0.06       0.58 r
-  U74/Y (NAND2X0_RVT)                      0.05       0.63 f
-  U115/Y (XOR2X1_RVT)                      0.13       0.76 r
-  sobolSeq_reg[1]/D (DFFARX1_RVT)          0.01       0.77 r
-  data arrival time                                   0.77
+  sobolSeq_reg[1]/CP (EDFCNQD1BWP)         0.00       0.00 r
+  sobolSeq_reg[1]/Q (EDFCNQD1BWP)          0.06       0.06 f
+  U109/Z (BUFFD6BWP)                       0.06       0.12 f
+  sobolSeq[1] (out)                        0.00       0.12 f
+  data arrival time                                   0.12
 
   clock clk (rise edge)                    2.50       2.50
   clock network delay (ideal)              0.00       2.50
   clock uncertainty                       -0.15       2.35
-  sobolSeq_reg[1]/CLK (DFFARX1_RVT)        0.00       2.35 r
-  library setup time                      -0.06       2.29
-  data required time                                  2.29
+  output external delay                   -0.50       1.85
+  data required time                                  1.85
   -----------------------------------------------------------
-  data required time                                  2.29
-  data arrival time                                  -0.77
+  data required time                                  1.85
+  data arrival time                                  -0.12
   -----------------------------------------------------------
-  slack (MET)                                         1.52
+  slack (MET)                                         1.73
 
 
 1

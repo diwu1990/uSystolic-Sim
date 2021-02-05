@@ -7,7 +7,7 @@ Report : power
         -analysis_effort low
 Design : acc
 Version: Q-2019.12-SP3
-Date   : Thu Feb  4 11:18:52 2021
+Date   : Thu Feb  4 20:19:30 2021
 ****************************************
 
 

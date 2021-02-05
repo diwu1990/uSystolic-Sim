@@ -31,7 +31,7 @@ Loading db file '/cae/apps/data/synopsys-2020/syn/Q-2019.12-SP3/libraries/syn/st
 Detecting input file type automatically (-rtl or -netlist).
 Reading with Presto HDL Compiler (equivalent to -rtl option).
 Running PRESTO HDLC
-Compiling source file /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/8bit/unarytemporal/mul_border.sv
+Compiling source file /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/8bit/unarytemporal/mul_border.sv
 Opening include file sobol8.sv
 
 Statistics for case statements in always block at line 70 in file
@@ -68,7 +68,7 @@ Statistics for MUX_OPs
 
 Inferred memory devices in process
 	in routine mul_border line 20 in file
-		'/filespace/d/dwu94/Project/uSystolic-Sim/synthesis/8bit/unarytemporal/mul_border.sv'.
+		'/filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/8bit/unarytemporal/mul_border.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===============================================================================
@@ -85,10 +85,10 @@ link
   Linking design 'mul_border'
   Using the following designs and libraries:
   --------------------------------------------------------------------------
-  mul_border                  /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/8bit/unarytemporal/mul_border.db
+  mul_border                  /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/8bit/unarytemporal/mul_border.db
   saed32rvt_tt0p85v25c (library) /cae/apps/data/saed32_edk-2018/lib/stdcell_rvt/db_nldm/saed32rvt_tt0p85v25c.db
   saed32io_wb_tt1p05v25c_2p5v (library) /cae/apps/data/saed32_edk-2018/lib/io_std/db_nldm/saed32io_wb_tt1p05v25c_2p5v.db
-  sobol8                      /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/8bit/unarytemporal/sobol8.db
+  sobol8                      /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/8bit/unarytemporal/sobol8.db
 
 1
 ###########################################
@@ -177,19 +177,19 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:04     422.1      0.00       0.0       0.0                          
-    0:00:04     422.1      0.00       0.0       0.0                          
-    0:00:04     422.1      0.00       0.0       0.0                          
-    0:00:04     422.1      0.00       0.0       0.0                          
-    0:00:04     422.1      0.00       0.0       0.0                          
-    0:00:04     413.7      0.00       0.0       0.0                          
-    0:00:04     413.7      0.00       0.0       0.0                          
-    0:00:04     413.7      0.00       0.0       0.0                          
-    0:00:04     413.7      0.00       0.0       0.0                          
-    0:00:04     413.7      0.00       0.0       0.0                          
-    0:00:04     413.7      0.00       0.0       0.0                          
-    0:00:04     413.7      0.00       0.0       0.0                          
-    0:00:04     413.7      0.00       0.0       0.0                          
+    0:00:03     422.1      0.00       0.0       0.0                          
+    0:00:03     422.1      0.00       0.0       0.0                          
+    0:00:03     422.1      0.00       0.0       0.0                          
+    0:00:03     422.1      0.00       0.0       0.0                          
+    0:00:03     422.1      0.00       0.0       0.0                          
+    0:00:03     413.7      0.00       0.0       0.0                          
+    0:00:03     413.7      0.00       0.0       0.0                          
+    0:00:03     413.7      0.00       0.0       0.0                          
+    0:00:03     413.7      0.00       0.0       0.0                          
+    0:00:03     413.7      0.00       0.0       0.0                          
+    0:00:03     413.7      0.00       0.0       0.0                          
+    0:00:03     413.7      0.00       0.0       0.0                          
+    0:00:03     413.7      0.00       0.0       0.0                          
 
 
 
@@ -200,9 +200,9 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:04     413.7      0.00       0.0       0.0                          
-    0:00:04     413.7      0.00       0.0       0.0                          
-    0:00:04     406.1      0.00       0.0       0.0                          
+    0:00:03     413.7      0.00       0.0       0.0                          
+    0:00:03     413.7      0.00       0.0       0.0                          
+    0:00:03     406.1      0.00       0.0       0.0                          
 
 
   Beginning Area-Recovery Phase  (cleanup)
@@ -212,18 +212,18 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:04     406.1      0.00       0.0       0.0                          
-    0:00:04     406.1      0.00       0.0       0.0                          
-    0:00:04     403.6      0.00       0.0       0.0                          
-    0:00:04     403.6      0.00       0.0       0.0                          
-    0:00:04     403.6      0.00       0.0       0.0                          
-    0:00:04     403.6      0.00       0.0       0.0                          
-    0:00:04     403.6      0.00       0.0       0.0                          
-    0:00:04     403.6      0.00       0.0       0.0                          
-    0:00:04     403.6      0.00       0.0       0.0                          
-    0:00:04     403.6      0.00       0.0       0.0                          
-    0:00:04     403.6      0.00       0.0       0.0                          
-    0:00:04     403.6      0.00       0.0       0.0                          
+    0:00:03     406.1      0.00       0.0       0.0                          
+    0:00:03     406.1      0.00       0.0       0.0                          
+    0:00:03     403.6      0.00       0.0       0.0                          
+    0:00:03     403.6      0.00       0.0       0.0                          
+    0:00:03     403.6      0.00       0.0       0.0                          
+    0:00:03     403.6      0.00       0.0       0.0                          
+    0:00:03     403.6      0.00       0.0       0.0                          
+    0:00:03     403.6      0.00       0.0       0.0                          
+    0:00:03     403.6      0.00       0.0       0.0                          
+    0:00:03     403.6      0.00       0.0       0.0                          
+    0:00:03     403.6      0.00       0.0       0.0                          
+    0:00:03     403.6      0.00       0.0       0.0                          
 
 
 Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
@@ -267,19 +267,19 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                              MIN DELAY 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT             COST    
   --------- --------- --------- --------- --------- ------------------------- -----------
-    0:00:05     391.1      0.00       0.0       0.0                                0.00  
-    0:00:05     391.1      0.00       0.0       0.0                                0.00  
-    0:00:05     391.1      0.00       0.0       0.0                                0.00  
-    0:00:05     391.1      0.00       0.0       0.0                                0.00  
-    0:00:05     391.1      0.00       0.0       0.0                                0.00  
-    0:00:05     380.5      0.00       0.0       0.0                                0.00  
-    0:00:05     380.5      0.00       0.0       0.0                                0.00  
-    0:00:05     380.5      0.00       0.0       0.0                                0.00  
-    0:00:05     380.5      0.00       0.0       0.0                                0.00  
-    0:00:05     380.5      0.00       0.0       0.0                                0.00  
-    0:00:05     380.5      0.00       0.0       0.0                                0.00  
-    0:00:05     380.5      0.00       0.0       0.0                                0.00  
-    0:00:05     380.5      0.00       0.0       0.0                                0.00  
+    0:00:04     391.1      0.00       0.0       0.0                                0.00  
+    0:00:04     391.1      0.00       0.0       0.0                                0.00  
+    0:00:04     391.1      0.00       0.0       0.0                                0.00  
+    0:00:04     391.1      0.00       0.0       0.0                                0.00  
+    0:00:04     391.1      0.00       0.0       0.0                                0.00  
+    0:00:04     380.5      0.00       0.0       0.0                                0.00  
+    0:00:04     380.5      0.00       0.0       0.0                                0.00  
+    0:00:04     380.5      0.00       0.0       0.0                                0.00  
+    0:00:04     380.5      0.00       0.0       0.0                                0.00  
+    0:00:04     380.5      0.00       0.0       0.0                                0.00  
+    0:00:04     380.5      0.00       0.0       0.0                                0.00  
+    0:00:04     380.5      0.00       0.0       0.0                                0.00  
+    0:00:04     380.5      0.00       0.0       0.0                                0.00  
 
 
 
@@ -290,9 +290,9 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                              MIN DELAY 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT             COST    
   --------- --------- --------- --------- --------- ------------------------- -----------
-    0:00:05     380.5      0.00       0.0       0.0                                0.00  
-    0:00:05     380.5      0.00       0.0       0.0                                0.00  
-    0:00:05     363.9      0.00       0.0       0.0                                0.00  
+    0:00:04     380.5      0.00       0.0       0.0                                0.00  
+    0:00:04     380.5      0.00       0.0       0.0                                0.00  
+    0:00:04     363.9      0.00       0.0       0.0                                0.00  
 
 
   Beginning Area-Recovery Phase  (cleanup)
@@ -302,17 +302,17 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                              MIN DELAY 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT             COST    
   --------- --------- --------- --------- --------- ------------------------- -----------
-    0:00:05     363.9      0.00       0.0       0.0                                0.00  
-    0:00:05     363.9      0.00       0.0       0.0                                0.00  
-    0:00:05     363.9      0.00       0.0       0.0                                0.00  
-    0:00:05     363.9      0.00       0.0       0.0                                0.00  
-    0:00:05     363.9      0.00       0.0       0.0                                0.00  
-    0:00:05     363.9      0.00       0.0       0.0                                0.00  
-    0:00:05     363.9      0.00       0.0       0.0                                0.00  
-    0:00:05     363.9      0.00       0.0       0.0                                0.00  
-    0:00:05     363.9      0.00       0.0       0.0                                0.00  
-    0:00:05     363.9      0.00       0.0       0.0                                0.00  
-    0:00:05     363.9      0.00       0.0       0.0                                0.00  
+    0:00:04     363.9      0.00       0.0       0.0                                0.00  
+    0:00:04     363.9      0.00       0.0       0.0                                0.00  
+    0:00:04     363.9      0.00       0.0       0.0                                0.00  
+    0:00:04     363.9      0.00       0.0       0.0                                0.00  
+    0:00:04     363.9      0.00       0.0       0.0                                0.00  
+    0:00:04     363.9      0.00       0.0       0.0                                0.00  
+    0:00:04     363.9      0.00       0.0       0.0                                0.00  
+    0:00:04     363.9      0.00       0.0       0.0                                0.00  
+    0:00:04     363.9      0.00       0.0       0.0                                0.00  
+    0:00:04     363.9      0.00       0.0       0.0                                0.00  
+    0:00:04     363.9      0.00       0.0       0.0                                0.00  
 
 
 Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
@@ -332,12 +332,12 @@ report_timing -delay min > mul_border_min_delay.txt
 report_timing -delay max > mul_border_max_delay.txt
 #### write out final netlist ######
 write -format verilog mul_border -output mul_border.vg
-Writing verilog file '/filespace/d/dwu94/Project/uSystolic-Sim/synthesis/8bit/unarytemporal/mul_border.vg'.
+Writing verilog file '/filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/8bit/unarytemporal/mul_border.vg'.
 1
 exit
 Memory usage for this session 142 Mbytes.
 Memory usage for this session including child processes 142 Mbytes.
 CPU usage for this session 4 seconds ( 0.00 hours ).
-Elapsed time for this session 7 seconds ( 0.00 hours ).
+Elapsed time for this session 6 seconds ( 0.00 hours ).
 
 Thank you...

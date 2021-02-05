@@ -6,11 +6,11 @@ Report : timing
         -max_paths 1
 Design : mul_inner
 Version: Q-2019.12-SP3
-Date   : Thu Feb  4 11:19:18 2021
+Date   : Thu Feb  4 20:30:46 2021
 ****************************************
 
-Operating Conditions: tt0p85v25c   Library: saed32rvt_tt0p85v25c
-Wire Load Model Mode: enclosed
+Operating Conditions: NCCOM   Library: tcbn45gsbwptc
+Wire Load Model Mode: segmented
 
   Startpoint: i_data_w[1]
               (input port clocked by clk)
@@ -20,24 +20,25 @@ Wire Load Model Mode: enclosed
 
   Des/Clust/Port     Wire Load Model       Library
   ------------------------------------------------
-  mul_inner          8000                  saed32rvt_tt0p85v25c
+  mul_inner          ZeroWireload          tcbn45gsbwptc
 
   Point                                    Incr       Path
   -----------------------------------------------------------
   clock clk (rise edge)                    0.00       0.00
   clock network delay (ideal)              0.00       0.00
-  input external delay                     0.25       0.25 r
-  i_data_w[1] (in)                         0.00       0.25 r
-  U44/Y (OA21X1_RVT)                       0.07       0.32 r
-  U43/Y (AO22X1_RVT)                       0.07       0.39 r
-  U42/Y (OR2X1_RVT)                        0.07       0.46 r
-  U41/Y (AO222X1_RVT)                      0.10       0.55 r
-  U40/Y (OA221X1_RVT)                      0.08       0.63 r
-  U39/Y (AO221X1_RVT)                      0.08       0.71 r
-  U38/Y (OA221X1_RVT)                      0.07       0.78 r
-  U36/Y (OA21X1_RVT)                       0.07       0.86 r
-  o_bit (out)                              0.00       0.86 r
-  data arrival time                                   0.86
+  input external delay                     0.25       0.25 f
+  i_data_w[1] (in)                         0.00       0.25 f
+  U122/ZN (OAI211D1BWP)                    0.02       0.27 r
+  U121/ZN (IOA21D1BWP)                     0.02       0.28 f
+  U10/Z (OR2D1BWP)                         0.03       0.31 f
+  U120/Z (AO222D1BWP)                      0.06       0.36 f
+  U119/Z (OA221D1BWP)                      0.02       0.39 f
+  U118/Z (AO221D1BWP)                      0.06       0.44 f
+  U117/ZN (OAI221D1BWP)                    0.02       0.46 r
+  U105/Z (AO21D1BWP)                       0.03       0.50 r
+  U106/ZN (INVD6BWP)                       0.05       0.55 f
+  o_bit (out)                              0.00       0.55 f
+  data arrival time                                   0.55
 
   clock clk (rise edge)                    2.50       2.50
   clock network delay (ideal)              0.00       2.50
@@ -46,9 +47,9 @@ Wire Load Model Mode: enclosed
   data required time                                  1.85
   -----------------------------------------------------------
   data required time                                  1.85
-  data arrival time                                  -0.86
+  data arrival time                                  -0.55
   -----------------------------------------------------------
-  slack (MET)                                         0.99
+  slack (MET)                                         1.30
 
 
 1

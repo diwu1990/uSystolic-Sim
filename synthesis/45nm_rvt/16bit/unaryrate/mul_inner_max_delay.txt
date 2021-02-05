@@ -6,11 +6,11 @@ Report : timing
         -max_paths 1
 Design : mul_inner
 Version: Q-2019.12-SP3
-Date   : Thu Feb  4 11:26:19 2021
+Date   : Thu Feb  4 20:23:49 2021
 ****************************************
 
-Operating Conditions: tt0p85v25c   Library: saed32rvt_tt0p85v25c
-Wire Load Model Mode: enclosed
+Operating Conditions: NCCOM   Library: tcbn45gsbwptc
+Wire Load Model Mode: segmented
 
   Startpoint: i_data_w[1]
               (input port clocked by clk)
@@ -20,32 +20,34 @@ Wire Load Model Mode: enclosed
 
   Des/Clust/Port     Wire Load Model       Library
   ------------------------------------------------
-  mul_inner          8000                  saed32rvt_tt0p85v25c
+  mul_inner          ZeroWireload          tcbn45gsbwptc
 
   Point                                    Incr       Path
   -----------------------------------------------------------
   clock clk (rise edge)                    0.00       0.00
   clock network delay (ideal)              0.00       0.00
-  input external delay                     0.25       0.25 r
-  i_data_w[1] (in)                         0.00       0.25 r
-  U88/Y (OA21X1_RVT)                       0.07       0.32 r
-  U87/Y (AO22X1_RVT)                       0.07       0.39 r
-  U86/Y (OR2X1_RVT)                        0.07       0.46 r
-  U85/Y (AO222X1_RVT)                      0.10       0.55 r
-  U84/Y (OA221X1_RVT)                      0.08       0.63 r
-  U83/Y (AO221X1_RVT)                      0.08       0.71 r
-  U82/Y (OA221X1_RVT)                      0.08       0.78 r
-  U81/Y (AO221X1_RVT)                      0.08       0.86 r
-  U80/Y (OA221X1_RVT)                      0.08       0.94 r
-  U79/Y (AO221X1_RVT)                      0.08       1.02 r
-  U78/Y (OA221X1_RVT)                      0.08       1.09 r
-  U77/Y (AO221X1_RVT)                      0.08       1.17 r
-  U76/Y (OA221X1_RVT)                      0.08       1.24 r
-  U75/Y (AO221X1_RVT)                      0.08       1.32 r
-  U74/Y (OA221X1_RVT)                      0.07       1.40 r
-  U72/Y (OA21X1_RVT)                       0.07       1.47 r
-  o_bit (out)                              0.00       1.47 r
-  data arrival time                                   1.47
+  input external delay                     0.25       0.25 f
+  i_data_w[1] (in)                         0.00       0.25 f
+  U278/ZN (INVD1BWP)                       0.01       0.26 r
+  U277/Z (AO211D1BWP)                      0.02       0.28 r
+  U276/ZN (OAI21D1BWP)                     0.02       0.30 f
+  U18/Z (OR2D1BWP)                         0.03       0.32 f
+  U287/Z (AO222D1BWP)                      0.06       0.38 f
+  U286/Z (OA221D1BWP)                      0.02       0.40 f
+  U285/Z (AO221D1BWP)                      0.06       0.46 f
+  U284/Z (OA221D1BWP)                      0.02       0.49 f
+  U283/Z (AO221D1BWP)                      0.06       0.54 f
+  U281/Z (OA221D1BWP)                      0.02       0.57 f
+  U280/Z (AO221D1BWP)                      0.06       0.62 f
+  U290/Z (OA221D1BWP)                      0.02       0.65 f
+  U289/Z (AO221D1BWP)                      0.06       0.71 f
+  U288/Z (OA221D1BWP)                      0.02       0.73 f
+  U275/Z (AO221D1BWP)                      0.06       0.79 f
+  U274/ZN (OAI221D1BWP)                    0.02       0.81 r
+  U236/Z (AO21D1BWP)                       0.03       0.84 r
+  U237/ZN (INVD6BWP)                       0.05       0.89 f
+  o_bit (out)                              0.00       0.89 f
+  data arrival time                                   0.89
 
   clock clk (rise edge)                    2.50       2.50
   clock network delay (ideal)              0.00       2.50
@@ -54,9 +56,9 @@ Wire Load Model Mode: enclosed
   data required time                                  1.85
   -----------------------------------------------------------
   data required time                                  1.85
-  data arrival time                                  -1.47
+  data arrival time                                  -0.89
   -----------------------------------------------------------
-  slack (MET)                                         0.38
+  slack (MET)                                         0.96
 
 
 1

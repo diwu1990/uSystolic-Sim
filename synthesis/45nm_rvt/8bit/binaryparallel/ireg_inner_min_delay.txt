@@ -6,11 +6,11 @@ Report : timing
         -max_paths 1
 Design : ireg_inner
 Version: Q-2019.12-SP3
-Date   : Thu Feb  4 11:10:26 2021
+Date   : Thu Feb  4 20:26:23 2021
 ****************************************
 
-Operating Conditions: tt0p85v25c   Library: saed32rvt_tt0p85v25c
-Wire Load Model Mode: enclosed
+Operating Conditions: NCCOM   Library: tcbn45gsbwptc
+Wire Load Model Mode: segmented
 
   Startpoint: o_data_reg[0]
               (rising edge-triggered flip-flop clocked by clk)
@@ -21,29 +21,31 @@ Wire Load Model Mode: enclosed
 
   Des/Clust/Port     Wire Load Model       Library
   ------------------------------------------------
-  ireg_inner         ForQA                 saed32rvt_tt0p85v25c
+  ireg_inner         ZeroWireload          tcbn45gsbwptc
 
   Point                                    Incr       Path
   -----------------------------------------------------------
   clock clk (rise edge)                    0.00       0.00
   clock network delay (ideal)              0.00       0.00
-  o_data_reg[0]/CLK (DFFARX1_RVT)          0.00       0.00 r
-  o_data_reg[0]/Q (DFFARX1_RVT)            0.15       0.15 f
-  U18/Y (AO22X1_RVT)                       0.08       0.23 f
-  o_data_reg[0]/D (DFFARX1_RVT)            0.01       0.24 f
-  data arrival time                                   0.24
+  o_data_reg[0]/CP (DFCNQD1BWP)            0.00       0.00 r
+  o_data_reg[0]/Q (DFCNQD1BWP)             0.06       0.06 f
+  U48/ZN (CKND0BWP)                        0.03       0.09 r
+  U37/Z (DEL100D1BWP)                      0.07       0.17 r
+  U47/ZN (MOAI22D0BWP)                     0.02       0.18 f
+  o_data_reg[0]/D (DFCNQD1BWP)             0.00       0.18 f
+  data arrival time                                   0.18
 
   clock clk (rise edge)                    0.00       0.00
   clock network delay (ideal)              0.00       0.00
   clock uncertainty                        0.15       0.15
-  o_data_reg[0]/CLK (DFFARX1_RVT)          0.00       0.15 r
-  library hold time                       -0.01       0.14
-  data required time                                  0.14
+  o_data_reg[0]/CP (DFCNQD1BWP)            0.00       0.15 r
+  library hold time                        0.02       0.17
+  data required time                                  0.17
   -----------------------------------------------------------
-  data required time                                  0.14
-  data arrival time                                  -0.24
+  data required time                                  0.17
+  data arrival time                                  -0.18
   -----------------------------------------------------------
-  slack (MET)                                         0.10
+  slack (MET)                                         0.02
 
 
 1
