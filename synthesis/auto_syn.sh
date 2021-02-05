@@ -5,10 +5,29 @@ set -o noclobber
 
 for dir in $(ls -d */)
 do
-    technode="${dir%%/}"
-    technode="${technode%%/}"
-    technode="${technode%%/}"
-    echo "$technode"
+    dir="${dir%/}"
+    dir="${dir%/}"
+    dir="${dir%/}"
+    echo "Process technode: $dir"
+
+    cd dir
+    for subdir in $(ls -d */)
+    do
+        subdir="${subdir%/}"
+        subdir="${subdir%/}"
+        subdir="${subdir%/}"
+        echo "Process subdir: $subdir"
+
+        cd subdir
+        for subsubdir in $(ls -d */)
+        do
+            subsubdir="${subsubdir%/}"
+            subsubdir="${subsubdir%/}"
+            subsubdir="${subsubdir%/}"
+            echo "Process subsubdir: $subsubdir"
+
+        done
+    done
 done
 
 # # rename *.v to *.sv
