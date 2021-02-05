@@ -6,6 +6,8 @@ set -o noclobber
 for dir in $(ls -d */)
 do
     technode="${dir%%/}"
+    technode="${technode%%/}"
+    technode="${technode%%/}"
     echo "$technode"
 done
 
