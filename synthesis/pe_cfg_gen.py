@@ -137,5 +137,7 @@ def prune(input_list):
 
 
 if __name__ == "__main__":
-    pe_config_gen(path="./8bit", frequency=400)
-    pe_config_gen(path="./16bit", frequency=400)
+    pe_config_gen(path="./32nm_rvt/8bit", frequency=400)
+    pe_config_gen(path="./32nm_rvt/16bit", frequency=400)
+    pe_config_gen(path="./45nm_rvt/8bit", frequency=400)
+    pe_config_gen(path="./45nm_rvt/16bit", frequency=400)

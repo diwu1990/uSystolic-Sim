@@ -1,7 +1,7 @@
 import evaluate
 import os
 
-def gen_run_config():
+def gen_run_config(tech_node=None):
 
     arch_list = ["tpu", "eyeriss"]
     network_list = ["alexnet"]
@@ -82,20 +82,47 @@ def gen_run_config():
                         # no need to change pe.cfg, sram.cfg and dram.cfg
                         # get pe.cfg
                         if b == "8":
-                            cmd = "cp ./synthesis/8bit/pe.cfg " + "./config/" + path
+                            cmd = "cp ./synthesis/" + tech_node + "/8bit/pe.cfg " + "./config/" + path
                             os.system(cmd)
                         elif b == "16":
-                            cmd = "cp ./synthesis/16bit/pe.cfg " + "./config/" + path
+                            cmd = "cp ./synthesis/" + tech_node + "/16bit/pe.cfg " + "./config/" + path
                             os.system(cmd)
                         else:
                             raise ValueError("Unknown word bit setting.")
                         
                         # get sram.cfg
-                        cmd = "cp ./config_src/memory_config/dram.cfg " + "./config/" + path
+                        cmd = "cp ./config_src/memory_config/sram.cfg " + "./config/" + path
                         os.system(cmd)
 
+                        cfg_log = ""
+                        cfg_file = open("./config/" + path + "/sram.cfg", "r")
+                        first = True
+                        for entry in cfg_file:
+                            if first == True:
+                                cfg_log += entry
+                                first = False
+                                continue
+                            elems = entry.strip().split(':')
+                            elems = prune(elems)
+                            if len(elems) == 3 and elems[0] == "-technology" and elems[1] == "(u)":
+                                if tech_node == "32nm_rvt":
+                                    elems[2] = str(0.032)
+                                elif tech_node == "45nm_rvt":
+                                    elems[2] = str(0.045)
+                                else:
+                                    raise ValueError("Unknown sram tech node.")
+                            
+                            if len(elems) == 3:
+                                cfg_log += elems[1] + " " + elems[1] + " " + elems[2] + "\n"
+                            else:
+                                cfg_log += entry + "\n"
+                        cfg_file.close()
+                        cfg_file = open("./config/" + path + "/sram.cfg", "w")
+                        cfg_file.write(cfg_log)
+                        cfg_file.close()
+
                         # get dram.cfg
-                        cmd = "cp ./config_src/memory_config/sram.cfg " + "./config/" + path
+                        cmd = "cp ./config_src/memory_config/dram.cfg " + "./config/" + path
                         os.system(cmd)
             
             # unary temporal
@@ -168,20 +195,47 @@ def gen_run_config():
                         # no need to change pe.cfg, sram.cfg and dram.cfg
                         # get pe.cfg
                         if b == "8":
-                            cmd = "cp ./synthesis/8bit/pe.cfg " + "./config/" + path
+                            cmd = "cp ./synthesis/" + tech_node + "/8bit/pe.cfg " + "./config/" + path
                             os.system(cmd)
                         elif b == "16":
-                            cmd = "cp ./synthesis/16bit/pe.cfg " + "./config/" + path
+                            cmd = "cp ./synthesis/" + tech_node + "/16bit/pe.cfg " + "./config/" + path
                             os.system(cmd)
                         else:
                             raise ValueError("Unknown word bit setting.")
                         
                         # get sram.cfg
-                        cmd = "cp ./config_src/memory_config/dram.cfg " + "./config/" + path
+                        cmd = "cp ./config_src/memory_config/sram.cfg " + "./config/" + path
                         os.system(cmd)
 
+                        cfg_log = ""
+                        cfg_file = open("./config/" + path + "/sram.cfg", "r")
+                        first = True
+                        for entry in cfg_file:
+                            if first == True:
+                                cfg_log += entry
+                                first = False
+                                continue
+                            elems = entry.strip().split(':')
+                            elems = prune(elems)
+                            if len(elems) == 3 and elems[0] == "-technology" and elems[1] == "(u)":
+                                if tech_node == "32nm_rvt":
+                                    elems[2] = str(0.032)
+                                elif tech_node == "45nm_rvt":
+                                    elems[2] = str(0.045)
+                                else:
+                                    raise ValueError("Unknown sram tech node.")
+                            
+                            if len(elems) == 3:
+                                cfg_log += elems[1] + " " + elems[1] + " " + elems[2] + "\n"
+                            else:
+                                cfg_log += entry + "\n"
+                        cfg_file.close()
+                        cfg_file = open("./config/" + path + "/sram.cfg", "w")
+                        cfg_file.write(cfg_log)
+                        cfg_file.close()
+
                         # get dram.cfg
-                        cmd = "cp ./config_src/memory_config/sram.cfg " + "./config/" + path
+                        cmd = "cp ./config_src/memory_config/dram.cfg " + "./config/" + path
                         os.system(cmd)
             
             # binary serial
@@ -253,20 +307,47 @@ def gen_run_config():
                     # no need to change pe.cfg, sram.cfg and dram.cfg
                     # get pe.cfg
                     if b == "8":
-                        cmd = "cp ./synthesis/8bit/pe.cfg " + "./config/" + path
+                        cmd = "cp ./synthesis/" + tech_node + "/8bit/pe.cfg " + "./config/" + path
                         os.system(cmd)
                     elif b == "16":
-                        cmd = "cp ./synthesis/16bit/pe.cfg " + "./config/" + path
+                        cmd = "cp ./synthesis/" + tech_node + "/16bit/pe.cfg " + "./config/" + path
                         os.system(cmd)
                     else:
                         raise ValueError("Unknown word bit setting.")
                     
                     # get sram.cfg
-                    cmd = "cp ./config_src/memory_config/dram.cfg " + "./config/" + path
+                    cmd = "cp ./config_src/memory_config/sram.cfg " + "./config/" + path
                     os.system(cmd)
 
+                    cfg_log = ""
+                    cfg_file = open("./config/" + path + "/sram.cfg", "r")
+                    first = True
+                    for entry in cfg_file:
+                        if first == True:
+                            cfg_log += entry
+                            first = False
+                            continue
+                        elems = entry.strip().split(':')
+                        elems = prune(elems)
+                        if len(elems) == 3 and elems[0] == "-technology" and elems[1] == "(u)":
+                            if tech_node == "32nm_rvt":
+                                elems[2] = str(0.032)
+                            elif tech_node == "45nm_rvt":
+                                elems[2] = str(0.045)
+                            else:
+                                raise ValueError("Unknown sram tech node.")
+                        
+                        if len(elems) == 3:
+                            cfg_log += elems[1] + " " + elems[1] + " " + elems[2] + "\n"
+                        else:
+                            cfg_log += entry + "\n"
+                    cfg_file.close()
+                    cfg_file = open("./config/" + path + "/sram.cfg", "w")
+                    cfg_file.write(cfg_log)
+                    cfg_file.close()
+
                     # get dram.cfg
-                    cmd = "cp ./config_src/memory_config/sram.cfg " + "./config/" + path
+                    cmd = "cp ./config_src/memory_config/dram.cfg " + "./config/" + path
                     os.system(cmd)
         
             # binary parallel
@@ -338,20 +419,47 @@ def gen_run_config():
                     # no need to change pe.cfg, sram.cfg and dram.cfg
                     # get pe.cfg
                     if b == "8":
-                        cmd = "cp ./synthesis/8bit/pe.cfg " + "./config/" + path
+                        cmd = "cp ./synthesis/" + tech_node + "/8bit/pe.cfg " + "./config/" + path
                         os.system(cmd)
                     elif b == "16":
-                        cmd = "cp ./synthesis/16bit/pe.cfg " + "./config/" + path
+                        cmd = "cp ./synthesis/" + tech_node + "/16bit/pe.cfg " + "./config/" + path
                         os.system(cmd)
                     else:
                         raise ValueError("Unknown word bit setting.")
                     
                     # get sram.cfg
-                    cmd = "cp ./config_src/memory_config/dram.cfg " + "./config/" + path
+                    cmd = "cp ./config_src/memory_config/sram.cfg " + "./config/" + path
                     os.system(cmd)
 
+                    cfg_log = ""
+                    cfg_file = open("./config/" + path + "/sram.cfg", "r")
+                    first = True
+                    for entry in cfg_file:
+                        if first == True:
+                            cfg_log += entry
+                            first = False
+                            continue
+                        elems = entry.strip().split(':')
+                        elems = prune(elems)
+                        if len(elems) == 3 and elems[0] == "-technology" and elems[1] == "(u)":
+                            if tech_node == "32nm_rvt":
+                                elems[2] = str(0.032)
+                            elif tech_node == "45nm_rvt":
+                                elems[2] = str(0.045)
+                            else:
+                                raise ValueError("Unknown sram tech node.")
+                        
+                        if len(elems) == 3:
+                            cfg_log += elems[1] + " " + elems[1] + " " + elems[2] + "\n"
+                        else:
+                            cfg_log += entry + "\n"
+                    cfg_file.close()
+                    cfg_file = open("./config/" + path + "/sram.cfg", "w")
+                    cfg_file.write(cfg_log)
+                    cfg_file.close()
+
                     # get dram.cfg
-                    cmd = "cp ./config_src/memory_config/sram.cfg " + "./config/" + path
+                    cmd = "cp ./config_src/memory_config/dram.cfg " + "./config/" + path
                     os.system(cmd)
 
 
@@ -367,4 +475,5 @@ def prune(input_list):
 
 
 if __name__ == '__main__':
-    gen_run_config()
+    # gen_run_config(tech_node="32nm_rvt")
+    gen_run_config(tech_node="45nm_rvt")

@@ -1,0 +1,67 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : mul_border
+Version: Q-2019.12-SP3
+Date   : Thu Feb  4 11:23:53 2021
+****************************************
+
+Operating Conditions: tt0p85v25c   Library: saed32rvt_tt0p85v25c
+Wire Load Model Mode: enclosed
+
+  Startpoint: cnt_reg[1] (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: o_data[31] (output port clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  mul_border         8000                  saed32rvt_tt0p85v25c
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  cnt_reg[1]/CLK (DFFARX1_RVT)             0.00       0.00 r
+  cnt_reg[1]/Q (DFFARX1_RVT)               0.16       0.16 r
+  U369/Y (NAND2X0_RVT)                     0.05       0.21 f
+  U318/Y (NOR2X1_RVT)                      0.10       0.31 r
+  U412/Y (AO221X1_RVT)                     0.10       0.41 r
+  U413/Y (NAND2X0_RVT)                     0.05       0.46 f
+  U324/Y (AND2X1_RVT)                      0.08       0.54 f
+  U335/Y (NAND2X4_RVT)                     0.11       0.65 r
+  U304/Y (NAND2X0_RVT)                     0.12       0.77 f
+  U302/Y (NBUFFX2_RVT)                     0.13       0.90 f
+  U463/Y (NAND2X0_RVT)                     0.12       1.02 r
+  U334/Y (NAND3X0_RVT)                     0.07       1.09 f
+  U306/Y (INVX0_RVT)                       0.05       1.15 r
+  U310/Y (AND2X1_RVT)                      0.06       1.21 r
+  U307/Y (NAND2X0_RVT)                     0.04       1.25 f
+  U308/Y (NAND2X0_RVT)                     0.05       1.30 r
+  U527/Y (NAND3X0_RVT)                     0.06       1.36 f
+  U303/Y (INVX0_RVT)                       0.05       1.41 r
+  U288/Y (AO21X1_RVT)                      0.08       1.49 r
+  U277/Y (AOI22X1_RVT)                     0.10       1.59 f
+  U286/Y (AO21X1_RVT)                      0.06       1.65 f
+  U388/Y (NAND2X0_RVT)                     0.05       1.70 r
+  U544/Y (OA221X1_RVT)                     0.07       1.78 r
+  U545/Y (OA221X1_RVT)                     0.07       1.84 r
+  o_data[31] (out)                         0.00       1.85 r
+  data arrival time                                   1.85
+
+  clock clk (rise edge)                    2.50       2.50
+  clock network delay (ideal)              0.00       2.50
+  clock uncertainty                       -0.15       2.35
+  output external delay                   -0.50       1.85
+  data required time                                  1.85
+  -----------------------------------------------------------
+  data required time                                  1.85
+  data arrival time                                  -1.85
+  -----------------------------------------------------------
+  slack (MET)                                         0.00
+
+
+1
