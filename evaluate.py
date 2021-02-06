@@ -3,7 +3,8 @@ import time
 import math
 import configparser as cp
 import simArch.run_nets as r
-import simHw.efficiency as eff
+import simHw.profiling as prof
+import simEff.efficiency as eff
 from absl import flags
 from absl import app
 import platform
@@ -23,10 +24,12 @@ flags.DEFINE_string("name", "template_run", "indicateing path to get config file
 # path/pe.cfg: PE area and power data for hardware simulation
 
 class evaluate:
-    def __init__(self, save = False, simArch = True, simHw = True):
+    def __init__(self, save = False, simArch = True, simHw = True, simEff = True):
         self.save_space = save
         self.simArch = simArch
         self.simHw = simHw
+        self.simEff = simEff
+
 
     def parse_config(self):
         general = 'general'
@@ -109,6 +112,7 @@ class evaluate:
         
         self.time_stamp = time.time()
 
+
     def run_eval(self):
         self.parse_config()
 
@@ -117,6 +121,10 @@ class evaluate:
 
         if self.simHw == True:
             self.run_hw()
+
+        if self.simEff == True:
+            self.run_eff()
+
 
     def run_arch(self):
 
@@ -160,12 +168,75 @@ class evaluate:
         self.time_stamp = time.time()
         print("Results: ./outputs/"+self.run_name+"/simArchOut/")
 
+
     def run_hw(self):
         print()
         print()
         print()
         print("====================================================")
         print("************** uSystolic Hardware Sim **************")
+        print("====================================================")
+        print("Computing:     \t" + self.computing)
+        print("SRAM file:     \t" + self.sram_file)
+        print("DRAM file:     \t" + self.dram_file)
+        print("PE file:       \t" + self.pe_file)
+        print("====================================================")
+
+        if self.zero_sram_ifmap == True:
+            # estimate the ifmap sram size to hide latency
+            print("IFMAP  SRAM is disabled in actual hardware.")
+            if self.computing == "BinarySerial" or self.computing == "BinaryParallel":
+                print("\tFor binary computing, this is not suggested!\n")
+            self.isram = 0
+        if self.zero_sram_filter == True:
+            # estimate the filter sram size to hide latency
+            print("FILTER SRAM is disabled in actual hardware.")
+            if self.computing == "BinarySerial" or self.computing == "BinaryParallel":
+                print("\tFor binary computing, this is not suggested!\n")
+            self.fsram = 0
+        if self.zero_sram_ofmap == True:
+            # estimate the ofmap sram size to hide latency
+            print("OFMAP  SRAM is disabled in actual hardware.")
+            if self.computing == "BinarySerial" or self.computing == "BinaryParallel":
+                print("\tFor binary computing, this is not suggested!\n")
+            self.osram = 0
+        
+        prof.profiling(
+            array_h = int(self.ar_h),
+            array_w = int(self.ar_w),
+            ifmap_sram_size  = int(self.isram), # in K-Word
+            filter_sram_size = int(self.fsram), # in K-Word
+            ofmap_sram_size  = int(self.osram), # in K-Word
+            word_sz_bytes=self.word_sz_bytes, # bytes per word
+            ifmap_base=self.ifmap_offset, # in word
+            filter_base=self.filter_offset, # in word
+            ofmap_base=self.ofmap_offset, # in word
+            sram_cfg_file=self.sram_file,
+            dram_cfg_file=self.dram_file,
+            pe_cfg_file=self.pe_file,
+            computing=self.computing,
+            run_name=self.run_name,
+            topology_file=self.topology_file,
+            sram_access_buf=self.sram_access_buf
+        )
+        self.hw_cleanup()
+        print("********* uSystolic Hardware Sim Complete **********")
+        sec = time.time() - self.time_stamp
+        hours = int(math.floor(sec / 3600))
+        mins = int(math.floor((sec % 3600) / 60))
+        secs = int(math.floor(sec % 60))
+        print("Runtime: " + str(hours) + "-hours,    " + str(mins) + "-mins,    " + str(secs) + "-secs")
+        self.time_stamp = time.time()
+        print("Results: ./outputs/"+self.run_name+"/simHwOut/")
+        print()
+    
+
+    def run_eff(self):
+        print()
+        print()
+        print()
+        print("====================================================")
+        print("************* uSystolic Efficiency Sim *************")
         print("====================================================")
         print("Computing:     \t" + self.computing)
         print("SRAM file:     \t" + self.sram_file)
@@ -210,14 +281,15 @@ class evaluate:
             topology_file=self.topology_file,
             sram_access_buf=self.sram_access_buf
         )
-        self.hw_cleanup()
-        print("********* uSystolic Hardware Sim Complete **********")
+        self.eff_cleanup()
+        print("******** uSystolic Efficiency Sim Complete *********")
         sec = time.time() - self.time_stamp
         hours = int(math.floor(sec / 3600))
         mins = int(math.floor((sec % 3600) / 60))
         secs = int(math.floor(sec % 60))
         print("Runtime: " + str(hours) + "-hours,    " + str(mins) + "-mins,    " + str(secs) + "-secs")
-        print("Results: ./outputs/"+self.run_name+"/simHwOut/")
+        self.time_stamp = time.time()
+        print("Results: ./outputs/"+self.run_name+"/simEffOut/")
         print()
 
     def arch_cleanup(self):
@@ -246,12 +318,36 @@ class evaluate:
         cmd = "mv " + path + "/" + self.run_name + "*dram* " + path +"/layer_wise"
         os.system(cmd)
 
+
     def hw_cleanup(self):
         # for linux os
         if not os.path.exists("./outputs/"):
             os.system("mkdir ./outputs")
 
         path = "./outputs/" + self.run_name + "/simHwOut"
+
+        if not os.path.exists(path):
+            os.system("mkdir -p " + path + "/")
+        else:
+            t = time.time()
+            new_path= path + "_" + str(t)
+            os.system("mv " + path + " " + new_path)
+            os.system("mkdir -p " + path + "/")
+
+        cmd = "mv " + self.run_name + "*.csv " + path
+        os.system(cmd)
+        
+        if self.save_space == True:
+            cmd = "rm -rf " + "./outputs/" + self.run_name + "/simArchOut" +"/layer_wise"
+            os.system(cmd)
+    
+
+    def eff_cleanup(self):
+        # for linux os
+        if not os.path.exists("./outputs/"):
+            os.system("mkdir ./outputs")
+
+        path = "./outputs/" + self.run_name + "/simEffOut"
 
         if not os.path.exists(path):
             os.system("mkdir -p " + path + "/")
@@ -269,10 +365,19 @@ class evaluate:
 
         cmd = "mv " + self.run_name + "*.csv " + path
         os.system(cmd)
+
+        path = "./outputs/" + self.run_name + "/config"
+
+        if not os.path.exists(path):
+            os.system("mkdir -p " + path + "/")
+        else:
+            t = time.time()
+            new_path= path + "_" + str(t)
+            os.system("mv " + path + " " + new_path)
+            os.system("mkdir -p " + path + "/")
         
-        if self.save_space == True:
-            cmd = "rm -rf " + "./outputs/" + self.run_name + "/simArchOut" +"/layer_wise"
-            os.system(cmd)
+        cmd = "cp ./config/" + self.run_name + "/* " + path
+        os.system(cmd)
 
 def to_bool(value):
     """
@@ -286,7 +391,7 @@ def to_bool(value):
 
 
 def main(argv):
-    s = evaluate(save = False, simArch = True, simHw = True)
+    s = evaluate(save = False, simArch = True, simHw = True, simEff = True)
     s.run_eval()
 
 if __name__ == '__main__':
