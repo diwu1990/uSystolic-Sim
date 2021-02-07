@@ -379,6 +379,7 @@ class evaluate:
         cmd = "cp ./config/" + self.run_name + "/* " + path
         os.system(cmd)
 
+
 def to_bool(value):
     """
        Converts 'something' to boolean. Raises exception for invalid formats
