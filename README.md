@@ -29,7 +29,15 @@ The traces are profiled to generate the ideal and real latency, bandwidth, throu
 ### 3. Efficiency simulation - [simEff](https://github.com/diwu1990/uSystolic-Sim/blob/main/simEff)
 The Intermediate data, together with SRAM, DRAM and systolic array configurations, are utilized to estimate the power and energy consumption for all hardware.
 
-### Input
+## System requirement
+1. Linux OS
+2. python3.x
+2.1 tqdm
+2.2 configparser
+2.3 subprocess
+6. gcc/g++
+
+## Input
 All inputs are configuration files for the target systolic array, including
 1) ./config/run_name/systolic.cfg: file to get systolic array architechture from
 2) ./config/run_name/network.csv: consecutive GEMM topologies to read
@@ -39,7 +47,7 @@ All inputs are configuration files for the target systolic array, including
 
 To generate example configuration files, run:```python3 sweep_config.py```, and you will see the generated configuration files in ./config.
 
-### Output
+## Output
 
 The simulator generates read write traces and summary logs at ```./outputs/<run_name>```.
 
