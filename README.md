@@ -31,11 +31,11 @@ The Intermediate data, together with SRAM, DRAM and systolic array configuration
 
 ### Input
 All inputs are configuration files for the target systolic array, including
-1. ./config/run_name/systolic.cfg: file to get systolic array architechture from
-2. ./config/run_name/network.csv: consecutive GEMM topologies to read
-3. ./config/run_name/sram.cfg: SRAM configs for hardware simulation. Note that the sizes are specified in systolic.cfg
-4. ./config/run_name/dram.cfg: DRAM configs for hardware simulation
-5. ./config/run_name/pe.cfg: PE area and power data for hardware simulation
+1) ./config/run_name/systolic.cfg: file to get systolic array architechture from
+2) ./config/run_name/network.csv: consecutive GEMM topologies to read
+3) ./config/run_name/sram.cfg: SRAM configs for hardware simulation. Note that the sizes are specified in systolic.cfg
+4) ./config/run_name/dram.cfg: DRAM configs for hardware simulation
+5) ./config/run_name/pe.cfg: PE area and power data for hardware simulation
 
 To generate example configuration files, run:```python3 sweep_config.py```, and you will see the generated configuration files in ./config.
 
