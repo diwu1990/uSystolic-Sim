@@ -56,14 +56,11 @@ All outputs for <run_name> will be located at ```./outputs/<run_name>```.
 3) ```./outputs/<run_name>/simEffOut``` contains the real reports for area, power and energy.
 
 ## Example run
-* Run a single configuration: ```python3 evaluate.py -name=./config/<run_name>```
-* Run all configurations in ```./config/```: ```source run_all.sh```
-
 For first-time users:
 1. ```python3 sweep_config.py```: generate all default configurations
-2. ```source run_all.sh```: run all configurations in ```./config/```. This shell script will run all configurations in background and move all logs to ```./log/<run_name>```.
+2. ```source run_all.sh```: run all configurations in ```./config/```. This shell script will run those configurations in background and move all logs to ```./log/<run_name>```.
 3. ```source run_check```: check whether all ```./config/<run_name>``` produce correspondent results in ```./outputs/```.
-
+Run a single configuration: ```python3 evaluate.py -name=./config/<run_name>```, and logs will be displayed in terminal by default.
 
 ## Citing
 
