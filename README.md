@@ -32,20 +32,20 @@ The Intermediate data, together with SRAM, DRAM and systolic array configuration
 ## System requirement
 1. Linux OS
 2. python3.x
-2.1 tqdm
-2.2 configparser
-2.3 subprocess
+3. tqdm
+4. configparser
+5. subprocess
 6. gcc/g++
 
 ## Input
-All inputs are configuration files for the target systolic array, including
-1) ./config/run_name/systolic.cfg: file to get systolic array architechture from
+All inputs for <run_name> should be contained in ./config/<run_name>. Inputs are configuration files for the target systolic array, including:
+1) ./config/run_name/systolic.cfg: file to extract systolic array architechture from
 2) ./config/run_name/network.csv: consecutive GEMM topologies to read
 3) ./config/run_name/sram.cfg: SRAM configs for hardware simulation. Note that the sizes are specified in systolic.cfg
 4) ./config/run_name/dram.cfg: DRAM configs for hardware simulation
-5) ./config/run_name/pe.cfg: PE area and power data for hardware simulation
+5) ./config/run_name/pe.cfg: PE area and power data for hardware simulation. Those numbers should be pre-synthesized.
 
-To generate example configuration files, run:```python3 sweep_config.py```, and you will see the generated configuration files in ./config.
+Example configuration files can be obtained by running ```python3 sweep_config.py``` and then will be generated in ./config.
 
 ## Output
 
