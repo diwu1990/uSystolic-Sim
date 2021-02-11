@@ -1,6 +1,6 @@
 # uSystolic-Sim
 *uSystolic-Sim* is a systolic array simulator built on top of [ARM SCALE-Sim](https://github.com/ARM-software/SCALE-Sim), which leverages memory traces to evaluate:
-1) the execution runtime
+1) the execution time
 2) the memory bandwidth
 3) the power and energy consumption, including both the computing kernel and memory hierarchy
 
