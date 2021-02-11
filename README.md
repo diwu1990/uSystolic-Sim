@@ -56,7 +56,7 @@ All outputs for <run_name> will be located at ```./outputs/<run_name>```.
 2) ```./outputs/<run_name>/simHwOut``` contains both ideal and real reports for bandwidth, throughput and runtime.
 3) ```./outputs/<run_name>/simEffOut``` contains the real reports for area, power and energy.
 
-## Example run
+## CMD
 For first-time users:
 1. ```python3 sweep_config.py```: generate all default configurations
 2. ```source run_all.sh```: run all configurations in ```./config/```. This shell script will run those configurations in background and move all logs to ```./log/<run_name>```.
@@ -65,6 +65,8 @@ For first-time users:
 Run a single configuration:
 
 ```python3 evaluate.py -name=./config/<run_name>```, and logs will be displayed in terminal by default.
+
+* If the current run is stopped before it finishes, run ```source clean.sh``` before starting the next run.
 
 ## Citing
 
