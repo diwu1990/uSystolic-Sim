@@ -66,7 +66,7 @@ Run a single configuration:
 
 ```python3 evaluate.py -name=./config/<run_name>```, and logs will be displayed in terminal by default.
 
-* If the current run is stopped before it finishes, run ```source clean.sh``` before starting the next run.
+*If the current run is stopped before it finishes, run ```source clean.sh``` before starting the next run.*
 
 ## Citing
 
