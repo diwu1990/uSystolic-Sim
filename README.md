@@ -29,15 +29,15 @@ The traces are profiled to generate the ideal and real latency, bandwidth, throu
 ### 3. Efficiency simulation - [simEff](https://github.com/diwu1990/uSystolic-Sim/blob/main/simEff)
 The Intermediate data, together with SRAM, DRAM and systolic array configurations, are utilized to estimate the power and energy consumption for all hardware.
 
-## Example run
-* Run a single configuration:```python3 evaluate.py -name=/name/of/the/run/in/.config/folder```
-* Wait for the run to finish
-
-
-* Run all configurations:```source run_all.sh```
-* Wait for the run to finish
-
 ### Input
+All inputs are configuration files for the target systolic array, including
+1. ./config/run_name/systolic.cfg: file to get systolic array architechture from
+2. ./config/run_name/network.csv: consecutive GEMM topologies to read
+3. ./config/run_name/sram.cfg: SRAM configs for hardware simulation. Note that the sizes are specified in systolic.cfg
+4. ./config/run_name/dram.cfg: DRAM configs for hardware simulation
+5. ./config/run_name/pe.cfg: PE area and power data for hardware simulation
+
+To generate example configuration files, run:```python3 sweep_config.py```, and you will see the generated configuration files in ./config.
 
 ### Output
 
@@ -49,6 +49,12 @@ The simulator generates read write traces and summary logs at ```./outputs/<run_
 * Layer wise breakdown of data movement and compute cycles
 
 In addition cycle accurate SRAM/DRAM access logs are also dumped and could be accesses at ```./outputs/<run_name>/layer_wise```
+
+
+## Example run
+* Run a single configuration:```python3 evaluate.py -name=/name/of/the/run/in/.config/folder```
+* Run all configurations:```source run_all.sh```
+
 
 ## Citing
 
