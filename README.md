@@ -50,7 +50,7 @@ Example configuration files can be obtained by running ```python3 sweep_config.p
 
 ## Output
 
-All outputs for <run_name> will be located at ```./outputs/<run_name>```.
+All outputs for <run_name> will be located in ```./outputs/<run_name>```.
 
 1) ```./outputs/<run_name>/simArchOut``` contains the traces files and the report for MAC utilization.
 2) ```./outputs/<run_name>/simHwOut``` contains both ideal and real reports for bandwidth, throughput and runtime.
