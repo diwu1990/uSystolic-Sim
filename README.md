@@ -1,39 +1,42 @@
 # uSystolic-Sim
-*uSystolic-Sim* is a [systolic array](https://github.com/diwu1990/uSystolic-Sim/blob/main/systolic_array.md) simulator, which generates cycle-accurate traces to evaluate 
-1) the latency for GEMM execution the computing kernel
-2) the bandwidth for memory hierarchy
+*uSystolic-Sim* is a [systolic array](https://github.com/diwu1990/uSystolic-Sim/blob/main/systolic_array.md) simulator built on top of [ARM SCALE-Sim](https://github.com/ARM-software/SCALE-Sim), which leverages memory traces to evaluate:
+1) the execution latency
+2) the memory bandwidth
 3) the power and energy consumption, including both the computing kernel and memory hierarchy
 
-*uSystolic-Sim* is aware of the computing scheme at the kernel, including [unary computing](https://conferences.computer.org/isca/pdfs/ISCA2020-4QlDegUf3fKiwUXfV0KdCm/466100a377/466100a377.pdf), bit-serial and bit-parallel binary computing.
 
 ## Feature
 ### 1. Weight-stationary dataflow
-Ideally, *uSystolic-Sim* is open to any dataflow. But currently, it focuses on the weight-stationary dataflow, which enables low-cost and high-accuracy unary computing for a fair comparison with bianry computing.
+*uSystolic-Sim* focuses on the weight-stationary dataflow, which enables low-cost and high-accuracy unary computing for a fair comparison with bianry computing.
+However, it is open to any customized dataflow.
 
 ### 2. Cycle-accurate trace generation
-Assuming no stalls in the computing kernel, *uSystolic-Sim* generates cycle-accurate SRAM traces and approximate DRAM traces.
+Assuming no stalls in the computing kernel, *uSystolic-Sim* generates perfect cycle-accurate SRAM traces and approximate DRAM traces. Note that [ARM SCALE-Sim](https://github.com/ARM-software/SCALE-Sim) does not generate cycle-accurate traces, as it assumes [zero data feeding delay](https://github.com/diwu1990/uSystolic-Sim/blob/main/outputs/README.md). This difference does not change the latency and bandwidth numbers, but provides better estimation of the power and energy.
 
-### 3. Computing scheme-aware, multi-cycle MAC operation
-*uSystolic-Sim* offers per GEMM level configuration for MAC operations. The maximum cycle count for a MAC operation is related to the computing scheme in the kernel. For exmaple, with N-bit binary source data, unary computing, bit-seral and bit-parallel binary computing will spend at most 2^N, N and 1 cycles for one MAC operations, respectively.
+### 3. Computing-scheme-aware, multi-cycle MAC operation
+*uSystolic-Sim* is aware of the computing scheme at the kernel, including [unary computing](https://conferences.computer.org/isca/pdfs/ISCA2020-4QlDegUf3fKiwUXfV0KdCm/466100a377/466100a377.pdf), bit-serial and bit-parallel binary computing. *uSystolic-Sim* offers per GEMM level configuration for MAC operations. The maximum cycle count for a MAC operation is related to the computing scheme in the kernel. For exmaple, with N-bit binary source data, unary computing, bit-seral and bit-parallel binary computing will spend at most 2^N, N and 1 cycles for one MAC operations, respectively.
 
 ### 4. Varying-bitwidth data
-*uSystolic-Sim* provides per GEMM level configuration for the data bitwidth. The data bitwidth can be arbitrary, as required by the target application, and will ultimately influence the power and energy consumption. Note that *uSystolic-Sim* focuses on the performance and efficiency evaluation, while ignoring the influence of data bitwidth on accuracy.
+*uSystolic-Sim* provides flexible configuration for the data bitwidth. The data bitwidth can be arbitrary as required by the target application, and will ultimately influence the power and energy consumption. Note that *uSystolic-Sim* focuses on the performance and efficiency evaluation, while ignoring the influence of data bitwidth on accuracy.
 
 ## Workflow
 ### 1. Architecture simulation - [simArch](https://github.com/diwu1990/uSystolic-Sim/blob/main/simArch/README.md)
-All mandatory traces are generated to evaluate the latency, utilization and bandwidth for all GEMM operations, e.g., in deep neural networks.
-The config files inside [input_config](https://github.com/diwu1990/uSystolic-Sim/blob/main/input_config/README.md) contain achitecture presets.
-The csv files inside [input_topology](https://github.com/diwu1990/uSystolic-Sim/blob/main/input_topology/README.md) contain different networks.
+All mandatory traces are generated for all GEMM operations, e.g., in deep neural networks. Also, the MAC utilization is reported.
 
 ### 2. Hardware simulation - [simHw](https://github.com/diwu1990/uSystolic-Sim/blob/main/simHw/README.md)
-The traces, latency and bandwidth numbers are further used to model the power and energy consumption of the systolic array with the a target computing scheme.
+The traces are profiled to generate the ideal and real latency, bandwidth, throughout and runtime for all GEMM operations. Intermediate data for power and energy estimation are also generated at this step. This step accounts for most of the total runtime.
+
+### 3. Efficiency simulation - [simEff](https://github.com/diwu1990/uSystolic-Sim/blob/main/simEff/README.md)
+The Intermediate data, together with SRAM, DRAM and systolic array configurations, are utilized to estimate the power and energy consumption for all hardware.
 
 ## Example run
-* Run the default configuration: ```python eval.py```
+* Run a single configuration:```python3 evaluate.py -name=/name/of/the/run/in/.config/folder```
 * Wait for the run to finish
 
-* Run your own configuration:```python scale.py -arch_config=input_config/your_own.cfg -network=input_topology/your_own.csv```
+* Run all configurations:```source run_all.sh```
 * Wait for the run to finish
+
+### Input
 
 ### Output
 
