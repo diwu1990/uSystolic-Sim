@@ -1,6 +1,6 @@
 # uSystolic-Sim
 *uSystolic-Sim* is a [systolic array](https://github.com/ARM-software/SCALE-Sim/blob/master/ideas.md) simulator built on top of [ARM SCALE-Sim](https://github.com/ARM-software/SCALE-Sim), which leverages memory traces to evaluate:
-1) the execution time
+1) the run time, as well as throughput
 2) the memory bandwidth
 3) the power and energy consumption, including both the computing kernel and memory hierarchy
 
@@ -11,7 +11,7 @@
 However, it is open to any customized dataflow.
 
 ### 2. Cycle-accurate trace generation
-Assuming no stalls in the computing kernel, *uSystolic-Sim* generates perfect cycle-accurate SRAM traces and approximate DRAM traces. Note that [ARM SCALE-Sim](https://github.com/ARM-software/SCALE-Sim) does not generate cycle-accurate traces, as it assumes [zero data feeding delay](https://github.com/diwu1990/uSystolic-Sim/blob/main/outputs/README.md). This difference does not change the runtime and bandwidth numbers, but provides better estimation of the power and energy.
+Assuming no stalls in the computing kernel, *uSystolic-Sim* generates perfect cycle-accurate SRAM traces and approximate DRAM traces. Note that [ARM SCALE-Sim](https://github.com/ARM-software/SCALE-Sim) does not generate cycle-accurate traces, as it assumes [zero data feeding delay](https://github.com/diwu1990/uSystolic-Sim/blob/main/outputs/README.md). This difference does not change the bandwidth, throughput, and runtime numbers, but provides better estimation of the power and energy.
 
 ### 3. Computing-scheme-aware, multi-cycle MAC operation
 *uSystolic-Sim* is aware of the computing scheme at the kernel, including [unary computing](https://conferences.computer.org/isca/pdfs/ISCA2020-4QlDegUf3fKiwUXfV0KdCm/466100a377/466100a377.pdf), bit-serial and bit-parallel binary computing. *uSystolic-Sim* offers per GEMM level configuration for MAC operations. The maximum cycle count for a MAC operation is related to the computing scheme in the kernel. For exmaple, with N-bit binary source data, unary computing, bit-seral and bit-parallel binary computing will spend at most 2^N, N and 1 cycles for one MAC operations, respectively.
@@ -55,6 +55,7 @@ All outputs for <run_name> will be located at ```./outputs/<run_name>```.
 1) ```./outputs/<run_name>/simArchOut``` contains the traces files and the report for MAC utilization.
 2) ```./outputs/<run_name>/simHwOut``` contains both ideal and real reports for bandwidth, throughput and runtime.
 3) ```./outputs/<run_name>/simEffOut``` contains the real reports for area, power and energy.
+4) ```./outputs/<run_name>/config``` contains the source input configurations.
 
 By default, the logs will be displayed in terminal with indications of above result folders.
 
