@@ -56,11 +56,13 @@ All outputs for <run_name> will be located at ```./outputs/<run_name>```.
 2) ```./outputs/<run_name>/simHwOut``` contains both ideal and real reports for bandwidth, throughput and runtime.
 3) ```./outputs/<run_name>/simEffOut``` contains the real reports for area, power and energy.
 
+By default, the logs will be displayed in terminal with indications of above result folders.
+
 ## CMD
 For first-time users:
-1. ```python3 sweep_config.py```: generate all default configurations
-2. ```source run_all.sh```: run all configurations in ```./config/```. This shell script will run those configurations in background and move all logs to ```./log/<run_name>```.
-3. ```source run_check```: check whether all ```./config/<run_name>``` produce correspondent results in ```./outputs/```.
+1. ```python3 sweep_config.py```: generate all default configurations with each located in ```./config/<run_name>```.
+2. ```source run_all.sh```: run all configurations in ```./config/<run_name>```. This shell script will run those configurations in background and move all logs to ```./log/<run_name>```.
+3. ```source run_check```: check whether all ```./config/<run_name>``` produce correspondent results in ```./outputs/<run_name>```.
 
 Run a single configuration:
 
