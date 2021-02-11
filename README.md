@@ -45,7 +45,7 @@ All inputs for <run_name> should be contained in ```./config/<run_name>```. Inpu
 4) ```./config/run_name/dram.cfg```: DRAM configs for hardware simulation.
 5) ```./config/run_name/pe.cfg```: PE area and power data for hardware simulation. Those numbers should be pre-synthesized.
 
-Example configuration files can be obtained by running ```python3 sweep_config.py``` and then will be generated in ```./config```.
+Example configuration files can be obtained by running ```python3 sweep_config.py``` and then will be generated in ```./config/```.
 
 ## Output
 
@@ -56,8 +56,13 @@ All outputs for <run_name> will be located at ```./outputs/<run_name>```.
 3) ```./outputs/<run_name>/simEffOut``` contains the real reports for area, power and energy.
 
 ## Example run
-* Run a single configuration:```python3 evaluate.py -name=/name/of/the/run/in/.config/folder```
-* Run all configurations:```source run_all.sh```
+* Run a single configuration: ```python3 evaluate.py -name=./config/<run_name>```
+* Run all configurations in ```./config/```: ```source run_all.sh```
+
+For first-time users:
+1. ```python3 sweep_config.py```: generate all default configurations
+2. ```source run_all.sh```: run all configurations in ```./config/```. This shell script will run all configurations in background and move all logs to ```./log/<run_name>```.
+3. ```source run_check```: check whether all ```./config/<run_name>``` produce correspondent results in ```./outputs/```.
 
 
 ## Citing
