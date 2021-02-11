@@ -33,6 +33,7 @@ The Intermediate data, together with SRAM, DRAM and systolic array configuration
 * Run a single configuration:```python3 evaluate.py -name=/name/of/the/run/in/.config/folder```
 * Wait for the run to finish
 
+
 * Run all configurations:```source run_all.sh```
 * Wait for the run to finish
 
