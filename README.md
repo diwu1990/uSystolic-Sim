@@ -32,10 +32,11 @@ The Intermediate data, together with SRAM, DRAM and systolic array configuration
 ## System requirement
 1. Linux OS
 2. python3.x
-3. tqdm
+3. absl
 4. configparser
 5. subprocess
-6. gcc/g++
+6. tqdm
+7. gcc/g++
 
 ## Input
 All inputs for <run_name> should be contained in ```./config/<run_name>```. Inputs are configuration files for the target systolic array, including:
