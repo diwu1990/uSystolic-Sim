@@ -60,7 +60,10 @@ For first-time users:
 1. ```python3 sweep_config.py```: generate all default configurations
 2. ```source run_all.sh```: run all configurations in ```./config/```. This shell script will run those configurations in background and move all logs to ```./log/<run_name>```.
 3. ```source run_check```: check whether all ```./config/<run_name>``` produce correspondent results in ```./outputs/```.
-Run a single configuration: ```python3 evaluate.py -name=./config/<run_name>```, and logs will be displayed in terminal by default.
+
+Run a single configuration:
+
+```python3 evaluate.py -name=./config/<run_name>```, and logs will be displayed in terminal by default.
 
 ## Citing
 
