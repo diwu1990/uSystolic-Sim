@@ -58,7 +58,7 @@ All outputs for <run_name> will be located at ```./outputs/<run_name>```.
 
 By default, the logs will be displayed in terminal with indications of above result folders.
 
-## CMD
+## Command to run
 For first-time users:
 1. ```python3 sweep_config.py```: generate all default configurations with each located in ```./config/<run_name>```.
 2. ```source run_all.sh```: run all configurations in ```./config/<run_name>```. This shell script will run those configurations in background and move all logs to ```./log/<run_name>```.
