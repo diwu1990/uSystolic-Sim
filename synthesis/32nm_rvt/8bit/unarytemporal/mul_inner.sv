@@ -8,7 +8,7 @@ module mul_inner #(
     input logic i_bit_i,
     input logic [WIDTH-2 : 0] i_data_w,
     input logic [WIDTH-2 : 0] i_randW,
-    input logic [WIDTH-2 : 0] o_randW,
+    output logic [WIDTH-2 : 0] o_randW,
     output logic o_bit
 );
 
