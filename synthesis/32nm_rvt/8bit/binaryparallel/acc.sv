@@ -1,5 +1,5 @@
 module acc #(
-    parameter WIDTH=32
+    parameter WIDTH=24
 ) (
     input logic clk,
     input logic rst_n,

@@ -7,7 +7,6 @@ module mul_inner #(
     input logic clr,
     input logic signed [WIDTH-1 : 0] i_data0,
     input logic signed [WIDTH-1 : 0] i_data1,
-    input logic signed [WIDTH*2-1 : 0] o_data_last,
     output logic signed [WIDTH*2-1 : 0] o_data
 );
 
@@ -25,6 +24,6 @@ module mul_inner #(
         end
     end
 
-    assign o_data = (i_data0[cnt] ? i_data1 : 0) + (o_data_last * 2);
+    assign o_data = (i_data0[cnt] ? i_data1 : 0);
     
 endmodule

@@ -1,11 +1,11 @@
 module acc #(
-    parameter WIDTH=32
+    parameter WIDTH=24
 ) (
     input logic clk,
     input logic rst_n,
     input logic en,
     input logic clr,
-    input logic acc,
+    input logic mac_done,
     input logic signed [WIDTH-1 : 0] prod,
     input logic signed [WIDTH-1 : 0] sum_i,
     output logic signed [WIDTH-1 : 0] sum_o
@@ -20,7 +20,7 @@ module acc #(
                 sum_o <= 0;
             end else begin
                 if (en) begin
-                    sum_o <= (acc ? prod : sum_o) + sum_i;
+                    sum_o <= (mac_done ? sum_i : prod) + (mac_done ? sum_o : (sum_o << 1));
                 end else begin
                     sum_o <= sum_o;
                 end

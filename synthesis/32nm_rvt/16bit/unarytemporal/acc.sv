@@ -1,11 +1,11 @@
 module acc #(
-    parameter WIDTH=32
+    parameter WIDTH=24
 ) (
     input logic clk,
     input logic rst_n,
     input logic en,
     input logic clr,
-    input logic acc,
+    input logic mac_done,
     input logic sign_i,
     input logic sign_w,
     input logic prod_bit,
@@ -14,13 +14,13 @@ module acc #(
 );
 
     logic neg;
-    assign neg = sign_i & sign_w;
+    assign neg = sign_i ^ sign_w;
 
     logic signed [WIDTH-1 : 0] prod;
     assign prod = prod_bit ? (neg ? -1 : 1) : 0;
 
     // this module is the horizontal buffer for control and data signals
-    always_ff @(posedge clk or negedge rst_n) begin : acc_proc
+    always_ff @(posedge clk or negedge rst_n) begin : mac_done_proc
         if (~rst_n) begin
             sum_o <= 0;
         end else begin
@@ -28,7 +28,7 @@ module acc #(
                 sum_o <= 0;
             end else begin
                 if (en) begin
-                    sum_o <= (acc ? sum_i : sum_o)  + prod;
+                    sum_o <= (mac_done ? sum_i : prod)  + sum_o;
                 end else begin
                     sum_o <= sum_o;
                 end
