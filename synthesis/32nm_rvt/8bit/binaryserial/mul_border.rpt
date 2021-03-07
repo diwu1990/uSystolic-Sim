@@ -170,7 +170,7 @@ Information: Updating design information... (UID-85)
   --------- --------- --------- --------- --------- -------------------------
     0:00:03      88.7      0.00       0.0       0.0                          
     0:00:03      88.7      0.00       0.0       0.0                          
-    0:00:04      84.9      0.00       0.0       0.0                          
+    0:00:03      84.9      0.00       0.0       0.0                          
 
 
   Beginning Area-Recovery Phase  (cleanup)
@@ -180,17 +180,17 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:04      84.9      0.00       0.0       0.0                          
-    0:00:04      84.9      0.00       0.0       0.0                          
-    0:00:04      84.9      0.00       0.0       0.0                          
-    0:00:04      84.9      0.00       0.0       0.0                          
-    0:00:04      84.9      0.00       0.0       0.0                          
-    0:00:04      84.9      0.00       0.0       0.0                          
-    0:00:04      84.9      0.00       0.0       0.0                          
-    0:00:04      84.9      0.00       0.0       0.0                          
-    0:00:04      84.9      0.00       0.0       0.0                          
-    0:00:04      84.9      0.00       0.0       0.0                          
-    0:00:04      84.9      0.00       0.0       0.0                          
+    0:00:03      84.9      0.00       0.0       0.0                          
+    0:00:03      84.9      0.00       0.0       0.0                          
+    0:00:03      84.9      0.00       0.0       0.0                          
+    0:00:03      84.9      0.00       0.0       0.0                          
+    0:00:03      84.9      0.00       0.0       0.0                          
+    0:00:03      84.9      0.00       0.0       0.0                          
+    0:00:03      84.9      0.00       0.0       0.0                          
+    0:00:03      84.9      0.00       0.0       0.0                          
+    0:00:03      84.9      0.00       0.0       0.0                          
+    0:00:03      84.9      0.00       0.0       0.0                          
+    0:00:03      84.9      0.00       0.0       0.0                          
 
 
 Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
@@ -301,6 +301,6 @@ exit
 Memory usage for this session 142 Mbytes.
 Memory usage for this session including child processes 142 Mbytes.
 CPU usage for this session 4 seconds ( 0.00 hours ).
-Elapsed time for this session 7 seconds ( 0.00 hours ).
+Elapsed time for this session 6 seconds ( 0.00 hours ).
 
 Thank you...

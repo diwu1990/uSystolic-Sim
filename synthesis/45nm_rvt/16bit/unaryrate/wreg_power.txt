@@ -7,7 +7,7 @@ Report : power
         -analysis_effort low
 Design : wreg
 Version: Q-2019.12-SP3
-Date   : Sat Mar  6 20:48:13 2021
+Date   : Sat Mar  6 22:00:09 2021
 ****************************************
 
 

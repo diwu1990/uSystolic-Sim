@@ -173,7 +173,7 @@ Information: Updating design information... (UID-85)
   --------- --------- --------- --------- --------- -------------------------
     0:00:05      63.5      0.00       0.0       0.0                          
     0:00:05      63.5      0.00       0.0       0.0                          
-    0:00:05      63.5      0.00       0.0       0.0                          
+    0:00:06      63.5      0.00       0.0       0.0                          
 
 
   Beginning Area-Recovery Phase  (cleanup)
@@ -183,17 +183,17 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:05      63.5      0.00       0.0       0.0                          
-    0:00:05      63.5      0.00       0.0       0.0                          
-    0:00:05      63.5      0.00       0.0       0.0                          
-    0:00:05      63.5      0.00       0.0       0.0                          
-    0:00:05      63.5      0.00       0.0       0.0                          
-    0:00:05      63.5      0.00       0.0       0.0                          
-    0:00:05      63.5      0.00       0.0       0.0                          
-    0:00:05      63.5      0.00       0.0       0.0                          
-    0:00:05      63.5      0.00       0.0       0.0                          
-    0:00:05      63.5      0.00       0.0       0.0                          
-    0:00:05      63.5      0.00       0.0       0.0                          
+    0:00:06      63.5      0.00       0.0       0.0                          
+    0:00:06      63.5      0.00       0.0       0.0                          
+    0:00:06      63.5      0.00       0.0       0.0                          
+    0:00:06      63.5      0.00       0.0       0.0                          
+    0:00:06      63.5      0.00       0.0       0.0                          
+    0:00:06      63.5      0.00       0.0       0.0                          
+    0:00:06      63.5      0.00       0.0       0.0                          
+    0:00:06      63.5      0.00       0.0       0.0                          
+    0:00:06      63.5      0.00       0.0       0.0                          
+    0:00:06      63.5      0.00       0.0       0.0                          
+    0:00:06      63.5      0.00       0.0       0.0                          
 
 
 Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
@@ -243,10 +243,10 @@ Information: Updating design information... (UID-85)
     0:00:08      60.0      0.00       0.0       0.2                                0.00  
     0:00:08      60.0      0.00       0.0       0.2                                0.00  
     0:00:08      60.0      0.00       0.0       0.2                                0.00  
-    0:00:08      62.8      0.00       0.0       0.0                                0.00  
-    0:00:08      62.8      0.00       0.0       0.0                                0.00  
-    0:00:08      62.8      0.00       0.0       0.0                                0.00  
-    0:00:08      62.8      0.00       0.0       0.0                                0.00  
+    0:00:09      62.8      0.00       0.0       0.0                                0.00  
+    0:00:09      62.8      0.00       0.0       0.0                                0.00  
+    0:00:09      62.8      0.00       0.0       0.0                                0.00  
+    0:00:09      62.8      0.00       0.0       0.0                                0.00  
 
 
 
@@ -257,9 +257,9 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                              MIN DELAY 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT             COST    
   --------- --------- --------- --------- --------- ------------------------- -----------
-    0:00:08      62.8      0.00       0.0       0.0                                0.00  
-    0:00:08      62.8      0.00       0.0       0.0                                0.00  
-    0:00:08      62.8      0.00       0.0       0.0                                0.00  
+    0:00:09      62.8      0.00       0.0       0.0                                0.00  
+    0:00:09      62.8      0.00       0.0       0.0                                0.00  
+    0:00:09      62.8      0.00       0.0       0.0                                0.00  
 
 
   Beginning Design Rule Fixing  (min_path)
@@ -269,7 +269,7 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                              MIN DELAY 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT             COST    
   --------- --------- --------- --------- --------- ------------------------- -----------
-    0:00:08      62.8      0.00       0.0       0.0                               -0.38  
+    0:00:09      62.8      0.00       0.0       0.0                               -0.38  
 
 
   Beginning Area-Recovery Phase  (cleanup)
@@ -279,18 +279,18 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                              MIN DELAY 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT             COST    
   --------- --------- --------- --------- --------- ------------------------- -----------
-    0:00:08      62.8      0.00       0.0       0.0                               -0.38  
-    0:00:08      62.8      0.00       0.0       0.0                               -0.38  
-    0:00:08      62.8      0.00       0.0       0.0                               -0.38  
-    0:00:08      62.8      0.00       0.0       0.0                               -0.38  
-    0:00:08      62.8      0.00       0.0       0.0                               -0.38  
-    0:00:08      62.8      0.00       0.0       0.0                               -0.38  
-    0:00:08      62.8      0.00       0.0       0.0                               -0.38  
-    0:00:08      62.8      0.00       0.0       0.0                               -0.38  
-    0:00:08      62.8      0.00       0.0       0.0                               -0.38  
-    0:00:08      62.8      0.00       0.0       0.0                               -0.38  
-    0:00:08      62.8      0.00       0.0       0.0                               -0.38  
-    0:00:08      76.9      0.00       0.0       0.0                                0.00  
+    0:00:09      62.8      0.00       0.0       0.0                               -0.38  
+    0:00:09      62.8      0.00       0.0       0.0                               -0.38  
+    0:00:09      62.8      0.00       0.0       0.0                               -0.38  
+    0:00:09      62.8      0.00       0.0       0.0                               -0.38  
+    0:00:09      62.8      0.00       0.0       0.0                               -0.38  
+    0:00:09      62.8      0.00       0.0       0.0                               -0.38  
+    0:00:09      62.8      0.00       0.0       0.0                               -0.38  
+    0:00:09      62.8      0.00       0.0       0.0                               -0.38  
+    0:00:09      62.8      0.00       0.0       0.0                               -0.38  
+    0:00:09      62.8      0.00       0.0       0.0                               -0.38  
+    0:00:09      62.8      0.00       0.0       0.0                               -0.38  
+    0:00:09      76.9      0.00       0.0       0.0                                0.00  
 
 
 Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
@@ -315,7 +315,7 @@ Writing verilog file '/filespace/d/dwu94/Project/uSystolic-Sim/synthesis/45nm_rv
 exit
 Memory usage for this session 401 Mbytes.
 Memory usage for this session including child processes 401 Mbytes.
-CPU usage for this session 10 seconds ( 0.00 hours ).
+CPU usage for this session 9 seconds ( 0.00 hours ).
 Elapsed time for this session 12 seconds ( 0.00 hours ).
 
 Thank you...

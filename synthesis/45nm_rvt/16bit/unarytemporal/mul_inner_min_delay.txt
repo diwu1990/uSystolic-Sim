@@ -6,7 +6,7 @@ Report : timing
         -max_paths 1
 Design : mul_inner
 Version: Q-2019.12-SP3
-Date   : Sat Mar  6 20:49:16 2021
+Date   : Sat Mar  6 22:01:12 2021
 ****************************************
 
 Operating Conditions: NCCOM   Library: tcbn45gsbwptc

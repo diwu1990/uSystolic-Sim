@@ -181,8 +181,8 @@ Information: Updating design information... (UID-85)
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
     0:00:05     102.8      0.00       0.0       1.0                          
-    0:00:06     102.8      0.00       0.0       1.0                          
-    0:00:06     102.8      0.00       0.0       1.0                          
+    0:00:05     102.8      0.00       0.0       1.0                          
+    0:00:05     102.8      0.00       0.0       1.0                          
     0:00:06     102.8      0.00       0.0       1.0                          
     0:00:06     102.8      0.00       0.0       1.0                          
     0:00:06     100.4      0.00       0.0       1.0                          
@@ -241,7 +241,7 @@ check_design
 ****************************************
 check_design summary:
 Version:     Q-2019.12-SP3
-Date:        Sat Mar  6 20:47:43 2021
+Date:        Sat Mar  6 21:59:39 2021
 ****************************************
 
                    Name                                            Total
@@ -284,7 +284,7 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                              MIN DELAY 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT             COST    
   --------- --------- --------- --------- --------- ------------------------- -----------
-    0:00:09     141.1      0.00       0.0       0.9                                0.00  
+    0:00:08     141.1      0.00       0.0       0.9                                0.00  
     0:00:09     141.1      0.00       0.0       0.9                                0.00  
     0:00:09     141.1      0.00       0.0       0.9                                0.00  
     0:00:09     141.1      0.00       0.0       0.9                                0.00  
@@ -359,7 +359,7 @@ check_design
 ****************************************
 check_design summary:
 Version:     Q-2019.12-SP3
-Date:        Sat Mar  6 20:47:46 2021
+Date:        Sat Mar  6 21:59:42 2021
 ****************************************
 
                    Name                                            Total
@@ -385,6 +385,6 @@ exit
 Memory usage for this session 403 Mbytes.
 Memory usage for this session including child processes 403 Mbytes.
 CPU usage for this session 10 seconds ( 0.00 hours ).
-Elapsed time for this session 13 seconds ( 0.00 hours ).
+Elapsed time for this session 12 seconds ( 0.00 hours ).
 
 Thank you...

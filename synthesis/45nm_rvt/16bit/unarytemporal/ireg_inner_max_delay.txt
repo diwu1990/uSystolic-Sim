@@ -6,7 +6,7 @@ Report : timing
         -max_paths 1
 Design : ireg_inner
 Version: Q-2019.12-SP3
-Date   : Sat Mar  6 20:48:50 2021
+Date   : Sat Mar  6 22:00:46 2021
 ****************************************
 
 Operating Conditions: NCCOM   Library: tcbn45gsbwptc
@@ -28,7 +28,7 @@ Wire Load Model Mode: segmented
   clock network delay (ideal)              0.00       0.00
   o_data_dff_reg/CP (DFCNQD1BWP)           0.00       0.00 r
   o_data_dff_reg/Q (DFCNQD1BWP)            0.07       0.07 f
-  U11/Z (CKBD6BWP)                         0.06       0.12 f
+  U12/Z (BUFFD6BWP)                        0.06       0.12 f
   o_data_dff (out)                         0.00       0.12 f
   data arrival time                                   0.12
 

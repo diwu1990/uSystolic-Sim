@@ -6,7 +6,7 @@ Report : timing
         -max_paths 1
 Design : acc
 Version: Q-2019.12-SP3
-Date   : Sat Mar  6 20:40:32 2021
+Date   : Sat Mar  6 21:52:29 2021
 ****************************************
 
 Operating Conditions: tt0p85v25c   Library: saed32rvt_tt0p85v25c

@@ -115,9 +115,6 @@ Information: Evaluating DesignWare library utilization. (UISN-27)
 ============================================================================
 
 
-Information: There are 1 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
-
-
 Warning: Operating condition tt0p85v25c set on design ireg_inner has different process,
 voltage and temperatures parameters than the parameters at which target library 
 saed32io_wb_tt1p05v25c_2p5v is characterized. Delays may be inaccurate as a result. (OPT-998)
@@ -125,7 +122,6 @@ saed32io_wb_tt1p05v25c_2p5v is characterized. Delays may be inaccurate as a resu
   Beginning Pass 1 Mapping
   ------------------------
   Processing 'ireg_inner'
-Information: The register 'o_data_sign_reg' is a constant and will be removed. (OPT-1206)
 
   Updating timing information
 Information: Updating design information... (UID-85)
@@ -137,19 +133,19 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:03      14.7      0.00       0.0       0.0                          
-    0:00:03      14.7      0.00       0.0       0.0                          
-    0:00:03      14.7      0.00       0.0       0.0                          
-    0:00:03      14.7      0.00       0.0       0.0                          
-    0:00:03      14.7      0.00       0.0       0.0                          
-    0:00:03      14.2      0.00       0.0       0.0                          
-    0:00:03      14.2      0.00       0.0       0.0                          
-    0:00:03      14.2      0.00       0.0       0.0                          
-    0:00:03      14.2      0.00       0.0       0.0                          
-    0:00:03      14.2      0.00       0.0       0.0                          
-    0:00:03      14.2      0.00       0.0       0.0                          
-    0:00:03      14.2      0.00       0.0       0.0                          
-    0:00:03      14.2      0.00       0.0       0.0                          
+    0:00:03      26.4      0.00       0.0       0.0                          
+    0:00:03      26.4      0.00       0.0       0.0                          
+    0:00:03      26.4      0.00       0.0       0.0                          
+    0:00:04      26.4      0.00       0.0       0.0                          
+    0:00:04      26.4      0.00       0.0       0.0                          
+    0:00:04      25.9      0.00       0.0       0.0                          
+    0:00:04      25.9      0.00       0.0       0.0                          
+    0:00:04      25.9      0.00       0.0       0.0                          
+    0:00:04      25.9      0.00       0.0       0.0                          
+    0:00:04      25.9      0.00       0.0       0.0                          
+    0:00:04      25.9      0.00       0.0       0.0                          
+    0:00:04      25.9      0.00       0.0       0.0                          
+    0:00:04      25.9      0.00       0.0       0.0                          
 
 
 
@@ -160,9 +156,9 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:03      14.2      0.00       0.0       0.0                          
-    0:00:03      14.2      0.00       0.0       0.0                          
-    0:00:03      14.2      0.00       0.0       0.0                          
+    0:00:04      25.9      0.00       0.0       0.0                          
+    0:00:04      25.9      0.00       0.0       0.0                          
+    0:00:04      25.9      0.00       0.0       0.0                          
 
 
   Beginning Area-Recovery Phase  (cleanup)
@@ -172,19 +168,17 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:03      14.2      0.00       0.0       0.0                          
-    0:00:03      14.2      0.00       0.0       0.0                          
-    0:00:03      14.2      0.00       0.0       0.0                          
-    0:00:03      14.2      0.00       0.0       0.0                          
-    0:00:03      14.2      0.00       0.0       0.0                          
-    0:00:03      14.2      0.00       0.0       0.0                          
-    0:00:03      14.0      0.00       0.0       0.0                          
-    0:00:03      14.0      0.00       0.0       0.0                          
-    0:00:03      14.0      0.00       0.0       0.0                          
-    0:00:03      14.0      0.00       0.0       0.0                          
-    0:00:03      14.0      0.00       0.0       0.0                          
-    0:00:03      14.0      0.00       0.0       0.0                          
-    0:00:03      14.0      0.00       0.0       0.0                          
+    0:00:04      25.9      0.00       0.0       0.0                          
+    0:00:04      25.9      0.00       0.0       0.0                          
+    0:00:04      25.9      0.00       0.0       0.0                          
+    0:00:04      25.9      0.00       0.0       0.0                          
+    0:00:04      25.9      0.00       0.0       0.0                          
+    0:00:04      25.9      0.00       0.0       0.0                          
+    0:00:04      25.9      0.00       0.0       0.0                          
+    0:00:04      25.9      0.00       0.0       0.0                          
+    0:00:04      25.9      0.00       0.0       0.0                          
+    0:00:04      25.9      0.00       0.0       0.0                          
+    0:00:04      25.9      0.00       0.0       0.0                          
 
 
 Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
@@ -194,22 +188,6 @@ Note: Symbol # after min delay cost means estimated hold TNS across all active s
   ---------------------
 1
 check_design
- 
-****************************************
-check_design summary:
-Version:     Q-2019.12-SP3
-Date:        Sat Mar  6 20:39:53 2021
-****************************************
-
-                   Name                                            Total
---------------------------------------------------------------------------------
-Inputs/Outputs                                                      2
-    Unconnected ports (LINT-28)                                     1
-    Constant outputs (LINT-52)                                      1
---------------------------------------------------------------------------------
-
-Warning: In design 'ireg_inner', port 'i_data_sign' is not connected to any nets. (LINT-28)
-Warning: In design 'ireg_inner', output port 'o_data_sign' is connected directly to 'logic 0'. (LINT-52)
 1
 # Unflatten design now that its compiled
 ungroup -all -flatten
@@ -221,9 +199,6 @@ set_fix_hold clk
 # Compile again with higher effort
 compile -map_effort high
 Warning: "The variable 'compile_high_effort_area_in_incremental' is supported in DC NXT only. Ignoring this setting." (OPT-1726)
-
-Information: There are 2 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
-
 
 Warning: Operating condition tt0p85v25c set on design ireg_inner has different process,
 voltage and temperatures parameters than the parameters at which target library 
@@ -243,19 +218,19 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                              MIN DELAY 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT             COST    
   --------- --------- --------- --------- --------- ------------------------- -----------
-    0:00:05      14.2      0.00       0.0       0.0                                0.00  
-    0:00:05      14.2      0.00       0.0       0.0                                0.00  
-    0:00:05      14.2      0.00       0.0       0.0                                0.00  
-    0:00:05      14.2      0.00       0.0       0.0                                0.00  
-    0:00:05      14.2      0.00       0.0       0.0                                0.00  
-    0:00:05      14.0      0.00       0.0       0.0                                0.00  
-    0:00:05      14.0      0.00       0.0       0.0                                0.00  
-    0:00:05      14.0      0.00       0.0       0.0                                0.00  
-    0:00:05      14.0      0.00       0.0       0.0                                0.00  
-    0:00:05      14.0      0.00       0.0       0.0                                0.00  
-    0:00:05      14.0      0.00       0.0       0.0                                0.00  
-    0:00:05      14.0      0.00       0.0       0.0                                0.00  
-    0:00:05      14.0      0.00       0.0       0.0                                0.00  
+    0:00:05      26.4      0.00       0.0       0.0                                0.00  
+    0:00:05      26.4      0.00       0.0       0.0                                0.00  
+    0:00:05      26.4      0.00       0.0       0.0                                0.00  
+    0:00:05      26.4      0.00       0.0       0.0                                0.00  
+    0:00:05      26.4      0.00       0.0       0.0                                0.00  
+    0:00:05      25.9      0.00       0.0       0.0                                0.00  
+    0:00:05      25.9      0.00       0.0       0.0                                0.00  
+    0:00:05      25.9      0.00       0.0       0.0                                0.00  
+    0:00:05      25.9      0.00       0.0       0.0                                0.00  
+    0:00:05      25.9      0.00       0.0       0.0                                0.00  
+    0:00:05      25.9      0.00       0.0       0.0                                0.00  
+    0:00:05      25.9      0.00       0.0       0.0                                0.00  
+    0:00:05      25.9      0.00       0.0       0.0                                0.00  
 
 
 
@@ -266,9 +241,9 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                              MIN DELAY 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT             COST    
   --------- --------- --------- --------- --------- ------------------------- -----------
-    0:00:05      14.0      0.00       0.0       0.0                                0.00  
-    0:00:05      14.0      0.00       0.0       0.0                                0.00  
-    0:00:05      14.0      0.00       0.0       0.0                                0.00  
+    0:00:05      25.9      0.00       0.0       0.0                                0.00  
+    0:00:05      25.9      0.00       0.0       0.0                                0.00  
+    0:00:05      25.9      0.00       0.0       0.0                                0.00  
 
 
   Beginning Area-Recovery Phase  (cleanup)
@@ -278,17 +253,17 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                              MIN DELAY 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT             COST    
   --------- --------- --------- --------- --------- ------------------------- -----------
-    0:00:05      14.0      0.00       0.0       0.0                                0.00  
-    0:00:05      14.0      0.00       0.0       0.0                                0.00  
-    0:00:05      14.0      0.00       0.0       0.0                                0.00  
-    0:00:05      14.0      0.00       0.0       0.0                                0.00  
-    0:00:05      14.0      0.00       0.0       0.0                                0.00  
-    0:00:05      14.0      0.00       0.0       0.0                                0.00  
-    0:00:05      14.0      0.00       0.0       0.0                                0.00  
-    0:00:05      14.0      0.00       0.0       0.0                                0.00  
-    0:00:05      14.0      0.00       0.0       0.0                                0.00  
-    0:00:05      14.0      0.00       0.0       0.0                                0.00  
-    0:00:05      14.0      0.00       0.0       0.0                                0.00  
+    0:00:05      25.9      0.00       0.0       0.0                                0.00  
+    0:00:05      25.9      0.00       0.0       0.0                                0.00  
+    0:00:05      25.9      0.00       0.0       0.0                                0.00  
+    0:00:05      25.9      0.00       0.0       0.0                                0.00  
+    0:00:05      25.9      0.00       0.0       0.0                                0.00  
+    0:00:05      25.9      0.00       0.0       0.0                                0.00  
+    0:00:05      25.9      0.00       0.0       0.0                                0.00  
+    0:00:05      25.9      0.00       0.0       0.0                                0.00  
+    0:00:05      25.9      0.00       0.0       0.0                                0.00  
+    0:00:05      25.9      0.00       0.0       0.0                                0.00  
+    0:00:05      25.9      0.00       0.0       0.0                                0.00  
 
 
 Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
@@ -298,22 +273,6 @@ Note: Symbol # after min delay cost means estimated hold TNS across all active s
   ---------------------
 1
 check_design
- 
-****************************************
-check_design summary:
-Version:     Q-2019.12-SP3
-Date:        Sat Mar  6 20:39:55 2021
-****************************************
-
-                   Name                                            Total
---------------------------------------------------------------------------------
-Inputs/Outputs                                                      2
-    Unconnected ports (LINT-28)                                     1
-    Constant outputs (LINT-52)                                      1
---------------------------------------------------------------------------------
-
-Warning: In design 'ireg_inner', port 'i_data_sign' is not connected to any nets. (LINT-28)
-Warning: In design 'ireg_inner', output port 'o_data_sign' is connected directly to 'logic 0'. (LINT-52)
 1
 #############################################
 # Take a look at area, max, and min timings #
@@ -325,7 +284,6 @@ report_timing -delay max > ireg_inner_max_delay.txt
 #### write out final netlist ######
 write -format verilog ireg_inner -output ireg_inner.vg
 Writing verilog file '/filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/16bit/unaryrate/ireg_inner.vg'.
-Warning: Verilog 'assign' or 'tran' statements are written out. (VO-4)
 1
 exit
 Memory usage for this session 142 Mbytes.

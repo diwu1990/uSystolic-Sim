@@ -6,7 +6,7 @@ Report : timing
         -max_paths 1
 Design : ireg_inner
 Version: Q-2019.12-SP3
-Date   : Sat Mar  6 20:40:45 2021
+Date   : Sat Mar  6 21:52:42 2021
 ****************************************
 
 Operating Conditions: tt0p85v25c   Library: saed32rvt_tt0p85v25c
@@ -29,10 +29,10 @@ Wire Load Model Mode: enclosed
   clock network delay (ideal)              0.00       0.00
   o_data_dff_reg/CLK (DFFARX1_RVT)         0.00       0.00 r
   o_data_dff_reg/Q (DFFARX1_RVT)           0.15       0.15 f
-  U9/Y (AOI22X1_RVT)                       0.10       0.25 r
-  U8/Y (NOR2X0_RVT)                        0.07       0.32 f
-  o_data_dff_reg/D (DFFARX1_RVT)           0.01       0.33 f
-  data arrival time                                   0.33
+  U11/Y (AO22X1_RVT)                       0.06       0.21 f
+  U10/Y (AND2X1_RVT)                       0.05       0.26 f
+  o_data_dff_reg/D (DFFARX1_RVT)           0.01       0.27 f
+  data arrival time                                   0.27
 
   clock clk (rise edge)                    0.00       0.00
   clock network delay (ideal)              0.00       0.00
@@ -42,9 +42,9 @@ Wire Load Model Mode: enclosed
   data required time                                  0.14
   -----------------------------------------------------------
   data required time                                  0.14
-  data arrival time                                  -0.33
+  data arrival time                                  -0.27
   -----------------------------------------------------------
-  slack (MET)                                         0.19
+  slack (MET)                                         0.13
 
 
 1
