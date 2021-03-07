@@ -7,7 +7,7 @@ Report : power
         -analysis_effort low
 Design : acc
 Version: Q-2019.12-SP3
-Date   : Thu Feb  4 20:21:40 2021
+Date   : Sat Mar  6 20:45:42 2021
 ****************************************
 
 
@@ -33,12 +33,12 @@ Power-specific unit information :
     Leakage Power Units = 1nW
 
 
-  Cell Internal Power  =  74.8149 uW   (67%)
-  Net Switching Power  =  36.5664 uW   (33%)
+  Cell Internal Power  =  73.1891 uW   (63%)
+  Net Switching Power  =  42.8912 uW   (37%)
                          ---------
-Total Dynamic Power    = 111.3813 uW  (100%)
+Total Dynamic Power    = 116.0803 uW  (100%)
 
-Cell Leakage Power     =   6.0835 uW
+Cell Leakage Power     =   6.6561 uW
 
 
                  Internal         Switching           Leakage            Total
@@ -48,9 +48,9 @@ io_pad             0.0000            0.0000            0.0000            0.0000 
 memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
 black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
 clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)
-register       5.1959e-02        1.5337e-04        1.0895e+03        5.3202e-02  (  45.29%)
+register       5.2180e-02        1.6629e-04        1.0898e+03        5.3436e-02  (  43.54%)
 sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)
-combinational  2.2856e-02        3.6413e-02        4.9940e+03        6.4263e-02  (  54.71%)
+combinational  2.1010e-02        4.2725e-02        5.5662e+03        6.9301e-02  (  56.46%)
 --------------------------------------------------------------------------------------------------
-Total          7.4815e-02 mW     3.6566e-02 mW     6.0835e+03 nW         0.1175 mW
+Total          7.3189e-02 mW     4.2891e-02 mW     6.6561e+03 nW         0.1227 mW
 1

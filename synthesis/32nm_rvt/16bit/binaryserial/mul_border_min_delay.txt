@@ -6,7 +6,7 @@ Report : timing
         -max_paths 1
 Design : mul_border
 Version: Q-2019.12-SP3
-Date   : Thu Feb  4 20:14:40 2021
+Date   : Sat Mar  6 20:39:21 2021
 ****************************************
 
 Operating Conditions: tt0p85v25c   Library: saed32rvt_tt0p85v25c
@@ -19,18 +19,17 @@ Wire Load Model Mode: enclosed
 
   Des/Clust/Port     Wire Load Model       Library
   ------------------------------------------------
-  mul_border         8000                  saed32rvt_tt0p85v25c
+  mul_border         ForQA                 saed32rvt_tt0p85v25c
 
   Point                                    Incr       Path
   -----------------------------------------------------------
   clock clk (rise edge)                    0.00       0.00
   clock network delay (ideal)              0.00       0.00
   cnt_reg[0]/CLK (DFFARX1_RVT)             0.00       0.00 r
-  cnt_reg[0]/QN (DFFARX1_RVT)              0.11       0.11 f
-  U395/Y (NAND2X0_RVT)                     0.07       0.18 r
-  U396/Y (INVX1_RVT)                       0.03       0.21 f
-  cnt_reg[0]/D (DFFARX1_RVT)               0.01       0.22 f
-  data arrival time                                   0.22
+  cnt_reg[0]/QN (DFFARX1_RVT)              0.10       0.10 f
+  U73/Y (AND2X1_RVT)                       0.07       0.17 f
+  cnt_reg[0]/D (DFFARX1_RVT)               0.01       0.18 f
+  data arrival time                                   0.18
 
   clock clk (rise edge)                    0.00       0.00
   clock network delay (ideal)              0.00       0.00
@@ -40,9 +39,9 @@ Wire Load Model Mode: enclosed
   data required time                                  0.13
   -----------------------------------------------------------
   data required time                                  0.13
-  data arrival time                                  -0.22
+  data arrival time                                  -0.18
   -----------------------------------------------------------
-  slack (MET)                                         0.08
+  slack (MET)                                         0.04
 
 
 1

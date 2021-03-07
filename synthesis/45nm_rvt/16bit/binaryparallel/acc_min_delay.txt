@@ -6,7 +6,7 @@ Report : timing
         -max_paths 1
 Design : acc
 Version: Q-2019.12-SP3
-Date   : Thu Feb  4 20:20:22 2021
+Date   : Sat Mar  6 20:44:26 2021
 ****************************************
 
 Operating Conditions: NCCOM   Library: tcbn45gsbwptc

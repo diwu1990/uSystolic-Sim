@@ -6,7 +6,7 @@ Report : timing
         -max_paths 1
 Design : mul_inner
 Version: Q-2019.12-SP3
-Date   : Thu Feb  4 20:19:01 2021
+Date   : Sat Mar  6 20:43:09 2021
 ****************************************
 
 Operating Conditions: tt0p85v25c   Library: saed32rvt_tt0p85v25c
@@ -20,7 +20,7 @@ Wire Load Model Mode: enclosed
 
   Des/Clust/Port     Wire Load Model       Library
   ------------------------------------------------
-  mul_inner          8000                  saed32rvt_tt0p85v25c
+  mul_inner          ForQA                 saed32rvt_tt0p85v25c
 
   Point                                    Incr       Path
   -----------------------------------------------------------
@@ -28,16 +28,16 @@ Wire Load Model Mode: enclosed
   clock network delay (ideal)              0.00       0.00
   input external delay                     0.25       0.25 r
   i_data_w[1] (in)                         0.00       0.25 r
-  U44/Y (OA21X1_RVT)                       0.07       0.32 r
-  U43/Y (AO22X1_RVT)                       0.07       0.39 r
-  U42/Y (OR2X1_RVT)                        0.07       0.46 r
-  U41/Y (AO222X1_RVT)                      0.10       0.55 r
-  U40/Y (OA221X1_RVT)                      0.08       0.63 r
-  U39/Y (AO221X1_RVT)                      0.08       0.71 r
-  U38/Y (OA221X1_RVT)                      0.07       0.78 r
-  U36/Y (OA21X1_RVT)                       0.07       0.86 r
-  o_bit (out)                              0.00       0.86 r
-  data arrival time                                   0.86
+  U18/Y (OA21X1_RVT)                       0.07       0.32 r
+  U17/Y (AO22X1_RVT)                       0.08       0.40 r
+  U16/Y (OR2X1_RVT)                        0.07       0.47 r
+  U15/Y (AO222X1_RVT)                      0.10       0.57 r
+  U14/Y (OA221X1_RVT)                      0.08       0.65 r
+  U13/Y (AO221X1_RVT)                      0.08       0.73 r
+  U12/Y (OA221X1_RVT)                      0.08       0.81 r
+  U10/Y (OA21X1_RVT)                       0.08       0.89 r
+  o_bit (out)                              0.01       0.89 r
+  data arrival time                                   0.89
 
   clock clk (rise edge)                    2.50       2.50
   clock network delay (ideal)              0.00       2.50
@@ -46,9 +46,9 @@ Wire Load Model Mode: enclosed
   data required time                                  1.85
   -----------------------------------------------------------
   data required time                                  1.85
-  data arrival time                                  -0.86
+  data arrival time                                  -0.89
   -----------------------------------------------------------
-  slack (MET)                                         0.99
+  slack (MET)                                         0.96
 
 
 1

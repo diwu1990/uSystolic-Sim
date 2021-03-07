@@ -7,7 +7,7 @@ Report : power
         -analysis_effort low
 Design : wreg
 Version: Q-2019.12-SP3
-Date   : Thu Feb  4 20:24:14 2021
+Date   : Sat Mar  6 20:48:13 2021
 ****************************************
 
 
@@ -33,12 +33,12 @@ Power-specific unit information :
     Leakage Power Units = 1nW
 
 
-  Cell Internal Power  =  28.2104 uW   (68%)
-  Net Switching Power  =  13.1748 uW   (32%)
+  Cell Internal Power  =  27.1323 uW   (71%)
+  Net Switching Power  =  10.8537 uW   (29%)
                          ---------
-Total Dynamic Power    =  41.3851 uW  (100%)
+Total Dynamic Power    =  37.9860 uW  (100%)
 
-Cell Leakage Power     =   2.5216 uW
+Cell Leakage Power     =   1.7427 uW
 
 
                  Internal         Switching           Leakage            Total
@@ -48,9 +48,9 @@ io_pad             0.0000            0.0000            0.0000            0.0000 
 memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
 black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
 clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)
-register       2.5466e-02        1.2838e-04          545.1666        2.6140e-02  (  59.53%)
+register       2.5464e-02        4.4181e-05          545.1666        2.6054e-02  (  65.58%)
 sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)
-combinational  2.7443e-03        1.3046e-02        1.9765e+03        1.7767e-02  (  40.47%)
+combinational  1.6679e-03        1.0810e-02        1.1976e+03        1.3675e-02  (  34.42%)
 --------------------------------------------------------------------------------------------------
-Total          2.8210e-02 mW     1.3175e-02 mW     2.5216e+03 nW     4.3907e-02 mW
+Total          2.7132e-02 mW     1.0854e-02 mW     1.7427e+03 nW     3.9729e-02 mW
 1

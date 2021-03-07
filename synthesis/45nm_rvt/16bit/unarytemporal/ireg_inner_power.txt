@@ -7,7 +7,7 @@ Report : power
         -analysis_effort low
 Design : ireg_inner
 Version: Q-2019.12-SP3
-Date   : Thu Feb  4 20:24:52 2021
+Date   : Sat Mar  6 20:48:50 2021
 ****************************************
 
 
@@ -38,7 +38,7 @@ Power-specific unit information :
                          ---------
 Total Dynamic Power    =   2.3638 uW  (100%)
 
-Cell Leakage Power     = 115.0313 nW
+Cell Leakage Power     = 116.5790 nW
 
 
                  Internal         Switching           Leakage            Total

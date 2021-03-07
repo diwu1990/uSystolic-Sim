@@ -3,7 +3,7 @@
 Report : area
 Design : mul_inner
 Version: Q-2019.12-SP3
-Date   : Thu Feb  4 20:23:47 2021
+Date   : Sat Mar  6 20:47:46 2021
 ****************************************
 
 Information: Updating design information... (UID-85)
@@ -11,21 +11,21 @@ Library(s) Used:
 
     tcbn45gsbwptc (File: /cae/apps/data/tsmclibs-2013/digital/Front_End/timing_power_noise/NLDM/tcbn45gsbwp_120a/tcbn45gsbwptc.db)
 
-Number of ports:                           19
-Number of nets:                           253
-Number of cells:                          235
-Number of combinational cells:            204
-Number of sequential cells:                31
+Number of ports:                           49
+Number of nets:                            83
+Number of cells:                           51
+Number of combinational cells:             36
+Number of sequential cells:                15
 Number of macros/black boxes:               0
-Number of buf/inv:                         96
-Number of references:                      36
+Number of buf/inv:                         19
+Number of references:                      15
 
-Combinational area:                229.320006
-Buf/Inv area:                       87.670803
-Noncombinational area:             149.587202
+Combinational area:                 55.036800
+Buf/Inv area:                       26.989200
+Noncombinational area:              57.859200
 Macro/Black Box area:                0.000000
 Net Interconnect area:      undefined  (Wire load has zero net area)
 
-Total cell area:                   378.907208
+Total cell area:                   112.896000
 Total area:                 undefined
 1

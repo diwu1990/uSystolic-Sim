@@ -7,7 +7,7 @@ Report : power
         -analysis_effort low
 Design : wreg
 Version: Q-2019.12-SP3
-Date   : Thu Feb  4 20:16:51 2021
+Date   : Sat Mar  6 20:41:13 2021
 ****************************************
 
 
@@ -21,7 +21,7 @@ Wire Load Model Mode: enclosed
 
 Design        Wire Load Model            Library
 ------------------------------------------------
-wreg                   8000              saed32rvt_tt0p85v25c
+wreg                   ForQA             saed32rvt_tt0p85v25c
 
 
 Global Operating Voltage = 0.85 
@@ -33,12 +33,12 @@ Power-specific unit information :
     Leakage Power Units = 1pW
 
 
-  Cell Internal Power  =  30.4692 uW   (97%)
-  Net Switching Power  = 793.4953 nW    (3%)
+  Cell Internal Power  =  29.2640 uW   (98%)
+  Net Switching Power  = 677.3755 nW    (2%)
                          ---------
-Total Dynamic Power    =  31.2627 uW  (100%)
+Total Dynamic Power    =  29.9413 uW  (100%)
 
-Cell Leakage Power     =   6.1949 uW
+Cell Leakage Power     =   4.5880 uW
 
 
                  Internal         Switching           Leakage            Total
@@ -48,9 +48,9 @@ io_pad             0.0000            0.0000            0.0000            0.0000 
 memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
 black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
 clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)
-register          28.9000            0.2457        3.7930e+06           32.9387  (  87.94%)
+register          28.6648            0.1003        3.7930e+06           32.5581  (  94.29%)
 sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)
-combinational      1.5693            0.5478        2.4019e+06            4.5189  (  12.06%)
+combinational      0.5992            0.5771        7.9500e+05            1.9712  (   5.71%)
 --------------------------------------------------------------------------------------------------
-Total             30.4692 uW         0.7935 uW     6.1949e+06 pW        37.4576 uW
+Total             29.2640 uW         0.6774 uW     4.5880e+06 pW        34.5294 uW
 1

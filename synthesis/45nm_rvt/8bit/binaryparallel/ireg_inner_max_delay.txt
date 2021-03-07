@@ -6,7 +6,7 @@ Report : timing
         -max_paths 1
 Design : ireg_inner
 Version: Q-2019.12-SP3
-Date   : Thu Feb  4 20:26:23 2021
+Date   : Sat Mar  6 20:50:18 2021
 ****************************************
 
 Operating Conditions: NCCOM   Library: tcbn45gsbwptc

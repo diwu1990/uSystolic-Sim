@@ -6,14 +6,14 @@ Report : timing
         -max_paths 1
 Design : mul_inner
 Version: Q-2019.12-SP3
-Date   : Thu Feb  4 20:22:30 2021
+Date   : Sat Mar  6 20:46:31 2021
 ****************************************
 
 Operating Conditions: NCCOM   Library: tcbn45gsbwptc
 Wire Load Model Mode: segmented
 
-  Startpoint: i_data0[7] (input port clocked by clk)
-  Endpoint: o_data[31] (output port clocked by clk)
+  Startpoint: cnt_reg[0] (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: o_data[15] (output port clocked by clk)
   Path Group: clk
   Path Type: max
 
@@ -25,46 +25,20 @@ Wire Load Model Mode: segmented
   -----------------------------------------------------------
   clock clk (rise edge)                    0.00       0.00
   clock network delay (ideal)              0.00       0.00
-  input external delay                     0.25       0.25 f
-  i_data0[7] (in)                          0.00       0.25 f
-  U162/Z (OA22D1BWP)                       0.03       0.28 f
-  U161/ZN (OAI221D1BWP)                    0.02       0.30 r
-  U166/ZN (AOI22D1BWP)                     0.02       0.32 f
-  U164/Z (OA22D1BWP)                       0.07       0.38 f
-  U48/Z (AN2XD1BWP)                        0.03       0.41 f
-  add_28/U1_2/CO (FA1D0BWP)                0.07       0.48 f
-  add_28/U1_3/CO (FA1D0BWP)                0.04       0.51 f
-  add_28/U1_4/CO (FA1D0BWP)                0.04       0.55 f
-  add_28/U1_5/CO (FA1D0BWP)                0.04       0.59 f
-  add_28/U1_6/CO (FA1D0BWP)                0.04       0.62 f
-  add_28/U1_7/CO (FA1D0BWP)                0.04       0.66 f
-  add_28/U1_8/CO (FA1D0BWP)                0.04       0.69 f
-  add_28/U1_9/CO (FA1D0BWP)                0.04       0.73 f
-  add_28/U1_10/CO (FA1D0BWP)               0.04       0.76 f
-  add_28/U1_11/CO (FA1D0BWP)               0.04       0.80 f
-  add_28/U1_12/CO (FA1D0BWP)               0.04       0.83 f
-  add_28/U1_13/CO (FA1D0BWP)               0.04       0.87 f
-  add_28/U1_14/CO (FA1D0BWP)               0.04       0.90 f
-  add_28/U1_15/CO (FA1D0BWP)               0.04       0.94 f
-  add_28/U1_16/CO (FA1D0BWP)               0.04       0.97 f
-  add_28/U1_17/CO (FA1D0BWP)               0.04       1.01 f
-  add_28/U1_18/CO (FA1D0BWP)               0.04       1.04 f
-  add_28/U1_19/CO (FA1D0BWP)               0.04       1.08 f
-  add_28/U1_20/CO (FA1D0BWP)               0.04       1.11 f
-  add_28/U1_21/CO (FA1D0BWP)               0.04       1.15 f
-  add_28/U1_22/CO (FA1D0BWP)               0.04       1.18 f
-  add_28/U1_23/CO (FA1D0BWP)               0.04       1.22 f
-  add_28/U1_24/CO (FA1D0BWP)               0.04       1.25 f
-  add_28/U1_25/CO (FA1D0BWP)               0.04       1.29 f
-  add_28/U1_26/CO (FA1D0BWP)               0.04       1.32 f
-  add_28/U1_27/CO (FA1D0BWP)               0.04       1.36 f
-  add_28/U1_28/CO (FA1D0BWP)               0.04       1.39 f
-  add_28/U1_29/CO (FA1D0BWP)               0.04       1.43 f
-  add_28/U1_30/CO (FA1D0BWP)               0.04       1.47 f
-  U149/ZN (XNR3D1BWP)                      0.09       1.56 r
-  U150/ZN (INVD6BWP)                       0.05       1.61 f
-  o_data[31] (out)                         0.00       1.61 f
-  data arrival time                                   1.61
+  cnt_reg[0]/CP (DFCNQD1BWP)               0.00       0.00 r
+  cnt_reg[0]/Q (DFCNQD1BWP)                0.07       0.07 f
+  U76/Z (DEL175D1BWP)                      0.15       0.22 f
+  U116/ZN (ND2D1BWP)                       0.02       0.24 r
+  U115/Z (OA22D1BWP)                       0.04       0.28 r
+  U114/ZN (OAI221D1BWP)                    0.03       0.31 f
+  U119/ZN (AOI22D1BWP)                     0.03       0.34 r
+  U117/Z (OA22D1BWP)                       0.07       0.41 r
+  U126/Z (AN2XD1BWP)                       0.04       0.45 r
+  U105/Z (BUFFD6BWP)                       0.06       0.51 r
+  U101/ZN (CKND2BWP)                       0.06       0.57 f
+  U139/ZN (INVD6BWP)                       0.07       0.64 r
+  o_data[15] (out)                         0.00       0.64 r
+  data arrival time                                   0.64
 
   clock clk (rise edge)                    2.50       2.50
   clock network delay (ideal)              0.00       2.50
@@ -73,9 +47,9 @@ Wire Load Model Mode: segmented
   data required time                                  1.85
   -----------------------------------------------------------
   data required time                                  1.85
-  data arrival time                                  -1.61
+  data arrival time                                  -0.64
   -----------------------------------------------------------
-  slack (MET)                                         0.24
+  slack (MET)                                         1.21
 
 
 1

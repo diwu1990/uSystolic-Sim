@@ -6,7 +6,7 @@ Report : timing
         -max_paths 1
 Design : ireg_border
 Version: Q-2019.12-SP3
-Date   : Thu Feb  4 20:28:40 2021
+Date   : Sat Mar  6 20:52:33 2021
 ****************************************
 
 Operating Conditions: NCCOM   Library: tcbn45gsbwptc

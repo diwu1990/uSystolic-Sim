@@ -6,14 +6,14 @@ Report : timing
         -max_paths 1
 Design : acc
 Version: Q-2019.12-SP3
-Date   : Thu Feb  4 20:22:56 2021
+Date   : Sat Mar  6 20:46:56 2021
 ****************************************
 
 Operating Conditions: NCCOM   Library: tcbn45gsbwptc
 Wire Load Model Mode: segmented
 
-  Startpoint: sign_w (input port clocked by clk)
-  Endpoint: sum_o_reg[31]
+  Startpoint: sign_i (input port clocked by clk)
+  Endpoint: sum_o_reg[23]
             (rising edge-triggered flip-flop clocked by clk)
   Path Group: clk
   Path Type: max
@@ -26,56 +26,49 @@ Wire Load Model Mode: segmented
   -----------------------------------------------------------
   clock clk (rise edge)                    0.00       0.00
   clock network delay (ideal)              0.00       0.00
-  input external delay                     0.25       0.25 f
-  sign_w (in)                              0.00       0.25 f
-  U336/Z (AN3XD1BWP)                       0.02       0.27 f
-  U303/Z (CKBD1BWP)                        0.03       0.30 f
-  add_31/U1_1/CO (FA1D0BWP)                0.06       0.36 f
-  add_31/U1_2/CO (FA1D0BWP)                0.04       0.39 f
-  add_31/U1_3/CO (FA1D0BWP)                0.04       0.43 f
-  add_31/U1_4/CO (FA1D0BWP)                0.04       0.46 f
-  add_31/U1_5/CO (FA1D0BWP)                0.04       0.50 f
-  add_31/U1_6/CO (FA1D0BWP)                0.04       0.53 f
-  add_31/U1_7/CO (FA1D0BWP)                0.04       0.57 f
-  add_31/U1_8/CO (FA1D0BWP)                0.04       0.60 f
-  add_31/U1_9/CO (FA1D0BWP)                0.04       0.64 f
-  add_31/U1_10/CO (FA1D0BWP)               0.04       0.67 f
-  add_31/U1_11/CO (FA1D0BWP)               0.04       0.71 f
-  add_31/U1_12/CO (FA1D0BWP)               0.04       0.75 f
-  add_31/U1_13/CO (FA1D0BWP)               0.04       0.78 f
-  add_31/U1_14/CO (FA1D0BWP)               0.04       0.82 f
-  add_31/U1_15/CO (FA1D0BWP)               0.04       0.85 f
-  add_31/U1_16/CO (FA1D0BWP)               0.04       0.89 f
-  add_31/U1_17/CO (FA1D0BWP)               0.04       0.92 f
-  add_31/U1_18/CO (FA1D0BWP)               0.04       0.96 f
-  add_31/U1_19/CO (FA1D0BWP)               0.04       0.99 f
-  add_31/U1_20/CO (FA1D0BWP)               0.04       1.03 f
-  add_31/U1_21/CO (FA1D0BWP)               0.04       1.06 f
-  add_31/U1_22/CO (FA1D0BWP)               0.04       1.10 f
-  add_31/U1_23/CO (FA1D0BWP)               0.04       1.13 f
-  add_31/U1_24/CO (FA1D0BWP)               0.04       1.17 f
-  add_31/U1_25/CO (FA1D0BWP)               0.04       1.20 f
-  add_31/U1_26/CO (FA1D0BWP)               0.04       1.24 f
-  add_31/U1_27/CO (FA1D0BWP)               0.04       1.27 f
-  add_31/U1_28/CO (FA1D0BWP)               0.04       1.31 f
-  add_31/U1_29/CO (FA1D0BWP)               0.04       1.34 f
-  add_31/U1_30/CO (FA1D0BWP)               0.04       1.38 f
-  add_31/U1_31/Z (XOR3D1BWP)               0.04       1.42 r
-  U338/ZN (MOAI22D0BWP)                    0.03       1.45 r
-  sum_o_reg[31]/D (DFCNQD1BWP)             0.00       1.45 r
-  data arrival time                                   1.45
+  input external delay                     0.25       0.25 r
+  sign_i (in)                              0.00       0.25 r
+  U109/Z (XOR2D1BWP)                       0.04       0.29 f
+  U148/Z (AN3XD1BWP)                       0.04       0.32 f
+  U107/Z (AO21D1BWP)                       0.04       0.36 f
+  add_31/U1_1/CO (FA1D0BWP)                0.07       0.43 f
+  add_31/U1_2/CO (FA1D0BWP)                0.04       0.46 f
+  add_31/U1_3/CO (FA1D0BWP)                0.04       0.50 f
+  add_31/U1_4/CO (FA1D0BWP)                0.04       0.53 f
+  add_31/U1_5/CO (FA1D0BWP)                0.04       0.57 f
+  add_31/U1_6/CO (FA1D0BWP)                0.04       0.60 f
+  add_31/U1_7/CO (FA1D0BWP)                0.04       0.64 f
+  add_31/U1_8/CO (FA1D0BWP)                0.04       0.68 f
+  add_31/U1_9/CO (FA1D0BWP)                0.04       0.71 f
+  add_31/U1_10/CO (FA1D0BWP)               0.04       0.75 f
+  add_31/U1_11/CO (FA1D0BWP)               0.04       0.78 f
+  add_31/U1_12/CO (FA1D0BWP)               0.04       0.82 f
+  add_31/U1_13/CO (FA1D0BWP)               0.04       0.85 f
+  add_31/U1_14/CO (FA1D0BWP)               0.04       0.89 f
+  add_31/U1_15/CO (FA1D0BWP)               0.04       0.92 f
+  add_31/U1_16/CO (FA1D0BWP)               0.04       0.96 f
+  add_31/U1_17/CO (FA1D0BWP)               0.04       0.99 f
+  add_31/U1_18/CO (FA1D0BWP)               0.04       1.03 f
+  add_31/U1_19/CO (FA1D0BWP)               0.04       1.06 f
+  add_31/U1_20/CO (FA1D0BWP)               0.04       1.10 f
+  add_31/U1_21/CO (FA1D0BWP)               0.04       1.13 f
+  add_31/U1_22/CO (FA1D0BWP)               0.03       1.17 f
+  add_31/U1_23/Z (XOR3D0BWP)               0.04       1.21 r
+  U173/Z (AO22D0BWP)                       0.03       1.25 r
+  sum_o_reg[23]/D (DFCNQD1BWP)             0.00       1.25 r
+  data arrival time                                   1.25
 
   clock clk (rise edge)                    2.50       2.50
   clock network delay (ideal)              0.00       2.50
   clock uncertainty                       -0.15       2.35
-  sum_o_reg[31]/CP (DFCNQD1BWP)            0.00       2.35 r
-  library setup time                      -0.02       2.33
-  data required time                                  2.33
+  sum_o_reg[23]/CP (DFCNQD1BWP)            0.00       2.35 r
+  library setup time                      -0.01       2.34
+  data required time                                  2.34
   -----------------------------------------------------------
-  data required time                                  2.33
-  data arrival time                                  -1.45
+  data required time                                  2.34
+  data arrival time                                  -1.25
   -----------------------------------------------------------
-  slack (MET)                                         0.88
+  slack (MET)                                         1.09
 
 
 1

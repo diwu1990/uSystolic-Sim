@@ -6,14 +6,14 @@ Report : timing
         -max_paths 1
 Design : mul_inner
 Version: Q-2019.12-SP3
-Date   : Thu Feb  4 20:28:02 2021
+Date   : Sat Mar  6 20:51:56 2021
 ****************************************
 
 Operating Conditions: NCCOM   Library: tcbn45gsbwptc
 Wire Load Model Mode: segmented
 
   Startpoint: i_data0[2] (input port clocked by clk)
-  Endpoint: o_data[15] (output port clocked by clk)
+  Endpoint: o_data[7] (output port clocked by clk)
   Path Group: clk
   Path Type: max
 
@@ -27,27 +27,14 @@ Wire Load Model Mode: segmented
   clock network delay (ideal)              0.00       0.00
   input external delay                     0.25       0.25 f
   i_data0[2] (in)                          0.00       0.25 f
-  U41/Z (AO33D1BWP)                        0.04       0.29 f
-  U103/ZN (AOI221D1BWP)                    0.05       0.33 r
-  U101/ZN (OAI22D1BWP)                     0.05       0.38 f
-  U36/Z (AN2XD1BWP)                        0.03       0.41 f
-  U61/CO (FA1D0BWP)                        0.07       0.48 f
-  U58/CO (FA1D0BWP)                        0.04       0.51 f
-  U55/CO (FA1D0BWP)                        0.04       0.55 f
-  U52/CO (FA1D0BWP)                        0.04       0.58 f
-  U49/CO (FA1D0BWP)                        0.04       0.62 f
-  U46/CO (FA1D0BWP)                        0.04       0.65 f
-  U43/CO (FA1D0BWP)                        0.04       0.69 f
-  U40/CO (FA1D0BWP)                        0.04       0.72 f
-  U37/CO (FA1D0BWP)                        0.04       0.76 f
-  U34/CO (FA1D0BWP)                        0.04       0.79 f
-  U31/CO (FA1D0BWP)                        0.04       0.83 f
-  U28/CO (FA1D0BWP)                        0.04       0.86 f
-  U25/CO (FA1D0BWP)                        0.04       0.90 f
-  U96/ZN (XNR3D1BWP)                       0.09       0.99 r
-  U97/ZN (INVD6BWP)                        0.05       1.04 f
-  o_data[15] (out)                         0.00       1.04 f
-  data arrival time                                   1.04
+  U31/Z (AO33D1BWP)                        0.04       0.29 f
+  U56/ZN (AOI221D1BWP)                     0.05       0.33 r
+  U54/ZN (OAI22D1BWP)                      0.04       0.38 f
+  U59/Z (AN2XD1BWP)                        0.03       0.41 f
+  U68/Z (BUFFD6BWP)                        0.06       0.47 f
+  U67/Z (BUFFD6BWP)                        0.07       0.55 f
+  o_data[7] (out)                          0.00       0.55 f
+  data arrival time                                   0.55
 
   clock clk (rise edge)                    2.50       2.50
   clock network delay (ideal)              0.00       2.50
@@ -56,9 +43,9 @@ Wire Load Model Mode: segmented
   data required time                                  1.85
   -----------------------------------------------------------
   data required time                                  1.85
-  data arrival time                                  -1.04
+  data arrival time                                  -0.55
   -----------------------------------------------------------
-  slack (MET)                                         0.81
+  slack (MET)                                         1.30
 
 
 1

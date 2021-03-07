@@ -34,7 +34,7 @@ Running PRESTO HDLC
 Compiling source file /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/45nm_rvt/16bit/binaryserial/mul_border.sv
 
 Inferred memory devices in process
-	in routine mul_border line 16 in file
+	in routine mul_border line 15 in file
 		'/filespace/d/dwu94/Project/uSystolic-Sim/synthesis/45nm_rvt/16bit/binaryserial/mul_border.sv'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
@@ -45,7 +45,7 @@ Statistics for MUX_OPs
 ======================================================
 | block name/line  | Inputs | Outputs | # sel inputs |
 ======================================================
-|  mul_border/28   |   16   |    1    |      4       |
+|  mul_border/27   |   16   |    1    |      4       |
 ======================================================
 Presto compilation completed successfully.
 Loaded 1 design.
@@ -73,10 +73,10 @@ set_dont_touch_network [find port clk]
 1
 # pointer to all inputs except clk
 set prim_inputs [remove_from_collection [all_inputs] [find port clk]]
-{rst_n clr i_data0[15] i_data0[14] i_data0[13] i_data0[12] i_data0[11] i_data0[10] i_data0[9] i_data0[8] i_data0[7] i_data0[6] i_data0[5] i_data0[4] i_data0[3] i_data0[2] i_data0[1] i_data0[0] i_data1[15] i_data1[14] i_data1[13] i_data1[12] i_data1[11] i_data1[10] i_data1[9] i_data1[8] i_data1[7] i_data1[6] i_data1[5] i_data1[4] i_data1[3] i_data1[2] i_data1[1] i_data1[0] o_data_last[31] o_data_last[30] o_data_last[29] o_data_last[28] o_data_last[27] o_data_last[26] o_data_last[25] o_data_last[24] o_data_last[23] o_data_last[22] o_data_last[21] o_data_last[20] o_data_last[19] o_data_last[18] o_data_last[17] o_data_last[16] o_data_last[15] o_data_last[14] o_data_last[13] o_data_last[12] o_data_last[11] o_data_last[10] o_data_last[9] o_data_last[8] o_data_last[7] o_data_last[6] o_data_last[5] o_data_last[4] o_data_last[3] o_data_last[2] o_data_last[1] o_data_last[0]}
+{rst_n clr i_data0[15] i_data0[14] i_data0[13] i_data0[12] i_data0[11] i_data0[10] i_data0[9] i_data0[8] i_data0[7] i_data0[6] i_data0[5] i_data0[4] i_data0[3] i_data0[2] i_data0[1] i_data0[0] i_data1[15] i_data1[14] i_data1[13] i_data1[12] i_data1[11] i_data1[10] i_data1[9] i_data1[8] i_data1[7] i_data1[6] i_data1[5] i_data1[4] i_data1[3] i_data1[2] i_data1[1] i_data1[0]}
 # pointer to all inputs except clk and rst_n
 set prim_inputs_no_rst [remove_from_collection $prim_inputs [find port rst_n]]
-{clr i_data0[15] i_data0[14] i_data0[13] i_data0[12] i_data0[11] i_data0[10] i_data0[9] i_data0[8] i_data0[7] i_data0[6] i_data0[5] i_data0[4] i_data0[3] i_data0[2] i_data0[1] i_data0[0] i_data1[15] i_data1[14] i_data1[13] i_data1[12] i_data1[11] i_data1[10] i_data1[9] i_data1[8] i_data1[7] i_data1[6] i_data1[5] i_data1[4] i_data1[3] i_data1[2] i_data1[1] i_data1[0] o_data_last[31] o_data_last[30] o_data_last[29] o_data_last[28] o_data_last[27] o_data_last[26] o_data_last[25] o_data_last[24] o_data_last[23] o_data_last[22] o_data_last[21] o_data_last[20] o_data_last[19] o_data_last[18] o_data_last[17] o_data_last[16] o_data_last[15] o_data_last[14] o_data_last[13] o_data_last[12] o_data_last[11] o_data_last[10] o_data_last[9] o_data_last[8] o_data_last[7] o_data_last[6] o_data_last[5] o_data_last[4] o_data_last[3] o_data_last[2] o_data_last[1] o_data_last[0]}
+{clr i_data0[15] i_data0[14] i_data0[13] i_data0[12] i_data0[11] i_data0[10] i_data0[9] i_data0[8] i_data0[7] i_data0[6] i_data0[5] i_data0[4] i_data0[3] i_data0[2] i_data0[1] i_data0[0] i_data1[15] i_data1[14] i_data1[13] i_data1[12] i_data1[11] i_data1[10] i_data1[9] i_data1[8] i_data1[7] i_data1[6] i_data1[5] i_data1[4] i_data1[3] i_data1[2] i_data1[1] i_data1[0]}
 # Set clk uncertainty (skew)
 set_clock_uncertainty 0.15 clk
 1
@@ -120,7 +120,7 @@ Information: Evaluating DesignWare library utilization. (UISN-27)
 ============================================================================
 
 
-Information: There are 2 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
+Information: There are 1 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
 
 
 Warning: IO pad 'PVSS3DGZ' is unusable: unknown logic function.  (OPT-1022)
@@ -149,7 +149,6 @@ Information: Updating design information... (UID-85)
 
   Beginning Implementation Selection
   ----------------------------------
-  Processing 'mul_border_DW01_add_0'
 
   Beginning Mapping Optimizations  (Medium effort)
   -------------------------------
@@ -159,20 +158,19 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:05     252.6      0.00       0.0      16.0                          
-    0:00:05     252.6      0.00       0.0      16.0                          
-    0:00:05     252.6      0.00       0.0      16.0                          
-    0:00:05     252.6      0.00       0.0      16.0                          
-    0:00:05     252.6      0.00       0.0      16.0                          
-    0:00:05     229.3      0.00       0.0      16.0                          
-    0:00:05     229.3      0.00       0.0      16.0                          
-    0:00:05     229.3      0.00       0.0      16.0                          
-    0:00:05     229.3      0.00       0.0      16.0                          
-    0:00:05     229.3      0.00       0.0      16.0                          
-    0:00:05     234.6      0.00       0.0      14.5                          
-    0:00:05     234.6      0.00       0.0      14.5                          
-    0:00:05     234.6      0.00       0.0      14.5                          
-    0:00:05     234.6      0.00       0.0      14.5                          
+    0:00:05     123.7      0.00       0.0       7.0                          
+    0:00:06     123.7      0.00       0.0       7.0                          
+    0:00:06     123.7      0.00       0.0       7.0                          
+    0:00:06     123.7      0.00       0.0       7.0                          
+    0:00:06     123.7      0.00       0.0       7.0                          
+    0:00:06      96.3      0.00       0.0       7.0                          
+    0:00:06      96.3      0.00       0.0       7.0                          
+    0:00:06      96.3      0.00       0.0       7.0                          
+    0:00:06      96.3      0.00       0.0       7.0                          
+    0:00:06      96.3      0.00       0.0       7.0                          
+    0:00:06      96.3      0.00       0.0       7.0                          
+    0:00:06      96.3      0.00       0.0       7.0                          
+    0:00:06      96.3      0.00       0.0       7.0                          
 
 
 
@@ -183,9 +181,9 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:05     234.6      0.00       0.0      14.5                          
-    0:00:05     234.6      0.00       0.0      14.5                          
-    0:00:05     234.6      0.00       0.0      14.5                          
+    0:00:06      96.3      0.00       0.0       7.0                          
+    0:00:06      96.3      0.00       0.0       7.0                          
+    0:00:06      96.3      0.00       0.0       7.0                          
 
 
   Beginning Design Rule Fixing  (max_transition)  (max_capacitance)
@@ -195,8 +193,8 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:05     234.6      0.00       0.0      14.5                          
-    0:00:05     271.3      0.00       0.0       0.0                          
+    0:00:06      96.3      0.00       0.0       7.0                          
+    0:00:06     120.1      0.00       0.0       0.0                          
 
 
   Beginning Area-Recovery Phase  (cleanup)
@@ -206,21 +204,19 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:05     271.3      0.00       0.0       0.0                          
-    0:00:05     271.3      0.00       0.0       0.0                          
-    0:00:05     270.8      0.00       0.0       0.0                          
-    0:00:05     270.8      0.00       0.0       0.0                          
-    0:00:05     270.8      0.00       0.0       0.0                          
-    0:00:05     270.8      0.00       0.0       0.0                          
-    0:00:05     270.8      0.00       0.0       0.0                          
-    0:00:05     270.4      0.00       0.0       0.0                          
-    0:00:05     267.4      0.00       0.0       0.0                          
-    0:00:05     267.4      0.00       0.0       0.0                          
-    0:00:05     267.4      0.00       0.0       0.0                          
-    0:00:05     267.4      0.00       0.0       0.0                          
-    0:00:05     267.4      0.00       0.0       0.0                          
-    0:00:05     267.4      0.00       0.0       0.0                          
-    0:00:05     266.9      0.00       0.0       0.0                          
+    0:00:06     120.1      0.00       0.0       0.0                          
+    0:00:06     120.1      0.00       0.0       0.0                          
+    0:00:06     118.9      0.00       0.0       0.0                          
+    0:00:06     118.9      0.00       0.0       0.0                          
+    0:00:06     118.9      0.00       0.0       0.0                          
+    0:00:06     118.9      0.00       0.0       0.0                          
+    0:00:06     118.9      0.00       0.0       0.0                          
+    0:00:06     118.9      0.00       0.0       0.0                          
+    0:00:06     118.9      0.00       0.0       0.0                          
+    0:00:06     118.9      0.00       0.0       0.0                          
+    0:00:06     118.9      0.00       0.0       0.0                          
+    0:00:06     118.9      0.00       0.0       0.0                          
+    0:00:06     118.9      0.00       0.0       0.0                          
 
 
 Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
@@ -230,44 +226,17 @@ Note: Symbol # after min delay cost means estimated hold TNS across all active s
   ---------------------
 1
 check_design
- 
-****************************************
-check_design summary:
-Version:     Q-2019.12-SP3
-Date:        Thu Feb  4 20:22:12 2021
-****************************************
-
-                   Name                                            Total
---------------------------------------------------------------------------------
-Inputs/Outputs                                                      4
-    Unconnected ports (LINT-28)                                     4
-
-Cells                                                               2
-    Nets connected to multiple pins on same cell (LINT-33)          2
---------------------------------------------------------------------------------
-
-Warning: In design 'mul_border', port 'o_data_last[31]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_border_DW01_add_0', port 'B[0]' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_border_DW01_add_0', port 'CI' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_border_DW01_add_0', port 'CO' is not connected to any nets. (LINT-28)
-Warning: In design 'mul_border', the same net is connected to more than one pin on submodule 'add_28'. (LINT-33)
-   Net 'n11' is connected to pins 'A[31]', 'A[30]'', 'A[29]', 'A[28]', 'A[27]', 'A[26]', 'A[25]', 'A[24]', 'A[23]', 'A[22]', 'A[21]', 'A[20]', 'A[19]', 'A[18]', 'A[17]', 'A[16]', 'A[15]'.
-Warning: In design 'mul_border', the same net is connected to more than one pin on submodule 'add_28'. (LINT-33)
-   Net 'n1' is connected to pins 'B[0]', 'CI''.
 1
 # Unflatten design now that its compiled
 ungroup -all -flatten
-Information: Updating graph... (UID-83)
-1
+Warning: Design has no hierarchy.  No cells can be ungrouped. (UID-228)
+0
 # force hold time to be met for all flops
 set_fix_hold clk
 1
 # Compile again with higher effort
 compile -map_effort high
 Warning: "The variable 'compile_high_effort_area_in_incremental' is supported in DC NXT only. Ignoring this setting." (OPT-1726)
-
-Information: There are 2 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
-
 
 Warning: Operating condition NCCOM set on design mul_border has different process,
 voltage and temperatures parameters than the parameters at which target library 
@@ -287,20 +256,19 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                              MIN DELAY 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT             COST    
   --------- --------- --------- --------- --------- ------------------------- -----------
-    0:00:08     259.3      0.00       0.0      16.0                                0.00  
-    0:00:08     259.3      0.00       0.0      16.0                                0.00  
-    0:00:08     259.3      0.00       0.0      16.0                                0.00  
-    0:00:08     259.3      0.00       0.0      16.0                                0.00  
-    0:00:08     259.3      0.00       0.0      16.0                                0.00  
-    0:00:08     225.3      0.00       0.0      16.0                                0.00  
-    0:00:08     225.3      0.00       0.0      16.0                                0.00  
-    0:00:08     225.3      0.00       0.0      16.0                                0.00  
-    0:00:08     225.3      0.00       0.0      16.0                                0.00  
-    0:00:08     225.3      0.00       0.0      16.0                                0.00  
-    0:00:08     227.9      0.00       0.0      15.0                                0.00  
-    0:00:08     227.9      0.00       0.0      15.0                                0.00  
-    0:00:08     227.9      0.00       0.0      15.0                                0.00  
-    0:00:08     227.9      0.00       0.0      15.0                                0.00  
+    0:00:09     136.7      0.00       0.0       7.0                                0.00  
+    0:00:09     136.7      0.00       0.0       7.0                                0.00  
+    0:00:09     136.7      0.00       0.0       7.0                                0.00  
+    0:00:09     136.7      0.00       0.0       7.0                                0.00  
+    0:00:09     136.7      0.00       0.0       7.0                                0.00  
+    0:00:09      93.8      0.00       0.0       7.0                                0.00  
+    0:00:09      93.8      0.00       0.0       7.0                                0.00  
+    0:00:09      93.8      0.00       0.0       7.0                                0.00  
+    0:00:09      93.8      0.00       0.0       7.0                                0.00  
+    0:00:09      93.8      0.00       0.0       7.0                                0.00  
+    0:00:09      93.8      0.00       0.0       7.0                                0.00  
+    0:00:09      93.8      0.00       0.0       7.0                                0.00  
+    0:00:09      93.8      0.00       0.0       7.0                                0.00  
 
 
 
@@ -311,9 +279,9 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                              MIN DELAY 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT             COST    
   --------- --------- --------- --------- --------- ------------------------- -----------
-    0:00:08     227.9      0.00       0.0      15.0                                0.00  
-    0:00:08     227.9      0.00       0.0      15.0                                0.00  
-    0:00:08     227.9      0.00       0.0      15.0                                0.00  
+    0:00:09      93.8      0.00       0.0       7.0                                0.00  
+    0:00:09      93.8      0.00       0.0       7.0                                0.00  
+    0:00:09      93.8      0.00       0.0       7.0                                0.00  
 
 
   Beginning Design Rule Fixing  (min_path)  (max_transition)  (max_capacitance)
@@ -323,8 +291,8 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                              MIN DELAY 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT             COST    
   --------- --------- --------- --------- --------- ------------------------- -----------
-    0:00:08     227.9      0.00       0.0      15.0                               -0.29  
-    0:00:09     263.2      0.00       0.0       0.0                               -0.29  
+    0:00:09      93.8      0.00       0.0       7.0                               -0.29  
+    0:00:09     117.7      0.00       0.0       0.0                               -0.29  
 
 
   Beginning Area-Recovery Phase  (cleanup)
@@ -334,19 +302,19 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                              MIN DELAY 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT             COST    
   --------- --------- --------- --------- --------- ------------------------- -----------
-    0:00:09     263.2      0.00       0.0       0.0                               -0.29  
-    0:00:09     263.2      0.00       0.0       0.0                               -0.29  
-    0:00:09     263.2      0.00       0.0       0.0                               -0.29  
-    0:00:09     263.2      0.00       0.0       0.0                               -0.29  
-    0:00:09     263.2      0.00       0.0       0.0                               -0.29  
-    0:00:09     263.2      0.00       0.0       0.0                               -0.29  
-    0:00:09     263.0      0.00       0.0       0.0                               -0.29  
-    0:00:09     263.0      0.00       0.0       0.0                               -0.29  
-    0:00:09     263.0      0.00       0.0       0.0                               -0.29  
-    0:00:09     263.0      0.00       0.0       0.0                               -0.29  
-    0:00:09     263.0      0.00       0.0       0.0                               -0.29  
-    0:00:09     263.0      0.00       0.0       0.0                               -0.29  
-    0:00:09     273.8      0.00       0.0       0.0                                0.00  
+    0:00:09     117.7      0.00       0.0       0.0                               -0.29  
+    0:00:09     117.7      0.00       0.0       0.0                               -0.29  
+    0:00:09     117.0      0.00       0.0       0.0                               -0.29  
+    0:00:09     117.0      0.00       0.0       0.0                               -0.29  
+    0:00:09     117.0      0.00       0.0       0.0                               -0.29  
+    0:00:09     117.0      0.00       0.0       0.0                               -0.29  
+    0:00:09     117.0      0.00       0.0       0.0                               -0.29  
+    0:00:09     117.0      0.00       0.0       0.0                               -0.29  
+    0:00:09     117.0      0.00       0.0       0.0                               -0.29  
+    0:00:09     117.0      0.00       0.0       0.0                               -0.29  
+    0:00:09     117.0      0.00       0.0       0.0                               -0.29  
+    0:00:09     117.0      0.00       0.0       0.0                               -0.29  
+    0:00:09     127.7      0.00       0.0       0.0                                0.00  
 
 
 Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
@@ -356,20 +324,6 @@ Note: Symbol # after min delay cost means estimated hold TNS across all active s
   ---------------------
 1
 check_design
- 
-****************************************
-check_design summary:
-Version:     Q-2019.12-SP3
-Date:        Thu Feb  4 20:22:16 2021
-****************************************
-
-                   Name                                            Total
---------------------------------------------------------------------------------
-Inputs/Outputs                                                      1
-    Unconnected ports (LINT-28)                                     1
---------------------------------------------------------------------------------
-
-Warning: In design 'mul_border', port 'o_data_last[31]' is not connected to any nets. (LINT-28)
 1
 #############################################
 # Take a look at area, max, and min timings #
@@ -386,6 +340,6 @@ exit
 Memory usage for this session 402 Mbytes.
 Memory usage for this session including child processes 402 Mbytes.
 CPU usage for this session 10 seconds ( 0.00 hours ).
-Elapsed time for this session 12 seconds ( 0.00 hours ).
+Elapsed time for this session 13 seconds ( 0.00 hours ).
 
 Thank you...

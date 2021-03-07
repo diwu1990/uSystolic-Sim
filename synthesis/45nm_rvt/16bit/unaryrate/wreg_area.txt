@@ -3,7 +3,7 @@
 Report : area
 Design : wreg
 Version: Q-2019.12-SP3
-Date   : Thu Feb  4 20:24:13 2021
+Date   : Sat Mar  6 20:48:11 2021
 ****************************************
 
 Information: Updating design information... (UID-85)
@@ -12,20 +12,20 @@ Library(s) Used:
     tcbn45gsbwptc (File: /cae/apps/data/tsmclibs-2013/digital/Front_End/timing_power_noise/NLDM/tcbn45gsbwp_120a/tcbn45gsbwptc.db)
 
 Number of ports:                           36
-Number of nets:                           141
-Number of cells:                          121
-Number of combinational cells:            105
+Number of nets:                           102
+Number of cells:                           82
+Number of combinational cells:             66
 Number of sequential cells:                16
 Number of macros/black boxes:               0
-Number of buf/inv:                         47
-Number of references:                      18
+Number of buf/inv:                         48
+Number of references:                       7
 
-Combinational area:                134.064003
-Buf/Inv area:                       62.974800
+Combinational area:                 86.788802
+Buf/Inv area:                       62.092801
 Noncombinational area:              64.915199
 Macro/Black Box area:                0.000000
 Net Interconnect area:      undefined  (Wire load has zero net area)
 
-Total cell area:                   198.979202
+Total cell area:                   151.704001
 Total area:                 undefined
 1

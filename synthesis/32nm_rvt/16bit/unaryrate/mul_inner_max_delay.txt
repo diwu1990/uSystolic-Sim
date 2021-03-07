@@ -6,7 +6,7 @@ Report : timing
         -max_paths 1
 Design : mul_inner
 Version: Q-2019.12-SP3
-Date   : Thu Feb  4 20:15:40 2021
+Date   : Sat Mar  6 20:40:10 2021
 ****************************************
 
 Operating Conditions: tt0p85v25c   Library: saed32rvt_tt0p85v25c
@@ -20,7 +20,7 @@ Wire Load Model Mode: enclosed
 
   Des/Clust/Port     Wire Load Model       Library
   ------------------------------------------------
-  mul_inner          8000                  saed32rvt_tt0p85v25c
+  mul_inner          ForQA                 saed32rvt_tt0p85v25c
 
   Point                                    Incr       Path
   -----------------------------------------------------------
@@ -28,24 +28,24 @@ Wire Load Model Mode: enclosed
   clock network delay (ideal)              0.00       0.00
   input external delay                     0.25       0.25 r
   i_data_w[1] (in)                         0.00       0.25 r
-  U88/Y (OA21X1_RVT)                       0.07       0.32 r
-  U87/Y (AO22X1_RVT)                       0.07       0.39 r
-  U86/Y (OR2X1_RVT)                        0.07       0.46 r
-  U85/Y (AO222X1_RVT)                      0.10       0.55 r
-  U84/Y (OA221X1_RVT)                      0.08       0.63 r
-  U83/Y (AO221X1_RVT)                      0.08       0.71 r
-  U82/Y (OA221X1_RVT)                      0.08       0.78 r
-  U81/Y (AO221X1_RVT)                      0.08       0.86 r
-  U80/Y (OA221X1_RVT)                      0.08       0.94 r
-  U79/Y (AO221X1_RVT)                      0.08       1.02 r
-  U78/Y (OA221X1_RVT)                      0.08       1.09 r
-  U77/Y (AO221X1_RVT)                      0.08       1.17 r
-  U76/Y (OA221X1_RVT)                      0.08       1.24 r
-  U75/Y (AO221X1_RVT)                      0.08       1.32 r
-  U74/Y (OA221X1_RVT)                      0.07       1.40 r
-  U72/Y (OA21X1_RVT)                       0.07       1.47 r
-  o_bit (out)                              0.00       1.47 r
-  data arrival time                                   1.47
+  U34/Y (OA21X1_RVT)                       0.07       0.32 r
+  U33/Y (AO22X1_RVT)                       0.08       0.40 r
+  U32/Y (OR2X1_RVT)                        0.07       0.47 r
+  U31/Y (AO222X1_RVT)                      0.10       0.57 r
+  U30/Y (OA221X1_RVT)                      0.08       0.65 r
+  U29/Y (AO221X1_RVT)                      0.08       0.73 r
+  U28/Y (OA221X1_RVT)                      0.08       0.81 r
+  U27/Y (AO221X1_RVT)                      0.08       0.89 r
+  U26/Y (OA221X1_RVT)                      0.08       0.97 r
+  U25/Y (AO221X1_RVT)                      0.08       1.05 r
+  U24/Y (OA221X1_RVT)                      0.08       1.13 r
+  U23/Y (AO221X1_RVT)                      0.08       1.21 r
+  U22/Y (OA221X1_RVT)                      0.08       1.29 r
+  U21/Y (AO221X1_RVT)                      0.08       1.37 r
+  U20/Y (OA221X1_RVT)                      0.08       1.45 r
+  U18/Y (OA21X1_RVT)                       0.08       1.53 r
+  o_bit (out)                              0.01       1.53 r
+  data arrival time                                   1.53
 
   clock clk (rise edge)                    2.50       2.50
   clock network delay (ideal)              0.00       2.50
@@ -54,9 +54,9 @@ Wire Load Model Mode: enclosed
   data required time                                  1.85
   -----------------------------------------------------------
   data required time                                  1.85
-  data arrival time                                  -1.47
+  data arrival time                                  -1.53
   -----------------------------------------------------------
-  slack (MET)                                         0.38
+  slack (MET)                                         0.32
 
 
 1

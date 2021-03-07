@@ -6,15 +6,15 @@ Report : timing
         -max_paths 1
 Design : ireg_inner
 Version: Q-2019.12-SP3
-Date   : Thu Feb  4 20:15:25 2021
+Date   : Sat Mar  6 20:39:56 2021
 ****************************************
 
 Operating Conditions: tt0p85v25c   Library: saed32rvt_tt0p85v25c
 Wire Load Model Mode: enclosed
 
-  Startpoint: o_data_reg[0]
+  Startpoint: o_data_dff_reg
               (rising edge-triggered flip-flop clocked by clk)
-  Endpoint: o_data[0] (output port clocked by clk)
+  Endpoint: o_data_dff (output port clocked by clk)
   Path Group: clk
   Path Type: max
 
@@ -26,9 +26,9 @@ Wire Load Model Mode: enclosed
   -----------------------------------------------------------
   clock clk (rise edge)                    0.00       0.00
   clock network delay (ideal)              0.00       0.00
-  o_data_reg[0]/CLK (DFFARX1_RVT)          0.00       0.00 r
-  o_data_reg[0]/Q (DFFARX1_RVT)            0.16       0.16 r
-  o_data[0] (out)                          0.01       0.16 r
+  o_data_dff_reg/CLK (DFFARX1_RVT)         0.00       0.00 r
+  o_data_dff_reg/Q (DFFARX1_RVT)           0.16       0.16 r
+  o_data_dff (out)                         0.01       0.16 r
   data arrival time                                   0.16
 
   clock clk (rise edge)                    2.50       2.50

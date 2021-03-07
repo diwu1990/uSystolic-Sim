@@ -6,7 +6,7 @@ Report : timing
         -max_paths 1
 Design : mul_inner
 Version: Q-2019.12-SP3
-Date   : Thu Feb  4 20:23:49 2021
+Date   : Sat Mar  6 20:47:47 2021
 ****************************************
 
 Operating Conditions: NCCOM   Library: tcbn45gsbwptc
@@ -28,26 +28,25 @@ Wire Load Model Mode: segmented
   clock network delay (ideal)              0.00       0.00
   input external delay                     0.25       0.25 f
   i_data_w[1] (in)                         0.00       0.25 f
-  U278/ZN (INVD1BWP)                       0.01       0.26 r
-  U277/Z (AO211D1BWP)                      0.02       0.28 r
-  U276/ZN (OAI21D1BWP)                     0.02       0.30 f
-  U18/Z (OR2D1BWP)                         0.03       0.32 f
-  U287/Z (AO222D1BWP)                      0.06       0.38 f
-  U286/Z (OA221D1BWP)                      0.02       0.40 f
-  U285/Z (AO221D1BWP)                      0.06       0.46 f
-  U284/Z (OA221D1BWP)                      0.02       0.49 f
-  U283/Z (AO221D1BWP)                      0.06       0.54 f
-  U281/Z (OA221D1BWP)                      0.02       0.57 f
-  U280/Z (AO221D1BWP)                      0.06       0.62 f
-  U290/Z (OA221D1BWP)                      0.02       0.65 f
-  U289/Z (AO221D1BWP)                      0.06       0.71 f
-  U288/Z (OA221D1BWP)                      0.02       0.73 f
-  U275/Z (AO221D1BWP)                      0.06       0.79 f
-  U274/ZN (OAI221D1BWP)                    0.02       0.81 r
-  U236/Z (AO21D1BWP)                       0.03       0.84 r
-  U237/ZN (INVD6BWP)                       0.05       0.89 f
-  o_bit (out)                              0.00       0.89 f
-  data arrival time                                   0.89
+  U71/ZN (OAI211D1BWP)                     0.02       0.27 r
+  U70/ZN (IOA21D1BWP)                      0.02       0.28 f
+  U19/Z (OR2D1BWP)                         0.02       0.30 f
+  U63/Z (AO222D1BWP)                       0.05       0.36 f
+  U62/Z (OA221D1BWP)                       0.02       0.38 f
+  U61/Z (AO221D1BWP)                       0.06       0.44 f
+  U66/Z (OA221D1BWP)                       0.02       0.46 f
+  U65/Z (AO221D1BWP)                       0.06       0.52 f
+  U64/Z (OA221D1BWP)                       0.02       0.55 f
+  U69/Z (AO221D1BWP)                       0.06       0.60 f
+  U68/Z (OA221D1BWP)                       0.02       0.63 f
+  U67/Z (AO221D1BWP)                       0.06       0.68 f
+  U60/Z (OA221D1BWP)                       0.02       0.71 f
+  U59/ZN (AOI221D1BWP)                     0.04       0.75 r
+  U57/ZN (AOI221D0BWP)                     0.02       0.78 f
+  U54/ZN (OAI21D1BWP)                      0.04       0.82 r
+  U55/ZN (INVD6BWP)                        0.06       0.88 f
+  o_bit (out)                              0.00       0.88 f
+  data arrival time                                   0.88
 
   clock clk (rise edge)                    2.50       2.50
   clock network delay (ideal)              0.00       2.50
@@ -56,9 +55,9 @@ Wire Load Model Mode: segmented
   data required time                                  1.85
   -----------------------------------------------------------
   data required time                                  1.85
-  data arrival time                                  -0.89
+  data arrival time                                  -0.88
   -----------------------------------------------------------
-  slack (MET)                                         0.96
+  slack (MET)                                         0.97
 
 
 1

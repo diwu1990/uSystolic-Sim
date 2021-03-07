@@ -6,15 +6,15 @@ Report : timing
         -max_paths 1
 Design : wreg
 Version: Q-2019.12-SP3
-Date   : Thu Feb  4 20:24:14 2021
+Date   : Sat Mar  6 20:48:13 2021
 ****************************************
 
 Operating Conditions: NCCOM   Library: tcbn45gsbwptc
 Wire Load Model Mode: segmented
 
-  Startpoint: o_data_reg[1]
+  Startpoint: o_data_abs_reg[0]
               (rising edge-triggered flip-flop clocked by clk)
-  Endpoint: o_data_abs[14]
+  Endpoint: o_data_abs[0]
             (output port clocked by clk)
   Path Group: clk
   Path Type: max
@@ -27,27 +27,12 @@ Wire Load Model Mode: segmented
   -----------------------------------------------------------
   clock clk (rise edge)                    0.00       0.00
   clock network delay (ideal)              0.00       0.00
-  o_data_reg[1]/CP (DFCNQD1BWP)            0.00       0.00 r
-  o_data_reg[1]/Q (DFCNQD1BWP)             0.06       0.06 f
-  U127/Z (DEL175D1BWP)                     0.14       0.21 f
-  U200/ZN (INVD1BWP)                       0.02       0.23 r
-  U183/ZN (ND2D1BWP)                       0.02       0.24 f
-  U189/ZN (IND2D1BWP)                      0.03       0.27 f
-  U198/ZN (NR2D1BWP)                       0.02       0.29 r
-  U188/ZN (ND2D1BWP)                       0.02       0.31 f
-  U197/ZN (NR2D1BWP)                       0.02       0.33 r
-  U187/ZN (ND2D1BWP)                       0.02       0.34 f
-  U194/ZN (NR2D1BWP)                       0.02       0.36 r
-  U185/ZN (ND2D1BWP)                       0.02       0.38 f
-  U195/ZN (NR2D1BWP)                       0.02       0.40 r
-  U186/ZN (ND2D1BWP)                       0.02       0.41 f
-  U196/ZN (NR2D1BWP)                       0.02       0.43 r
-  U184/ZN (ND2D1BWP)                       0.02       0.45 f
-  U191/Z (OA21D1BWP)                       0.03       0.48 f
-  U146/Z (CKXOR2D1BWP)                     0.04       0.52 r
-  U147/ZN (INVD6BWP)                       0.05       0.57 f
-  o_data_abs[14] (out)                     0.00       0.57 f
-  data arrival time                                   0.57
+  o_data_abs_reg[0]/CP (DFCNQD1BWP)        0.00       0.00 r
+  o_data_abs_reg[0]/Q (DFCNQD1BWP)         0.06       0.06 f
+  U90/ZN (CKND0BWP)                        0.03       0.09 r
+  U84/ZN (INVD6BWP)                        0.06       0.15 f
+  o_data_abs[0] (out)                      0.00       0.15 f
+  data arrival time                                   0.15
 
   clock clk (rise edge)                    2.50       2.50
   clock network delay (ideal)              0.00       2.50
@@ -56,9 +41,9 @@ Wire Load Model Mode: segmented
   data required time                                  1.85
   -----------------------------------------------------------
   data required time                                  1.85
-  data arrival time                                  -0.57
+  data arrival time                                  -0.15
   -----------------------------------------------------------
-  slack (MET)                                         1.28
+  slack (MET)                                         1.70
 
 
 1

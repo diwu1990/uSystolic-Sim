@@ -6,7 +6,7 @@ Report : timing
         -max_paths 1
 Design : acc
 Version: Q-2019.12-SP3
-Date   : Thu Feb  4 20:25:59 2021
+Date   : Sat Mar  6 20:49:54 2021
 ****************************************
 
 Operating Conditions: NCCOM   Library: tcbn45gsbwptc
@@ -29,9 +29,9 @@ Wire Load Model Mode: segmented
   clock network delay (ideal)              0.00       0.00
   o_data_reg[0]/CP (DFCNQD1BWP)            0.00       0.00 r
   o_data_reg[0]/Q (DFCNQD1BWP)             0.06       0.06 f
-  U175/ZN (CKND0BWP)                       0.03       0.09 r
-  U135/Z (DEL100D1BWP)                     0.07       0.17 r
-  U174/ZN (OAI22D1BWP)                     0.01       0.18 f
+  U135/ZN (CKND0BWP)                       0.03       0.09 r
+  U103/Z (DEL100D1BWP)                     0.07       0.17 r
+  U134/ZN (OAI22D1BWP)                     0.01       0.18 f
   o_data_reg[0]/D (DFCNQD1BWP)             0.00       0.18 f
   data arrival time                                   0.18
 

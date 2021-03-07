@@ -7,7 +7,7 @@ Report : power
         -analysis_effort low
 Design : mul_border
 Version: Q-2019.12-SP3
-Date   : Thu Feb  4 20:18:03 2021
+Date   : Sat Mar  6 20:42:20 2021
 ****************************************
 
 
@@ -33,12 +33,12 @@ Power-specific unit information :
     Leakage Power Units = 1pW
 
 
-  Cell Internal Power  =  17.5426 uW   (81%)
-  Net Switching Power  =   4.2472 uW   (19%)
+  Cell Internal Power  =   8.0580 uW   (86%)
+  Net Switching Power  =   1.3273 uW   (14%)
                          ---------
-Total Dynamic Power    =  21.7898 uW  (100%)
+Total Dynamic Power    =   9.3853 uW  (100%)
 
-Cell Leakage Power     =   7.2013 uW
+Cell Leakage Power     =   1.7764 uW
 
 
                  Internal         Switching           Leakage            Total
@@ -48,9 +48,9 @@ io_pad             0.0000            0.0000            0.0000            0.0000 
 memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
 black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
 clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)
-register           6.1958            0.3384        7.2487e+05            7.2590  (  25.04%)
+register           6.3392            0.3832        7.2663e+05            7.4491  (  66.74%)
 sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)
-combinational     11.3469            3.9088        6.4764e+06           21.7321  (  74.96%)
+combinational      1.7188            0.9441        1.0498e+06            3.7126  (  33.26%)
 --------------------------------------------------------------------------------------------------
-Total             17.5426 uW         4.2472 uW     7.2013e+06 pW        28.9911 uW
+Total              8.0580 uW         1.3273 uW     1.7764e+06 pW        11.1617 uW
 1

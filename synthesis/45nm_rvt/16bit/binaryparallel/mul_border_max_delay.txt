@@ -6,7 +6,7 @@ Report : timing
         -max_paths 1
 Design : mul_border
 Version: Q-2019.12-SP3
-Date   : Thu Feb  4 20:21:01 2021
+Date   : Sat Mar  6 20:45:03 2021
 ****************************************
 
 Operating Conditions: NCCOM   Library: tcbn45gsbwptc
@@ -41,23 +41,23 @@ Wire Load Model Mode: segmented
   mult_9/S2_13_2/CO (FA1D0BWP)             0.06       0.87 r
   mult_9/S2_14_2/CO (FA1D0BWP)             0.06       0.93 r
   mult_9/S4_2/CO (FA1D0BWP)                0.06       1.00 r
-  U580/Z (CKXOR2D0BWP)                     0.05       1.05 f
-  U579/Z (AN3D0BWP)                        0.03       1.07 f
-  U577/ZN (AOI21D0BWP)                     0.04       1.11 r
+  U581/Z (CKXOR2D0BWP)                     0.05       1.05 f
+  U580/Z (AN3D0BWP)                        0.03       1.07 f
+  U578/ZN (AOI21D0BWP)                     0.04       1.11 r
   U422/ZN (OAI21D1BWP)                     0.02       1.13 f
-  U565/ZN (AOI21D0BWP)                     0.03       1.16 r
+  U566/ZN (AOI21D0BWP)                     0.03       1.16 r
   U423/ZN (OAI21D1BWP)                     0.02       1.18 f
-  U554/ZN (AOI21D0BWP)                     0.03       1.21 r
+  U555/ZN (AOI21D0BWP)                     0.03       1.21 r
   U424/ZN (OAI21D1BWP)                     0.02       1.23 f
-  U543/ZN (AOI21D0BWP)                     0.03       1.26 r
+  U544/ZN (AOI21D0BWP)                     0.03       1.26 r
   U425/ZN (OAI21D1BWP)                     0.02       1.28 f
-  U532/ZN (AOI21D0BWP)                     0.03       1.31 r
+  U533/ZN (AOI21D0BWP)                     0.03       1.31 r
   U426/ZN (OAI21D1BWP)                     0.02       1.32 f
-  U521/ZN (AOI21D0BWP)                     0.03       1.35 r
-  U513/ZN (OAI21D0BWP)                     0.02       1.38 f
-  U510/ZN (OAI21D0BWP)                     0.03       1.40 r
-  U477/ZN (XNR3D1BWP)                      0.06       1.46 f
-  U478/ZN (INVD6BWP)                       0.06       1.52 r
+  U522/ZN (AOI21D0BWP)                     0.03       1.35 r
+  U514/ZN (OAI21D0BWP)                     0.02       1.38 f
+  U511/ZN (OAI21D0BWP)                     0.03       1.40 r
+  U478/ZN (XNR3D1BWP)                      0.06       1.46 f
+  U479/ZN (INVD6BWP)                       0.06       1.52 r
   o_data[31] (out)                         0.00       1.52 r
   data arrival time                                   1.52
   -----------------------------------------------------------

@@ -6,15 +6,15 @@ Report : timing
         -max_paths 1
 Design : ireg_inner
 Version: Q-2019.12-SP3
-Date   : Thu Feb  4 20:23:20 2021
+Date   : Sat Mar  6 20:47:21 2021
 ****************************************
 
 Operating Conditions: NCCOM   Library: tcbn45gsbwptc
 Wire Load Model Mode: segmented
 
-  Startpoint: o_data_reg[0]
+  Startpoint: o_data_dff_reg
               (rising edge-triggered flip-flop clocked by clk)
-  Endpoint: o_data[0] (output port clocked by clk)
+  Endpoint: o_data_dff (output port clocked by clk)
   Path Group: clk
   Path Type: max
 
@@ -26,10 +26,10 @@ Wire Load Model Mode: segmented
   -----------------------------------------------------------
   clock clk (rise edge)                    0.00       0.00
   clock network delay (ideal)              0.00       0.00
-  o_data_reg[0]/CP (DFCNQD1BWP)            0.00       0.00 r
-  o_data_reg[0]/Q (DFCNQD1BWP)             0.07       0.07 f
-  U9/Z (CKBD6BWP)                          0.06       0.12 f
-  o_data[0] (out)                          0.00       0.12 f
+  o_data_dff_reg/CP (DFCNQD1BWP)           0.00       0.00 r
+  o_data_dff_reg/Q (DFCNQD1BWP)            0.07       0.07 f
+  U11/Z (CKBD6BWP)                         0.06       0.12 f
+  o_data_dff (out)                         0.00       0.12 f
   data arrival time                                   0.12
 
   clock clk (rise edge)                    2.50       2.50

@@ -7,7 +7,7 @@ Report : power
         -analysis_effort low
 Design : ireg_inner
 Version: Q-2019.12-SP3
-Date   : Thu Feb  4 20:20:47 2021
+Date   : Sat Mar  6 20:44:50 2021
 ****************************************
 
 

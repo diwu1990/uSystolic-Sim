@@ -296,7 +296,7 @@ Information: Updating design information... (UID-85)
   --------- --------- --------- --------- --------- ------------------------- -----------
     0:00:08     288.1      0.00       0.0       0.0                                0.00  
     0:00:08     288.1      0.00       0.0       0.0                                0.00  
-    0:00:08     273.9      0.00       0.0       0.0                                0.00  
+    0:00:09     273.9      0.00       0.0       0.0                                0.00  
 
 
   Beginning Design Rule Fixing  (min_path)
@@ -306,7 +306,7 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                              MIN DELAY 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT             COST    
   --------- --------- --------- --------- --------- ------------------------- -----------
-    0:00:08     273.9      0.00       0.0       0.0                               -1.98  
+    0:00:09     273.9      0.00       0.0       0.0                               -1.98  
 
 
   Beginning Area-Recovery Phase  (cleanup)
@@ -316,8 +316,8 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG   SETUP    DESIGN                              MIN DELAY 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT             COST    
   --------- --------- --------- --------- --------- ------------------------- -----------
-    0:00:08     273.9      0.00       0.0       0.0                               -1.98  
-    0:00:08     273.9      0.00       0.0       0.0                               -1.98  
+    0:00:09     273.9      0.00       0.0       0.0                               -1.98  
+    0:00:09     273.9      0.00       0.0       0.0                               -1.98  
     0:00:09     273.9      0.00       0.0       0.0                               -1.98  
     0:00:09     273.9      0.00       0.0       0.0                               -1.98  
     0:00:09     273.9      0.00       0.0       0.0                               -1.98  
@@ -353,7 +353,7 @@ Writing verilog file '/filespace/d/dwu94/Project/uSystolic-Sim/synthesis/45nm_rv
 exit
 Memory usage for this session 402 Mbytes.
 Memory usage for this session including child processes 402 Mbytes.
-CPU usage for this session 11 seconds ( 0.00 hours ).
+CPU usage for this session 10 seconds ( 0.00 hours ).
 Elapsed time for this session 12 seconds ( 0.00 hours ).
 
 Thank you...

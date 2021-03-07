@@ -6,7 +6,7 @@ Report : timing
         -max_paths 1
 Design : sobol16
 Version: Q-2019.12-SP3
-Date   : Thu Feb  4 20:25:33 2021
+Date   : Sat Mar  6 20:49:29 2021
 ****************************************
 
 Operating Conditions: NCCOM   Library: tcbn45gsbwptc

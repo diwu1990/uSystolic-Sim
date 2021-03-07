@@ -3,7 +3,7 @@
 Report : area
 Design : mul_border
 Version: Q-2019.12-SP3
-Date   : Thu Feb  4 20:22:16 2021
+Date   : Sat Mar  6 20:46:17 2021
 ****************************************
 
 Information: Updating design information... (UID-85)
@@ -11,21 +11,21 @@ Library(s) Used:
 
     tcbn45gsbwptc (File: /cae/apps/data/tsmclibs-2013/digital/Front_End/timing_power_noise/NLDM/tcbn45gsbwp_120a/tcbn45gsbwptc.db)
 
-Number of ports:                           99
-Number of nets:                           246
-Number of cells:                          151
-Number of combinational cells:            147
+Number of ports:                           67
+Number of nets:                           113
+Number of cells:                           78
+Number of combinational cells:             74
 Number of sequential cells:                 4
 Number of macros/black boxes:               0
-Number of buf/inv:                         78
-Number of references:                      26
+Number of buf/inv:                         37
+Number of references:                      22
 
-Combinational area:                257.543997
-Buf/Inv area:                       78.145201
+Combinational area:                111.484800
+Buf/Inv area:                       43.570801
 Noncombinational area:              16.228800
 Macro/Black Box area:                0.000000
 Net Interconnect area:      undefined  (Wire load has zero net area)
 
-Total cell area:                   273.772797
+Total cell area:                   127.713599
 Total area:                 undefined
 1

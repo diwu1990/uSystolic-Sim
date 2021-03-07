@@ -6,7 +6,7 @@ Report : timing
         -max_paths 1
 Design : mul_border
 Version: Q-2019.12-SP3
-Date   : Thu Feb  4 20:22:17 2021
+Date   : Sat Mar  6 20:46:19 2021
 ****************************************
 
 Operating Conditions: NCCOM   Library: tcbn45gsbwptc
@@ -27,12 +27,12 @@ Wire Load Model Mode: segmented
   clock network delay (ideal)              0.00       0.00
   cnt_reg[1]/CP (DFCNQD1BWP)               0.00       0.00 r
   cnt_reg[1]/Q (DFCNQD1BWP)                0.06       0.06 r
-  U163/ZN (ND2D1BWP)                       0.02       0.08 f
-  U155/ZN (INVD1BWP)                       0.02       0.10 r
-  U180/ZN (NR3D0BWP)                       0.02       0.12 f
-  U83/Z (CKBD1BWP)                         0.02       0.14 f
-  U82/Z (CKBD1BWP)                         0.02       0.15 f
-  U81/Z (CKBD1BWP)                         0.02       0.17 f
+  U116/ZN (ND2D1BWP)                       0.02       0.08 f
+  U106/ZN (INVD1BWP)                       0.02       0.10 r
+  U131/ZN (NR3D0BWP)                       0.02       0.12 f
+  U79/Z (CKBD1BWP)                         0.02       0.14 f
+  U78/Z (CKBD1BWP)                         0.02       0.15 f
+  U77/Z (CKBD1BWP)                         0.02       0.17 f
   cnt_reg[1]/D (DFCNQD1BWP)                0.00       0.17 f
   data arrival time                                   0.17
 
