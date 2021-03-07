@@ -22,7 +22,7 @@ module ireg_inner #(
                 o_data_dff <= 0;
             end else begin
                 if (en) begin
-                    o_data_sign <= o_data_sign;
+                    o_data_sign <= i_data_sign;
                     o_data_dff <= i_data_dff;
                 end else begin
                     o_data_sign <= o_data_sign;
