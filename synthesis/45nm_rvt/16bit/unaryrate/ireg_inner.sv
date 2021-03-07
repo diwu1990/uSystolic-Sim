@@ -8,7 +8,7 @@ module ireg_inner #(
     input logic i_data_sign,
     input logic i_data_dff,
     output logic o_data_sign,
-    output logic o_data_dff,
+    output logic o_data_dff
 );
 
     // this module is the horizontal buffer for control and data signals
