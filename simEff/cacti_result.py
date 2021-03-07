@@ -1,4 +1,6 @@
 import subprocess
+import os
+import time
 
 def sram_cacti(
     mem_sz_bytes=16, # in byte
@@ -20,9 +22,15 @@ def sram_cacti(
     original.close()
     target.close()
 
-    subprocess.call(["make", "all"], shell=True, cwd="./simEff/cacti7/")
-    final_cmd = "./cacti -infile ../../" + target_config_file + " > ../../" + result_file
+    if not os.path.exists("./simEff/cacti7/cacti"):
+        subprocess.call(["make", "all"], shell=True, cwd="./simEff/cacti7/")
+        time.sleep(20)
+    rep_cmd = "cp ./cacti ./cacti_" + target_config_file
+    subprocess.call([rep_cmd], shell=True, cwd="./simEff/cacti7/")
+    final_cmd = "./cacti_" + target_config_file + " -infile ../../" + target_config_file + " > ../../" + result_file
     subprocess.call([final_cmd], shell=True, cwd="./simEff/cacti7/")
+    rm_cmd = "rm -rf ./cacti_" + target_config_file
+    subprocess.call([rm_cmd], shell=True, cwd="./simEff/cacti7/")
 
 
 def sram_report_extract(
@@ -102,9 +110,15 @@ def dram_cacti(
     original.close()
     target.close()
 
-    subprocess.call(["make", "all"], shell=True, cwd="./simEff/cacti7/")
-    final_cmd = "./cacti -infile ../../" + target_config_file + " > ../../" + result_file
+    if not os.path.exists("./simEff/cacti7/cacti"):
+        subprocess.call(["make", "all"], shell=True, cwd="./simEff/cacti7/")
+        time.sleep(20)
+    rep_cmd = "cp ./cacti ./cacti_" + target_config_file
+    subprocess.call([rep_cmd], shell=True, cwd="./simEff/cacti7/")
+    final_cmd = "./cacti_" + target_config_file + " -infile ../../" + target_config_file + " > ../../" + result_file
     subprocess.call([final_cmd], shell=True, cwd="./simEff/cacti7/")
+    rm_cmd = "rm -rf ./cacti_" + target_config_file
+    subprocess.call([rm_cmd], shell=True, cwd="./simEff/cacti7/")
 
 
 def dram_report_extract(
