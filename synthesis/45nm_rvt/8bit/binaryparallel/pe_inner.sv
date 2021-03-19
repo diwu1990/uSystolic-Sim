@@ -62,7 +62,7 @@ module pe_inner #(
         .rst_n(rst_n),
         .en(en_o),
         .clr(clr_o),
-        .i_data0(prod),
+        .i_data0({{(OWIDTH-IWIDTH*2){prod[IWIDTH*2-1]}}, prod}),
         .i_data1(ofm),
         .o_data(ofm_d)
     );
