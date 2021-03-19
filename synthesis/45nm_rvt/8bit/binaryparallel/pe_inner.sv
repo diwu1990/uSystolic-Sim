@@ -26,7 +26,7 @@ module pe_inner #(
     logic signed [IWIDTH*2-1 : 0] prod;
 
     ireg_inner #(
-        WIDTH=IWIDTH
+        .WIDTH(IWIDTH)
     ) U_ireg_inner (
         .clk(clk),
         .rst_n(rst_n),
@@ -37,7 +37,7 @@ module pe_inner #(
     );
 
     wreg #(
-        WIDTH=IWIDTH
+        .WIDTH(IWIDTH)
     ) U_wreg (
         .clk(clk),
         .rst_n(rst_n),
@@ -48,7 +48,7 @@ module pe_inner #(
     );
 
     mul_inner #(
-        WIDTH=IWIDTH
+        .WIDTH(IWIDTH)
     ) U_mul_inner(
         .i_data0(ifm_d),
         .i_data1(wght_d),
@@ -56,7 +56,7 @@ module pe_inner #(
     );
 
     acc #(
-        WIDTH=OWIDTH
+        .WIDTH(OWIDTH)
     ) U_acc(
         .clk(clk),
         .rst_n(rst_n),
