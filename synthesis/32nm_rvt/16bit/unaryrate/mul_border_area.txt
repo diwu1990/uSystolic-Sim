@@ -1,0 +1,31 @@
+ 
+****************************************
+Report : area
+Design : mul_border
+Version: Q-2019.12-SP3
+Date   : Sat Mar  6 21:51:59 2021
+****************************************
+
+Information: Updating design information... (UID-85)
+Library(s) Used:
+
+    saed32rvt_tt0p85v25c (File: /cae/apps/data/saed32_edk-2018/lib/stdcell_rvt/db_nldm/saed32rvt_tt0p85v25c.db)
+
+Number of ports:                           33
+Number of nets:                           403
+Number of cells:                          318
+Number of combinational cells:            256
+Number of sequential cells:                62
+Number of macros/black boxes:               0
+Number of buf/inv:                         18
+Number of references:                      24
+
+Combinational area:                632.056124
+Buf/Inv area:                       23.635392
+Noncombinational area:             441.193992
+Macro/Black Box area:                0.000000
+Net Interconnect area:             206.374356
+
+Total cell area:                  1073.250116
+Total area:                       1279.624473
+1

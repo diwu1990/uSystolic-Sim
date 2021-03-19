@@ -1,0 +1,52 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : mul_inner
+Version: Q-2019.12-SP3
+Date   : Sat Mar  6 21:54:23 2021
+****************************************
+
+Operating Conditions: tt0p85v25c   Library: saed32rvt_tt0p85v25c
+Wire Load Model Mode: enclosed
+
+  Startpoint: i_data0[0] (input port clocked by clk)
+  Endpoint: o_data[7] (output port clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  mul_inner          ForQA                 saed32rvt_tt0p85v25c
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  input external delay                     0.25       0.25 r
+  i_data0[0] (in)                          0.00       0.25 r
+  U38/Y (NAND3X0_RVT)                      0.05       0.30 f
+  U37/Y (NAND2X0_RVT)                      0.07       0.37 r
+  U36/Y (AO221X1_RVT)                      0.09       0.46 r
+  U31/Y (AO22X1_RVT)                       0.13       0.59 r
+  U29/Y (AND2X1_RVT)                       0.09       0.68 r
+  U56/Y (INVX2_RVT)                        0.07       0.75 f
+  U53/Y (INVX1_RVT)                        0.05       0.80 r
+  o_data[7] (out)                          0.01       0.81 r
+  data arrival time                                   0.81
+
+  clock clk (rise edge)                    2.50       2.50
+  clock network delay (ideal)              0.00       2.50
+  clock uncertainty                       -0.15       2.35
+  output external delay                   -0.50       1.85
+  data required time                                  1.85
+  -----------------------------------------------------------
+  data required time                                  1.85
+  data arrival time                                  -0.81
+  -----------------------------------------------------------
+  slack (MET)                                         1.04
+
+
+1
