@@ -59,8 +59,8 @@ module array #(
     generate
         for (h = 0; h < HEIGHT; h++) begin
             pe_border #(
-                IWIDTH=IWIDTH,
-                OWIDTH=OWIDTH
+                .IWIDTH(IWIDTH),
+                .OWIDTH(OWIDTH)
             ) U_pe_border (
                 .clk(clk),
                 .rst_n(rst_n),
@@ -85,8 +85,8 @@ module array #(
             );
             for (w = 1; w < WIDTH; w++) begin
                 pe_inner #(
-                    IWIDTH=IWIDTH,
-                    OWIDTH=OWIDTH
+                    .IWIDTH(IWIDTH),
+                    .OWIDTH(OWIDTH)
                 ) U_pe_inner (
                     .clk(clk),
                     .rst_n(rst_n),
