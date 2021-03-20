@@ -1,3 +1,6 @@
+`ifndef _mul_inner_
+`define _mul_inner_
+
 module mul_inner #(
     parameter WIDTH=8
 ) (
@@ -9,3 +12,5 @@ module mul_inner #(
     assign o_data = i_data0 * i_data1;
     
 endmodule
+
+`endif

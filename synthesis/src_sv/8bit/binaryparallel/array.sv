@@ -1,3 +1,6 @@
+`ifndef _array_
+`define _array_
+
 `include "pe_border.sv"
 `include "pe_inner.sv"
 
@@ -111,3 +114,5 @@ module array #(
     endgenerate
 
 endmodule
+
+`endif

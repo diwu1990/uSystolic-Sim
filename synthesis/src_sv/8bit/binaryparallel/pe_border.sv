@@ -1,3 +1,6 @@
+`ifndef _pe_border_
+`define _pe_border_
+
 `include "ireg_border.sv"
 `include "wreg.sv"
 `include "mul_border.sv"
@@ -83,3 +86,5 @@ module pe_border #(
     end
 
 endmodule
+
+`endif

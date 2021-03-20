@@ -1,3 +1,6 @@
+`ifndef _mul_border_
+`define _mul_border_
+
 module mul_border #(
     parameter WIDTH=8
 ) (
@@ -9,3 +12,5 @@ module mul_border #(
     assign o_data = i_data0 * i_data1;
     
 endmodule
+
+`endif

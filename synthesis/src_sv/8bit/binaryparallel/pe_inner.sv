@@ -1,3 +1,6 @@
+`ifndef _pe_inner_
+`define _pe_inner_
+
 `include "ireg_inner.sv"
 `include "wreg.sv"
 `include "mul_inner.sv"
@@ -83,3 +86,5 @@ module pe_inner #(
     end
 
 endmodule
+
+`endif
