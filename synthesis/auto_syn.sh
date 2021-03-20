@@ -11,7 +11,7 @@ technode="32nm_rvt"
 
 echo "Process technode: $technode"
 
-cp src_sv ./$technode
+cp -R src_sv ./$technode
 
 cd $technode
 for subdir in $(ls -d */)
