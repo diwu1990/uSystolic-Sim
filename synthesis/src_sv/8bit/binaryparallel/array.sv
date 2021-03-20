@@ -18,21 +18,21 @@ module array #(
     input logic [WIDTH-1 : 0] clr_w,
     input logic [WIDTH-1 : 0] en_o,
     input logic [WIDTH-1 : 0] clr_o,
-    input logic signed [HEIGHT-1 : 0] ifm [IWIDTH-1 : 0],
-    input logic signed [WIDTH-1 : 0] wght [IWIDTH-1 : 0],
-    output logic signed [WIDTH-1 : 0] ofm [OWIDTH-1 : 0]
+    input logic signed [IWIDTH-1 : 0] ifm [HEIGHT-1 : 0],
+    input logic signed [IWIDTH-1 : 0] wght [WIDTH-1 : 0],
+    output logic signed [OWIDTH-1 : 0] ofm [WIDTH-1 : 0]
 );
 
-    logic [HEIGHT-1 : 0] en_i_x [WIDTH : 0];
-    logic [HEIGHT-1 : 0] clr_i_x [WIDTH : 0];
-    logic [WIDTH-1 : 0] en_w_x [HEIGHT : 0];
-    logic [WIDTH-1 : 0] clr_w_x [HEIGHT : 0];
-    logic [WIDTH-1 : 0] en_o_x [HEIGHT : 0];
-    logic [WIDTH-1 : 0] clr_o_x [HEIGHT : 0];
+    logic [WIDTH : 0] en_i_x [HEIGHT-1 : 0];
+    logic [WIDTH : 0] clr_i_x [HEIGHT-1 : 0];
+    logic [HEIGHT : 0] en_w_x [WIDTH-1 : 0];
+    logic [HEIGHT : 0] clr_w_x [WIDTH-1 : 0];
+    logic [HEIGHT : 0] en_o_x [WIDTH-1 : 0];
+    logic [HEIGHT : 0] clr_o_x [WIDTH-1 : 0];
 
-    logic signed [HEIGHT-1 : 0][WIDTH : 0] ifm_x [IWIDTH-1 : 0];
-    logic signed [WIDTH-1 : 0][HEIGHT : 0] wght_x [IWIDTH-1 : 0];
-    logic signed [WIDTH-1 : 0][HEIGHT : 0] ofm_x [OWIDTH-1 : 0];
+    logic signed [IWIDTH-1 : 0] ifm_x [HEIGHT-1 : 0][WIDTH : 0];
+    logic signed [IWIDTH-1 : 0] wght_x [WIDTH-1 : 0][HEIGHT : 0];
+    logic signed [OWIDTH-1 : 0] ofm_x [WIDTH-1 : 0][HEIGHT : 0];
 
     genvar h;
     generate
