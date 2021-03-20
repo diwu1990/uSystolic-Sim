@@ -66,5 +66,14 @@ module pe_border #(
         .i_data1(ofm),
         .o_data(ofm_d)
     );
+    
+    always_ff @( posedge clk ) begin : en_clr
+        en_i_d <= en_i;
+        en_w_d <= en_w;
+        en_o_d <= en_o;
+        clr_i_d <= clr_i;
+        clr_w_d <= clr_w;
+        clr_o_d <= clr_o;
+    end
 
 endmodule

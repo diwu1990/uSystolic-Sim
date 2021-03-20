@@ -18,6 +18,12 @@ module pe_inner #(
     input logic signed [IWIDTH-1 : 0] ifm,
     input logic signed [IWIDTH-1 : 0] wght,
     input logic signed [OWIDTH-1 : 0] ofm,
+    output logic en_i_d,
+    output logic clr_i_d,
+    output logic en_w_d,
+    output logic clr_w_d,
+    output logic en_o_d,
+    output logic clr_o_d,
     output logic signed [IWIDTH-1 : 0] ifm_d,
     output logic signed [IWIDTH-1 : 0] wght_d,
     output logic signed [OWIDTH-1 : 0] ofm_d
@@ -66,5 +72,14 @@ module pe_inner #(
         .i_data1(ofm),
         .o_data(ofm_d)
     );
+
+    always_ff @( posedge clk ) begin : en_clr
+        en_i_d <= en_i;
+        en_w_d <= en_w;
+        en_o_d <= en_o;
+        clr_i_d <= clr_i;
+        clr_w_d <= clr_w;
+        clr_o_d <= clr_o;
+    end
 
 endmodule
