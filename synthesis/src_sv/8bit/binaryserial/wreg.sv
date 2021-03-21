@@ -1,3 +1,6 @@
+`ifndef _wreg_
+`define _wreg_
+
 module wreg #(
     parameter WIDTH=8
 ) (
@@ -27,3 +30,5 @@ module wreg #(
     end
 
 endmodule
+
+`endif
