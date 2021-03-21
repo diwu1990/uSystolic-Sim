@@ -54,6 +54,7 @@ if ls *.$svsuff; then
         sed -i "s/$dutname/dut/g" $DCSCRIPT
         rm -rf work/ *.vg *.svf
         echo "    Done"
+        sleep 10s
     done
 else
     echo "No design exists."
