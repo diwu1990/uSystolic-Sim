@@ -66,23 +66,26 @@ module array #(
             ) U_pe_border (
                 .clk(clk),
                 .rst_n(rst_n),
+                
                 .en_i(en_i_x[h][0]),
                 .clr_i(clr_i_x[h][0]),
-                .en_w(en_w_x[0][h]),
-                .clr_w(clr_w_x[0][h]),
-                .en_o(en_o_x[0][h+1]),
-                .clr_o(clr_o_x[0][h+1]),
                 .ifm(ifm_x[h][0]),
-                .wght(wght_x[0][h]),
-                .ofm(ofm_x[0][h+1]),
                 .en_i_d(en_i_x[h][1]),
                 .clr_i_d(clr_i_x[h][1]),
+                .ifm_d(ifm_x[h][1]),
+                
+                .en_w(en_w_x[0][h]),
+                .clr_w(clr_w_x[0][h]),
+                .wght(wght_x[0][h]),
                 .en_w_d(en_w_x[0][h+1]),
                 .clr_w_d(clr_w_x[0][h+1]),
+                .wght_d(wght_x[0][h+1]),
+
+                .en_o(en_o_x[0][h+1]),
+                .clr_o(clr_o_x[0][h+1]),
+                .ofm(ofm_x[0][h+1]),
                 .en_o_d(en_o_x[0][h]),
                 .clr_o_d(clr_o_x[0][h]),
-                .ifm_d(ifm_x[h][1]),
-                .wght_d(wght_x[0][h+1]),
                 .ofm_d(ofm_x[0][h])
             );
             for (w = 1; w < WIDTH; w++) begin
@@ -92,23 +95,26 @@ module array #(
                 ) U_pe_inner (
                     .clk(clk),
                     .rst_n(rst_n),
+                    
                     .en_i(en_i_x[h][w]),
                     .clr_i(clr_i_x[h][w]),
-                    .en_w(en_w_x[w][h]),
-                    .clr_w(clr_w_x[w][h]),
-                    .en_o(en_o_x[w][h+1]),
-                    .clr_o(clr_o_x[w][h+1]),
                     .ifm(ifm_x[h][w]),
-                    .wght(wght_x[w][h]),
-                    .ofm(ofm_x[w][h+1]),
                     .en_i_d(en_i_x[h][w+1]),
                     .clr_i_d(clr_i_x[h][w+1]),
+                    .ifm_d(ifm_x[h][w+1]),
+
+                    .en_w(en_w_x[w][h]),
+                    .clr_w(clr_w_x[w][h]),
+                    .wght(wght_x[w][h]),
                     .en_w_d(en_w_x[w][h+1]),
                     .clr_w_d(clr_w_x[w][h+1]),
+                    .wght_d(wght_x[w][h+1]),
+                    
+                    .en_o(en_o_x[w][h+1]),
+                    .clr_o(clr_o_x[w][h+1]),
+                    .ofm(ofm_x[w][h+1]),
                     .en_o_d(en_o_x[w][h]),
                     .clr_o_d(clr_o_x[w][h]),
-                    .ifm_d(ifm_x[h][w+1]),
-                    .wght_d(wght_x[w][h+1]),
                     .ofm_d(ofm_x[w][h])
                 );
             end
