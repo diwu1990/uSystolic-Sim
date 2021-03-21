@@ -1,12 +1,12 @@
-`ifndef _array_
-`define _array_
+`ifndef _array_tpu_
+`define _array_tpu_
 
 `include "pe_border.sv"
 `include "pe_inner.sv"
 
-module array #(
-    parameter HEIGHT=12,
-    parameter WIDTH=14,
+module array_tpu #(
+    parameter HEIGHT=256,
+    parameter WIDTH=256,
     parameter IWIDTH=8,
     parameter OWIDTH=24
 ) (
@@ -95,7 +95,7 @@ module array #(
                 ) U_pe_inner (
                     .clk(clk),
                     .rst_n(rst_n),
-                    
+
                     .en_i(en_i_x[h][w]),
                     .clr_i(clr_i_x[h][w]),
                     .ifm(ifm_x[h][w]),
