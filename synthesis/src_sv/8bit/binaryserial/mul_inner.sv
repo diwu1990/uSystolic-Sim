@@ -15,7 +15,7 @@ module mul_inner #(
     output logic [DEPTH-1 : 0] o_idx,
     output logic signed [WIDTH*2-1 : 0] o_data
 );
-`
+
     always_ff @(posedge clk or negedge rst_n) begin : o_idx_0
         if (~rst_n) begin
             o_idx <= 0;
