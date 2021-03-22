@@ -31,7 +31,7 @@ module pe_border #(
     output logic en_o_d,
     output logic clr_o_d,
     output logic ifm_sign_d,
-    output logic [IWIDTH-2 : 0] ifm_dff_d,
+    output logic ifm_dff_d,
     output logic wght_sign_d,
     output logic [IWIDTH-2 : 0] randW_d,
     output logic [IWIDTH-2 : 0] wght_abs_d,
