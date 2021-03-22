@@ -50,7 +50,7 @@ module pe_inner #(
         .i_data_sign(ifm_sign),
         .i_data_dff(ifm_dff),
         .o_data_sign(ifm_sign_d),
-        .o_data_dff(ifm_dff_d),
+        .o_data_dff(ifm_dff_d)
     );
 
     wreg #(
@@ -74,7 +74,7 @@ module pe_inner #(
         .i_bit_i(ifm_dff_d),
         .i_randW(randW),
         .i_data_w(wght_abs_d),
-        .o_randW(randW_d)
+        .o_randW(randW_d),
         .o_bit(prod)
     );
 

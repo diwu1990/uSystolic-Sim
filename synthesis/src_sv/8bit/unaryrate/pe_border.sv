@@ -49,7 +49,7 @@ module pe_border #(
         .clr(clr_i),
         .i_data(ifm),
         .o_data_sign(ifm_sign_d),
-        .o_data_abs(ifm_abs_d),
+        .o_data_abs(ifm_abs_d)
     );
 
     wreg #(
