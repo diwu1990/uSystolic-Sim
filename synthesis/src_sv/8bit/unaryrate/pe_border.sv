@@ -31,14 +31,14 @@ module pe_border #(
     output logic en_o_d,
     output logic clr_o_d,
     output logic ifm_sign_d,
-    output logic [IWIDTH-2 : 0] ifm_abs_d,
+    output logic [IWIDTH-2 : 0] ifm_dff_d,
     output logic wght_sign_d,
     output logic [IWIDTH-2 : 0] randW_d,
     output logic [IWIDTH-2 : 0] wght_abs_d,
     output logic signed [OWIDTH-1 : 0] ofm_d
 );
 
-    logic prod;
+    logic [IWIDTH-2 : 0] ifm_abs_d;
 
     ireg_border #(
         .WIDTH(IWIDTH)
@@ -73,7 +73,7 @@ module pe_border #(
         .i_data_i(ifm_abs_d),
         .i_data_w(wght_abs_d),
         .randW(randW_d),
-        .o_bit(prod)
+        .o_bit(ifm_dff_d)
     );
 
     acc #(
@@ -86,7 +86,7 @@ module pe_border #(
         .mac_done(mac_done_d),
         .sign_i(ifm_sign_d),
         .sign_w(wght_sign_d),
-        .prod_bit(prod),
+        .prod_bit(ifm_dff_d),
         .sum_i(ofm),
         .sum_o(ofm_d)
     );

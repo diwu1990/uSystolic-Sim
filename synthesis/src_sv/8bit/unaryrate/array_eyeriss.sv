@@ -34,7 +34,6 @@ module array_eyeriss #(
     logic [HEIGHT : 0] clr_o_x [WIDTH-1 : 0];
 
     logic signed ifm_sign_x [HEIGHT-1 : 0][WIDTH : 0];
-    logic signed [IWIDTH-2 : 0] ifm_abs_x [HEIGHT-1 : 0][WIDTH : 0];
     logic signed ifm_dff_x [HEIGHT-1 : 0][WIDTH : 0];
     logic signed wght_sign_x [WIDTH-1 : 0][HEIGHT : 0];
     logic signed [IWIDTH-2 : 0] wght_abs_x [WIDTH-1 : 0][HEIGHT : 0];
@@ -83,7 +82,7 @@ module array_eyeriss #(
                 .en_i_d(en_i_x[h][1]),
                 .clr_i_d(clr_i_x[h][1]),
                 .ifm_sign_d(ifm_sign_x[h][1]),
-                .ifm_abs_d(ifm_abs_x[h][1]),
+                .ifm_dff_d(ifm_dff_x[h][1]),
                 
                 .en_w(en_w_x[0][h]),
                 .clr_w(clr_w_x[0][h]),
@@ -115,12 +114,12 @@ module array_eyeriss #(
                     .en_i(en_i_x[h][w]),
                     .clr_i(clr_i_x[h][w]),
                     .ifm_sign(ifm_sign_x[h][w]),
-                    .ifm_abs(ifm_abs_x[h][w]),
+                    .ifm_dff(ifm_dff_x[h][w]),
                     .mac_done_d(mac_done_x[h][w+1]),
                     .en_i_d(en_i_x[h][w+1]),
                     .clr_i_d(clr_i_x[h][w+1]),
                     .ifm_sign_d(ifm_sign_x[h][w+1]),
-                    .ifm_abs_d(ifm_abs_x[h][w+1]),
+                    .ifm_dff_d(ifm_dff_x[h][w+1]),
 
                     .en_w(en_w_x[w][h]),
                     .clr_w(clr_w_x[w][h]),
