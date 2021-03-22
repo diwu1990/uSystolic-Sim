@@ -8,7 +8,7 @@ module array_eyeriss #(
     parameter HEIGHT=12,
     parameter WIDTH=14,
     parameter IWIDTH=8,
-    parameter OWIDTH=24
+    parameter OWIDTH=16
 ) (
     input logic clk,
     input logic rst_n,
