@@ -11,23 +11,24 @@ module mul_border #(
     input logic clr,
     input logic signed [WIDTH-1 : 0] i_data0,
     input logic signed [WIDTH-1 : 0] i_data1,
-    output logic [DEPTH-1 : 0] idx,
+    input logic [DEPTH-1 : 0] i_idx,
+    output logic [DEPTH-1 : 0] o_idx,
     output logic signed [WIDTH*2-1 : 0] o_data
 );
 
-    always_ff @(posedge clk or negedge rst_n) begin : idx_0
+    always_ff @(posedge clk or negedge rst_n) begin : o_idx_0
         if (~rst_n) begin
-            idx <= 0;
+            o_idx <= 0;
         end else begin
             if (clr) begin
-                idx <= 0;
+                o_idx <= 0;
             end else begin
-                idx <= idx + en;
+                o_idx <= o_idx + en;
             end
         end
     end
     
-    assign o_data = (i_data0[idx] ? i_data1 : 0);
+    assign o_data = (i_data0[o_idx] ? i_data1 : 0);
     
 endmodule
 

@@ -8,6 +8,7 @@
 
 module pe_inner #(
     parameter IWIDTH=8,
+    parameter IDEPTH=3,
     parameter OWIDTH=24
 ) (
     input logic clk,
@@ -21,6 +22,8 @@ module pe_inner #(
     input logic signed [IWIDTH-1 : 0] ifm,
     input logic signed [IWIDTH-1 : 0] wght,
     input logic signed [OWIDTH-1 : 0] ofm,
+    input logic [IDEPTH-1 : 0] idx,
+    output logic [IDEPTH-1 : 0] idx_d,
     output logic en_i_d,
     output logic clr_i_d,
     output logic en_w_d,
@@ -32,7 +35,7 @@ module pe_inner #(
     output logic signed [OWIDTH-1 : 0] ofm_d
 );
 
-    logic signed [IWIDTH*2-1 : 0] prod;
+    logic signed [IWIDTH-1 : 0] prod;
 
     ireg_inner #(
         .WIDTH(IWIDTH)
@@ -59,8 +62,14 @@ module pe_inner #(
     mul_inner #(
         .WIDTH(IWIDTH)
     ) U_mul_inner(
+        .clk(clk),
+        .rst_n(rst_n),
+        .en(1'b1),
+        .clr(1'b0),
         .i_data0(ifm_d),
         .i_data1(wght_d),
+        .i_idx(idx),
+        .o_idx(idx_d),
         .o_data(prod)
     );
 
@@ -71,9 +80,10 @@ module pe_inner #(
         .rst_n(rst_n),
         .en(en_o),
         .clr(clr_o),
-        .i_data0({{(OWIDTH-IWIDTH*2){prod[IWIDTH*2-1]}}, prod}),
-        .i_data1(ofm),
-        .o_data(ofm_d)
+        .mac_done(mac_done),
+        .prod({{(OWIDTH-IWIDTH){prod[IWIDTH-1]}}, prod}),
+        .sum_i(ofm),
+        .sum_o(ofm_d)
     );
 
     always_ff @( posedge clk ) begin : en_clr

@@ -423,6 +423,19 @@ def gen_run_config(tech_node=None):
                     os.system(cmd)
 
 
+
+def scaling():
+    """
+    x is the PE count
+    y is resultant scaling factor compare to linear PE scaling.
+    area: ŷ = -0.10487X + 1.41311
+    dynamic power: ŷ = 0.02205X + 1.09095
+    leakage power: ŷ = 0.02723X + 1.24954
+    """
+
+    return None
+
+    
 def prune(input_list):
     l = []
 
