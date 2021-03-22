@@ -37,7 +37,7 @@ module pe_inner #(
     output logic signed [OWIDTH-1 : 0] ofm_d
 );
 
-    logic signed [IWIDTH-1 : 0] prod;
+    logic signed [IWIDTH*2-1 : 0] prod;
 
     ireg_inner #(
         .WIDTH(IWIDTH)
@@ -84,7 +84,7 @@ module pe_inner #(
         .en(en_o),
         .clr(clr_o),
         .mac_done(mac_done_d),
-        .prod({{(OWIDTH-IWIDTH){prod[IWIDTH-1]}}, prod}),
+        .prod({{(OWIDTH-IWIDTH*2){prod[IWIDTH*2-1]}}, prod}),
         .sum_i(ofm),
         .sum_o(ofm_d)
     );

@@ -2,7 +2,7 @@
 `define _mul_border_
 
 module mul_border #(
-    parameter WIDTH=8
+    parameter WIDTH=8,
     parameter DEPTH=3
 ) (
     input logic clk,
