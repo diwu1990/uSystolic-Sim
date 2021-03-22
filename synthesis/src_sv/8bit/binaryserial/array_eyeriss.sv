@@ -28,12 +28,12 @@ module array_eyeriss #(
     logic [WIDTH : 0] en_i_x [HEIGHT-1 : 0];
     logic [WIDTH : 0] clr_i_x [HEIGHT-1 : 0];
     logic [WIDTH : 0] mac_done_x [HEIGHT-1 : 0];
-    logic [WIDTH : 0] idx_x [HEIGHT-1 : 0];
     logic [HEIGHT : 0] en_w_x [WIDTH-1 : 0];
     logic [HEIGHT : 0] clr_w_x [WIDTH-1 : 0];
     logic [HEIGHT : 0] en_o_x [WIDTH-1 : 0];
     logic [HEIGHT : 0] clr_o_x [WIDTH-1 : 0];
 
+    logic signed [IDEPTH-1 : 0] idx_x [HEIGHT-1 : 0][WIDTH : 0];
     logic signed [IWIDTH-1 : 0] ifm_x [HEIGHT-1 : 0][WIDTH : 0];
     logic signed [IWIDTH-1 : 0] wght_x [WIDTH-1 : 0][HEIGHT : 0];
     logic signed [OWIDTH-1 : 0] ofm_x [WIDTH-1 : 0][HEIGHT : 0];
