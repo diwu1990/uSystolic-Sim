@@ -33,7 +33,7 @@ module mul_border #(
         .sobolSeq(randW_all)
     );
 
-    assign randW = randW_all[WIDTH-1 : 1]
+    assign randW = randW_all[WIDTH-1 : 1];
     
     assign bitW = i_data_w > randW;
 
