@@ -9,9 +9,9 @@ module mul_border #(
     input logic rst_n,
     input logic en,
     input logic clr,
+    input logic [DEPTH-1 : 0] i_idx,
     input logic signed [WIDTH-1 : 0] i_data0,
     input logic signed [WIDTH-1 : 0] i_data1,
-    input logic [DEPTH-1 : 0] i_idx,
     output logic [DEPTH-1 : 0] o_idx,
     output logic signed [WIDTH*2-1 : 0] o_data
 );

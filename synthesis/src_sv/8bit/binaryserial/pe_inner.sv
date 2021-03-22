@@ -13,6 +13,8 @@ module pe_inner #(
 ) (
     input logic clk,
     input logic rst_n,
+    input logic [IDEPTH-1 : 0] idx,
+    input logic mac_done,
     input logic en_i,
     input logic clr_i,
     input logic en_w,
@@ -22,8 +24,8 @@ module pe_inner #(
     input logic signed [IWIDTH-1 : 0] ifm,
     input logic signed [IWIDTH-1 : 0] wght,
     input logic signed [OWIDTH-1 : 0] ofm,
-    input logic [IDEPTH-1 : 0] idx,
     output logic [IDEPTH-1 : 0] idx_d,
+    output logic mac_done_d,
     output logic en_i_d,
     output logic clr_i_d,
     output logic en_w_d,
@@ -60,15 +62,16 @@ module pe_inner #(
     );
 
     mul_inner #(
-        .WIDTH(IWIDTH)
+        .WIDTH(IWIDTH),
+        .DEPTH(IDEPTH)
     ) U_mul_inner(
         .clk(clk),
         .rst_n(rst_n),
         .en(1'b1),
         .clr(1'b0),
+        .i_idx(idx),
         .i_data0(ifm_d),
         .i_data1(wght_d),
-        .i_idx(idx),
         .o_idx(idx_d),
         .o_data(prod)
     );
@@ -80,7 +83,7 @@ module pe_inner #(
         .rst_n(rst_n),
         .en(en_o),
         .clr(clr_o),
-        .mac_done(mac_done),
+        .mac_done(mac_done_d),
         .prod({{(OWIDTH-IWIDTH){prod[IWIDTH-1]}}, prod}),
         .sum_i(ofm),
         .sum_o(ofm_d)
@@ -93,6 +96,7 @@ module pe_inner #(
         clr_i_d <= clr_i;
         clr_w_d <= clr_w;
         clr_o_d <= clr_o;
+        mac_done_d <= mac_done;
     end
 
 endmodule

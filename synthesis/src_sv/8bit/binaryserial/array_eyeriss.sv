@@ -8,12 +8,14 @@ module array_eyeriss #(
     parameter HEIGHT=12,
     parameter WIDTH=14,
     parameter IWIDTH=8,
+    parameter IDEPTH=3,
     parameter OWIDTH=24
 ) (
     input logic clk,
     input logic rst_n,
     input logic [HEIGHT-1 : 0] en_i,
     input logic [HEIGHT-1 : 0] clr_i,
+    input logic [HEIGHT-1 : 0] mac_done,
     input logic [WIDTH-1 : 0] en_w,
     input logic [WIDTH-1 : 0] clr_w,
     input logic [WIDTH-1 : 0] en_o,
@@ -25,6 +27,8 @@ module array_eyeriss #(
 
     logic [WIDTH : 0] en_i_x [HEIGHT-1 : 0];
     logic [WIDTH : 0] clr_i_x [HEIGHT-1 : 0];
+    logic [WIDTH : 0] mac_done_x [HEIGHT-1 : 0];
+    logic [WIDTH : 0] idx_x [HEIGHT-1 : 0];
     logic [HEIGHT : 0] en_w_x [WIDTH-1 : 0];
     logic [HEIGHT : 0] clr_w_x [WIDTH-1 : 0];
     logic [HEIGHT : 0] en_o_x [WIDTH-1 : 0];
@@ -39,6 +43,8 @@ module array_eyeriss #(
         for (h = 0; h < HEIGHT; h++) begin
             assign en_i_x[h][0] = en_i[h];
             assign clr_i_x[h][0] = clr_i[h];
+            assign mac_done_x[h][0] = mac_done[h];
+            assign idx_x[h][0] = 0;
             assign ifm_x[h][0] = ifm[h];
         end
     endgenerate
@@ -67,9 +73,13 @@ module array_eyeriss #(
                 .clk(clk),
                 .rst_n(rst_n),
                 
+                .idx(idx_x[h][0]),
+                .mac_done(mac_done_x[h][0]),
                 .en_i(en_i_x[h][0]),
                 .clr_i(clr_i_x[h][0]),
                 .ifm(ifm_x[h][0]),
+                .idx_d(idx_x[h][1]),
+                .mac_done_d(mac_done_x[h][1]),
                 .en_i_d(en_i_x[h][1]),
                 .clr_i_d(clr_i_x[h][1]),
                 .ifm_d(ifm_x[h][1]),
@@ -96,9 +106,13 @@ module array_eyeriss #(
                     .clk(clk),
                     .rst_n(rst_n),
 
+                    .idx(idx_x[h][w]),
+                    .mac_done(mac_done_x[h][w]),
                     .en_i(en_i_x[h][w]),
                     .clr_i(clr_i_x[h][w]),
                     .ifm(ifm_x[h][w]),
+                    .idx_d(idx_x[h][w+1]),
+                    .mac_done_d(mac_done_x[h][w+1]),
                     .en_i_d(en_i_x[h][w+1]),
                     .clr_i_d(clr_i_x[h][w+1]),
                     .ifm_d(ifm_x[h][w+1]),
