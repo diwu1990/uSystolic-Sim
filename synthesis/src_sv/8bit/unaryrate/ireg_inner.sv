@@ -1,6 +1,7 @@
-module ireg_inner #(
-    parameter WIDTH=1
-) (
+`ifndef _ireg_inner_
+`define _ireg_inner_
+
+module ireg_inner (
     input logic clk,
     input logic rst_n,
     input logic en,
@@ -33,3 +34,5 @@ module ireg_inner #(
     end
 
 endmodule
+
+`endif
