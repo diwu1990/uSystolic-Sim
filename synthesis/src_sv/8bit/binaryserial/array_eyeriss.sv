@@ -68,6 +68,7 @@ module array_eyeriss #(
         for (h = 0; h < HEIGHT; h++) begin
             pe_border #(
                 .IWIDTH(IWIDTH),
+                .IDEPTH(IDEPTH),
                 .OWIDTH(OWIDTH)
             ) U_pe_border (
                 .clk(clk),
@@ -101,6 +102,7 @@ module array_eyeriss #(
             for (w = 1; w < WIDTH; w++) begin
                 pe_inner #(
                     .IWIDTH(IWIDTH),
+                    .IDEPTH(IDEPTH),
                     .OWIDTH(OWIDTH)
                 ) U_pe_inner (
                     .clk(clk),
