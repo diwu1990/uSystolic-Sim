@@ -30,7 +30,7 @@ module mul_border #(
         .clk(clk),
         .rst_n(rst_n),
         .enable(bitI),
-        .sobolSeq(randI_all)
+        .sobolSeq(randW_all)
     );
 
     assign randW = randW_all[WIDTH-1 : 1]
