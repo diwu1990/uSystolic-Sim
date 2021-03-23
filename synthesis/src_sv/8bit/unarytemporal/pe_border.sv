@@ -70,6 +70,8 @@ module pe_border #(
     ) U_mul_border(
         .clk(clk),
         .rst_n(rst_n),
+        .init(en_i_d),
+        .clr(clr_i_d),
         .i_data_i(ifm_abs_d),
         .i_data_w(wght_abs_d),
         .randW(randW_d),
