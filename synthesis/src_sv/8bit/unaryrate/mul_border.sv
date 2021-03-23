@@ -1,6 +1,8 @@
 `ifndef _mul_border_
 `define _mul_border_
 
+`include "sobol8.sv"
+
 module mul_border #(
     parameter WIDTH=8
 ) (

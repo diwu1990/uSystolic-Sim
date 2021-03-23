@@ -1,4 +1,5 @@
-`include "sobol8.sv"
+`ifndef _mul_inner_
+`define _mul_inner_
 
 module mul_inner #(
     parameter WIDTH=8
@@ -26,3 +27,5 @@ module mul_inner #(
     end
 
 endmodule
+
+`endif
