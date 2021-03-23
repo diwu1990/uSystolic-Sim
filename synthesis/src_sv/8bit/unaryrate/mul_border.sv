@@ -11,7 +11,8 @@ module mul_border #(
     input logic [WIDTH-2 : 0] i_data_i,
     input logic [WIDTH-2 : 0] i_data_w,
     output logic [WIDTH-2 : 0] randW,
-    output logic o_bit
+    output logic o_bit,
+    output logic i_bit_d
 );
 
     logic [WIDTH-1 : 0] randI;
@@ -27,7 +28,8 @@ module mul_border #(
     );
 
     assign bitI = i_data_i > randI[WIDTH-1 : 1];
-
+    assign i_bit_d = bitI;
+    
     sobol8 U_sobol_W(
         .clk(clk),
         .rst_n(rst_n),
