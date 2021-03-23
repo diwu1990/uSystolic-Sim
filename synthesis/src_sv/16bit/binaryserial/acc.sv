@@ -1,3 +1,6 @@
+`ifndef _acc_
+`define _acc_
+
 module acc #(
     parameter WIDTH=32
 ) (
@@ -29,3 +32,5 @@ module acc #(
     end
 
 endmodule
+
+`endif

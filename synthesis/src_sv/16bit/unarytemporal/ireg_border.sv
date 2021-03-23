@@ -1,3 +1,6 @@
+`ifndef _ireg_border_
+`define _ireg_border_
+
 module ireg_border #(
     parameter WIDTH=16
 ) (
@@ -35,3 +38,5 @@ module ireg_border #(
     assign o_data_abs = o_data_sign ? o_data_neg[WIDTH-2 : 0] : o_data [WIDTH-2 : 0];
 
 endmodule
+
+`endif

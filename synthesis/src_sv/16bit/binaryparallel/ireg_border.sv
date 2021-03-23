@@ -1,3 +1,6 @@
+`ifndef _ireg_border_
+`define _ireg_border_
+
 module ireg_border #(
     parameter WIDTH=16
 ) (
@@ -27,3 +30,5 @@ module ireg_border #(
     end
 
 endmodule
+
+`endif

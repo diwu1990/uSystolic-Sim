@@ -1,3 +1,6 @@
+`ifndef _sobol8_
+`define _sobol8_
+
 module sobol16 #(
     parameter WIDTH = 16,
     parameter LOGWIDTH = 4
@@ -98,3 +101,5 @@ module sobol16 #(
     end
 
 endmodule
+
+`endif

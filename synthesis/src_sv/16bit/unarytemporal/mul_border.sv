@@ -1,3 +1,6 @@
+`ifndef _mul_border_
+`define _mul_border_
+
 `include "sobol16.sv"
 
 module mul_border #(
@@ -9,11 +12,13 @@ module mul_border #(
     input logic clr,
     input logic [WIDTH-2 : 0] i_data_i,
     input logic [WIDTH-2 : 0] i_data_w,
-    output logic o_bit
+    output logic [WIDTH-2 : 0] randW,
+    output logic o_bit,
+    output logic i_bit_d
 );
 
     logic [WIDTH-2 : 0] cnt;
-    logic [WIDTH-1 : 0] randW;
+    logic [WIDTH-1 : 0] randW_all;
     logic bitI;
     logic bitW;
     
@@ -34,16 +39,21 @@ module mul_border #(
     end
 
     assign bitI = ~(|cnt == 0);
+    assign i_bit_d = bitI;
 
     sobol16 U_sobol_W(
         .clk(clk),
         .rst_n(rst_n),
         .enable(bitI),
-        .sobolSeq(randW)
+        .sobolSeq(randW_all)
     );
 
-    assign bitW = i_data_w > randW[WIDTH-1 : 1];
+    assign randW = randW_all[WIDTH-1 : 1];
+    
+    assign bitW = i_data_w > randW;
 
     assign o_bit = bitI & bitW;
 
 endmodule
+
+`endif

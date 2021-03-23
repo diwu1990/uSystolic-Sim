@@ -1,3 +1,6 @@
+`ifndef _ireg_inner_
+`define _ireg_inner_
+
 module ireg_inner #(
     parameter WIDTH=16
 ) (
@@ -27,3 +30,5 @@ module ireg_inner #(
     end
 
 endmodule
+
+`endif
