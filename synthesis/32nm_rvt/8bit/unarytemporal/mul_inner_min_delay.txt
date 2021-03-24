@@ -1,0 +1,47 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay min
+        -max_paths 1
+Design : mul_inner
+Version: Q-2019.12-SP3
+Date   : Tue Mar 23 17:56:27 2021
+****************************************
+
+Operating Conditions: tt0p85v25c   Library: saed32rvt_tt0p85v25c
+Wire Load Model Mode: enclosed
+
+  Startpoint: i_randW[0] (input port clocked by clk)
+  Endpoint: o_randW_reg[0]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: min
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  mul_inner          ForQA                 saed32rvt_tt0p85v25c
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  input external delay                     0.25       0.25 f
+  i_randW[0] (in)                          0.00       0.25 f
+  o_randW_reg[0]/D (DFFX1_RVT)             0.01       0.26 f
+  data arrival time                                   0.26
+
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  clock uncertainty                        0.15       0.15
+  o_randW_reg[0]/CLK (DFFX1_RVT)           0.00       0.15 r
+  library hold time                       -0.01       0.14
+  data required time                                  0.14
+  -----------------------------------------------------------
+  data required time                                  0.14
+  data arrival time                                  -0.26
+  -----------------------------------------------------------
+  slack (MET)                                         0.12
+
+
+1

@@ -1,0 +1,82 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : acc
+Version: Q-2019.12-SP3
+Date   : Tue Mar 23 08:57:47 2021
+****************************************
+
+Operating Conditions: tt0p85v25c   Library: saed32rvt_tt0p85v25c
+Wire Load Model Mode: enclosed
+
+  Startpoint: sum_i[1] (input port clocked by clk)
+  Endpoint: sum_o_reg[31]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  acc                8000                  saed32rvt_tt0p85v25c
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  input external delay                     0.25       0.25 f
+  sum_i[1] (in)                            0.00       0.25 f
+  U572/Y (INVX0_RVT)                       0.03       0.28 r
+  U587/Y (NAND3X0_RVT)                     0.05       0.32 f
+  U588/Y (AND2X1_RVT)                      0.07       0.40 f
+  U602/Y (NAND2X0_RVT)                     0.06       0.45 r
+  U623/Y (NAND3X0_RVT)                     0.06       0.52 f
+  U624/Y (NAND3X0_RVT)                     0.05       0.57 r
+  U625/Y (NAND2X0_RVT)                     0.05       0.62 f
+  U580/Y (NAND2X0_RVT)                     0.07       0.69 r
+  U534/Y (NAND2X0_RVT)                     0.05       0.74 f
+  U659/Y (NAND3X0_RVT)                     0.06       0.80 r
+  U523/Y (NAND2X0_RVT)                     0.04       0.84 f
+  U524/Y (AND2X1_RVT)                      0.06       0.91 f
+  U685/Y (NAND3X0_RVT)                     0.05       0.95 r
+  U517/Y (NAND2X0_RVT)                     0.04       1.00 f
+  U536/Y (NAND2X0_RVT)                     0.05       1.05 r
+  U713/Y (AO21X1_RVT)                      0.08       1.13 r
+  U471/Y (NAND2X0_RVT)                     0.04       1.17 f
+  U469/Y (NAND3X0_RVT)                     0.05       1.22 r
+  U470/Y (NAND2X0_RVT)                     0.04       1.27 f
+  U755/Y (AO21X1_RVT)                      0.09       1.36 f
+  U537/Y (NAND2X0_RVT)                     0.05       1.41 r
+  U538/Y (AND2X1_RVT)                      0.06       1.47 r
+  U833/Y (NAND3X0_RVT)                     0.05       1.52 f
+  U519/Y (NAND2X0_RVT)                     0.06       1.59 r
+  U529/Y (NAND2X0_RVT)                     0.05       1.63 f
+  U579/Y (NAND2X0_RVT)                     0.06       1.69 r
+  U862/Y (NAND2X0_RVT)                     0.06       1.75 f
+  U535/Y (OR2X1_RVT)                       0.08       1.83 f
+  U866/Y (AO22X1_RVT)                      0.07       1.89 f
+  U465/Y (NAND2X0_RVT)                     0.06       1.96 r
+  U464/Y (NAND3X0_RVT)                     0.08       2.04 f
+  U463/Y (NAND2X0_RVT)                     0.09       2.13 r
+  U468/Y (INVX0_RVT)                       0.04       2.17 f
+  U504/Y (NAND3X0_RVT)                     0.05       2.21 r
+  U492/Y (NAND4X0_RVT)                     0.07       2.28 f
+  sum_o_reg[31]/D (DFFARX1_RVT)            0.01       2.29 f
+  data arrival time                                   2.29
+
+  clock clk (rise edge)                    2.50       2.50
+  clock network delay (ideal)              0.00       2.50
+  clock uncertainty                       -0.15       2.35
+  sum_o_reg[31]/CLK (DFFARX1_RVT)          0.00       2.35 r
+  library setup time                      -0.07       2.28
+  data required time                                  2.28
+  -----------------------------------------------------------
+  data required time                                  2.28
+  data arrival time                                  -2.29
+  -----------------------------------------------------------
+  slack (VIOLATED)                                   -0.01
+
+
+1

@@ -1,0 +1,77 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : pe_inner
+Version: Q-2019.12-SP3
+Date   : Tue Mar 23 12:07:21 2021
+****************************************
+
+Operating Conditions: tt0p85v25c   Library: saed32rvt_tt0p85v25c
+Wire Load Model Mode: enclosed
+
+  Startpoint: U_mul_inner/o_randW_reg[6]
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: U_acc/sum_o_reg[23]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  pe_inner           8000                  saed32rvt_tt0p85v25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  U_mul_inner/o_randW_reg[6]/CLK (DFFX1_RVT)              0.00       0.00 r
+  U_mul_inner/o_randW_reg[6]/Q (DFFX1_RVT)                0.13       0.13 f
+  U381/Y (OAI22X1_RVT)                                    0.10       0.23 r
+  U398/Y (AND3X1_RVT)                                     0.07       0.29 r
+  U397/Y (AO221X1_RVT)                                    0.08       0.37 r
+  U444/Y (AO21X1_RVT)                                     0.06       0.43 r
+  U445/Y (OA222X1_RVT)                                    0.08       0.51 r
+  U446/Y (AO222X1_RVT)                                    0.10       0.62 r
+  U395/Y (AND2X1_RVT)                                     0.07       0.69 r
+  U386/Y (NAND2X4_RVT)                                    0.10       0.78 f
+  U310/Y (NAND3X0_RVT)                                    0.07       0.85 r
+  U321/Y (NAND3X0_RVT)                                    0.06       0.91 f
+  U323/Y (NAND3X0_RVT)                                    0.07       0.98 r
+  U335/Y (NAND2X0_RVT)                                    0.05       1.03 f
+  U334/Y (NAND2X0_RVT)                                    0.05       1.08 r
+  U515/Y (AO221X1_RVT)                                    0.08       1.16 r
+  U517/Y (NAND3X0_RVT)                                    0.06       1.23 f
+  U576/Y (NAND3X0_RVT)                                    0.06       1.29 r
+  U577/Y (NAND4X0_RVT)                                    0.07       1.36 f
+  U578/Y (AO21X1_RVT)                                     0.09       1.46 f
+  U580/Y (AO21X1_RVT)                                     0.08       1.54 f
+  U581/Y (NAND2X0_RVT)                                    0.06       1.59 r
+  U610/Y (NAND3X0_RVT)                                    0.06       1.65 f
+  U611/Y (NAND3X0_RVT)                                    0.06       1.72 r
+  U620/Y (NAND3X0_RVT)                                    0.06       1.78 f
+  U621/Y (OAI221X1_RVT)                                   0.12       1.89 r
+  U626/Y (AO22X1_RVT)                                     0.09       1.98 r
+  U400/Y (INVX0_RVT)                                      0.04       2.02 f
+  U631/Y (NAND2X0_RVT)                                    0.05       2.07 r
+  U632/Y (OA221X1_RVT)                                    0.09       2.16 r
+  U635/Y (AO22X1_RVT)                                     0.08       2.24 r
+  U_acc/sum_o_reg[23]/D (DFFARX1_RVT)                     0.01       2.25 r
+  data arrival time                                                  2.25
+
+  clock clk (rise edge)                                   2.50       2.50
+  clock network delay (ideal)                             0.00       2.50
+  clock uncertainty                                      -0.15       2.35
+  U_acc/sum_o_reg[23]/CLK (DFFARX1_RVT)                   0.00       2.35 r
+  library setup time                                     -0.06       2.29
+  data required time                                                 2.29
+  --------------------------------------------------------------------------
+  data required time                                                 2.29
+  data arrival time                                                 -2.25
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.04
+
+
+1

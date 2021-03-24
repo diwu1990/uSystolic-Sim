@@ -1,0 +1,75 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : pe_inner
+Version: Q-2019.12-SP3
+Date   : Tue Mar 23 16:28:28 2021
+****************************************
+
+Operating Conditions: tt0p85v25c   Library: saed32rvt_tt0p85v25c
+Wire Load Model Mode: enclosed
+
+  Startpoint: U_ireg_inner/o_data_reg[0]
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: U_acc/sum_o_reg[23]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  pe_inner           8000                  saed32rvt_tt0p85v25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  U_ireg_inner/o_data_reg[0]/CLK (DFFARX1_RVT)            0.00       0.00 r
+  U_ireg_inner/o_data_reg[0]/Q (DFFARX1_RVT)              0.15       0.15 f
+  U271/Y (AO22X1_RVT)                                     0.09       0.23 f
+  U275/Y (MUX41X1_RVT)                                    0.15       0.38 f
+  U406/Y (AND2X1_RVT)                                     0.08       0.46 f
+  U355/Y (NBUFFX2_RVT)                                    0.07       0.53 f
+  U420/Y (AOI222X1_RVT)                                   0.14       0.67 r
+  U208/Y (OA21X1_RVT)                                     0.09       0.76 r
+  U349/Y (OR3X1_RVT)                                      0.08       0.84 r
+  U331/Y (NAND3X0_RVT)                                    0.07       0.90 f
+  U362/Y (NAND2X0_RVT)                                    0.07       0.97 r
+  U361/Y (NAND2X0_RVT)                                    0.04       1.01 f
+  U382/Y (AO221X1_RVT)                                    0.09       1.11 f
+  U383/Y (AOI21X1_RVT)                                    0.10       1.21 r
+  U183/Y (OA21X1_RVT)                                     0.07       1.28 r
+  U181/Y (OA21X1_RVT)                                     0.07       1.35 r
+  U177/Y (OA21X1_RVT)                                     0.08       1.43 r
+  U423/Y (OR2X1_RVT)                                      0.06       1.50 r
+  U424/Y (AND2X1_RVT)                                     0.06       1.56 r
+  U164/Y (OA21X1_RVT)                                     0.08       1.64 r
+  U380/Y (OA21X1_RVT)                                     0.07       1.71 r
+  U378/Y (OAI21X2_RVT)                                    0.11       1.82 f
+  U371/Y (AO22X1_RVT)                                     0.09       1.91 f
+  U370/Y (OR2X1_RVT)                                      0.06       1.97 f
+  U367/Y (NAND2X0_RVT)                                    0.05       2.01 r
+  U366/Y (NAND2X0_RVT)                                    0.04       2.05 f
+  U363/Y (AO22X1_RVT)                                     0.07       2.12 f
+  U364/Y (XOR3X2_RVT)                                     0.09       2.21 r
+  U397/Y (AO22X1_RVT)                                     0.07       2.28 r
+  U_acc/sum_o_reg[23]/D (DFFARX1_RVT)                     0.01       2.29 r
+  data arrival time                                                  2.29
+
+  clock clk (rise edge)                                   2.50       2.50
+  clock network delay (ideal)                             0.00       2.50
+  clock uncertainty                                      -0.15       2.35
+  U_acc/sum_o_reg[23]/CLK (DFFARX1_RVT)                   0.00       2.35 r
+  library setup time                                     -0.06       2.29
+  data required time                                                 2.29
+  --------------------------------------------------------------------------
+  data required time                                                 2.29
+  data arrival time                                                 -2.29
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+1

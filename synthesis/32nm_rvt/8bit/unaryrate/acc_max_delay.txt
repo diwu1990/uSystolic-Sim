@@ -1,0 +1,68 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : acc
+Version: Q-2019.12-SP3
+Date   : Tue Mar 23 16:29:06 2021
+****************************************
+
+Operating Conditions: tt0p85v25c   Library: saed32rvt_tt0p85v25c
+Wire Load Model Mode: enclosed
+
+  Startpoint: sign_i (input port clocked by clk)
+  Endpoint: sum_o_reg[15]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  acc                8000                  saed32rvt_tt0p85v25c
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  input external delay                     0.25       0.25 r
+  sign_i (in)                              0.00       0.25 r
+  U95/Y (XOR2X2_RVT)                       0.12       0.37 f
+  U97/Y (AND2X1_RVT)                       0.07       0.44 f
+  U91/Y (AO21X1_RVT)                       0.06       0.50 f
+  U67/Y (AO22X1_RVT)                       0.09       0.59 f
+  add_34/U1_2/CO (FADDX1_RVT)              0.11       0.70 f
+  add_34/U1_3/CO (FADDX1_RVT)              0.11       0.82 f
+  add_34/U1_4/CO (FADDX1_RVT)              0.11       0.93 f
+  add_34/U1_5/CO (FADDX1_RVT)              0.11       1.04 f
+  add_34/U1_6/CO (FADDX1_RVT)              0.11       1.16 f
+  add_34/U1_7/CO (FADDX1_RVT)              0.11       1.27 f
+  add_34/U1_8/CO (FADDX1_RVT)              0.11       1.38 f
+  add_34/U1_9/CO (FADDX1_RVT)              0.11       1.49 f
+  add_34/U1_10/CO (FADDX1_RVT)             0.11       1.61 f
+  add_34/U1_11/CO (FADDX1_RVT)             0.12       1.72 f
+  U104/Y (NAND2X0_RVT)                     0.07       1.79 r
+  U106/Y (NAND3X0_RVT)                     0.07       1.86 f
+  U120/Y (NAND2X0_RVT)                     0.07       1.93 r
+  U118/Y (NAND3X0_RVT)                     0.07       2.01 f
+  add_34/U1_14/CO (FADDX1_RVT)             0.12       2.12 f
+  U86/Y (XOR3X2_RVT)                       0.09       2.21 r
+  U47/Y (AO22X1_RVT)                       0.07       2.29 r
+  sum_o_reg[15]/D (DFFARX1_RVT)            0.01       2.30 r
+  data arrival time                                   2.30
+
+  clock clk (rise edge)                    2.50       2.50
+  clock network delay (ideal)              0.00       2.50
+  clock uncertainty                       -0.15       2.35
+  sum_o_reg[15]/CLK (DFFARX1_RVT)          0.00       2.35 r
+  library setup time                      -0.06       2.29
+  data required time                                  2.29
+  -----------------------------------------------------------
+  data required time                                  2.29
+  data arrival time                                  -2.30
+  -----------------------------------------------------------
+  slack (VIOLATED: increase significant digits)       0.00
+
+
+1

@@ -1,0 +1,52 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay min
+        -max_paths 1
+Design : array_4
+Version: Q-2019.12-SP3
+Date   : Tue Mar 23 17:05:34 2021
+****************************************
+
+Operating Conditions: tt0p85v25c   Library: saed32rvt_tt0p85v25c
+Wire Load Model Mode: enclosed
+
+  Startpoint: genblk3[3].genblk1[1].U_pe_inner/U_mul_inner/o_randW_reg[4]
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: genblk3[3].genblk1[2].U_pe_inner/U_mul_inner/o_randW_reg[4]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: min
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  array_4            16000                 saed32rvt_tt0p85v25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  genblk3[3].genblk1[1].U_pe_inner/U_mul_inner/o_randW_reg[4]/CLK (DFFX1_RVT)
+                                                          0.00       0.00 r
+  genblk3[3].genblk1[1].U_pe_inner/U_mul_inner/o_randW_reg[4]/QN (DFFX1_RVT)
+                                                          0.11       0.11 r
+  genblk3[3].genblk1[2].U_pe_inner/U_mul_inner/o_randW_reg[4]/SETB (DFFSSRX1_RVT)
+                                                          0.01       0.12 r
+  data arrival time                                                  0.12
+
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  clock uncertainty                                       0.15       0.15
+  genblk3[3].genblk1[2].U_pe_inner/U_mul_inner/o_randW_reg[4]/CLK (DFFSSRX1_RVT)
+                                                          0.00       0.15 r
+  library hold time                                      -0.03       0.12
+  data required time                                                 0.12
+  --------------------------------------------------------------------------
+  data required time                                                 0.12
+  data arrival time                                                 -0.12
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+1

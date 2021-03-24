@@ -1,0 +1,50 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : ireg_border
+Version: Q-2019.12-SP3
+Date   : Tue Mar 23 15:24:46 2021
+****************************************
+
+Operating Conditions: tt0p85v25c   Library: saed32rvt_tt0p85v25c
+Wire Load Model Mode: enclosed
+
+  Startpoint: en (input port clocked by clk)
+  Endpoint: o_data_reg[0]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  ireg_border        ForQA                 saed32rvt_tt0p85v25c
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  input external delay                     0.25       0.25 r
+  en (in)                                  0.00       0.25 r
+  U22/Y (NOR2X1_RVT)                       0.11       0.36 f
+  U20/Y (NOR2X0_RVT)                       0.15       0.51 r
+  U18/Y (AO22X1_RVT)                       0.09       0.61 r
+  o_data_reg[0]/D (DFFARX1_RVT)            0.01       0.62 r
+  data arrival time                                   0.62
+
+  clock clk (rise edge)                    2.50       2.50
+  clock network delay (ideal)              0.00       2.50
+  clock uncertainty                       -0.15       2.35
+  o_data_reg[0]/CLK (DFFARX1_RVT)          0.00       2.35 r
+  library setup time                      -0.06       2.29
+  data required time                                  2.29
+  -----------------------------------------------------------
+  data required time                                  2.29
+  data arrival time                                  -0.62
+  -----------------------------------------------------------
+  slack (MET)                                         1.67
+
+
+1

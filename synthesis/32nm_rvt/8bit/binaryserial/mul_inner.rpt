@@ -1,0 +1,303 @@
+
+                           Design Compiler Graphical 
+                                 DC Ultra (TM)
+                                  DFTMAX (TM)
+                              Power Compiler (TM)
+                                 DesignWare (R)
+                                 DC Expert (TM)
+                               Design Vision (TM)
+                               HDL Compiler (TM)
+                               VHDL Compiler (TM)
+                                  DFT Compiler
+                               Design Compiler(R)
+
+               Version Q-2019.12-SP3 for linux64 - Apr 21, 2020 
+
+                    Copyright (c) 1988 - 2020 Synopsys, Inc.
+   This software and the associated documentation are proprietary to Synopsys,
+ Inc. This software may only be used in accordance with the terms and conditions
+ of a written license agreement with Synopsys, Inc. All other use, reproduction,
+            or distribution of this software is strictly prohibited.
+Initializing...
+# ECE552 Extra Credit
+read_file -format sverilog {mul_inner.sv}
+Loading db file '/cae/apps/data/saed32_edk-2018/lib/stdcell_rvt/db_nldm/saed32rvt_tt0p85v25c.db'
+Loading db file '/cae/apps/data/saed32_edk-2018/lib/io_std/db_nldm/saed32io_wb_tt1p05v25c_2p5v.db'
+Loading db file '/cae/apps/data/synopsys-2020/syn/Q-2019.12-SP3/libraries/syn/gtech.db'
+Loading db file '/cae/apps/data/synopsys-2020/syn/Q-2019.12-SP3/libraries/syn/standard.sldb'
+  Loading link library 'saed32rvt_tt0p85v25c'
+  Loading link library 'saed32io_wb_tt1p05v25c_2p5v'
+  Loading link library 'gtech'
+Detecting input file type automatically (-rtl or -netlist).
+Reading with Presto HDL Compiler (equivalent to -rtl option).
+Running PRESTO HDLC
+Compiling source file /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/8bit/binaryserial/mul_inner.sv
+
+Inferred memory devices in process
+	in routine mul_inner line 19 in file
+		'/filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/8bit/binaryserial/mul_inner.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|      o_idx_reg      | Flip-flop |   3   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Statistics for MUX_OPs
+======================================================
+| block name/line  | Inputs | Outputs | # sel inputs |
+======================================================
+|   mul_inner/31   |   8    |    1    |      3       |
+======================================================
+Presto compilation completed successfully.
+Loaded 1 design.
+Current design is 'mul_inner'.
+mul_inner
+set current_design mul_inner
+mul_inner
+link
+
+  Linking design 'mul_inner'
+  Using the following designs and libraries:
+  --------------------------------------------------------------------------
+  mul_inner                   /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/8bit/binaryserial/mul_inner.db
+  saed32rvt_tt0p85v25c (library) /cae/apps/data/saed32_edk-2018/lib/stdcell_rvt/db_nldm/saed32rvt_tt0p85v25c.db
+  saed32io_wb_tt1p05v25c_2p5v (library) /cae/apps/data/saed32_edk-2018/lib/io_std/db_nldm/saed32io_wb_tt1p05v25c_2p5v.db
+
+1
+###########################################
+# Define clock and set don't mess with it #
+###########################################
+# clk with frequency of 400 MHz
+create_clock -name "clk" -period 2.5 -waveform { 0 1.25 } { clk }
+1
+set_dont_touch_network [find port clk]
+1
+# pointer to all inputs except clk
+set prim_inputs [remove_from_collection [all_inputs] [find port clk]]
+{rst_n en clr i_idx[2] i_idx[1] i_idx[0] i_data0[7] i_data0[6] i_data0[5] i_data0[4] i_data0[3] i_data0[2] i_data0[1] i_data0[0] i_data1[7] i_data1[6] i_data1[5] i_data1[4] i_data1[3] i_data1[2] i_data1[1] i_data1[0]}
+# pointer to all inputs except clk and rst_n
+set prim_inputs_no_rst [remove_from_collection $prim_inputs [find port rst_n]]
+{en clr i_idx[2] i_idx[1] i_idx[0] i_data0[7] i_data0[6] i_data0[5] i_data0[4] i_data0[3] i_data0[2] i_data0[1] i_data0[0] i_data1[7] i_data1[6] i_data1[5] i_data1[4] i_data1[3] i_data1[2] i_data1[1] i_data1[0]}
+# Set clk uncertainty (skew)
+set_clock_uncertainty 0.15 clk
+1
+#########################################
+# Set input delay & drive on all inputs #
+#########################################
+set_input_delay -clock clk 0.25 [copy_collection $prim_inputs]
+1
+#set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc $prim_inputs_no_rst
+# rst_n goes to many places so don't touch
+set_dont_touch_network [find port rst_n]
+1
+##########################################
+# Set output delay & load on all outputs #
+##########################################
+set_output_delay -clock clk 0.5 [all_outputs]
+1
+set_load 0.1 [all_outputs]
+1
+#############################################################
+# Wire load model allows it to estimate internal parasitics #
+#############################################################
+# set_wire_load_model -name TSMC32K_Lowk_Conservative -library tcbn40lpbwptc
+######################################################
+# Max transition time is important for Hot-E reasons #
+######################################################
+set_max_transition 0.1 [current_design]
+1
+########################################
+# Now actually synthesize for 1st time #
+########################################
+compile -map_effort medium
+Warning: Setting attribute 'fix_multiple_port_nets' on design 'mul_inner'. (UIO-59)
+Information: Evaluating DesignWare library utilization. (UISN-27)
+
+============================================================================
+| DesignWare Building Block Library  |         Version         | Available |
+============================================================================
+| Basic DW Building Blocks           | Q-2019.12-DWBB_201912.3 |     *     |
+| Licensed DW Building Blocks        |                         |           |
+============================================================================
+
+
+Warning: Operating condition tt0p85v25c set on design mul_inner has different process,
+voltage and temperatures parameters than the parameters at which target library 
+saed32io_wb_tt1p05v25c_2p5v is characterized. Delays may be inaccurate as a result. (OPT-998)
+
+  Beginning Pass 1 Mapping
+  ------------------------
+  Processing 'mul_inner'
+
+  Updating timing information
+Information: Updating design information... (UID-85)
+
+  Beginning Implementation Selection
+  ----------------------------------
+
+  Beginning Mapping Optimizations  (Medium effort)
+  -------------------------------
+  Mapping Optimization (Phase 1)
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:04      84.4      0.00       0.0       0.0                          
+    0:00:04      84.4      0.00       0.0       0.0                          
+    0:00:04      84.4      0.00       0.0       0.0                          
+    0:00:04      84.4      0.00       0.0       0.0                          
+    0:00:04      84.4      0.00       0.0       0.0                          
+    0:00:04      83.6      0.00       0.0       0.0                          
+    0:00:04      83.6      0.00       0.0       0.0                          
+    0:00:04      83.6      0.00       0.0       0.0                          
+    0:00:04      83.6      0.00       0.0       0.0                          
+    0:00:04      83.6      0.00       0.0       0.0                          
+    0:00:04      83.6      0.00       0.0       0.0                          
+    0:00:04      83.6      0.00       0.0       0.0                          
+    0:00:04      83.6      0.00       0.0       0.0                          
+
+
+
+  Beginning Delay Optimization Phase
+  ----------------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:04      83.6      0.00       0.0       0.0                          
+    0:00:04      83.6      0.00       0.0       0.0                          
+    0:00:04      79.8      0.00       0.0       0.0                          
+
+
+  Beginning Area-Recovery Phase  (cleanup)
+  -----------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:04      79.8      0.00       0.0       0.0                          
+    0:00:04      79.8      0.00       0.0       0.0                          
+    0:00:04      79.8      0.00       0.0       0.0                          
+    0:00:04      79.8      0.00       0.0       0.0                          
+    0:00:04      79.8      0.00       0.0       0.0                          
+    0:00:04      79.8      0.00       0.0       0.0                          
+    0:00:04      79.8      0.00       0.0       0.0                          
+    0:00:04      79.8      0.00       0.0       0.0                          
+    0:00:04      79.8      0.00       0.0       0.0                          
+    0:00:04      79.8      0.00       0.0       0.0                          
+    0:00:04      79.8      0.00       0.0       0.0                          
+
+
+Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
+
+
+  Optimization Complete
+  ---------------------
+1
+check_design
+1
+# Unflatten design now that its compiled
+ungroup -all -flatten
+Warning: Design has no hierarchy.  No cells can be ungrouped. (UID-228)
+0
+# force hold time to be met for all flops
+set_fix_hold clk
+1
+# Compile again with higher effort
+compile -map_effort high
+Warning: "The variable 'compile_high_effort_area_in_incremental' is supported in DC NXT only. Ignoring this setting." (OPT-1726)
+
+Warning: Operating condition tt0p85v25c set on design mul_inner has different process,
+voltage and temperatures parameters than the parameters at which target library 
+saed32io_wb_tt1p05v25c_2p5v is characterized. Delays may be inaccurate as a result. (OPT-998)
+
+  Beginning Pass 1 Mapping
+  ------------------------
+  Processing 'mul_inner'
+
+  Updating timing information
+Information: Updating design information... (UID-85)
+
+  Beginning Mapping Optimizations  (High effort)
+  -------------------------------
+
+                                  TOTAL                                                  
+   ELAPSED            WORST NEG   SETUP    DESIGN                              MIN DELAY 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT             COST    
+  --------- --------- --------- --------- --------- ------------------------- -----------
+    0:00:05      85.4      0.00       0.0       0.0                                0.00  
+    0:00:05      85.4      0.00       0.0       0.0                                0.00  
+    0:00:05      85.4      0.00       0.0       0.0                                0.00  
+    0:00:05      85.4      0.00       0.0       0.0                                0.00  
+    0:00:05      85.4      0.00       0.0       0.0                                0.00  
+    0:00:05      84.4      0.00       0.0       0.0                                0.00  
+    0:00:05      84.4      0.00       0.0       0.0                                0.00  
+    0:00:05      84.4      0.00       0.0       0.0                                0.00  
+    0:00:05      84.4      0.00       0.0       0.0                                0.00  
+    0:00:05      84.4      0.00       0.0       0.0                                0.00  
+    0:00:05      84.4      0.00       0.0       0.0                                0.00  
+    0:00:05      84.4      0.00       0.0       0.0                                0.00  
+    0:00:05      84.4      0.00       0.0       0.0                                0.00  
+
+
+
+  Beginning Delay Optimization Phase
+  ----------------------------------
+
+                                  TOTAL                                                  
+   ELAPSED            WORST NEG   SETUP    DESIGN                              MIN DELAY 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT             COST    
+  --------- --------- --------- --------- --------- ------------------------- -----------
+    0:00:05      84.4      0.00       0.0       0.0                                0.00  
+    0:00:05      84.4      0.00       0.0       0.0                                0.00  
+    0:00:05      80.6      0.00       0.0       0.0                                0.00  
+
+
+  Beginning Area-Recovery Phase  (cleanup)
+  -----------------------------
+
+                                  TOTAL                                                  
+   ELAPSED            WORST NEG   SETUP    DESIGN                              MIN DELAY 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT             COST    
+  --------- --------- --------- --------- --------- ------------------------- -----------
+    0:00:05      80.6      0.00       0.0       0.0                                0.00  
+    0:00:05      80.6      0.00       0.0       0.0                                0.00  
+    0:00:05      80.6      0.00       0.0       0.0                                0.00  
+    0:00:05      80.6      0.00       0.0       0.0                                0.00  
+    0:00:05      80.6      0.00       0.0       0.0                                0.00  
+    0:00:05      80.6      0.00       0.0       0.0                                0.00  
+    0:00:05      80.6      0.00       0.0       0.0                                0.00  
+    0:00:05      80.6      0.00       0.0       0.0                                0.00  
+    0:00:05      80.6      0.00       0.0       0.0                                0.00  
+    0:00:05      80.6      0.00       0.0       0.0                                0.00  
+    0:00:05      80.6      0.00       0.0       0.0                                0.00  
+
+
+Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
+
+
+  Optimization Complete
+  ---------------------
+1
+check_design
+1
+#############################################
+# Take a look at area, max, and min timings #
+#############################################
+report_area > mul_inner_area.txt
+report_power > mul_inner_power.txt
+report_timing -delay min > mul_inner_min_delay.txt
+report_timing -delay max > mul_inner_max_delay.txt
+#### write out final netlist ######
+write -format verilog mul_inner -output mul_inner.vg
+Writing verilog file '/filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/8bit/binaryserial/mul_inner.vg'.
+1
+exit
+Memory usage for this session 142 Mbytes.
+Memory usage for this session including child processes 142 Mbytes.
+CPU usage for this session 4 seconds ( 0.00 hours ).
+Elapsed time for this session 7 seconds ( 0.00 hours ).
+
+Thank you...

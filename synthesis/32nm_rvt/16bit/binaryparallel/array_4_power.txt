@@ -1,0 +1,56 @@
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+Warning: Design has unannotated primary inputs. (PWR-414)
+Warning: Design has unannotated sequential cell outputs. (PWR-415)
+ 
+****************************************
+Report : power
+        -analysis_effort low
+Design : array_4
+Version: Q-2019.12-SP3
+Date   : Tue Mar 23 07:43:41 2021
+****************************************
+
+
+Library(s) Used:
+
+    saed32rvt_tt0p85v25c (File: /cae/apps/data/saed32_edk-2018/lib/stdcell_rvt/db_nldm/saed32rvt_tt0p85v25c.db)
+
+
+Operating Conditions: tt0p85v25c   Library: saed32rvt_tt0p85v25c
+Wire Load Model Mode: enclosed
+
+Design        Wire Load Model            Library
+------------------------------------------------
+array_4                70000             saed32rvt_tt0p85v25c
+
+
+Global Operating Voltage = 0.85 
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000ff
+    Time Units = 1ns
+    Dynamic Power Units = 1uW    (derived from V,C,T units)
+    Leakage Power Units = 1pW
+
+
+  Cell Internal Power  =   2.3916 mW   (93%)
+  Net Switching Power  = 184.1024 uW    (7%)
+                         ---------
+Total Dynamic Power    =   2.5757 mW  (100%)
+
+Cell Leakage Power     =   1.8831 mW
+
+
+                 Internal         Switching           Leakage            Total
+Power Group      Power            Power               Power              Power   (   %    )  Attrs
+--------------------------------------------------------------------------------------------------
+io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
+clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)
+register       1.9813e+03           24.5082        2.6301e+08        2.2688e+03  (  50.88%)
+sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)
+combinational    410.3575          159.5939        1.6201e+09        2.1900e+03  (  49.12%)
+--------------------------------------------------------------------------------------------------
+Total          2.3916e+03 uW       184.1022 uW     1.8831e+09 pW     4.4588e+03 uW
+1

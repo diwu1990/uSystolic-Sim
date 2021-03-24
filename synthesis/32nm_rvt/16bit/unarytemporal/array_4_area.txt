@@ -1,0 +1,32 @@
+ 
+****************************************
+Report : area
+Design : array_4
+Version: Q-2019.12-SP3
+Date   : Tue Mar 23 13:26:31 2021
+****************************************
+
+Information: Updating design information... (UID-85)
+Warning: Design 'array_4' contains 1 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+Library(s) Used:
+
+    saed32rvt_tt0p85v25c (File: /cae/apps/data/saed32_edk-2018/lib/stdcell_rvt/db_nldm/saed32rvt_tt0p85v25c.db)
+
+Number of ports:                          254
+Number of nets:                          8243
+Number of cells:                         7205
+Number of combinational cells:           6025
+Number of sequential cells:              1180
+Number of macros/black boxes:               0
+Number of buf/inv:                        792
+Number of references:                      68
+
+Combinational area:              13195.156477
+Buf/Inv area:                     1096.377223
+Noncombinational area:            8260.696747
+Macro/Black Box area:                0.000000
+Net Interconnect area:            7010.684273
+
+Total cell area:                 21455.853224
+Total area:                      28466.537497
+1

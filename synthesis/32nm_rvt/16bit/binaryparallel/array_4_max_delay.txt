@@ -1,0 +1,105 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : array_4
+Version: Q-2019.12-SP3
+Date   : Tue Mar 23 07:43:41 2021
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: tt0p85v25c   Library: saed32rvt_tt0p85v25c
+Wire Load Model Mode: enclosed
+
+  Startpoint: genblk3[0].genblk1[2].U_pe_inner/U_ireg_inner/o_data_reg[0]
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: genblk3[0].genblk1[2].U_pe_inner/U_acc/o_data_reg[30]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  array_4            70000                 saed32rvt_tt0p85v25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  genblk3[0].genblk1[2].U_pe_inner/U_ireg_inner/o_data_reg[0]/CLK (DFFARX1_RVT)
+                                                          0.00 #     0.00 r
+  genblk3[0].genblk1[2].U_pe_inner/U_ireg_inner/o_data_reg[0]/Q (DFFARX1_RVT)
+                                                          0.16       0.16 r
+  U14570/Y (NBUFFX2_RVT)                                  0.19       0.36 r
+  U14568/Y (AND2X1_RVT)                                   0.30       0.66 r
+  U30320/Y (AO21X1_RVT)                                   0.16       0.82 r
+  U30321/Y (NAND2X0_RVT)                                  0.13       0.95 f
+  U11315/Y (NBUFFX2_RVT)                                  0.19       1.14 f
+  U30367/Y (NAND3X0_RVT)                                  0.15       1.29 r
+  U30368/Y (NAND3X0_RVT)                                  0.15       1.44 f
+  U30369/Y (NAND3X0_RVT)                                  0.17       1.61 r
+  U19384/Y (XOR2X1_RVT)                                   0.31       1.92 f
+  U15778/Y (INVX0_RVT)                                    0.20       2.12 r
+  U15776/Y (OR2X1_RVT)                                    0.18       2.31 r
+  U15777/Y (AND3X1_RVT)                                   0.16       2.47 r
+  U18513/Y (XOR2X1_RVT)                                   0.30       2.77 f
+  U30571/Y (NAND2X0_RVT)                                  0.18       2.95 r
+  U40820/Y (NAND2X0_RVT)                                  0.16       3.11 f
+  U40821/Y (NAND2X0_RVT)                                  0.18       3.29 r
+  U11330/Y (AND2X4_RVT)                                   0.24       3.53 r
+  U14526/Y (XNOR3X1_RVT)                                  0.31       3.84 f
+  U15213/Y (OR2X2_RVT)                                    0.22       4.06 f
+  U41210/Y (NAND2X0_RVT)                                  0.15       4.21 r
+  U41211/Y (NAND3X0_RVT)                                  0.15       4.36 f
+  U41212/Y (OA221X1_RVT)                                  0.19       4.55 f
+  U13904/Y (XOR2X1_RVT)                                   0.34       4.89 r
+  U41530/Y (NAND2X0_RVT)                                  0.20       5.08 f
+  U41534/Y (NAND2X0_RVT)                                  0.17       5.25 r
+  U41535/Y (NAND3X0_RVT)                                  0.15       5.39 f
+  U41536/Y (OA221X1_RVT)                                  0.18       5.58 f
+  U23485/Y (XOR2X1_RVT)                                   0.31       5.89 f
+  U15853/Y (OR2X2_RVT)                                    0.23       6.11 f
+  U41864/Y (NAND2X0_RVT)                                  0.15       6.26 r
+  U41865/Y (NAND3X0_RVT)                                  0.14       6.41 f
+  U41866/Y (OA221X1_RVT)                                  0.18       6.59 f
+  U23336/Y (XOR2X1_RVT)                                   0.30       6.89 r
+  U20677/Y (XNOR2X1_RVT)                                  0.36       7.25 f
+  U23400/Y (XOR2X1_RVT)                                   0.29       7.54 r
+  U41868/Y (NAND2X0_RVT)                                  0.18       7.72 f
+  U14600/Y (AND2X1_RVT)                                   0.20       7.92 f
+  U42869/Y (NAND2X0_RVT)                                  0.14       8.06 r
+  U42870/Y (NAND3X0_RVT)                                  0.15       8.21 f
+  U42871/Y (NAND2X0_RVT)                                  0.17       8.37 r
+  U17375/Y (AND3X1_RVT)                                   0.19       8.57 r
+  U10627/Y (XNOR2X1_RVT)                                  0.34       8.90 r
+  U14818/Y (NAND2X0_RVT)                                  0.14       9.05 f
+  U14740/Y (NAND4X0_RVT)                                  0.18       9.22 r
+  U14804/Y (NAND4X0_RVT)                                  0.18       9.40 f
+  U14801/Y (NAND2X0_RVT)                                  0.18       9.58 r
+  U14557/Y (NAND3X0_RVT)                                  0.19       9.77 f
+  U14554/Y (NAND2X0_RVT)                                  0.18       9.94 r
+  U14547/Y (AND2X1_RVT)                                   0.19      10.13 r
+  U11506/Y (NAND4X0_RVT)                                  0.16      10.30 f
+  U14571/Y (NAND4X0_RVT)                                  0.17      10.47 r
+  genblk3[0].genblk1[2].U_pe_inner/U_acc/o_data_reg[30]/D (DFFARX1_RVT)
+                                                          0.10      10.57 r
+  data arrival time                                                 10.57
+
+  clock clk (rise edge)                                   2.50       2.50
+  clock network delay (ideal)                             0.00       2.50
+  clock uncertainty                                      -0.15       2.35
+  genblk3[0].genblk1[2].U_pe_inner/U_acc/o_data_reg[30]/CLK (DFFARX1_RVT)
+                                                          0.00       2.35 r
+  library setup time                                     -0.06       2.29
+  data required time                                                 2.29
+  --------------------------------------------------------------------------
+  data required time                                                 2.29
+  data arrival time                                                -10.57
+  --------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -8.28
+
+
+1
