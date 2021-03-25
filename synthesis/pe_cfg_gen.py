@@ -71,6 +71,7 @@ def config_log_gen(
     total_area[1] += area
     total_leakage[1] += leakage
     total_dynamic[1] += dynamic
+    config_log += str(area) + ",\t" + str(leakage) + ",\t" + str(dynamic) + ",\t"
     config_log += str(area) + ",\t" + str(leakage) + ",\t" + str(dynamic) + ",\t\n"
 
     config_log += "MUL:\t"
@@ -93,6 +94,7 @@ def config_log_gen(
     total_area[1] += area
     total_leakage[1] += leakage
     total_dynamic[1] += dynamic
+    config_log += str(area) + ",\t" + str(leakage) + ",\t" + str(dynamic) + ",\t"
     config_log += str(area) + ",\t" + str(leakage) + ",\t" + str(dynamic) + ",\t\n\n"
 
     return config_log, total_area, total_leakage, total_dynamic

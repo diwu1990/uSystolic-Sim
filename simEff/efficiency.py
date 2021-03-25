@@ -295,9 +295,12 @@ def estimate(
     ireg_dynamic_inner   = float(ireg[5].strip())
 
     wreg = config.get(computing, 'WREG').split(',')
-    wreg_area       = float(wreg[0].strip())
-    wreg_leakage    = float(wreg[1].strip())
-    wreg_dynamic    = float(wreg[2].strip())
+    wreg_area_border     = float(wreg[0].strip())
+    wreg_leakage_border  = float(wreg[1].strip())
+    wreg_dynamic_border  = float(wreg[2].strip())
+    wreg_area_inner      = float(wreg[3].strip())
+    wreg_leakage_inner   = float(wreg[4].strip())
+    wreg_dynamic_inner   = float(wreg[5].strip())
 
     mul = config.get(computing, 'MUL').split(',')
     mul_area_border     = float(mul[0].strip())
@@ -308,9 +311,12 @@ def estimate(
     mul_dynamic_inner   = float(mul[5].strip())
 
     acc = config.get(computing, 'ACC').split(',')
-    acc_area        = float(acc[0].strip())
-    acc_leakage     = float(acc[1].strip())
-    acc_dynamic     = float(acc[2].strip())
+    acc_area_border     = float(acc[0].strip())
+    acc_leakage_border  = float(acc[1].strip())
+    acc_dynamic_border  = float(acc[2].strip())
+    acc_area_inner      = float(acc[3].strip())
+    acc_leakage_inner   = float(acc[4].strip())
+    acc_dynamic_inner   = float(acc[5].strip())
 
     sa_area_ireg   =  0
     sa_area_wreg   =  0
@@ -579,9 +585,9 @@ def estimate(
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
     # all calculations here are based on modelling using synthesized data for each components specified in pe.cfg
     sa_area_ireg    = array_h * ireg_area_border + array_h * (array_w - 1) * ireg_area_inner
-    sa_area_wreg    = array_h * array_w * wreg_area
+    sa_area_wreg    = array_h * wreg_area_border + array_h * (array_w - 1) * wreg_area_inner
     sa_area_mul     = array_h * mul_area_border + array_h * (array_w - 1) * mul_area_inner
-    sa_area_acc     = array_h * array_w * acc_area
+    sa_area_acc     = array_h * acc_area_border + array_h * (array_w - 1) * acc_area_inner
     sa_area_tot     = sa_area_ireg + sa_area_wreg + sa_area_mul + sa_area_acc
     
     onchip_area_tot = sram_area_total + sa_area_tot
@@ -860,14 +866,16 @@ def estimate(
         sa_energy_ireg_d_all    +=  sa_energy_ireg_d
         sa_energy_ireg_l_all    +=  sa_energy_ireg_l
         sa_energy_ireg_all      +=  sa_energy_ireg
+
         # wreg will toggle only when loading filters
-        sa_energy_wreg_d =   array_h * array_w * wreg_dynamic * dynamic_cycle_wreg * period
-        sa_energy_wreg_l =   array_h * array_w * wreg_leakage * (real_layer_cycle * period)
+        sa_energy_wreg_d =   (array_h * wreg_dynamic_border + array_h * (array_w - 1) * wreg_dynamic_inner) * dynamic_cycle_wreg * period
+        sa_energy_wreg_l =   (array_h * wreg_leakage_border + array_h * (array_w - 1) * wreg_leakage_inner) * (real_layer_cycle * period)
         sa_energy_wreg   =   sa_energy_wreg_d + sa_energy_wreg_l
 
         sa_energy_wreg_d_all    +=  sa_energy_wreg_d
         sa_energy_wreg_l_all    +=  sa_energy_wreg_l
         sa_energy_wreg_all      +=  sa_energy_wreg
+        
         # mul and add (mac) will work only when computing with no stalls
         sa_energy_mul_d  =   (array_h * mul_dynamic_border + array_h * (array_w - 1) * mul_dynamic_inner) * dynamic_cycle_mac * period
         sa_energy_mul_l  =   (array_h * mul_leakage_border + array_h * (array_w - 1) * mul_leakage_inner) * (real_layer_cycle * period)
@@ -877,8 +885,8 @@ def estimate(
         sa_energy_mul_l_all    +=  sa_energy_mul_l
         sa_energy_mul_all      +=  sa_energy_mul
 
-        sa_energy_acc_d  =   array_h * array_w * acc_dynamic * dynamic_cycle_mac * period
-        sa_energy_acc_l  =   array_h * array_w * acc_leakage * (real_layer_cycle * period)
+        sa_energy_acc_d  =   (array_h * acc_dynamic_border + array_h * (array_w - 1) * acc_dynamic_inner) * dynamic_cycle_mac * period
+        sa_energy_acc_l  =   (array_h * acc_leakage_border + array_h * (array_w - 1) * acc_leakage_inner) * (real_layer_cycle * period)
         sa_energy_acc    =   sa_energy_acc_d + sa_energy_acc_l
         
         sa_energy_acc_d_all    +=  sa_energy_acc_d
