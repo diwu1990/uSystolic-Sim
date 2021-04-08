@@ -392,7 +392,7 @@ def to_bool(value):
 
 
 def main(argv):
-    s = evaluate(save = False, simArch = True, simHw = True, simEff = True)
+    s = evaluate(save = False, simArch = False, simHw = False, simEff = True)
     s.run_eval()
 
 if __name__ == '__main__':

@@ -9,9 +9,8 @@ def gen_run_config(tech_node=None):
 
     arch_list = ["tpu", "eyeriss"]
     network_list = ["alexnet"]
-    # network_list = ["test"]
     bit_list = ["8", "16"]
-    cycle_list = ["32", "64", "128", "256"]
+    cycle_list = ["32", "64", "128"]
     ram_list = ["ddr3_w__spm", "ddr3_wo_spm"]
 
     for a in arch_list:
