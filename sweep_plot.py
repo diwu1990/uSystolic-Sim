@@ -3,15 +3,16 @@ import matplotlib.pyplot as plt
 import numpy as np
 import math
 import matplotlib
+from numpy import mean, median
 
 def plot_fig(technode=""):
     font = {'family':'Times New Roman', 'size': 6}
     matplotlib.rc('font', **font)
 
-    print_power_onchip = False
-    print_power_total = False
-    print_energy_onchip = False
-    print_energy_total = False
+    print_power_onchip = True
+    print_power_total = True
+    print_energy_onchip = True
+    print_energy_total = True
     print_area = True
 
     bw_sram_dram = True
@@ -314,8 +315,8 @@ def plot_fig(technode=""):
                     y_label_list.append("0")
             ax.set_yticklabels(y_label_list)
             fig.tight_layout()
-            plt.savefig('./outputs_fig/' + technode + '/Bandwidth_' + a_cap + ".pdf", bbox_inches='tight', dpi=my_dpi)
-            print("Bandwidth fig saved!")
+            plt.savefig('./outputs_fig/' + technode + '/Bandwidth_' + a_cap + ".pdf", bbox_inches='tight', dpi=my_dpi, pad_inches=0.02)
+            print("Bandwidth fig saved!\n")
         else:
             # bandwith
             my_dpi = 300
@@ -442,8 +443,8 @@ def plot_fig(technode=""):
 
             ax.minorticks_off()
             fig.tight_layout()
-            plt.savefig('./outputs_fig/' + technode + '/Bandwidth_' + a_cap + ".pdf", bbox_inches='tight', dpi=my_dpi)
-            print("Bandwidth fig saved!")
+            plt.savefig('./outputs_fig/' + technode + '/Bandwidth_' + a_cap + ".pdf", bbox_inches='tight', dpi=my_dpi, pad_inches=0.02)
+            print("Bandwidth fig saved!\n")
 
 
         # runtime
@@ -465,7 +466,7 @@ def plot_fig(technode=""):
 
         fig, ax = plt.subplots(figsize=(fig_w, fig_h))
         
-        idx_tot = 10
+        idx_tot = 5
 
         x_idx = np.arange(len(x_axis))
 
@@ -476,7 +477,7 @@ def plot_fig(technode=""):
         # 8b - spm - bp
         index = 0
         runtime_list = time_list[index][:-1]
-        idx = 0.5
+        idx = 1
         ax.bar(x_idx + iterval * (idx - idx_tot / 2), runtime_list, width, hatch = None, alpha=0.99, color=bp_color, label="Binary Parallel")
 
         # 8b - spm - bs
@@ -485,53 +486,23 @@ def plot_fig(technode=""):
         idx += 1
         ax.bar(x_idx + iterval * (idx - idx_tot / 2), runtime_list, width, hatch = None, alpha=0.99, color=bs_color, label="Binary Serial")
 
-        # 8b - spm - ur - 32c
-        index = 2
-        runtime_list = time_list[index][:-1]
-        idx += 1
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), runtime_list, width, hatch = None, alpha=0.99, color=u6_color, label="Unary-32c")
-
-        # 8b - spm - ur - 64c
-        index = 3
-        runtime_list = time_list[index][:-1]
-        idx += 1
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), runtime_list, width, hatch = None, alpha=0.99, color=u7_color, label="Unary-64c")
-
-        # 8b - spm - ur - 128c
-        index = 4
-        runtime_list = time_list[index][:-1]
-        idx += 1
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), runtime_list, width, hatch = None, alpha=0.99, color=u8_color, label="Unary-128c")
-
-        # 8b - wospm - bp
-        index = 8
-        runtime_list = time_list[index][:-1]
-        idx += 1
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), runtime_list, width, hatch = None, alpha=0.99, color=bp_color)
-
-        # 8b - wospm - bs
-        index = 9
-        runtime_list = time_list[index][:-1]
-        idx += 1
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), runtime_list, width, hatch = None, alpha=0.99, color=bs_color)
-
         # 8b - wospm - ur - 32c
         index = 10
         runtime_list = time_list[index][:-1]
         idx += 1
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), runtime_list, width, hatch = None, alpha=0.99, color=u6_color)
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), runtime_list, width, hatch = None, alpha=0.99, color=u6_color, label="Unary-32c")
 
         # 8b - wospm - ur - 64c
         index = 11
         runtime_list = time_list[index][:-1]
         idx += 1
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), runtime_list, width, hatch = None, alpha=0.99, color=u7_color)
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), runtime_list, width, hatch = None, alpha=0.99, color=u7_color, label="Unary-64c")
 
         # 8b - wospm - ur - 128c
         index = 12
         runtime_list = time_list[index][:-1]
         idx += 1
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), runtime_list, width, hatch = None, alpha=0.99, color=u8_color)
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), runtime_list, width, hatch = None, alpha=0.99, color=u8_color, label="Unary-128c")
 
         ax.set_ylabel('Runtime (Seconds)')
         ax.set_xticks(x_idx)
@@ -571,8 +542,8 @@ def plot_fig(technode=""):
 
         ax.minorticks_off()
         fig.tight_layout()
-        plt.savefig('./outputs_fig/' + technode + '/Runtime_' + a_cap + ".pdf", bbox_inches='tight', dpi=my_dpi)
-        print("Runtime fig saved!")
+        plt.savefig('./outputs_fig/' + technode + '/Runtime_' + a_cap + ".pdf", bbox_inches='tight', dpi=my_dpi, pad_inches=0.02)
+        print("Runtime fig saved!\n")
 
 
         # throughput
@@ -594,7 +565,7 @@ def plot_fig(technode=""):
 
         fig, ax = plt.subplots(figsize=(fig_w, fig_h))
         
-        idx_tot = 10
+        idx_tot = 5
 
         x_idx = np.arange(len(x_axis))
 
@@ -605,7 +576,7 @@ def plot_fig(technode=""):
         # 8b - spm - bp
         index = 0
         throughput_list = tp_list[index][:-1]
-        idx = 0.5
+        idx = 1
         ax.bar(x_idx + iterval * (idx - idx_tot / 2), throughput_list, width, hatch = None, alpha=0.99, color=bp_color, label="Binary Parallel")
 
         # 8b - spm - bs
@@ -614,53 +585,23 @@ def plot_fig(technode=""):
         idx += 1
         ax.bar(x_idx + iterval * (idx - idx_tot / 2), throughput_list, width, hatch = None, alpha=0.99, color=bs_color, label="Binary Serial")
 
-        # 8b - spm - ur - 32c
-        index = 2
-        throughput_list = tp_list[index][:-1]
-        idx += 1
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), throughput_list, width, hatch = None, alpha=0.99, color=u6_color, label="Unary-32c")
-
-        # 8b - spm - ur - 64c
-        index = 3
-        throughput_list = tp_list[index][:-1]
-        idx += 1
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), throughput_list, width, hatch = None, alpha=0.99, color=u7_color, label="Unary-64c")
-
-        # 8b - spm - ur - 128c
-        index = 4
-        throughput_list = tp_list[index][:-1]
-        idx += 1
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), throughput_list, width, hatch = None, alpha=0.99, color=u8_color, label="Unary-128c")
-
-        # 8b - wospm - bp
-        index = 8
-        throughput_list = tp_list[index][:-1]
-        idx += 1
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), throughput_list, width, hatch = None, alpha=0.99, color=bp_color)
-
-        # 8b - wospm - bs
-        index = 9
-        throughput_list = tp_list[index][:-1]
-        idx += 1
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), throughput_list, width, hatch = None, alpha=0.99, color=bs_color)
-
         # 8b - wospm - ur - 32c
         index = 10
         throughput_list = tp_list[index][:-1]
         idx += 1
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), throughput_list, width, hatch = None, alpha=0.99, color=u6_color)
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), throughput_list, width, hatch = None, alpha=0.99, color=u6_color, label="Unary-32c")
 
         # 8b - wospm - ur - 64c
         index = 11
         throughput_list = tp_list[index][:-1]
         idx += 1
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), throughput_list, width, hatch = None, alpha=0.99, color=u7_color)
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), throughput_list, width, hatch = None, alpha=0.99, color=u7_color, label="Unary-64c")
 
         # 8b - wospm - ur - 128c
         index = 12
         throughput_list = tp_list[index][:-1]
         idx += 1
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), throughput_list, width, hatch = None, alpha=0.99, color=u8_color)
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), throughput_list, width, hatch = None, alpha=0.99, color=u8_color, label="Unary-128c")
 
         ax.set_ylabel('Throughput (Frames/s)')
         ax.set_xticks(x_idx)
@@ -700,8 +641,8 @@ def plot_fig(technode=""):
 
         ax.minorticks_off()
         fig.tight_layout()
-        plt.savefig('./outputs_fig/' + technode + '/Throughput_' + a_cap + ".pdf", bbox_inches='tight', dpi=my_dpi)
-        print("Throughput fig saved!")
+        plt.savefig('./outputs_fig/' + technode + '/Throughput_' + a_cap + ".pdf", bbox_inches='tight', dpi=my_dpi, pad_inches=0.02)
+        print("Throughput fig saved!\n")
 
 
         # area
@@ -718,7 +659,7 @@ def plot_fig(technode=""):
         
         x_idx = np.arange(len(x_axis))
 
-        width = 0.35
+        width = 0.4
 
         index = 0
         sram_list = [
@@ -761,22 +702,30 @@ def plot_fig(technode=""):
             print("8-bit implementation:")
             print("SRAM area: ", sram_list[0])
             print("SA area (BP, BS, UR, UT): ", top_list[0:4])
-            print("BS/BP SA area reduction: ", 1 - top_list[1] / top_list[0])
-            print("UR/BP SA area reduction: ", 1 - top_list[2] / top_list[0])
-            print("UT/BP SA area reduction: ", 1 - top_list[3] / top_list[0])
+            print("BS/BP SA area reduction:      ", 1 - top_list[1] / top_list[0])
+            print("UR/BP SA area reduction:      ", 1 - top_list[2] / top_list[0])
+            print("UT/BP SA area reduction:      ", 1 - top_list[3] / top_list[0])
             print("BS/BP on-chip area reduction: ", 1 - top_list[1] / (top_list[0] + sram_list[0]))
             print("UR/BP on-chip area reduction: ", 1 - top_list[2] / (top_list[0] + sram_list[0]))
             print("UT/BP on-chip area reduction: ", 1 - top_list[3] / (top_list[0] + sram_list[0]))
+            print("UR/BS SA area reduction:      ", 1 - top_list[2] / top_list[1])
+            print("UT/BS SA area reduction:      ", 1 - top_list[3] / top_list[1])
+            print("UR/BS on-chip area reduction: ", 1 - top_list[2] / (top_list[1] + sram_list[0]))
+            print("UT/BS on-chip area reduction: ", 1 - top_list[3] / (top_list[1] + sram_list[0]))
 
             print("16-bit implementation:")
             print("SRAM area: ", sram_list[4])
             print("SA area (BP, BS, UR, UT): ", top_list[4:8])
-            print("BS/BP SA area reduction: ", 1 - top_list[5] / top_list[4])
-            print("UR/BP SA area reduction: ", 1 - top_list[6] / top_list[4])
-            print("UT/BP SA area reduction: ", 1 - top_list[7] / top_list[4])
+            print("BS/BP SA area reduction:      ", 1 - top_list[5] / top_list[4])
+            print("UR/BP SA area reduction:      ", 1 - top_list[6] / top_list[4])
+            print("UT/BP SA area reduction:      ", 1 - top_list[7] / top_list[4])
             print("BS/BP on-chip area reduction: ", 1 - top_list[5] / (top_list[4] + sram_list[4]))
             print("UR/BP on-chip area reduction: ", 1 - top_list[6] / (top_list[4] + sram_list[4]))
             print("UT/BP on-chip area reduction: ", 1 - top_list[7] / (top_list[4] + sram_list[4]))
+            print("UR/BS SA area reduction:      ", 1 - top_list[6] / top_list[5])
+            print("UT/BS SA area reduction:      ", 1 - top_list[7] / top_list[5])
+            print("UR/BS on-chip area reduction: ", 1 - top_list[6] / (top_list[5] + sram_list[4]))
+            print("UT/BS on-chip area reduction: ", 1 - top_list[7] / (top_list[5] + sram_list[4]))
 
         orc = "#7A81FF"
         sal = "#FF7F7F"
@@ -807,8 +756,8 @@ def plot_fig(technode=""):
             ax.set_ylim(bottom, 300)
             ax.text(6, 312, "({:.2f}".format(bot2_list[4])+",{:.2f})".format(top_list[4]), horizontalalignment="center")
         fig.tight_layout()
-        plt.savefig('./outputs_fig/' + technode + '/Area_' + a_cap + ".pdf", bbox_inches='tight', dpi=my_dpi)
-        print("Area fig saved!")
+        plt.savefig('./outputs_fig/' + technode + '/Area_' + a_cap + ".pdf", bbox_inches='tight', dpi=my_dpi, pad_inches=0.02)
+        print("Area fig saved!\n")
 
 
         # energy
@@ -830,7 +779,7 @@ def plot_fig(technode=""):
 
         fig, ax = plt.subplots(figsize=(fig_w, fig_h))
         
-        idx_tot = 10
+        idx_tot = 5
 
         x_idx = np.arange(len(x_axis))
 
@@ -849,20 +798,11 @@ def plot_fig(technode=""):
         sarr_l_list = energy_list[index * 5 + 4][:-1]
         sram_d_neg_list = [-x for x in sram_d_list]
         sram_l_neg_list = [-x for x in sram_l_list]
-        top0_list = []
-        top1_list = []
-        bot0_list = []
-        bot1_list = []
-        for i in range(len(x_axis)):
-            top0_list.append(sarr_d_list[i])
-            top1_list.append(top0_list[i] + sarr_l_list[i])
-            bot0_list.append(-sram_d_list[i])
-            bot1_list.append(bot0_list[i] - sram_l_list[i])
-        idx = 0.5
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), top0_list, width, hatch = None, alpha=0.99, color=bp_color, label='Binary Parallel')
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), top1_list, width, bottom=top0_list, hatch = None, alpha=l_alpha, color=bp_color)
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), bot0_list, width, hatch = None, alpha=0.99, color=bp_color)
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), bot1_list, width, bottom=bot0_list, hatch = None, alpha=l_alpha, color=bp_color)
+        idx = 1
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), sarr_d_list, width, hatch = None, alpha=0.99, color=bp_color, label='Binary Parallel')
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), sarr_l_list, width, bottom=sarr_d_list, hatch = None, alpha=l_alpha, color=bp_color)
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), sram_d_neg_list, width, hatch = None, alpha=0.99, color=bp_color)
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), sram_l_neg_list, width, bottom=sram_d_neg_list, hatch = None, alpha=l_alpha, color=bp_color)
 
         # 8b - spm - bs
         index = 1
@@ -873,140 +813,11 @@ def plot_fig(technode=""):
         sarr_l_list = energy_list[index * 5 + 4][:-1]
         sram_d_neg_list = [-x for x in sram_d_list]
         sram_l_neg_list = [-x for x in sram_l_list]
-        top0_list = []
-        top1_list = []
-        bot0_list = []
-        bot1_list = []
-        for i in range(len(x_axis)):
-            top0_list.append(sarr_d_list[i])
-            top1_list.append(top0_list[i] + sarr_l_list[i])
-            bot0_list.append(-sram_d_list[i])
-            bot1_list.append(bot0_list[i] - sram_l_list[i])
         idx += 1
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), top0_list, width, hatch = None, alpha=0.99, color=bs_color, label='Binary Serial')
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), top1_list, width, bottom=top0_list, hatch = None, alpha=l_alpha, color=bs_color)
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), bot0_list, width, hatch = None, alpha=0.99, color=bs_color)
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), bot1_list, width, bottom=bot0_list, hatch = None, alpha=l_alpha, color=bs_color)
-
-        # 8b - spm - ur - 32c
-        index = 2
-        dram_d_list = energy_list[index * 5 + 0][:-1]
-        sram_d_list = energy_list[index * 5 + 1][:-1]
-        sram_l_list = energy_list[index * 5 + 2][:-1]
-        sarr_d_list = energy_list[index * 5 + 3][:-1]
-        sarr_l_list = energy_list[index * 5 + 4][:-1]
-        sram_d_neg_list = [-x for x in sram_d_list]
-        sram_l_neg_list = [-x for x in sram_l_list]
-        top0_list = []
-        top1_list = []
-        bot0_list = []
-        bot1_list = []
-        for i in range(len(x_axis)):
-            top0_list.append(sarr_d_list[i])
-            top1_list.append(top0_list[i] + sarr_l_list[i])
-            bot0_list.append(-sram_d_list[i])
-            bot1_list.append(bot0_list[i] - sram_l_list[i])
-        idx += 1
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), top0_list, width, hatch = None, alpha=0.99, color=u6_color, label='Unary-32c')
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), top1_list, width, bottom=top0_list, hatch = None, alpha=l_alpha, color=u6_color)
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), bot0_list, width, hatch = None, alpha=0.99, color=u6_color)
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), bot1_list, width, bottom=bot0_list, hatch = None, alpha=l_alpha, color=u6_color)
-
-        # 8b - spm - ur - 64c
-        index = 3
-        dram_d_list = energy_list[index * 5 + 0][:-1]
-        sram_d_list = energy_list[index * 5 + 1][:-1]
-        sram_l_list = energy_list[index * 5 + 2][:-1]
-        sarr_d_list = energy_list[index * 5 + 3][:-1]
-        sarr_l_list = energy_list[index * 5 + 4][:-1]
-        sram_d_neg_list = [-x for x in sram_d_list]
-        sram_l_neg_list = [-x for x in sram_l_list]
-        top0_list = []
-        top1_list = []
-        bot0_list = []
-        bot1_list = []
-        for i in range(len(x_axis)):
-            top0_list.append(sarr_d_list[i])
-            top1_list.append(top0_list[i] + sarr_l_list[i])
-            bot0_list.append(-sram_d_list[i])
-            bot1_list.append(bot0_list[i] - sram_l_list[i])
-        idx += 1
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), top0_list, width, hatch = None, alpha=0.99, color=u7_color, label='Unary-64c')
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), top1_list, width, bottom=top0_list, hatch = None, alpha=l_alpha, color=u7_color)
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), bot0_list, width, hatch = None, alpha=0.99, color=u7_color)
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), bot1_list, width, bottom=bot0_list, hatch = None, alpha=l_alpha, color=u7_color)
-
-        # 8b - spm - ur - 128c
-        index = 4
-        dram_d_list = energy_list[index * 5 + 0][:-1]
-        sram_d_list = energy_list[index * 5 + 1][:-1]
-        sram_l_list = energy_list[index * 5 + 2][:-1]
-        sarr_d_list = energy_list[index * 5 + 3][:-1]
-        sarr_l_list = energy_list[index * 5 + 4][:-1]
-        sram_d_neg_list = [-x for x in sram_d_list]
-        sram_l_neg_list = [-x for x in sram_l_list]
-        top0_list = []
-        top1_list = []
-        bot0_list = []
-        bot1_list = []
-        for i in range(len(x_axis)):
-            top0_list.append(sarr_d_list[i])
-            top1_list.append(top0_list[i] + sarr_l_list[i])
-            bot0_list.append(-sram_d_list[i])
-            bot1_list.append(bot0_list[i] - sram_l_list[i])
-        idx += 1
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), top0_list, width, hatch = None, alpha=0.99, color=u8_color, label='Unary-128c')
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), top1_list, width, bottom=top0_list, hatch = None, alpha=l_alpha, color=u8_color)
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), bot0_list, width, hatch = None, alpha=0.99, color=u8_color)
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), bot1_list, width, bottom=bot0_list, hatch = None, alpha=l_alpha, color=u8_color)
-
-        # 8b - wospm - bp
-        index = 8
-        dram_d_list = energy_list[index * 5 + 0][:-1]
-        sram_d_list = energy_list[index * 5 + 1][:-1]
-        sram_l_list = energy_list[index * 5 + 2][:-1]
-        sarr_d_list = energy_list[index * 5 + 3][:-1]
-        sarr_l_list = energy_list[index * 5 + 4][:-1]
-        sram_d_neg_list = [-x for x in sram_d_list]
-        sram_l_neg_list = [-x for x in sram_l_list]
-        top0_list = []
-        top1_list = []
-        bot0_list = []
-        bot1_list = []
-        for i in range(len(x_axis)):
-            top0_list.append(sarr_d_list[i])
-            top1_list.append(top0_list[i] + sarr_l_list[i])
-            bot0_list.append(-sram_d_list[i])
-            bot1_list.append(bot0_list[i] - sram_l_list[i])
-        idx += 1
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), top0_list, width, hatch = None, alpha=0.99, color=bp_color)
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), top1_list, width, bottom=top0_list, hatch = None, alpha=l_alpha, color=bp_color)
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), bot0_list, width, hatch = None, alpha=0.99, color=bp_color)
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), bot1_list, width, bottom=bot0_list, hatch = None, alpha=l_alpha, color=bp_color)
-
-        # 8b - wospm - bs
-        index = 9
-        dram_d_list = energy_list[index * 5 + 0][:-1]
-        sram_d_list = energy_list[index * 5 + 1][:-1]
-        sram_l_list = energy_list[index * 5 + 2][:-1]
-        sarr_d_list = energy_list[index * 5 + 3][:-1]
-        sarr_l_list = energy_list[index * 5 + 4][:-1]
-        sram_d_neg_list = [-x for x in sram_d_list]
-        sram_l_neg_list = [-x for x in sram_l_list]
-        top0_list = []
-        top1_list = []
-        bot0_list = []
-        bot1_list = []
-        for i in range(len(x_axis)):
-            top0_list.append(sarr_d_list[i])
-            top1_list.append(top0_list[i] + sarr_l_list[i])
-            bot0_list.append(-sram_d_list[i])
-            bot1_list.append(bot0_list[i] - sram_l_list[i])
-        idx += 1
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), top0_list, width, hatch = None, alpha=0.99, color=bs_color)
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), top1_list, width, bottom=top0_list, hatch = None, alpha=l_alpha, color=bs_color)
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), bot0_list, width, hatch = None, alpha=0.99, color=bs_color)
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), bot1_list, width, bottom=bot0_list, hatch = None, alpha=l_alpha, color=bs_color)
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), sarr_d_list, width, hatch = None, alpha=0.99, color=bs_color, label='Binary Serial')
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), sarr_l_list, width, bottom=sarr_d_list, hatch = None, alpha=l_alpha, color=bs_color)
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), sram_d_neg_list, width, hatch = None, alpha=0.99, color=bs_color)
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), sram_l_neg_list, width, bottom=sram_d_neg_list, hatch = None, alpha=l_alpha, color=bs_color)
 
         # 8b - wospm - ur - 32c
         index = 10
@@ -1017,20 +828,11 @@ def plot_fig(technode=""):
         sarr_l_list = energy_list[index * 5 + 4][:-1]
         sram_d_neg_list = [-x for x in sram_d_list]
         sram_l_neg_list = [-x for x in sram_l_list]
-        top0_list = []
-        top1_list = []
-        bot0_list = []
-        bot1_list = []
-        for i in range(len(x_axis)):
-            top0_list.append(sarr_d_list[i])
-            top1_list.append(top0_list[i] + sarr_l_list[i])
-            bot0_list.append(-sram_d_list[i])
-            bot1_list.append(bot0_list[i] - sram_l_list[i])
         idx += 1
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), top0_list, width, hatch = None, alpha=0.99, color=u6_color)
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), top1_list, width, bottom=top0_list, hatch = None, alpha=l_alpha, color=u6_color)
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), bot0_list, width, hatch = None, alpha=0.99, color=u6_color)
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), bot1_list, width, bottom=bot0_list, hatch = None, alpha=l_alpha, color=u6_color)
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), sarr_d_list, width, hatch = None, alpha=0.99, color=u6_color, label='Unary-32c')
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), sarr_l_list, width, bottom=sarr_d_list, hatch = None, alpha=l_alpha, color=u6_color)
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), sram_d_neg_list, width, hatch = None, alpha=0.99, color=u6_color)
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), sram_l_neg_list, width, bottom=sram_d_neg_list, hatch = None, alpha=l_alpha, color=u6_color)
 
         # 8b - wospm - ur - 64c
         index = 11
@@ -1041,20 +843,11 @@ def plot_fig(technode=""):
         sarr_l_list = energy_list[index * 5 + 4][:-1]
         sram_d_neg_list = [-x for x in sram_d_list]
         sram_l_neg_list = [-x for x in sram_l_list]
-        top0_list = []
-        top1_list = []
-        bot0_list = []
-        bot1_list = []
-        for i in range(len(x_axis)):
-            top0_list.append(sarr_d_list[i])
-            top1_list.append(top0_list[i] + sarr_l_list[i])
-            bot0_list.append(-sram_d_list[i])
-            bot1_list.append(bot0_list[i] - sram_l_list[i])
         idx += 1
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), top0_list, width, hatch = None, alpha=0.99, color=u7_color)
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), top1_list, width, bottom=top0_list, hatch = None, alpha=l_alpha, color=u7_color)
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), bot0_list, width, hatch = None, alpha=0.99, color=u7_color)
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), bot1_list, width, bottom=bot0_list, hatch = None, alpha=l_alpha, color=u7_color)
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), sarr_d_list, width, hatch = None, alpha=0.99, color=u7_color, label='Unary-64c')
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), sarr_l_list, width, bottom=sarr_d_list, hatch = None, alpha=l_alpha, color=u7_color)
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), sram_d_neg_list, width, hatch = None, alpha=0.99, color=u7_color)
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), sram_l_neg_list, width, bottom=sram_d_neg_list, hatch = None, alpha=l_alpha, color=u7_color)
 
         # 8b - wospm - ur - 128c
         index = 12
@@ -1065,20 +858,11 @@ def plot_fig(technode=""):
         sarr_l_list = energy_list[index * 5 + 4][:-1]
         sram_d_neg_list = [-x for x in sram_d_list]
         sram_l_neg_list = [-x for x in sram_l_list]
-        top0_list = []
-        top1_list = []
-        bot0_list = []
-        bot1_list = []
-        for i in range(len(x_axis)):
-            top0_list.append(sarr_d_list[i])
-            top1_list.append(top0_list[i] + sarr_l_list[i])
-            bot0_list.append(-sram_d_list[i])
-            bot1_list.append(bot0_list[i] - sram_l_list[i])
         idx += 1
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), top0_list, width, hatch = None, alpha=0.99, color=u8_color)
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), top1_list, width, bottom=top0_list, hatch = None, alpha=l_alpha, color=u8_color)
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), bot0_list, width, hatch = None, alpha=0.99, color=u8_color)
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), bot1_list, width, bottom=bot0_list, hatch = None, alpha=l_alpha, color=u8_color)
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), sarr_d_list, width, hatch = None, alpha=0.99, color=u8_color, label='Unary-128c')
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), sarr_l_list, width, bottom=sarr_d_list, hatch = None, alpha=l_alpha, color=u8_color)
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), sram_d_neg_list, width, hatch = None, alpha=0.99, color=u8_color)
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), sram_l_neg_list, width, bottom=sram_d_neg_list, hatch = None, alpha=l_alpha, color=u8_color)
 
         ax.set_ylabel('SRAM-SA energy (uJ)')
         ax.set_xticks(x_idx)
@@ -1114,8 +898,8 @@ def plot_fig(technode=""):
                 y_label_list.append("0")
         ax.set_yticklabels(y_label_list)
         fig.tight_layout()
-        plt.savefig('./outputs_fig/' + technode + '/Energy_' + a_cap + ".pdf", bbox_inches='tight', dpi=my_dpi)
-        print("Energy fig saved!")
+        plt.savefig('./outputs_fig/' + technode + '/Energy_' + a_cap + ".pdf", bbox_inches='tight', dpi=my_dpi, pad_inches=0.02)
+        print("Energy fig saved!\n")
 
 
 
@@ -1138,7 +922,7 @@ def plot_fig(technode=""):
 
         fig, ax = plt.subplots(figsize=(fig_w, fig_h))
         
-        idx_tot = 10
+        idx_tot = 5
 
         x_idx = np.arange(len(x_axis))
 
@@ -1157,22 +941,16 @@ def plot_fig(technode=""):
         sarr_l_list = power_list[index * 5 + 4][:-1]
         sram_d_neg_list = [-x for x in sram_d_list]
         sram_l_neg_list = [-x for x in sram_l_list]
-        top0_list = []
-        top1_list = []
-        bot0_list = []
-        bot1_list = []
-        for i in range(len(x_axis)):
-            top0_list.append(sarr_d_list[i])
-            top1_list.append(top0_list[i] + sarr_l_list[i])
-            bot0_list.append(-sram_d_list[i])
-            bot1_list.append(bot0_list[i] - sram_l_list[i])
-        idx = 0.5
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), top0_list, width, hatch = None, alpha=0.99, color=bp_color, label='Binary Parallel')
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), top1_list, width, bottom=top0_list, hatch = None, alpha=l_alpha, color=bp_color)
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), bot0_list, width, hatch = None, alpha=0.99, color=bp_color)
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), bot1_list, width, bottom=bot0_list, hatch = None, alpha=l_alpha, color=bp_color)
-        sram_d_list_bp_spm = [-i for i in bot0_list]
-        sram_dl_list_bp_spm = [-i for i in bot1_list]
+        idx = 1
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), sarr_d_list, width, hatch = None, alpha=0.99, color=bp_color, label='Binary Parallel')
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), sarr_l_list, width, bottom=sarr_d_list, hatch = None, alpha=l_alpha, color=bp_color)
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), sram_d_neg_list, width, hatch = None, alpha=0.99, color=bp_color)
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), sram_l_neg_list, width, bottom=sram_d_neg_list, hatch = None, alpha=l_alpha, color=bp_color)
+        sram_d_list_bp_spm = []
+        sram_dl_list_bp_spm = []
+        for i in range(len(sram_d_list)):
+            sram_d_list_bp_spm.append(sram_d_list[i])
+            sram_dl_list_bp_spm.append(sram_d_list[i] + sram_l_list[i])
 
         # 8b - spm - bs
         index = 1
@@ -1183,140 +961,11 @@ def plot_fig(technode=""):
         sarr_l_list = power_list[index * 5 + 4][:-1]
         sram_d_neg_list = [-x for x in sram_d_list]
         sram_l_neg_list = [-x for x in sram_l_list]
-        top0_list = []
-        top1_list = []
-        bot0_list = []
-        bot1_list = []
-        for i in range(len(x_axis)):
-            top0_list.append(sarr_d_list[i])
-            top1_list.append(top0_list[i] + sarr_l_list[i])
-            bot0_list.append(-sram_d_list[i])
-            bot1_list.append(bot0_list[i] - sram_l_list[i])
         idx += 1
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), top0_list, width, hatch = None, alpha=0.99, color=bs_color, label='Binary Serial')
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), top1_list, width, bottom=top0_list, hatch = None, alpha=l_alpha, color=bs_color)
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), bot0_list, width, hatch = None, alpha=0.99, color=bs_color)
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), bot1_list, width, bottom=bot0_list, hatch = None, alpha=l_alpha, color=bs_color)
-
-        # 8b - spm - ur - 32c
-        index = 2
-        dram_d_list = power_list[index * 5 + 0][:-1]
-        sram_d_list = power_list[index * 5 + 1][:-1]
-        sram_l_list = power_list[index * 5 + 2][:-1]
-        sarr_d_list = power_list[index * 5 + 3][:-1]
-        sarr_l_list = power_list[index * 5 + 4][:-1]
-        sram_d_neg_list = [-x for x in sram_d_list]
-        sram_l_neg_list = [-x for x in sram_l_list]
-        top0_list = []
-        top1_list = []
-        bot0_list = []
-        bot1_list = []
-        for i in range(len(x_axis)):
-            top0_list.append(sarr_d_list[i])
-            top1_list.append(top0_list[i] + sarr_l_list[i])
-            bot0_list.append(-sram_d_list[i])
-            bot1_list.append(bot0_list[i] - sram_l_list[i])
-        idx += 1
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), top0_list, width, hatch = None, alpha=0.99, color=u6_color, label='Unary-32c')
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), top1_list, width, bottom=top0_list, hatch = None, alpha=l_alpha, color=u6_color)
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), bot0_list, width, hatch = None, alpha=0.99, color=u6_color)
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), bot1_list, width, bottom=bot0_list, hatch = None, alpha=l_alpha, color=u6_color)
-
-        # 8b - spm - ur - 64c
-        index = 3
-        dram_d_list = power_list[index * 5 + 0][:-1]
-        sram_d_list = power_list[index * 5 + 1][:-1]
-        sram_l_list = power_list[index * 5 + 2][:-1]
-        sarr_d_list = power_list[index * 5 + 3][:-1]
-        sarr_l_list = power_list[index * 5 + 4][:-1]
-        sram_d_neg_list = [-x for x in sram_d_list]
-        sram_l_neg_list = [-x for x in sram_l_list]
-        top0_list = []
-        top1_list = []
-        bot0_list = []
-        bot1_list = []
-        for i in range(len(x_axis)):
-            top0_list.append(sarr_d_list[i])
-            top1_list.append(top0_list[i] + sarr_l_list[i])
-            bot0_list.append(-sram_d_list[i])
-            bot1_list.append(bot0_list[i] - sram_l_list[i])
-        idx += 1
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), top0_list, width, hatch = None, alpha=0.99, color=u7_color, label='Unary-64c')
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), top1_list, width, bottom=top0_list, hatch = None, alpha=l_alpha, color=u7_color)
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), bot0_list, width, hatch = None, alpha=0.99, color=u7_color)
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), bot1_list, width, bottom=bot0_list, hatch = None, alpha=l_alpha, color=u7_color)
-
-        # 8b - spm - ur - 128c
-        index = 4
-        dram_d_list = power_list[index * 5 + 0][:-1]
-        sram_d_list = power_list[index * 5 + 1][:-1]
-        sram_l_list = power_list[index * 5 + 2][:-1]
-        sarr_d_list = power_list[index * 5 + 3][:-1]
-        sarr_l_list = power_list[index * 5 + 4][:-1]
-        sram_d_neg_list = [-x for x in sram_d_list]
-        sram_l_neg_list = [-x for x in sram_l_list]
-        top0_list = []
-        top1_list = []
-        bot0_list = []
-        bot1_list = []
-        for i in range(len(x_axis)):
-            top0_list.append(sarr_d_list[i])
-            top1_list.append(top0_list[i] + sarr_l_list[i])
-            bot0_list.append(-sram_d_list[i])
-            bot1_list.append(bot0_list[i] - sram_l_list[i])
-        idx += 1
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), top0_list, width, hatch = None, alpha=0.99, color=u8_color, label='Unary-128c')
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), top1_list, width, bottom=top0_list, hatch = None, alpha=l_alpha, color=u8_color)
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), bot0_list, width, hatch = None, alpha=0.99, color=u8_color)
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), bot1_list, width, bottom=bot0_list, hatch = None, alpha=l_alpha, color=u8_color)
-
-        # 8b - wospm - bp
-        index = 8
-        dram_d_list = power_list[index * 5 + 0][:-1]
-        sram_d_list = power_list[index * 5 + 1][:-1]
-        sram_l_list = power_list[index * 5 + 2][:-1]
-        sarr_d_list = power_list[index * 5 + 3][:-1]
-        sarr_l_list = power_list[index * 5 + 4][:-1]
-        sram_d_neg_list = [-x for x in sram_d_list]
-        sram_l_neg_list = [-x for x in sram_l_list]
-        top0_list = []
-        top1_list = []
-        bot0_list = []
-        bot1_list = []
-        for i in range(len(x_axis)):
-            top0_list.append(sarr_d_list[i])
-            top1_list.append(top0_list[i] + sarr_l_list[i])
-            bot0_list.append(-sram_d_list[i])
-            bot1_list.append(bot0_list[i] - sram_l_list[i])
-        idx += 1
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), top0_list, width, hatch = None, alpha=0.99, color=bp_color)
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), top1_list, width, bottom=top0_list, hatch = None, alpha=l_alpha, color=bp_color)
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), bot0_list, width, hatch = None, alpha=0.99, color=bp_color)
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), bot1_list, width, bottom=bot0_list, hatch = None, alpha=l_alpha, color=bp_color)
-
-        # 8b - wospm - bs
-        index = 9
-        dram_d_list = power_list[index * 5 + 0][:-1]
-        sram_d_list = power_list[index * 5 + 1][:-1]
-        sram_l_list = power_list[index * 5 + 2][:-1]
-        sarr_d_list = power_list[index * 5 + 3][:-1]
-        sarr_l_list = power_list[index * 5 + 4][:-1]
-        sram_d_neg_list = [-x for x in sram_d_list]
-        sram_l_neg_list = [-x for x in sram_l_list]
-        top0_list = []
-        top1_list = []
-        bot0_list = []
-        bot1_list = []
-        for i in range(len(x_axis)):
-            top0_list.append(sarr_d_list[i])
-            top1_list.append(top0_list[i] + sarr_l_list[i])
-            bot0_list.append(-sram_d_list[i])
-            bot1_list.append(bot0_list[i] - sram_l_list[i])
-        idx += 1
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), top0_list, width, hatch = None, alpha=0.99, color=bs_color)
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), top1_list, width, bottom=top0_list, hatch = None, alpha=l_alpha, color=bs_color)
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), bot0_list, width, hatch = None, alpha=0.99, color=bs_color)
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), bot1_list, width, bottom=bot0_list, hatch = None, alpha=l_alpha, color=bs_color)
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), sarr_d_list, width, hatch = None, alpha=0.99, color=bs_color, label='Binary Serial')
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), sarr_l_list, width, bottom=sarr_d_list, hatch = None, alpha=l_alpha, color=bs_color)
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), sram_d_neg_list, width, hatch = None, alpha=0.99, color=bs_color)
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), sram_l_neg_list, width, bottom=sram_d_neg_list, hatch = None, alpha=l_alpha, color=bs_color)
 
         # 8b - wospm - ur - 32c
         index = 10
@@ -1327,20 +976,11 @@ def plot_fig(technode=""):
         sarr_l_list = power_list[index * 5 + 4][:-1]
         sram_d_neg_list = [-x for x in sram_d_list]
         sram_l_neg_list = [-x for x in sram_l_list]
-        top0_list = []
-        top1_list = []
-        bot0_list = []
-        bot1_list = []
-        for i in range(len(x_axis)):
-            top0_list.append(sarr_d_list[i])
-            top1_list.append(top0_list[i] + sarr_l_list[i])
-            bot0_list.append(-sram_d_list[i])
-            bot1_list.append(bot0_list[i] - sram_l_list[i])
         idx += 1
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), top0_list, width, hatch = None, alpha=0.99, color=u6_color)
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), top1_list, width, bottom=top0_list, hatch = None, alpha=l_alpha, color=u6_color)
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), bot0_list, width, hatch = None, alpha=0.99, color=u6_color)
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), bot1_list, width, bottom=bot0_list, hatch = None, alpha=l_alpha, color=u6_color)
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), sarr_d_list, width, hatch = None, alpha=0.99, color=u6_color, label='Unary-32c')
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), sarr_l_list, width, bottom=sarr_d_list, hatch = None, alpha=l_alpha, color=u6_color)
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), sram_d_neg_list, width, hatch = None, alpha=0.99, color=u6_color)
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), sram_l_neg_list, width, bottom=sram_d_neg_list, hatch = None, alpha=l_alpha, color=u6_color)
 
         # 8b - wospm - ur - 64c
         index = 11
@@ -1351,20 +991,11 @@ def plot_fig(technode=""):
         sarr_l_list = power_list[index * 5 + 4][:-1]
         sram_d_neg_list = [-x for x in sram_d_list]
         sram_l_neg_list = [-x for x in sram_l_list]
-        top0_list = []
-        top1_list = []
-        bot0_list = []
-        bot1_list = []
-        for i in range(len(x_axis)):
-            top0_list.append(sarr_d_list[i])
-            top1_list.append(top0_list[i] + sarr_l_list[i])
-            bot0_list.append(-sram_d_list[i])
-            bot1_list.append(bot0_list[i] - sram_l_list[i])
         idx += 1
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), top0_list, width, hatch = None, alpha=0.99, color=u7_color)
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), top1_list, width, bottom=top0_list, hatch = None, alpha=l_alpha, color=u7_color)
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), bot0_list, width, hatch = None, alpha=0.99, color=u7_color)
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), bot1_list, width, bottom=bot0_list, hatch = None, alpha=l_alpha, color=u7_color)
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), sarr_d_list, width, hatch = None, alpha=0.99, color=u7_color, label='Unary-64c')
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), sarr_l_list, width, bottom=sarr_d_list, hatch = None, alpha=l_alpha, color=u7_color)
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), sram_d_neg_list, width, hatch = None, alpha=0.99, color=u7_color)
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), sram_l_neg_list, width, bottom=sram_d_neg_list, hatch = None, alpha=l_alpha, color=u7_color)
 
         # 8b - wospm - ur - 128c
         index = 12
@@ -1375,20 +1006,11 @@ def plot_fig(technode=""):
         sarr_l_list = power_list[index * 5 + 4][:-1]
         sram_d_neg_list = [-x for x in sram_d_list]
         sram_l_neg_list = [-x for x in sram_l_list]
-        top0_list = []
-        top1_list = []
-        bot0_list = []
-        bot1_list = []
-        for i in range(len(x_axis)):
-            top0_list.append(sarr_d_list[i])
-            top1_list.append(top0_list[i] + sarr_l_list[i])
-            bot0_list.append(-sram_d_list[i])
-            bot1_list.append(bot0_list[i] - sram_l_list[i])
         idx += 1
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), top0_list, width, hatch = None, alpha=0.99, color=u8_color)
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), top1_list, width, bottom=top0_list, hatch = None, alpha=l_alpha, color=u8_color)
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), bot0_list, width, hatch = None, alpha=0.99, color=u8_color)
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), bot1_list, width, bottom=bot0_list, hatch = None, alpha=l_alpha, color=u8_color)
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), sarr_d_list, width, hatch = None, alpha=0.99, color=u8_color, label='Unary-128c')
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), sarr_l_list, width, bottom=sarr_d_list, hatch = None, alpha=l_alpha, color=u8_color)
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), sram_d_neg_list, width, hatch = None, alpha=0.99, color=u8_color)
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), sram_l_neg_list, width, bottom=sram_d_neg_list, hatch = None, alpha=l_alpha, color=u8_color)
 
         ax.set_ylabel('SRAM-SA Power (mW)')
         ax.set_xticks(x_idx)
@@ -1398,20 +1020,16 @@ def plot_fig(technode=""):
         bottom, top = plt.ylim()
 
         if a == "eyeriss":
-            ax.set_ylim((-400, 150))
+            ax.set_ylim((-300, 100))
             bottom, top = plt.ylim()
             for x in x_idx:
                 ax.fill_betweenx([bottom, 50], x1=x, x2=x+0.5, alpha=0.2, color=bg_color, linewidth=0)
             ax.legend(loc="upper center", ncol=3, frameon=True)
-
-            ax.text(0-4.5*width, -384, "{:.2f}".format(sram_dl_list_bp_spm[0]), horizontalalignment="center")
-            ax.text(1-4.5*width, -350, "({:.2f}".format(sram_d_list_bp_spm[1])+",{:.2f})".format(sram_dl_list_bp_spm[1]), horizontalalignment="center")
-            # ax.text(1-4.5*width, -384, "{:.2f}".format(sram_dl_list_bp_spm[1]), horizontalalignment="center")
-            ax.text(2-4.5*width, -384, "{:.2f}".format(sram_dl_list_bp_spm[2]), horizontalalignment="center")
-            ax.text(3-4.5*width, -384, "{:.2f}".format(sram_dl_list_bp_spm[3]), horizontalalignment="center")
-            ax.text(4-4.5*width, -384, "{:.2f}".format(sram_dl_list_bp_spm[4]), horizontalalignment="center")
-
-            y_tick_list = [-300, -200, -100, 0, 100]
+            ax.text(0-1.5*width, -284, "{:.2f}".format(sram_dl_list_bp_spm[0]), horizontalalignment="center")
+            ax.text(1-1.5*width, -250, "({:.2f}".format(sram_d_list_bp_spm[1])+",{:.2f})".format(sram_dl_list_bp_spm[1]), horizontalalignment="center")
+            ax.text(2-1.5*width, -284, "{:.2f}".format(sram_dl_list_bp_spm[2]), horizontalalignment="center")
+    
+            y_tick_list = [-200, -100, 0, 100]
             ax.set_yticks(y_tick_list)
             y_label_list = []
 
@@ -1423,11 +1041,10 @@ def plot_fig(technode=""):
             ax.set_yticklabels(y_label_list)
         else:
             ax.set_ylim((bottom, top))
-            bottom, top = plt.ylim()
             for x in x_idx:
                 ax.fill_betweenx([bottom, top], x1=x, x2=x+0.5, alpha=0.2, color=bg_color, linewidth=0)
             
-            y_tick_list = [-5000, 0, 5000, 10000]
+            y_tick_list = [-5000, 0, 5000]
             ax.set_yticks(y_tick_list)
             y_label_list = []
 
@@ -1440,8 +1057,8 @@ def plot_fig(technode=""):
         ax.axhline(y=0, color="k", linewidth = 0.1)
         
         fig.tight_layout()
-        plt.savefig('./outputs_fig/' + technode + '/Power_' + a_cap + ".pdf", bbox_inches='tight', dpi=my_dpi)
-        print("Power fig saved!")
+        plt.savefig('./outputs_fig/' + technode + '/Power_' + a_cap + ".pdf", bbox_inches='tight', dpi=my_dpi, pad_inches=0.02)
+        print("Power fig saved!\n")
 
 
 
@@ -1464,7 +1081,7 @@ def plot_fig(technode=""):
 
         fig, ax = plt.subplots(figsize=(fig_w, fig_h))
         
-        idx_tot = 10
+        idx_tot = 5
 
         x_idx = np.arange(len(x_axis))
 
@@ -1481,19 +1098,13 @@ def plot_fig(technode=""):
         sram_l_list = energy_list[index * 5 + 2][:-1]
         sarr_d_list = energy_list[index * 5 + 3][:-1]
         sarr_l_list = energy_list[index * 5 + 4][:-1]
-        total_list = []
+        total_energy_list_bp_spm = []
+        onchip_energy_list_bp_spm = []
         for i in range(len(x_axis)):
-            total_list.append(dram_d_list[i] + sram_d_list[i] + sram_l_list[i] + sarr_d_list[i] + sarr_l_list[i])
-        idx = 0.5
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), total_list, width, hatch = None, alpha=0.99, color=bp_color, label='Binary Parallel')
-        onchip_list_base = []
-        for i in range(len(x_axis)):
-            onchip_list_base.append(sram_d_list[i] + sram_l_list[i] + sarr_d_list[i] + sarr_l_list[i])
-        if print_energy_onchip:
-            print(onchip_list_base)
-        total_energy_list_bp_spm = [i for i in total_list]
-        if print_energy_total:
-            print(total_energy_list_bp_spm)
+            total_energy_list_bp_spm.append(dram_d_list[i] + sram_d_list[i] + sram_l_list[i] + sarr_d_list[i] + sarr_l_list[i])
+            onchip_energy_list_bp_spm.append(sram_d_list[i] + sram_l_list[i] + sarr_d_list[i] + sarr_l_list[i])
+        idx = 1
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), total_energy_list_bp_spm, width, hatch = None, alpha=0.99, color=bp_color, label='Binary Parallel')
 
         # 8b - spm - bs
         index = 1
@@ -1502,137 +1113,21 @@ def plot_fig(technode=""):
         sram_l_list = energy_list[index * 5 + 2][:-1]
         sarr_d_list = energy_list[index * 5 + 3][:-1]
         sarr_l_list = energy_list[index * 5 + 4][:-1]
-        total_list = []
+        total_energy_list_bs_spm = []
+        onchip_energy_list_bs_spm = []
         for i in range(len(x_axis)):
-            total_list.append(dram_d_list[i] + sram_d_list[i] + sram_l_list[i] + sarr_d_list[i] + sarr_l_list[i])
+            total_energy_list_bs_spm.append(dram_d_list[i] + sram_d_list[i] + sram_l_list[i] + sarr_d_list[i] + sarr_l_list[i])
+            onchip_energy_list_bs_spm.append(sram_d_list[i] + sram_l_list[i] + sarr_d_list[i] + sarr_l_list[i])
         idx += 1
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), total_list, width, hatch = None, alpha=0.99, color=bs_color, label='Binary Serial')
-        onchip_list = []
-        for i in range(len(x_axis)):
-            onchip_list.append(1 - (sram_d_list[i] + sram_l_list[i] + sarr_d_list[i] + sarr_l_list[i])/onchip_list_base[i] )
-        if print_energy_onchip:
-            print(onchip_list)
-        total_list_r = []
-        for i in range(len(x_axis)):
-            total_list_r.append(1-total_list[i]/total_energy_list_bp_spm[i])
-        if print_energy_total:
-            print(total_list_r)
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), total_energy_list_bs_spm, width, hatch = None, alpha=0.99, color=bs_color, label='Binary Serial')
 
-        # 8b - spm - ur - 32c
-        index = 2
-        dram_d_list = energy_list[index * 5 + 0][:-1]
-        sram_d_list = energy_list[index * 5 + 1][:-1]
-        sram_l_list = energy_list[index * 5 + 2][:-1]
-        sarr_d_list = energy_list[index * 5 + 3][:-1]
-        sarr_l_list = energy_list[index * 5 + 4][:-1]
-        total_list = []
+        onchip_energy_r_list_bs_spm = []
         for i in range(len(x_axis)):
-            total_list.append(dram_d_list[i] + sram_d_list[i] + sram_l_list[i] + sarr_d_list[i] + sarr_l_list[i])
-        idx += 1
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), total_list, width, hatch = None, alpha=0.99, color=u6_color, label='Unary-32c')
-        onchip_list = []
+            onchip_energy_r_list_bs_spm.append(1-onchip_energy_list_bs_spm[i]/onchip_energy_list_bp_spm[i])
+        
+        total_energy_r_list_bs_spm = []
         for i in range(len(x_axis)):
-            onchip_list.append(1 - (sram_d_list[i] + sram_l_list[i] + sarr_d_list[i] + sarr_l_list[i])/onchip_list_base[i] )
-        if print_energy_onchip:
-            print(onchip_list)
-        total_list_r = []
-        for i in range(len(x_axis)):
-            total_list_r.append(1-total_list[i]/total_energy_list_bp_spm[i])
-        if print_energy_total:
-            print(total_list_r)
-
-        # 8b - spm - ur - 64c
-        index = 3
-        dram_d_list = energy_list[index * 5 + 0][:-1]
-        sram_d_list = energy_list[index * 5 + 1][:-1]
-        sram_l_list = energy_list[index * 5 + 2][:-1]
-        sarr_d_list = energy_list[index * 5 + 3][:-1]
-        sarr_l_list = energy_list[index * 5 + 4][:-1]
-        total_list = []
-        for i in range(len(x_axis)):
-            total_list.append(dram_d_list[i] + sram_d_list[i] + sram_l_list[i] + sarr_d_list[i] + sarr_l_list[i])
-        idx += 1
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), total_list, width, hatch = None, alpha=0.99, color=u7_color, label='Unary-64c')
-        onchip_list = []
-        for i in range(len(x_axis)):
-            onchip_list.append(1 - (sram_d_list[i] + sram_l_list[i] + sarr_d_list[i] + sarr_l_list[i])/onchip_list_base[i] )
-        if print_energy_onchip:
-            print(onchip_list)
-        total_list_r = []
-        for i in range(len(x_axis)):
-            total_list_r.append(1-total_list[i]/total_energy_list_bp_spm[i])
-        if print_energy_total:
-            print(total_list_r)
-
-        # 8b - spm - ur - 128c
-        index = 4
-        dram_d_list = energy_list[index * 5 + 0][:-1]
-        sram_d_list = energy_list[index * 5 + 1][:-1]
-        sram_l_list = energy_list[index * 5 + 2][:-1]
-        sarr_d_list = energy_list[index * 5 + 3][:-1]
-        sarr_l_list = energy_list[index * 5 + 4][:-1]
-        total_list = []
-        for i in range(len(x_axis)):
-            total_list.append(dram_d_list[i] + sram_d_list[i] + sram_l_list[i] + sarr_d_list[i] + sarr_l_list[i])
-        idx += 1
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), total_list, width, hatch = None, alpha=0.99, color=u8_color, label='Unary-128c')
-        onchip_list = []
-        for i in range(len(x_axis)):
-            onchip_list.append(1 - (sram_d_list[i] + sram_l_list[i] + sarr_d_list[i] + sarr_l_list[i])/onchip_list_base[i] )
-        if print_energy_onchip:
-            print(onchip_list)
-        total_list_r = []
-        for i in range(len(x_axis)):
-            total_list_r.append(1-total_list[i]/total_energy_list_bp_spm[i])
-        if print_energy_total:
-            print(total_list_r)
-
-        # 8b - wospm - bp
-        index = 8
-        dram_d_list = energy_list[index * 5 + 0][:-1]
-        sram_d_list = energy_list[index * 5 + 1][:-1]
-        sram_l_list = energy_list[index * 5 + 2][:-1]
-        sarr_d_list = energy_list[index * 5 + 3][:-1]
-        sarr_l_list = energy_list[index * 5 + 4][:-1]
-        total_list = []
-        for i in range(len(x_axis)):
-            total_list.append(dram_d_list[i] + sram_d_list[i] + sram_l_list[i] + sarr_d_list[i] + sarr_l_list[i])
-        idx += 1
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), total_list, width, hatch = None, alpha=0.99, color=bp_color)
-        onchip_list = []
-        for i in range(len(x_axis)):
-            onchip_list.append(1 - (sram_d_list[i] + sram_l_list[i] + sarr_d_list[i] + sarr_l_list[i])/onchip_list_base[i] )
-        if print_energy_onchip:
-            print(onchip_list)
-        total_energy_list_bp_nospm = [i for i in total_list]
-        total_list_r = []
-        for i in range(len(x_axis)):
-            total_list_r.append(1-total_list[i]/total_energy_list_bp_spm[i])
-        if print_energy_total:
-            print(total_list_r)
-
-        # 8b - wospm - bs
-        index = 9
-        dram_d_list = energy_list[index * 5 + 0][:-1]
-        sram_d_list = energy_list[index * 5 + 1][:-1]
-        sram_l_list = energy_list[index * 5 + 2][:-1]
-        sarr_d_list = energy_list[index * 5 + 3][:-1]
-        sarr_l_list = energy_list[index * 5 + 4][:-1]
-        total_list = []
-        for i in range(len(x_axis)):
-            total_list.append(dram_d_list[i] + sram_d_list[i] + sram_l_list[i] + sarr_d_list[i] + sarr_l_list[i])
-        idx += 1
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), total_list, width, hatch = None, alpha=0.99, color=bs_color)
-        onchip_list = []
-        for i in range(len(x_axis)):
-            onchip_list.append(1 - (sram_d_list[i] + sram_l_list[i] + sarr_d_list[i] + sarr_l_list[i])/onchip_list_base[i] )
-        if print_energy_onchip:
-            print(onchip_list)
-        total_list_r = []
-        for i in range(len(x_axis)):
-            total_list_r.append(1-total_list[i]/total_energy_list_bp_spm[i])
-        if print_energy_total:
-            print(total_list_r)
+            total_energy_r_list_bs_spm.append(1 - total_energy_list_bs_spm[i]/total_energy_list_bp_spm[i])
 
         # 8b - wospm - ur - 32c
         index = 10
@@ -1641,21 +1136,21 @@ def plot_fig(technode=""):
         sram_l_list = energy_list[index * 5 + 2][:-1]
         sarr_d_list = energy_list[index * 5 + 3][:-1]
         sarr_l_list = energy_list[index * 5 + 4][:-1]
-        total_list = []
+        total_energy_list_u6_wspm = []
+        onchip_energy_list_u6_wspm = []
         for i in range(len(x_axis)):
-            total_list.append(dram_d_list[i] + sram_d_list[i] + sram_l_list[i] + sarr_d_list[i] + sarr_l_list[i])
+            total_energy_list_u6_wspm.append(dram_d_list[i] + sram_d_list[i] + sram_l_list[i] + sarr_d_list[i] + sarr_l_list[i])
+            onchip_energy_list_u6_wspm.append(sram_d_list[i] + sram_l_list[i] + sarr_d_list[i] + sarr_l_list[i])
         idx += 1
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), total_list, width, hatch = None, alpha=0.99, color=u6_color)
-        onchip_list = []
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), total_energy_list_u6_wspm, width, hatch = None, alpha=0.99, color=u6_color, label='Unary-32c')
+
+        onchip_energy_r_list_u6_wspm = []
         for i in range(len(x_axis)):
-            onchip_list.append(1 - (sram_d_list[i] + sram_l_list[i] + sarr_d_list[i] + sarr_l_list[i])/onchip_list_base[i] )
-        if print_energy_onchip:
-            print(onchip_list)
-        total_list_r = []
+            onchip_energy_r_list_u6_wspm.append(1-onchip_energy_list_u6_wspm[i]/onchip_energy_list_bp_spm[i])
+        
+        total_energy_r_list_u6_wspm = []
         for i in range(len(x_axis)):
-            total_list_r.append(1-total_list[i]/total_energy_list_bp_spm[i])
-        if print_energy_total:
-            print(total_list_r)
+            total_energy_r_list_u6_wspm.append(1 - total_energy_list_u6_wspm[i]/total_energy_list_bp_spm[i])
 
         # 8b - wospm - ur - 64c
         index = 11
@@ -1664,21 +1159,21 @@ def plot_fig(technode=""):
         sram_l_list = energy_list[index * 5 + 2][:-1]
         sarr_d_list = energy_list[index * 5 + 3][:-1]
         sarr_l_list = energy_list[index * 5 + 4][:-1]
-        total_list = []
+        total_energy_list_u7_wspm = []
+        onchip_energy_list_u7_wspm = []
         for i in range(len(x_axis)):
-            total_list.append(dram_d_list[i] + sram_d_list[i] + sram_l_list[i] + sarr_d_list[i] + sarr_l_list[i])
+            total_energy_list_u7_wspm.append(dram_d_list[i] + sram_d_list[i] + sram_l_list[i] + sarr_d_list[i] + sarr_l_list[i])
+            onchip_energy_list_u7_wspm.append(sram_d_list[i] + sram_l_list[i] + sarr_d_list[i] + sarr_l_list[i])
         idx += 1
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), total_list, width, hatch = None, alpha=0.99, color=u7_color)
-        onchip_list = []
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), total_energy_list_u7_wspm, width, hatch = None, alpha=0.99, color=u7_color, label='Unary-64c')
+
+        onchip_energy_r_list_u7_wspm = []
         for i in range(len(x_axis)):
-            onchip_list.append(1 - (sram_d_list[i] + sram_l_list[i] + sarr_d_list[i] + sarr_l_list[i])/onchip_list_base[i] )
-        if print_energy_onchip:
-            print(onchip_list)
-        total_list_r = []
+            onchip_energy_r_list_u7_wspm.append(1-onchip_energy_list_u7_wspm[i]/onchip_energy_list_bp_spm[i])
+        
+        total_energy_r_list_u7_wspm = []
         for i in range(len(x_axis)):
-            total_list_r.append(1-total_list[i]/total_energy_list_bp_spm[i])
-        if print_energy_total:
-            print(total_list_r)
+            total_energy_r_list_u7_wspm.append(1 - total_energy_list_u7_wspm[i]/total_energy_list_bp_spm[i])
 
         # 8b - wospm - ur - 128c
         index = 12
@@ -1687,21 +1182,21 @@ def plot_fig(technode=""):
         sram_l_list = energy_list[index * 5 + 2][:-1]
         sarr_d_list = energy_list[index * 5 + 3][:-1]
         sarr_l_list = energy_list[index * 5 + 4][:-1]
-        total_list = []
+        total_energy_list_u8_wspm = []
+        onchip_energy_list_u8_wspm = []
         for i in range(len(x_axis)):
-            total_list.append(dram_d_list[i] + sram_d_list[i] + sram_l_list[i] + sarr_d_list[i] + sarr_l_list[i])
+            total_energy_list_u8_wspm.append(dram_d_list[i] + sram_d_list[i] + sram_l_list[i] + sarr_d_list[i] + sarr_l_list[i])
+            onchip_energy_list_u8_wspm.append(sram_d_list[i] + sram_l_list[i] + sarr_d_list[i] + sarr_l_list[i])
         idx += 1
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), total_list, width, hatch = None, alpha=0.99, color=u8_color)
-        onchip_list = []
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), total_energy_list_u8_wspm, width, hatch = None, alpha=0.99, color=u8_color, label='Unary-128c')
+
+        onchip_energy_r_list_u8_wspm = []
         for i in range(len(x_axis)):
-            onchip_list.append(1 - (sram_d_list[i] + sram_l_list[i] + sarr_d_list[i] + sarr_l_list[i])/onchip_list_base[i] )
-        if print_energy_onchip:
-            print(onchip_list)
-        total_list_r = []
+            onchip_energy_r_list_u8_wspm.append(1-onchip_energy_list_u8_wspm[i]/onchip_energy_list_bp_spm[i])
+        
+        total_energy_r_list_u8_wspm = []
         for i in range(len(x_axis)):
-            total_list_r.append(1-total_list[i]/total_energy_list_bp_spm[i])
-        if print_energy_total:
-            print(total_list_r)
+            total_energy_r_list_u8_wspm.append(1 - total_energy_list_u8_wspm[i]/total_energy_list_bp_spm[i])
 
         ax.set_ylabel('Total energy (uJ)')
         ax.set_xticks(x_idx)
@@ -1740,8 +1235,33 @@ def plot_fig(technode=""):
 
         ax.minorticks_off()
         fig.tight_layout()
-        plt.savefig('./outputs_fig/' + technode + '/Energy_total_' + a_cap + ".pdf", bbox_inches='tight', dpi=my_dpi)
-        print("Energy total fig saved!")
+        plt.savefig('./outputs_fig/' + technode + '/Energy_total_' + a_cap + ".pdf", bbox_inches='tight', dpi=my_dpi, pad_inches=0.02)
+
+        if print_energy_onchip:
+            print("On-chip energy reduction: ")
+            print("binary parallel (baseline):", onchip_energy_list_bp_spm)
+            print("binary serial             :", onchip_energy_r_list_bs_spm)
+            print("unary 32c                 :", onchip_energy_r_list_u6_wspm)
+            print("unary 64c                 :", onchip_energy_r_list_u7_wspm)
+            print("unary 128c                :", onchip_energy_r_list_u8_wspm)
+            print("min    reduction:", min(onchip_energy_r_list_u6_wspm + onchip_energy_r_list_u7_wspm + onchip_energy_r_list_u8_wspm)*100, "%")
+            print("mean   reduction:", mean(onchip_energy_r_list_u6_wspm + onchip_energy_r_list_u7_wspm + onchip_energy_r_list_u8_wspm)*100, "%")
+            print("median reduction:", median(onchip_energy_r_list_u6_wspm + onchip_energy_r_list_u7_wspm + onchip_energy_r_list_u8_wspm)*100, "%")
+            print("max    reduction:", max(onchip_energy_r_list_u6_wspm + onchip_energy_r_list_u7_wspm + onchip_energy_r_list_u8_wspm)*100, "%")
+            
+        if print_energy_total:
+            print("Total energy reduction: ")
+            print("binary parallel (baseline):", total_energy_list_bp_spm)
+            print("binary serial             :", total_energy_r_list_bs_spm)
+            print("unary 32c                 :", total_energy_r_list_u6_wspm)
+            print("unary 64c                 :", total_energy_r_list_u7_wspm)
+            print("unary 128c                :", total_energy_r_list_u8_wspm)
+            print("min    reduction:", min(total_energy_r_list_u6_wspm + total_energy_r_list_u7_wspm + total_energy_r_list_u8_wspm)*100, "%")
+            print("mean   reduction:", mean(total_energy_r_list_u6_wspm + total_energy_r_list_u7_wspm + total_energy_r_list_u8_wspm)*100, "%")
+            print("median reduction:", median(total_energy_r_list_u6_wspm + total_energy_r_list_u7_wspm + total_energy_r_list_u8_wspm)*100, "%")
+            print("max    reduction:", max(total_energy_r_list_u6_wspm + total_energy_r_list_u7_wspm + total_energy_r_list_u8_wspm)*100, "%")
+
+        print("Energy total fig saved!\n")
 
 
         # total power with dram
@@ -1763,7 +1283,7 @@ def plot_fig(technode=""):
 
         fig, ax = plt.subplots(figsize=(fig_w, fig_h))
         
-        idx_tot = 10
+        idx_tot = 5
 
         x_idx = np.arange(len(x_axis))
 
@@ -1780,19 +1300,14 @@ def plot_fig(technode=""):
         sram_l_list = power_list[index * 5 + 2][:-1]
         sarr_d_list = power_list[index * 5 + 3][:-1]
         sarr_l_list = power_list[index * 5 + 4][:-1]
-        total_list = []
+        total_power_list_bp_spm = []
+        onchip_power_list_bp_spm = []
         for i in range(len(x_axis)):
-            total_list.append(dram_d_list[i] + sram_d_list[i] + sram_l_list[i] + sarr_d_list[i] + sarr_l_list[i])
-        idx = 0.5
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), total_list, width, hatch = None, alpha=0.99, color=bp_color, label='Binary Parallel')
-        onchip_list_base = []
-        for i in range(len(x_axis)):
-            onchip_list_base.append(sram_d_list[i] + sram_l_list[i] + sarr_d_list[i] + sarr_l_list[i])
-        if print_power_onchip:
-            print(onchip_list_base)
-        total_power_list_bp_spm = [i for i in total_list]
-        if print_power_total:
-            print(total_power_list_bp_spm)
+            total_power_list_bp_spm.append(dram_d_list[i] + sram_d_list[i] + sram_l_list[i] + sarr_d_list[i] + sarr_l_list[i])
+            onchip_power_list_bp_spm.append(sram_d_list[i] + sram_l_list[i] + sarr_d_list[i] + sarr_l_list[i])
+        idx = 1
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), total_power_list_bp_spm, width, hatch = None, alpha=0.99, color=bp_color, label='Binary Parallel')
+
 
         # 8b - spm - bs
         index = 1
@@ -1801,137 +1316,21 @@ def plot_fig(technode=""):
         sram_l_list = power_list[index * 5 + 2][:-1]
         sarr_d_list = power_list[index * 5 + 3][:-1]
         sarr_l_list = power_list[index * 5 + 4][:-1]
-        total_list = []
+        total_power_list_bs_spm = []
+        onchip_power_list_bs_spm = []
         for i in range(len(x_axis)):
-            total_list.append(dram_d_list[i] + sram_d_list[i] + sram_l_list[i] + sarr_d_list[i] + sarr_l_list[i])
+            total_power_list_bs_spm.append(dram_d_list[i] + sram_d_list[i] + sram_l_list[i] + sarr_d_list[i] + sarr_l_list[i])
+            onchip_power_list_bs_spm.append(sram_d_list[i] + sram_l_list[i] + sarr_d_list[i] + sarr_l_list[i])
         idx += 1
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), total_list, width, hatch = None, alpha=0.99, color=bs_color, label='Binary Serial')
-        onchip_list = []
-        for i in range(len(x_axis)):
-            onchip_list.append(1 - (sram_d_list[i] + sram_l_list[i] + sarr_d_list[i] + sarr_l_list[i])/onchip_list_base[i] )
-        if print_power_onchip:
-            print(onchip_list)
-        total_list_r = []
-        for i in range(len(x_axis)):
-            total_list_r.append(1-total_list[i]/total_power_list_bp_spm[i])
-        if print_power_total:
-            print(total_list_r)
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), total_power_list_bs_spm, width, hatch = None, alpha=0.99, color=bs_color, label='Binary Serial')
 
-        # 8b - spm - ur - 32c
-        index = 2
-        dram_d_list = power_list[index * 5 + 0][:-1]
-        sram_d_list = power_list[index * 5 + 1][:-1]
-        sram_l_list = power_list[index * 5 + 2][:-1]
-        sarr_d_list = power_list[index * 5 + 3][:-1]
-        sarr_l_list = power_list[index * 5 + 4][:-1]
-        total_list = []
+        onchip_power_r_list_bs_spm = []
         for i in range(len(x_axis)):
-            total_list.append(dram_d_list[i] + sram_d_list[i] + sram_l_list[i] + sarr_d_list[i] + sarr_l_list[i])
-        idx += 1
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), total_list, width, hatch = None, alpha=0.99, color=u6_color, label='Unary-32c')
-        onchip_list = []
+            onchip_power_r_list_bs_spm.append(1-onchip_power_list_bs_spm[i]/onchip_power_list_bp_spm[i])
+        
+        total_power_r_list_bs_spm = []
         for i in range(len(x_axis)):
-            onchip_list.append(1 - (sram_d_list[i] + sram_l_list[i] + sarr_d_list[i] + sarr_l_list[i])/onchip_list_base[i] )
-        if print_power_onchip:
-            print(onchip_list)
-        total_list_r = []
-        for i in range(len(x_axis)):
-            total_list_r.append(1-total_list[i]/total_power_list_bp_spm[i])
-        if print_power_total:
-            print(total_list_r)
-
-        # 8b - spm - ur - 64c
-        index = 3
-        dram_d_list = power_list[index * 5 + 0][:-1]
-        sram_d_list = power_list[index * 5 + 1][:-1]
-        sram_l_list = power_list[index * 5 + 2][:-1]
-        sarr_d_list = power_list[index * 5 + 3][:-1]
-        sarr_l_list = power_list[index * 5 + 4][:-1]
-        total_list = []
-        for i in range(len(x_axis)):
-            total_list.append(dram_d_list[i] + sram_d_list[i] + sram_l_list[i] + sarr_d_list[i] + sarr_l_list[i])
-        idx += 1
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), total_list, width, hatch = None, alpha=0.99, color=u7_color, label='Unary-64c')
-        onchip_list = []
-        for i in range(len(x_axis)):
-            onchip_list.append(1 - (sram_d_list[i] + sram_l_list[i] + sarr_d_list[i] + sarr_l_list[i])/onchip_list_base[i] )
-        if print_power_onchip:
-            print(onchip_list)
-        total_list_r = []
-        for i in range(len(x_axis)):
-            total_list_r.append(1-total_list[i]/total_power_list_bp_spm[i])
-        if print_power_total:
-            print(total_list_r)
-
-        # 8b - spm - ur - 128c
-        index = 4
-        dram_d_list = power_list[index * 5 + 0][:-1]
-        sram_d_list = power_list[index * 5 + 1][:-1]
-        sram_l_list = power_list[index * 5 + 2][:-1]
-        sarr_d_list = power_list[index * 5 + 3][:-1]
-        sarr_l_list = power_list[index * 5 + 4][:-1]
-        total_list = []
-        for i in range(len(x_axis)):
-            total_list.append(dram_d_list[i] + sram_d_list[i] + sram_l_list[i] + sarr_d_list[i] + sarr_l_list[i])
-        idx += 1
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), total_list, width, hatch = None, alpha=0.99, color=u8_color, label='Unary-128c')
-        onchip_list = []
-        for i in range(len(x_axis)):
-            onchip_list.append(1 - (sram_d_list[i] + sram_l_list[i] + sarr_d_list[i] + sarr_l_list[i])/onchip_list_base[i] )
-        if print_power_onchip:
-            print(onchip_list)
-        total_list_r = []
-        for i in range(len(x_axis)):
-            total_list_r.append(1-total_list[i]/total_power_list_bp_spm[i])
-        if print_power_total:
-            print(total_list_r)
-
-        # 8b - wospm - bp
-        index = 8
-        dram_d_list = power_list[index * 5 + 0][:-1]
-        sram_d_list = power_list[index * 5 + 1][:-1]
-        sram_l_list = power_list[index * 5 + 2][:-1]
-        sarr_d_list = power_list[index * 5 + 3][:-1]
-        sarr_l_list = power_list[index * 5 + 4][:-1]
-        total_list = []
-        for i in range(len(x_axis)):
-            total_list.append(dram_d_list[i] + sram_d_list[i] + sram_l_list[i] + sarr_d_list[i] + sarr_l_list[i])
-        idx += 1
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), total_list, width, hatch = None, alpha=0.99, color=bp_color)
-        onchip_list = []
-        for i in range(len(x_axis)):
-            onchip_list.append(1 - (sram_d_list[i] + sram_l_list[i] + sarr_d_list[i] + sarr_l_list[i])/onchip_list_base[i] )
-        if print_power_onchip:
-            print(onchip_list)
-        total_power_list_bp_nospm = [i for i in total_list]
-        total_list_r = []
-        for i in range(len(x_axis)):
-            total_list_r.append(1-total_list[i]/total_power_list_bp_spm[i])
-        if print_power_total:
-            print(total_list_r)
-
-        # 8b - wospm - bs
-        index = 9
-        dram_d_list = power_list[index * 5 + 0][:-1]
-        sram_d_list = power_list[index * 5 + 1][:-1]
-        sram_l_list = power_list[index * 5 + 2][:-1]
-        sarr_d_list = power_list[index * 5 + 3][:-1]
-        sarr_l_list = power_list[index * 5 + 4][:-1]
-        total_list = []
-        for i in range(len(x_axis)):
-            total_list.append(dram_d_list[i] + sram_d_list[i] + sram_l_list[i] + sarr_d_list[i] + sarr_l_list[i])
-        idx += 1
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), total_list, width, hatch = None, alpha=0.99, color=bs_color)
-        onchip_list = []
-        for i in range(len(x_axis)):
-            onchip_list.append(1 - (sram_d_list[i] + sram_l_list[i] + sarr_d_list[i] + sarr_l_list[i])/onchip_list_base[i] )
-        if print_power_onchip:
-            print(onchip_list)
-        total_list_r = []
-        for i in range(len(x_axis)):
-            total_list_r.append(1-total_list[i]/total_power_list_bp_spm[i])
-        if print_power_total:
-            print(total_list_r)
+            total_power_r_list_bs_spm.append(1 - total_power_list_bs_spm[i]/total_power_list_bp_spm[i])
 
         # 8b - wospm - ur - 32c
         index = 10
@@ -1940,21 +1339,21 @@ def plot_fig(technode=""):
         sram_l_list = power_list[index * 5 + 2][:-1]
         sarr_d_list = power_list[index * 5 + 3][:-1]
         sarr_l_list = power_list[index * 5 + 4][:-1]
-        total_list = []
+        total_power_list_u6_wspm = []
+        onchip_power_list_u6_wspm = []
         for i in range(len(x_axis)):
-            total_list.append(dram_d_list[i] + sram_d_list[i] + sram_l_list[i] + sarr_d_list[i] + sarr_l_list[i])
+            total_power_list_u6_wspm.append(dram_d_list[i] + sram_d_list[i] + sram_l_list[i] + sarr_d_list[i] + sarr_l_list[i])
+            onchip_power_list_u6_wspm.append(sram_d_list[i] + sram_l_list[i] + sarr_d_list[i] + sarr_l_list[i])
         idx += 1
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), total_list, width, hatch = None, alpha=0.99, color=u6_color)
-        onchip_list = []
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), total_power_list_u6_wspm, width, hatch = None, alpha=0.99, color=u6_color, label='Unary-32c')
+
+        onchip_power_r_list_u6_wspm = []
         for i in range(len(x_axis)):
-            onchip_list.append(1 - (sram_d_list[i] + sram_l_list[i] + sarr_d_list[i] + sarr_l_list[i])/onchip_list_base[i] )
-        if print_power_onchip:
-            print(onchip_list)
-        total_list_r = []
+            onchip_power_r_list_u6_wspm.append(1-onchip_power_list_u6_wspm[i]/onchip_power_list_bp_spm[i])
+        
+        total_power_r_list_u6_wspm = []
         for i in range(len(x_axis)):
-            total_list_r.append(1-total_list[i]/total_power_list_bp_spm[i])
-        if print_power_total:
-            print(total_list_r)
+            total_power_r_list_u6_wspm.append(1 - total_power_list_u6_wspm[i]/total_power_list_bp_spm[i])
 
         # 8b - wospm - ur - 64c
         index = 11
@@ -1963,21 +1362,21 @@ def plot_fig(technode=""):
         sram_l_list = power_list[index * 5 + 2][:-1]
         sarr_d_list = power_list[index * 5 + 3][:-1]
         sarr_l_list = power_list[index * 5 + 4][:-1]
-        total_list = []
+        total_power_list_u7_wspm = []
+        onchip_power_list_u7_wspm = []
         for i in range(len(x_axis)):
-            total_list.append(dram_d_list[i] + sram_d_list[i] + sram_l_list[i] + sarr_d_list[i] + sarr_l_list[i])
+            total_power_list_u7_wspm.append(dram_d_list[i] + sram_d_list[i] + sram_l_list[i] + sarr_d_list[i] + sarr_l_list[i])
+            onchip_power_list_u7_wspm.append(sram_d_list[i] + sram_l_list[i] + sarr_d_list[i] + sarr_l_list[i])
         idx += 1
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), total_list, width, hatch = None, alpha=0.99, color=u7_color)
-        onchip_list = []
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), total_power_list_u7_wspm, width, hatch = None, alpha=0.99, color=u7_color, label='Unary-64c')
+
+        onchip_power_r_list_u7_wspm = []
         for i in range(len(x_axis)):
-            onchip_list.append(1 - (sram_d_list[i] + sram_l_list[i] + sarr_d_list[i] + sarr_l_list[i])/onchip_list_base[i] )
-        if print_power_onchip:
-            print(onchip_list)
-        total_list_r = []
+            onchip_power_r_list_u7_wspm.append(1-onchip_power_list_u7_wspm[i]/onchip_power_list_bp_spm[i])
+        
+        total_power_r_list_u7_wspm = []
         for i in range(len(x_axis)):
-            total_list_r.append(1-total_list[i]/total_power_list_bp_spm[i])
-        if print_power_total:
-            print(total_list_r)
+            total_power_r_list_u7_wspm.append(1 - total_power_list_u7_wspm[i]/total_power_list_bp_spm[i])
 
         # 8b - wospm - ur - 128c
         index = 12
@@ -1986,21 +1385,22 @@ def plot_fig(technode=""):
         sram_l_list = power_list[index * 5 + 2][:-1]
         sarr_d_list = power_list[index * 5 + 3][:-1]
         sarr_l_list = power_list[index * 5 + 4][:-1]
-        total_list = []
+        total_power_list_u8_wspm = []
+        onchip_power_list_u8_wspm = []
         for i in range(len(x_axis)):
-            total_list.append(dram_d_list[i] + sram_d_list[i] + sram_l_list[i] + sarr_d_list[i] + sarr_l_list[i])
+            total_power_list_u8_wspm.append(dram_d_list[i] + sram_d_list[i] + sram_l_list[i] + sarr_d_list[i] + sarr_l_list[i])
+            onchip_power_list_u8_wspm.append(sram_d_list[i] + sram_l_list[i] + sarr_d_list[i] + sarr_l_list[i])
         idx += 1
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), total_list, width, hatch = None, alpha=0.99, color=u8_color)
-        onchip_list = []
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), total_power_list_u8_wspm, width, hatch = None, alpha=0.99, color=u8_color, label='Unary-128c')
+
+        onchip_power_r_list_u8_wspm = []
         for i in range(len(x_axis)):
-            onchip_list.append(1 - (sram_d_list[i] + sram_l_list[i] + sarr_d_list[i] + sarr_l_list[i])/onchip_list_base[i] )
-        if print_power_onchip:
-            print(onchip_list)
-        total_list_r = []
+            onchip_power_r_list_u8_wspm.append(1-onchip_power_list_u8_wspm[i]/onchip_power_list_bp_spm[i])
+        
+        total_power_r_list_u8_wspm = []
         for i in range(len(x_axis)):
-            total_list_r.append(1-total_list[i]/total_power_list_bp_spm[i])
-        if print_power_total:
-            print(total_list_r)
+            total_power_r_list_u8_wspm.append(1 - total_power_list_u8_wspm[i]/total_power_list_bp_spm[i])
+
 
         ax.set_ylabel('Total power (mW)')
         ax.set_xticks(x_idx)
@@ -2010,17 +1410,13 @@ def plot_fig(technode=""):
 
         bottom, top = plt.ylim()
         if a == "eyeriss":
-            ax.set_ylim(bottom, 5000)
+            ax.set_ylim(bottom, 2500)
             for x in x_idx:
                 ax.fill_betweenx([bottom, top], x1=x, x2=x+0.5, alpha=0.2, color=bg_color, linewidth=0)
-            ax.text(0-4.5*width, 5200, "{:.2f}".format(total_power_list_bp_spm[0]), horizontalalignment="right")
-            ax.text(0+0.5*width, 5200, "{:.2f}".format(total_power_list_bp_nospm[0]), horizontalalignment="left")
-            ax.text(1+0.5*width, 4200, "{:.2f}".format(total_power_list_bp_nospm[1]), horizontalalignment="center")
-            ax.text(2+0.5*width, 5200, "{:.2f}".format(total_power_list_bp_nospm[2]), horizontalalignment="center")
-            ax.text(3+0.5*width, 4200, "{:.2f}".format(total_power_list_bp_nospm[3]), horizontalalignment="center")
-            ax.text(4+0.5*width, 5200, "{:.2f}".format(total_power_list_bp_nospm[4]), horizontalalignment="center")
+            ax.text(0-1.5*width, 2600, "{:.2f}".format(total_power_list_bp_spm[0]), horizontalalignment="right")
+            ax.text(0-0.5*width, 2600, "{:.2f}".format(total_power_list_bs_spm[0]), horizontalalignment="left")
 
-            y_tick_list = [0, 2000, 4000]
+            y_tick_list = [0, 1000, 2000]
             ax.set_yticks(y_tick_list)
             y_label_list = []
 
@@ -2031,8 +1427,9 @@ def plot_fig(technode=""):
                     y_label_list.append("0")
             ax.set_yticklabels(y_label_list)
         else:
+            ax.set_ylim(bottom, top)
             for x in x_idx:
-                ax.fill_betweenx([bottom, top], x1=x, x2=x+0.5, alpha=0.2, color=bg_color, linewidth=0)
+                ax.fill_betweenx([bottom, top+2000], x1=x, x2=x+0.5, alpha=0.2, color=bg_color, linewidth=0)
             y_tick_list = [0, 5000, 10000]
             ax.set_yticks(y_tick_list)
             y_label_list = []
@@ -2046,8 +1443,33 @@ def plot_fig(technode=""):
 
         ax.minorticks_off()
         fig.tight_layout()
-        plt.savefig('./outputs_fig/' + technode + '/Power_total_' + a_cap + ".pdf", bbox_inches='tight', dpi=my_dpi)
-        print("Power total fig saved!")
+        plt.savefig('./outputs_fig/' + technode + '/Power_total_' + a_cap + ".pdf", bbox_inches='tight', dpi=my_dpi, pad_inches=0.02)
+
+        if print_power_onchip:
+            print("On-chip power reduction: ")
+            print("binary parallel (baseline):", onchip_power_list_bp_spm)
+            print("binary serial             :", onchip_power_r_list_bs_spm)
+            print("unary 32c                 :", onchip_power_r_list_u6_wspm)
+            print("unary 64c                 :", onchip_power_r_list_u7_wspm)
+            print("unary 128c                :", onchip_power_r_list_u8_wspm)
+            print("min    reduction:", min(onchip_power_r_list_u6_wspm + onchip_power_r_list_u7_wspm + onchip_power_r_list_u8_wspm)*100, "%")
+            print("mean    reduction:", mean(onchip_power_r_list_u6_wspm + onchip_power_r_list_u7_wspm + onchip_power_r_list_u8_wspm)*100, "%")
+            print("median reduction:", median(onchip_power_r_list_u6_wspm + onchip_power_r_list_u7_wspm + onchip_power_r_list_u8_wspm)*100, "%")
+            print("max    reduction:", max(onchip_power_r_list_u6_wspm + onchip_power_r_list_u7_wspm + onchip_power_r_list_u8_wspm)*100, "%")
+
+        if print_power_total:
+            print("Total power reduction: ")
+            print("binary parallel (baseline):", total_power_list_bp_spm)
+            print("binary serial             :", total_power_r_list_bs_spm)
+            print("unary 32c                 :", total_power_r_list_u6_wspm)
+            print("unary 64c                 :", total_power_r_list_u7_wspm)
+            print("unary 128c                :", total_power_r_list_u8_wspm)
+            print("min    reduction:", min(total_power_r_list_u6_wspm + total_power_r_list_u7_wspm + total_power_r_list_u8_wspm)*100, "%")
+            print("mean   reduction:", mean(total_power_r_list_u6_wspm + total_power_r_list_u7_wspm + total_power_r_list_u8_wspm)*100, "%")
+            print("median reduction:", median(total_power_r_list_u6_wspm + total_power_r_list_u7_wspm + total_power_r_list_u8_wspm)*100, "%")
+            print("min    reduction:", max(total_power_r_list_u6_wspm + total_power_r_list_u7_wspm + total_power_r_list_u8_wspm)*100, "%")
+
+        print("Power total fig saved!\n")
         
 
         print()
