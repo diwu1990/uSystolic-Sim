@@ -9,13 +9,15 @@ def plot_fig(technode=""):
     font = {'family':'Times New Roman', 'size': 6}
     matplotlib.rc('font', **font)
 
-    print_power_onchip = True
-    print_power_total = True
-    print_energy_onchip = True
-    print_energy_total = True
-    print_area = True
-
-    bw_sram_dram = True
+    print_power_onchip = False
+    print_power_total = False
+    print_energy_onchip = False
+    print_energy_total = False
+    print_area = False
+    print_bandwidth = False
+    print_runtime = False
+    print_energy_eff = True
+    print_power_eff = False
 
     if not os.path.exists("./outputs_fig/"):
         os.system("mkdir ./outputs_fig")
@@ -28,6 +30,7 @@ def plot_fig(technode=""):
 
     for a in arch_list:
         bw_list = []
+        time_ideal_list = []
         time_list = []
         tp_list = []
         area_list = []
@@ -54,6 +57,7 @@ def plot_fig(technode=""):
                     path = "./outputs/" + technode + "/" + name + "/simHwOut/"
                     bw_list.append(return_indexed_elems(    input_csv=path + name + "_avg_bw_real.csv",     index=6)) # dram bw
                     bw_list.append(return_indexed_elems(    input_csv=path + name + "_avg_bw_real.csv",     index=11)) # sram bw
+                    time_ideal_list.append(return_indexed_elems(  input_csv=path + name + "_throughput_ideal.csv", index=3)) # ideal runtime
                     time_list.append(return_indexed_elems(  input_csv=path + name + "_throughput_real.csv", index=3)) # runtime
                     tp_list.append(return_indexed_elems(    input_csv=path + name + "_throughput_real.csv", index=4)) # throughput
                     
@@ -83,6 +87,7 @@ def plot_fig(technode=""):
                     path = "./outputs/" + technode + "/" + name + "/simHwOut/"
                     bw_list.append(return_indexed_elems(    input_csv=path + name + "_avg_bw_real.csv",     index=6)) # dram bw
                     bw_list.append(return_indexed_elems(    input_csv=path + name + "_avg_bw_real.csv",     index=11)) # sram bw
+                    time_ideal_list.append(return_indexed_elems(  input_csv=path + name + "_throughput_ideal.csv", index=3)) # ideal runtime
                     time_list.append(return_indexed_elems(  input_csv=path + name + "_throughput_real.csv", index=3)) # runtime
                     tp_list.append(return_indexed_elems(    input_csv=path + name + "_throughput_real.csv", index=4)) # throughput
                     
@@ -113,6 +118,7 @@ def plot_fig(technode=""):
                         path = "./outputs/" + technode + "/" + name + "/simHwOut/"
                         bw_list.append(return_indexed_elems(    input_csv=path + name + "_avg_bw_real.csv",     index=6)) # dram bw
                         bw_list.append(return_indexed_elems(    input_csv=path + name + "_avg_bw_real.csv",     index=11)) # sram bw
+                        time_ideal_list.append(return_indexed_elems(  input_csv=path + name + "_throughput_ideal.csv", index=3)) # ideal runtime
                         time_list.append(return_indexed_elems(  input_csv=path + name + "_throughput_real.csv", index=3)) # runtime
                         tp_list.append(return_indexed_elems(    input_csv=path + name + "_throughput_real.csv", index=4)) # throughput
                         
@@ -143,6 +149,7 @@ def plot_fig(technode=""):
                         path = "./outputs/" + technode + "/" + name + "/simHwOut/"
                         bw_list.append(return_indexed_elems(    input_csv=path + name + "_avg_bw_real.csv",     index=6)) # dram bw
                         bw_list.append(return_indexed_elems(    input_csv=path + name + "_avg_bw_real.csv",     index=11)) # sram bw
+                        time_ideal_list.append(return_indexed_elems(  input_csv=path + name + "_throughput_ideal.csv", index=3)) # ideal runtime
                         time_list.append(return_indexed_elems(  input_csv=path + name + "_throughput_real.csv", index=3)) # runtime
                         tp_list.append(return_indexed_elems(    input_csv=path + name + "_throughput_real.csv", index=4)) # throughput
                         
@@ -163,294 +170,239 @@ def plot_fig(technode=""):
                         energy_list.append(return_indexed_elems(input_csv=path + name + "_energy.csv",          index=29)) # sa D
                         energy_list.append(return_indexed_elems(input_csv=path + name + "_energy.csv",          index=30)) # sa L
 
-        if bw_sram_dram:
-            # bandwidth
-            my_dpi = 300
-            if a == "eyeriss":
-                fig_h = 2
-            else:
-                fig_h = 1.5
-            fig_w = 3.3115
-
-            bp_color = "#7A81FF"
-            bs_color = "#FF7F7F"
-            u6_color = "#666666"
-            u7_color = "#888888"
-            u8_color = "#AAAAAA"
-            bg_color = "#D783FF"
-
-            x_axis = ["Conv1", "Conv2", "Conv3", "Conv4", "Conv5", "FC6", "FC7", "FC8"]
-
-            fig, ax = plt.subplots(figsize=(fig_w, fig_h))
-            
-            idx_tot = 10
-
-            x_idx = np.arange(len(x_axis))
-
-            width = 1 / 2**(math.ceil(math.log2(idx_tot)))
-
-            iterval = width
-            
-            # 8b - spm - bp
-            index = 0
-            dram_bw_list = bw_list[index * 2][:-1]
-            sram_bw_list = [-x for x in bw_list[index * 2 + 1][:-1]]
-            idx = 0.5
-            ax.bar(x_idx + iterval * (idx - idx_tot / 2), dram_bw_list, width, hatch = None, alpha=0.99, color=bp_color, label="Binary Parallel")
-            ax.bar(x_idx + iterval * (idx - idx_tot / 2), sram_bw_list, width, hatch = None, alpha=0.99, color=bp_color)
-            # print(dram_bw_list, sram_bw_list)
-
-            # 8b - spm - bs
-            index = 1
-            dram_bw_list = bw_list[index * 2][:-1]
-            sram_bw_list = [-x for x in bw_list[index * 2 + 1][:-1]]
-            idx += 1
-            ax.bar(x_idx + iterval * (idx - idx_tot / 2), dram_bw_list, width, hatch = None, alpha=0.99, color=bs_color, label="Binary Serial")
-            ax.bar(x_idx + iterval * (idx - idx_tot / 2), sram_bw_list, width, hatch = None, alpha=0.99, color=bs_color)
-            # print(dram_bw_list, sram_bw_list)
-
-            # 8b - spm - ur - 32c
-            index = 2
-            dram_bw_list = bw_list[index * 2][:-1]
-            sram_bw_list = [-x for x in bw_list[index * 2 + 1][:-1]]
-            idx += 1
-            ax.bar(x_idx + iterval * (idx - idx_tot / 2), dram_bw_list, width, hatch = None, alpha=0.99, color=u6_color, label="Unary-32c")
-            ax.bar(x_idx + iterval * (idx - idx_tot / 2), sram_bw_list, width, hatch = None, alpha=0.99, color=u6_color)
-            # print(dram_bw_list, sram_bw_list)
-
-            # 8b - spm - ur - 64c
-            index = 3
-            dram_bw_list = bw_list[index * 2][:-1]
-            sram_bw_list = [-x for x in bw_list[index * 2 + 1][:-1]]
-            idx += 1
-            ax.bar(x_idx + iterval * (idx - idx_tot / 2), dram_bw_list, width, hatch = None, alpha=0.99, color=u7_color, label="Unary-64c")
-            ax.bar(x_idx + iterval * (idx - idx_tot / 2), sram_bw_list, width, hatch = None, alpha=0.99, color=u7_color)
-            # print(dram_bw_list, sram_bw_list)
-
-            # 8b - spm - ur - 128c
-            index = 4
-            dram_bw_list = bw_list[index * 2][:-1]
-            sram_bw_list = [-x for x in bw_list[index * 2 + 1][:-1]]
-            idx += 1
-            ax.bar(x_idx + iterval * (idx - idx_tot / 2), dram_bw_list, width, hatch = None, alpha=0.99, color=u8_color, label="Unary-128c")
-            ax.bar(x_idx + iterval * (idx - idx_tot / 2), sram_bw_list, width, hatch = None, alpha=0.99, color=u8_color)
-            # print(dram_bw_list, sram_bw_list)
-
-            # 8b - wospm - bp
-            index = 8
-            dram_bw_list = bw_list[index * 2][:-1]
-            sram_bw_list = [-x for x in bw_list[index * 2 + 1][:-1]]
-            idx += 1
-            ax.bar(x_idx + iterval * (idx - idx_tot / 2), dram_bw_list, width, hatch = None, alpha=0.99, color=bp_color)
-            ax.bar(x_idx + iterval * (idx - idx_tot / 2), sram_bw_list, width, hatch = None, alpha=0.99, color=bp_color)
-            # print(dram_bw_list, sram_bw_list)
-
-            # 8b - wospm - bs
-            index = 9
-            dram_bw_list = bw_list[index * 2][:-1]
-            sram_bw_list = [-x for x in bw_list[index * 2 + 1][:-1]]
-            idx += 1
-            ax.bar(x_idx + iterval * (idx - idx_tot / 2), dram_bw_list, width, hatch = None, alpha=0.99, color=bs_color)
-            ax.bar(x_idx + iterval * (idx - idx_tot / 2), sram_bw_list, width, hatch = None, alpha=0.99, color=bs_color)
-            # print(dram_bw_list, sram_bw_list)
-
-            # 8b - wospm - ur - 32c
-            index = 10
-            dram_bw_list = bw_list[index * 2][:-1]
-            sram_bw_list = [-x for x in bw_list[index * 2 + 1][:-1]]
-            idx += 1
-            ax.bar(x_idx + iterval * (idx - idx_tot / 2), dram_bw_list, width, hatch = None, alpha=0.99, color=u6_color)
-            ax.bar(x_idx + iterval * (idx - idx_tot / 2), sram_bw_list, width, hatch = None, alpha=0.99, color=u6_color)
-            # print(dram_bw_list, sram_bw_list)
-
-            # 8b - wospm - ur - 64c
-            index = 11
-            dram_bw_list = bw_list[index * 2][:-1]
-            sram_bw_list = [-x for x in bw_list[index * 2 + 1][:-1]]
-            idx += 1
-            ax.bar(x_idx + iterval * (idx - idx_tot / 2), dram_bw_list, width, hatch = None, alpha=0.99, color=u7_color)
-            ax.bar(x_idx + iterval * (idx - idx_tot / 2), sram_bw_list, width, hatch = None, alpha=0.99, color=u7_color)
-            # print(dram_bw_list, sram_bw_list)
-
-            # 8b - wospm - ur - 128c
-            index = 12
-            dram_bw_list = bw_list[index * 2][:-1]
-            sram_bw_list = [-x for x in bw_list[index * 2 + 1][:-1]]
-            idx += 1
-            ax.bar(x_idx + iterval * (idx - idx_tot / 2), dram_bw_list, width, hatch = None, alpha=0.99, color=u8_color)
-            ax.bar(x_idx + iterval * (idx - idx_tot / 2), sram_bw_list, width, hatch = None, alpha=0.99, color=u8_color)
-            # print(dram_bw_list, sram_bw_list)
-
-            ax.set_ylabel('SRAM-DRAM bandwidth (GB/s)')
-            ax.set_xticks(x_idx)
-            ax.set_xticklabels(x_axis)
-            plt.xlim(x_idx[0]-0.5, x_idx[-1]+0.5)
-            bottom, top = plt.ylim()
-
-            if a == "eyeriss":
-                ax.set_ylim((bottom, top*350))
-                bottom, top = plt.ylim()
-                for x in x_idx:
-                    ax.fill_betweenx([bottom, top/350], x1=x, x2=x+0.5, alpha=0.2, color=bg_color, linewidth=0)
-                ax.legend(loc="upper center", ncol=3, frameon=True)
-            else:
-                ax.set_ylim((bottom, top))
-                bottom, top = plt.ylim()
-                for x in x_idx:
-                    ax.fill_betweenx([bottom, top], x1=x, x2=x+0.5, alpha=0.2, color=bg_color, linewidth=0)
-            ax.axhline(y=0, color="k", linewidth = 0.1)
-            
-            plt.yscale("symlog", linthreshy=0.001)
-            locs, labels = plt.yticks()
-            if a == "eyeriss":
-                locs = locs[:-2]
-            else:
-                locs = locs
-            ax.set_yticks(locs)
-            y_label_list = []
-            for y in locs:
-                if y != 0:
-                    y_label_list.append("{:1.0E}".format(abs(y)))
-                else:
-                    y_label_list.append("0")
-            ax.set_yticklabels(y_label_list)
-            fig.tight_layout()
-            plt.savefig('./outputs_fig/' + technode + '/Bandwidth_' + a_cap + ".pdf", bbox_inches='tight', dpi=my_dpi, pad_inches=0.02)
-            print("Bandwidth fig saved!\n")
+        # bandwidth
+        my_dpi = 300
+        if a == "eyeriss":
+            fig_h = 1.6
         else:
-            # bandwith
-            my_dpi = 300
-            if a == "eyeriss":
-                fig_h = 1.5
+            fig_h = 1.3
+        fig_w = 3.3115
+
+        bp_color = "#7A81FF"
+        bs_color = "#FF7F7F"
+        u6_color = "#666666"
+        u7_color = "#888888"
+        u8_color = "#AAAAAA"
+        bg_color = "#D783FF"
+
+        x_axis = ["Conv1", "Conv2", "Conv3", "Conv4", "Conv5", "FC6", "FC7", "FC8"]
+
+        fig, ax = plt.subplots(figsize=(fig_w, fig_h))
+        
+        idx_tot = 10
+
+        x_idx = np.arange(len(x_axis))
+
+        width = 1 / 2**(math.ceil(math.log2(idx_tot)))
+
+        iterval = width
+        
+        # 8b - spm - bp
+        index = 0
+        dram_bw_list = bw_list[index * 2][:-1]
+        sram_bw_list = [-x for x in bw_list[index * 2 + 1][:-1]]
+        idx = 0.5
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), dram_bw_list, width, hatch = None, alpha=0.99, color=bp_color, label="Binary Parallel")
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), sram_bw_list, width, hatch = None, alpha=0.99, color=bp_color)
+        dram_bw_list_bp_spm = [i for i in dram_bw_list]
+        sram_bw_list_bp_spm = [i for i in sram_bw_list]
+
+        # 8b - spm - bs
+        index = 1
+        dram_bw_list = bw_list[index * 2][:-1]
+        sram_bw_list = [-x for x in bw_list[index * 2 + 1][:-1]]
+        idx += 1
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), dram_bw_list, width, hatch = None, alpha=0.99, color=bs_color, label="Binary Serial")
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), sram_bw_list, width, hatch = None, alpha=0.99, color=bs_color)
+        dram_bw_list_bs_spm = [i for i in dram_bw_list]
+        sram_bw_list_bs_spm = [i for i in sram_bw_list]
+
+        # 8b - spm - ur - 32c
+        index = 2
+        dram_bw_list = bw_list[index * 2][:-1]
+        sram_bw_list = [-x for x in bw_list[index * 2 + 1][:-1]]
+        idx += 1
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), dram_bw_list, width, hatch = None, alpha=0.99, color=u6_color, label="Unary-32c")
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), sram_bw_list, width, hatch = None, alpha=0.99, color=u6_color)
+        dram_bw_list_u6_spm = [i for i in dram_bw_list]
+        sram_bw_list_u6_spm = [i for i in sram_bw_list]
+
+        # 8b - spm - ur - 64c
+        index = 3
+        dram_bw_list = bw_list[index * 2][:-1]
+        sram_bw_list = [-x for x in bw_list[index * 2 + 1][:-1]]
+        idx += 1
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), dram_bw_list, width, hatch = None, alpha=0.99, color=u7_color, label="Unary-64c")
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), sram_bw_list, width, hatch = None, alpha=0.99, color=u7_color)
+        dram_bw_list_u7_spm = [i for i in dram_bw_list]
+        sram_bw_list_u7_spm = [i for i in sram_bw_list]
+
+        # 8b - spm - ur - 128c
+        index = 4
+        dram_bw_list = bw_list[index * 2][:-1]
+        sram_bw_list = [-x for x in bw_list[index * 2 + 1][:-1]]
+        idx += 1
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), dram_bw_list, width, hatch = None, alpha=0.99, color=u8_color, label="Unary-128c")
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), sram_bw_list, width, hatch = None, alpha=0.99, color=u8_color)
+        dram_bw_list_u8_spm = [i for i in dram_bw_list]
+        sram_bw_list_u8_spm = [i for i in sram_bw_list]
+
+        # 8b - wospm - bp
+        index = 8
+        dram_bw_list = bw_list[index * 2][:-1]
+        sram_bw_list = [-x for x in bw_list[index * 2 + 1][:-1]]
+        idx += 1
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), dram_bw_list, width, hatch = None, alpha=0.99, color=bp_color)
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), sram_bw_list, width, hatch = None, alpha=0.99, color=bp_color)
+        dram_bw_list_bp_wspm = [i for i in dram_bw_list]
+        sram_bw_list_bp_wspm = [i for i in sram_bw_list]
+
+        # 8b - wospm - bs
+        index = 9
+        dram_bw_list = bw_list[index * 2][:-1]
+        sram_bw_list = [-x for x in bw_list[index * 2 + 1][:-1]]
+        idx += 1
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), dram_bw_list, width, hatch = None, alpha=0.99, color=bs_color)
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), sram_bw_list, width, hatch = None, alpha=0.99, color=bs_color)
+        dram_bw_list_bs_wspm = [i for i in dram_bw_list]
+        sram_bw_list_bs_wspm = [i for i in sram_bw_list]
+
+        # 8b - wospm - ur - 32c
+        index = 10
+        dram_bw_list = bw_list[index * 2][:-1]
+        sram_bw_list = [-x for x in bw_list[index * 2 + 1][:-1]]
+        idx += 1
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), dram_bw_list, width, hatch = None, alpha=0.99, color=u6_color)
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), sram_bw_list, width, hatch = None, alpha=0.99, color=u6_color)
+        dram_bw_list_u6_wspm = [i for i in dram_bw_list]
+        sram_bw_list_u6_wspm = [i for i in sram_bw_list]
+
+        # 8b - wospm - ur - 64c
+        index = 11
+        dram_bw_list = bw_list[index * 2][:-1]
+        sram_bw_list = [-x for x in bw_list[index * 2 + 1][:-1]]
+        idx += 1
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), dram_bw_list, width, hatch = None, alpha=0.99, color=u7_color)
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), sram_bw_list, width, hatch = None, alpha=0.99, color=u7_color)
+        dram_bw_list_u7_wspm = [i for i in dram_bw_list]
+        sram_bw_list_u7_wspm = [i for i in sram_bw_list]
+
+        # 8b - wospm - ur - 128c
+        index = 12
+        dram_bw_list = bw_list[index * 2][:-1]
+        sram_bw_list = [-x for x in bw_list[index * 2 + 1][:-1]]
+        idx += 1
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), dram_bw_list, width, hatch = None, alpha=0.99, color=u8_color)
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), sram_bw_list, width, hatch = None, alpha=0.99, color=u8_color)
+        dram_bw_list_u8_wspm = [i for i in dram_bw_list]
+        sram_bw_list_u8_wspm = [i for i in sram_bw_list]
+
+        ax.set_ylabel('SRAM-DRAM bandwidth\n(GB/s)')
+        ax.set_xticks(x_idx)
+        ax.set_xticklabels(x_axis)
+        plt.xlim(x_idx[0]-0.5, x_idx[-1]+0.5)
+        plt.yscale("symlog", linthreshy=0.001)
+
+        # locs, labels = plt.yticks()
+        if a == "eyeriss":
+            locs = [-10, -1, -0.1, -0.01, -0.001, 0, 0.001, 0.01, 0.1, 1, 10]
+        else:
+            locs = [-10, -1, -0.1, -0.01, -0.001, 0, 0.001, 0.01, 0.1, 1, 10]
+        ax.set_yticks(locs)
+        y_label_list = []
+        for y in locs:
+            if y != 0:
+                y_label_list.append("{:1.0E}".format(abs(y)))
             else:
-                fig_h = 1
-            fig_w = 3.3115
+                y_label_list.append("0")
+        ax.set_yticklabels(y_label_list)
 
-            bp_color = "#7A81FF"
-            bs_color = "#FF7F7F"
-            u6_color = "#666666"
-            u7_color = "#888888"
-            u8_color = "#AAAAAA"
-            bg_color = "#D783FF"
+        bottom, top = plt.ylim()
 
-            x_axis = ["Conv1", "Conv2", "Conv3", "Conv4", "Conv5", "FC6", "FC7", "FC8"]
+        if a == "eyeriss":
+            ax.set_ylim((bottom, top*1500))
+            bottom, top = plt.ylim()
+            for x in x_idx:
+                ax.fill_betweenx([bottom, top/1500], x1=x, x2=x+0.5, alpha=0.2, color=bg_color, linewidth=0)
+            ax.legend(loc="upper center", ncol=3, frameon=True)
+        else:
+            ax.set_ylim((bottom, top))
+            bottom, top = plt.ylim()
+            for x in x_idx:
+                ax.fill_betweenx([bottom, top], x1=x, x2=x+0.5, alpha=0.2, color=bg_color, linewidth=0)
+        ax.axhline(y=0, color="k", linewidth = 0.1)
+        
+        fig.tight_layout()
+        plt.savefig('./outputs_fig/' + technode + '/Bandwidth_' + a_cap + ".pdf", bbox_inches='tight', dpi=my_dpi, pad_inches=0.02)
 
-            fig, ax = plt.subplots(figsize=(fig_w, fig_h))
-            
-            idx_tot = 10
+        if print_bandwidth:
+            print("DRAM bp spm :", dram_bw_list_bp_spm)
+            print("min:", min(dram_bw_list_bp_spm), "max:", max(dram_bw_list_bp_spm))
+            print("DRAM bs spm :", dram_bw_list_bs_spm)
+            print("min:", min(dram_bw_list_bs_spm), "max:", max(dram_bw_list_bs_spm))
+            print("DRAM u6 spm :", dram_bw_list_u6_spm)
+            print("min:", min(dram_bw_list_u6_spm), "max:", max(dram_bw_list_u6_spm))
+            print("DRAM u7 spm :", dram_bw_list_u7_spm)
+            print("min:", min(dram_bw_list_u7_spm), "max:", max(dram_bw_list_u7_spm))
+            print("DRAM u8 spm :", dram_bw_list_u8_spm)
+            print("min:", min(dram_bw_list_u8_spm), "max:", max(dram_bw_list_u8_spm))
 
-            x_idx = np.arange(len(x_axis))
+            print("SRAM bp spm :", sram_bw_list_bp_spm)
+            print("SRAM bs spm :", sram_bw_list_bs_spm)
+            print("SRAM u6 spm :", sram_bw_list_u6_spm)
+            print("SRAM u7 spm :", sram_bw_list_u7_spm)
+            print("SRAM u8 spm :", sram_bw_list_u8_spm)
 
-            width = 1 / 2**(math.ceil(math.log2(idx_tot)))
+            print("DRAM bp wspm:", dram_bw_list_bp_wspm)
+            print("min:", min(dram_bw_list_bp_wspm), "max:", max(dram_bw_list_bp_wspm))
+            print("DRAM bs wspm:", dram_bw_list_bs_wspm)
+            print("min:", min(dram_bw_list_bs_wspm), "max:", max(dram_bw_list_bs_wspm))
+            print("DRAM u6 wspm:", dram_bw_list_u6_wspm)
+            print("min:", min(dram_bw_list_u6_wspm), "max:", max(dram_bw_list_u6_wspm))
+            print("DRAM u7 wspm:", dram_bw_list_u7_wspm)
+            print("min:", min(dram_bw_list_u7_wspm), "max:", max(dram_bw_list_u7_wspm))
+            print("DRAM u8 wspm:", dram_bw_list_u8_wspm)
+            print("min:", min(dram_bw_list_u8_wspm), "max:", max(dram_bw_list_u8_wspm))
 
-            iterval = width
+            dram_bw_r_list_bp_spm = []
+            dram_bw_r_list_bs_spm = []
+            dram_bw_r_list_u6_spm = []
+            dram_bw_r_list_u7_spm = []
+            dram_bw_r_list_u8_spm = []
+            sram_bw_r_list_bp_spm = []
+            sram_bw_r_list_bs_spm = []
+            sram_bw_r_list_u6_spm = []
+            sram_bw_r_list_u7_spm = []
+            sram_bw_r_list_u8_spm = []
+            for i in range(len(dram_bw_list_bp_spm)):
+                dram_bw_r_list_bp_spm.append(dram_bw_list_bp_wspm[i] / dram_bw_list_bp_spm[i])
+                dram_bw_r_list_bs_spm.append(dram_bw_list_bs_wspm[i] / dram_bw_list_bs_spm[i])
+                dram_bw_r_list_u6_spm.append(dram_bw_list_u6_wspm[i] / dram_bw_list_u6_spm[i])
+                dram_bw_r_list_u7_spm.append(dram_bw_list_u7_wspm[i] / dram_bw_list_u7_spm[i])
+                dram_bw_r_list_u8_spm.append(dram_bw_list_u8_wspm[i] / dram_bw_list_u8_spm[i])
+                sram_bw_r_list_bp_spm.append(-sram_bw_list_bp_spm[i] / dram_bw_list_bp_spm[i])
+                sram_bw_r_list_bs_spm.append(-sram_bw_list_bs_spm[i] / dram_bw_list_bs_spm[i])
+                sram_bw_r_list_u6_spm.append(-sram_bw_list_u6_spm[i] / dram_bw_list_u6_spm[i])
+                sram_bw_r_list_u7_spm.append(-sram_bw_list_u7_spm[i] / dram_bw_list_u7_spm[i])
+                sram_bw_r_list_u8_spm.append(-sram_bw_list_u8_spm[i] / dram_bw_list_u8_spm[i])
+            print("SRAM bp wspm r:", sram_bw_r_list_bp_spm)
+            print("SRAM bs wspm r:", sram_bw_r_list_bs_spm)
+            print("SRAM u6 wspm r:", sram_bw_r_list_u6_spm)
+            print("SRAM u7 wspm r:", sram_bw_r_list_u7_spm)
+            print("SRAM u8 wspm r:", sram_bw_r_list_u8_spm)
+            print("DRAM bp wspm r:", dram_bw_r_list_bp_spm)
+            print("DRAM bs wspm r:", dram_bw_r_list_bs_spm)
+            print("DRAM u6 wspm r:", dram_bw_r_list_u6_spm)
+            print("DRAM u7 wspm r:", dram_bw_r_list_u7_spm)
+            print("DRAM u8 wspm r:", dram_bw_r_list_u8_spm)
 
-            # 8b - spm - bp
-            index = 0
-            dram_bw_list = bw_list[index * 2][:-1]
-            idx = 0.5
-            ax.bar(x_idx + iterval * (idx - idx_tot / 2), dram_bw_list, width, hatch = None, alpha=0.99, color=bp_color, label="Binary Parallel")
-
-            # 8b - spm - bs
-            index = 1
-            dram_bw_list = bw_list[index * 2][:-1]
-            idx += 1
-            ax.bar(x_idx + iterval * (idx - idx_tot / 2), dram_bw_list, width, hatch = None, alpha=0.99, color=bs_color, label="Binary Serial")
-
-            # 8b - spm - ur - 32c
-            index = 2
-            dram_bw_list = bw_list[index * 2][:-1]
-            idx += 1
-            ax.bar(x_idx + iterval * (idx - idx_tot / 2), dram_bw_list, width, hatch = None, alpha=0.99, color=u6_color, label="Unary-32c")
-
-            # 8b - spm - ur - 64c
-            index = 3
-            dram_bw_list = bw_list[index * 2][:-1]
-            idx += 1
-            ax.bar(x_idx + iterval * (idx - idx_tot / 2), dram_bw_list, width, hatch = None, alpha=0.99, color=u7_color, label="Unary-64c")
-
-            # 8b - spm - ur - 128c
-            index = 4
-            dram_bw_list = bw_list[index * 2][:-1]
-            idx += 1
-            ax.bar(x_idx + iterval * (idx - idx_tot / 2), dram_bw_list, width, hatch = None, alpha=0.99, color=u8_color, label="Unary-128c")
-
-            # 8b - wospm - bp
-            index = 8
-            dram_bw_list = bw_list[index * 2][:-1]
-            idx += 1
-            ax.bar(x_idx + iterval * (idx - idx_tot / 2), dram_bw_list, width, hatch = None, alpha=0.99, color=bp_color)
-
-            # 8b - wospm - bs
-            index = 9
-            dram_bw_list = bw_list[index * 2][:-1]
-            idx += 1
-            ax.bar(x_idx + iterval * (idx - idx_tot / 2), dram_bw_list, width, hatch = None, alpha=0.99, color=bs_color)
-
-            # 8b - wospm - ur - 32c
-            index = 10
-            dram_bw_list = bw_list[index * 2][:-1]
-            idx += 1
-            ax.bar(x_idx + iterval * (idx - idx_tot / 2), dram_bw_list, width, hatch = None, alpha=0.99, color=u6_color)
-
-            # 8b - wospm - ur - 64c
-            index = 11
-            dram_bw_list = bw_list[index * 2][:-1]
-            idx += 1
-            ax.bar(x_idx + iterval * (idx - idx_tot / 2), dram_bw_list, width, hatch = None, alpha=0.99, color=u7_color)
-
-            # 8b - wospm - ur - 128c
-            index = 12
-            dram_bw_list = bw_list[index * 2][:-1]
-            idx += 1
-            ax.bar(x_idx + iterval * (idx - idx_tot / 2), dram_bw_list, width, hatch = None, alpha=0.99, color=u8_color)
-
-            ax.set_ylabel('Bandwith (GB/s)')
-            ax.set_xticks(x_idx)
-            ax.set_xticklabels(x_axis)
-            plt.xlim(x_idx[0]-0.5, x_idx[-1]+0.5)
-            plt.yscale("log")
-
-            _, top = plt.ylim()
-
-            locs, labels = plt.yticks()
-            if a == "eyeriss":
-                locs = [0.001, 0.01, 0.1, 1, 10]
-            else:
-                locs = [0.001, 0.01, 0.1, 1, 10]
-            ax.set_yticks(locs)
-            
-            bottom, _ = plt.ylim()
-            if a == "eyeriss":
-                ax.set_ylim((bottom, top*40))
-                bottom, top = plt.ylim()
-                for x in x_idx:
-                    ax.fill_betweenx([bottom, top/40], x1=x, x2=x+0.5, alpha=0.2, color=bg_color, linewidth=0)
-                ax.legend(loc="upper center", ncol=3, frameon=True)
-            else:
-                ax.set_ylim((bottom, top))
-                bottom, top = plt.ylim()
-                for x in x_idx:
-                    ax.fill_betweenx([bottom, top], x1=x, x2=x+0.5, alpha=0.2, color=bg_color, linewidth=0)
-            
-            y_label_list = []
-            for y in locs:
-                if y != 0:
-                    y_label_list.append("{:1.0E}".format(abs(y)))
-                else:
-                    y_label_list.append("0")
-            ax.set_yticklabels(y_label_list)
-
-            ax.minorticks_off()
-            fig.tight_layout()
-            plt.savefig('./outputs_fig/' + technode + '/Bandwidth_' + a_cap + ".pdf", bbox_inches='tight', dpi=my_dpi, pad_inches=0.02)
-            print("Bandwidth fig saved!\n")
+        print("Bandwidth fig saved!\n")
 
 
         # runtime
         my_dpi = 300
         if a == "eyeriss":
-            fig_h = 1.5
+            fig_h = 1.1
         else:
             fig_h = 1
         fig_w = 3.3115
@@ -479,32 +431,47 @@ def plot_fig(technode=""):
         runtime_list = time_list[index][:-1]
         idx = 1
         ax.bar(x_idx + iterval * (idx - idx_tot / 2), runtime_list, width, hatch = None, alpha=0.99, color=bp_color, label="Binary Parallel")
+        runtime_ideal_r_list_bp_spm = []
+        for i in range(len(runtime_list)):
+            runtime_ideal_r_list_bp_spm.append(runtime_list[i] / time_ideal_list[index][:-1][i] - 1)
 
         # 8b - spm - bs
         index = 1
         runtime_list = time_list[index][:-1]
         idx += 1
         ax.bar(x_idx + iterval * (idx - idx_tot / 2), runtime_list, width, hatch = None, alpha=0.99, color=bs_color, label="Binary Serial")
+        runtime_ideal_r_list_bs_spm = []
+        for i in range(len(runtime_list)):
+            runtime_ideal_r_list_bs_spm.append(runtime_list[i] / time_ideal_list[index][:-1][i] - 1)
 
         # 8b - wospm - ur - 32c
         index = 10
         runtime_list = time_list[index][:-1]
         idx += 1
         ax.bar(x_idx + iterval * (idx - idx_tot / 2), runtime_list, width, hatch = None, alpha=0.99, color=u6_color, label="Unary-32c")
+        runtime_ideal_r_list_u6_wspm = []
+        for i in range(len(runtime_list)):
+            runtime_ideal_r_list_u6_wspm.append(runtime_list[i] / time_ideal_list[index][:-1][i] - 1)
 
         # 8b - wospm - ur - 64c
         index = 11
         runtime_list = time_list[index][:-1]
         idx += 1
         ax.bar(x_idx + iterval * (idx - idx_tot / 2), runtime_list, width, hatch = None, alpha=0.99, color=u7_color, label="Unary-64c")
+        runtime_ideal_r_list_u7_wspm = []
+        for i in range(len(runtime_list)):
+            runtime_ideal_r_list_u7_wspm.append(runtime_list[i] / time_ideal_list[index][:-1][i] - 1)
 
         # 8b - wospm - ur - 128c
         index = 12
         runtime_list = time_list[index][:-1]
         idx += 1
         ax.bar(x_idx + iterval * (idx - idx_tot / 2), runtime_list, width, hatch = None, alpha=0.99, color=u8_color, label="Unary-128c")
+        runtime_ideal_r_list_u8_wspm = []
+        for i in range(len(runtime_list)):
+            runtime_ideal_r_list_u8_wspm.append(runtime_list[i] / time_ideal_list[index][:-1][i] - 1)
 
-        ax.set_ylabel('Runtime (Seconds)')
+        ax.set_ylabel('Runtime\n(Seconds)')
         ax.set_xticks(x_idx)
         ax.set_xticklabels(x_axis)
         plt.xlim(x_idx[0]-0.5, x_idx[-1]+0.5)
@@ -521,10 +488,10 @@ def plot_fig(technode=""):
         
         bottom, _ = plt.ylim()
         if a == "eyeriss":
-            ax.set_ylim((bottom, top*8))
+            ax.set_ylim((bottom, top*60))
             bottom, top = plt.ylim()
             for x in x_idx:
-                ax.fill_betweenx([bottom, top/8], x1=x, x2=x+0.5, alpha=0.2, color=bg_color, linewidth=0)
+                ax.fill_betweenx([bottom, top/60], x1=x, x2=x+0.5, alpha=0.2, color=bg_color, linewidth=0)
             ax.legend(loc="upper center", ncol=3, frameon=True)
         else:
             ax.set_ylim((bottom, top))
@@ -543,13 +510,26 @@ def plot_fig(technode=""):
         ax.minorticks_off()
         fig.tight_layout()
         plt.savefig('./outputs_fig/' + technode + '/Runtime_' + a_cap + ".pdf", bbox_inches='tight', dpi=my_dpi, pad_inches=0.02)
+
+        if print_runtime:
+            print("BP SPM overhead:  ", runtime_ideal_r_list_bp_spm)
+            print("CONV mean: ", mean(runtime_ideal_r_list_bp_spm[0:5])*100, "%")
+            print("BR SPM overhead:  ", runtime_ideal_r_list_bs_spm)
+            print("CONV mean: ", mean(runtime_ideal_r_list_bs_spm[0:5])*100, "%")
+            print("U6 WSPM overhead: ", runtime_ideal_r_list_u6_wspm)
+            print("CONV mean: ", mean(runtime_ideal_r_list_u6_wspm[0:5])*100, "%")
+            print("U7 WSPM overhead: ", runtime_ideal_r_list_u7_wspm)
+            print("CONV mean: ", mean(runtime_ideal_r_list_u7_wspm[0:5])*100, "%")
+            print("U8 WSPM overhead: ", runtime_ideal_r_list_u8_wspm)
+            print("CONV mean: ", mean(runtime_ideal_r_list_u8_wspm[0:5])*100, "%")
+
         print("Runtime fig saved!\n")
 
 
         # throughput
         my_dpi = 300
         if a == "eyeriss":
-            fig_h = 1.5
+            fig_h = 1.1
         else:
             fig_h = 1
         fig_w = 3.3115
@@ -575,35 +555,35 @@ def plot_fig(technode=""):
 
         # 8b - spm - bp
         index = 0
-        throughput_list = tp_list[index][:-1]
+        throughput_list_bp_spm = tp_list[index][:-1]
         idx = 1
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), throughput_list, width, hatch = None, alpha=0.99, color=bp_color, label="Binary Parallel")
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), throughput_list_bp_spm, width, hatch = None, alpha=0.99, color=bp_color, label="Binary Parallel")
 
         # 8b - spm - bs
         index = 1
-        throughput_list = tp_list[index][:-1]
+        throughput_list_bs_spm = tp_list[index][:-1]
         idx += 1
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), throughput_list, width, hatch = None, alpha=0.99, color=bs_color, label="Binary Serial")
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), throughput_list_bs_spm, width, hatch = None, alpha=0.99, color=bs_color, label="Binary Serial")
 
         # 8b - wospm - ur - 32c
         index = 10
-        throughput_list = tp_list[index][:-1]
+        throughput_list_u6_wspm = tp_list[index][:-1]
         idx += 1
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), throughput_list, width, hatch = None, alpha=0.99, color=u6_color, label="Unary-32c")
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), throughput_list_u6_wspm, width, hatch = None, alpha=0.99, color=u6_color, label="Unary-32c")
 
         # 8b - wospm - ur - 64c
         index = 11
-        throughput_list = tp_list[index][:-1]
+        throughput_list_u7_wspm = tp_list[index][:-1]
         idx += 1
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), throughput_list, width, hatch = None, alpha=0.99, color=u7_color, label="Unary-64c")
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), throughput_list_u7_wspm, width, hatch = None, alpha=0.99, color=u7_color, label="Unary-64c")
 
         # 8b - wospm - ur - 128c
         index = 12
-        throughput_list = tp_list[index][:-1]
+        throughput_list_u8_wspm = tp_list[index][:-1]
         idx += 1
-        ax.bar(x_idx + iterval * (idx - idx_tot / 2), throughput_list, width, hatch = None, alpha=0.99, color=u8_color, label="Unary-128c")
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), throughput_list_u8_wspm, width, hatch = None, alpha=0.99, color=u8_color, label="Unary-128c")
 
-        ax.set_ylabel('Throughput (Frames/s)')
+        ax.set_ylabel('Throughput\n(Frames/s)')
         ax.set_xticks(x_idx)
         ax.set_xticklabels(x_axis)
         plt.xlim(x_idx[0]-0.5, x_idx[-1]+0.5)
@@ -620,10 +600,10 @@ def plot_fig(technode=""):
         
         bottom, _ = plt.ylim()
         if a == "eyeriss":
-            ax.set_ylim((bottom, top*10))
+            ax.set_ylim((bottom, top*60))
             bottom, top = plt.ylim()
             for x in x_idx:
-                ax.fill_betweenx([bottom, top/10], x1=x, x2=x+0.5, alpha=0.2, color=bg_color, linewidth=0)
+                ax.fill_betweenx([bottom, top/60], x1=x, x2=x+0.5, alpha=0.2, color=bg_color, linewidth=0)
             ax.legend(loc="upper center", ncol=3, frameon=True)
         else:
             ax.set_ylim((bottom, top))
@@ -648,9 +628,9 @@ def plot_fig(technode=""):
         # area
         my_dpi = 300
         if a == "eyeriss":
-            fig_h = 1.5
+            fig_h = 1.3
         else:
-            fig_h = 1.5
+            fig_h = 1.3
         fig_w = 3.3115
 
         x_axis = ["SRAM-8b", "BP-8b", "BS-8b", "UR-8b", "UT-8b", "SRAM-16b", "BP-16b", "BS-16b", "UR-16b", "UT-16b"]
@@ -712,6 +692,10 @@ def plot_fig(technode=""):
             print("UT/BS SA area reduction:      ", 1 - top_list[3] / top_list[1])
             print("UR/BS on-chip area reduction: ", 1 - top_list[2] / (top_list[1] + sram_list[0]))
             print("UT/BS on-chip area reduction: ", 1 - top_list[3] / (top_list[1] + sram_list[0]))
+            print("UR/BP IREG reduction: ", (ireg_list[2] - ireg_list[0]) / top_list[0])
+            print("UR/BP WREG reduction: ", (wreg_list[2] - wreg_list[0]) / top_list[0])
+            print("UR/BP MUL  reduction: ", (mul_list[2] - mul_list[0]) / top_list[0])
+            print("UR/BP ACC  reduction: ", (acc_list[2] - acc_list[0]) / top_list[0])
 
             print("16-bit implementation:")
             print("SRAM area: ", sram_list[4])
@@ -741,9 +725,9 @@ def plot_fig(technode=""):
         ax.bar(np.concatenate((x_idx[1:5],x_idx[6:])), mul_list,  width, bottom=bot1_list, hatch = None, alpha=0.99, color=lav, label='MUL')
         ax.bar(np.concatenate((x_idx[1:5],x_idx[6:])), acc_list,  width, bottom=bot2_list, hatch = None, alpha=0.99, color=gry_3, label='ACC')
 
-        ax.set_ylabel('Area (mm^2)')
+        ax.set_ylabel('Area\n(mm$^2$)')
         ax.set_xticks(x_idx)
-        ax.set_xticklabels(x_axis, rotation=45)
+        ax.set_xticklabels(x_axis, rotation=30)
         if a == "eyeriss":
             ax.legend(ncol=2, frameon=True)
             bottom, top = plt.ylim()
@@ -765,7 +749,7 @@ def plot_fig(technode=""):
         if a == "eyeriss":
             fig_h = 2
         else:
-            fig_h = 1.5
+            fig_h = 1
         fig_w = 3.3115
 
         bp_color = "#7A81FF"
@@ -864,10 +848,11 @@ def plot_fig(technode=""):
         ax.bar(x_idx + iterval * (idx - idx_tot / 2), sram_d_neg_list, width, hatch = None, alpha=0.99, color=u8_color)
         ax.bar(x_idx + iterval * (idx - idx_tot / 2), sram_l_neg_list, width, bottom=sram_d_neg_list, hatch = None, alpha=l_alpha, color=u8_color)
 
-        ax.set_ylabel('SRAM-SA energy (uJ)')
+        ax.set_ylabel('SRAM-SA energy\n(uJ)')
         ax.set_xticks(x_idx)
         ax.set_xticklabels(x_axis)
         plt.xlim(x_idx[0]-0.5, x_idx[-1]+0.5)
+        plt.yscale("symlog", linthreshy=10000)
         bottom, top = plt.ylim()
 
         if a == "eyeriss":
@@ -883,12 +868,11 @@ def plot_fig(technode=""):
                 ax.fill_betweenx([bottom, top], x1=x, x2=x+0.5, alpha=0.2, color=bg_color, linewidth=0)
         ax.axhline(y=0, color="k", linewidth = 0.1)
         
-        plt.yscale("symlog", linthreshy=10000)
         locs, labels = plt.yticks()
         if a == "eyeriss":
             locs = locs[:-1]
         else:
-            locs = locs
+            locs = [-1000000000, -10000000, -100000, 0, 100000, 10000000] 
         ax.set_yticks(locs)
         y_label_list = []
         for y in locs:
@@ -908,7 +892,7 @@ def plot_fig(technode=""):
         if a == "eyeriss":
             fig_h = 2
         else:
-            fig_h = 1.5
+            fig_h = 1
         fig_w = 3.3115
 
         bp_color = "#7A81FF"
@@ -1012,7 +996,7 @@ def plot_fig(technode=""):
         ax.bar(x_idx + iterval * (idx - idx_tot / 2), sram_d_neg_list, width, hatch = None, alpha=0.99, color=u8_color)
         ax.bar(x_idx + iterval * (idx - idx_tot / 2), sram_l_neg_list, width, bottom=sram_d_neg_list, hatch = None, alpha=l_alpha, color=u8_color)
 
-        ax.set_ylabel('SRAM-SA Power (mW)')
+        ax.set_ylabel('SRAM-SA power\n(mW)')
         ax.set_xticks(x_idx)
         ax.set_xticklabels(x_axis)
         plt.xlim(x_idx[0]-0.5, x_idx[-1]+0.5)
@@ -1198,7 +1182,7 @@ def plot_fig(technode=""):
         for i in range(len(x_axis)):
             total_energy_r_list_u8_wspm.append(1 - total_energy_list_u8_wspm[i]/total_energy_list_bp_spm[i])
 
-        ax.set_ylabel('Total energy (uJ)')
+        ax.set_ylabel('Total energy\n(uJ)')
         ax.set_xticks(x_idx)
         ax.set_xticklabels(x_axis)
         plt.xlim(x_idx[0]-0.5, x_idx[-1]+0.5)
@@ -1249,6 +1233,22 @@ def plot_fig(technode=""):
             print("median reduction:", median(onchip_energy_r_list_u6_wspm + onchip_energy_r_list_u7_wspm + onchip_energy_r_list_u8_wspm)*100, "%")
             print("max    reduction:", max(onchip_energy_r_list_u6_wspm + onchip_energy_r_list_u7_wspm + onchip_energy_r_list_u8_wspm)*100, "%")
             
+            onchip_energy_bs_r_list_u6_wspm = []
+            onchip_energy_bs_r_list_u7_wspm = []
+            onchip_energy_bs_r_list_u8_wspm = []
+            for i in range(len(onchip_energy_list_bs_spm)):
+                onchip_energy_bs_r_list_u6_wspm.append(1 - onchip_energy_list_u6_wspm[i] / onchip_energy_list_bs_spm[i])
+                onchip_energy_bs_r_list_u7_wspm.append(1 - onchip_energy_list_u7_wspm[i] / onchip_energy_list_bs_spm[i])
+                onchip_energy_bs_r_list_u8_wspm.append(1 - onchip_energy_list_u8_wspm[i] / onchip_energy_list_bs_spm[i])
+            print("binary serial (baseline)  :", onchip_energy_list_bs_spm)
+            print("unary 32c                 :", onchip_energy_bs_r_list_u6_wspm)
+            print("unary 64c                 :", onchip_energy_bs_r_list_u7_wspm)
+            print("unary 128c                :", onchip_energy_bs_r_list_u8_wspm)
+            print("min    reduction:", min(onchip_energy_bs_r_list_u6_wspm + onchip_energy_bs_r_list_u7_wspm + onchip_energy_bs_r_list_u8_wspm)*100, "%")
+            print("mean    reduction:", mean(onchip_energy_bs_r_list_u6_wspm + onchip_energy_bs_r_list_u7_wspm + onchip_energy_bs_r_list_u8_wspm)*100, "%")
+            print("median reduction:", median(onchip_energy_bs_r_list_u6_wspm + onchip_energy_bs_r_list_u7_wspm + onchip_energy_bs_r_list_u8_wspm)*100, "%")
+            print("max    reduction:", max(onchip_energy_bs_r_list_u6_wspm + onchip_energy_bs_r_list_u7_wspm + onchip_energy_bs_r_list_u8_wspm)*100, "%")
+
         if print_energy_total:
             print("Total energy reduction: ")
             print("binary parallel (baseline):", total_energy_list_bp_spm)
@@ -1260,6 +1260,117 @@ def plot_fig(technode=""):
             print("mean   reduction:", mean(total_energy_r_list_u6_wspm + total_energy_r_list_u7_wspm + total_energy_r_list_u8_wspm)*100, "%")
             print("median reduction:", median(total_energy_r_list_u6_wspm + total_energy_r_list_u7_wspm + total_energy_r_list_u8_wspm)*100, "%")
             print("max    reduction:", max(total_energy_r_list_u6_wspm + total_energy_r_list_u7_wspm + total_energy_r_list_u8_wspm)*100, "%")
+            
+            total_energy_bs_r_list_u6_wspm = []
+            total_energy_bs_r_list_u7_wspm = []
+            total_energy_bs_r_list_u8_wspm = []
+            for i in range(len(total_energy_list_bs_spm)):
+                total_energy_bs_r_list_u6_wspm.append(1 - total_energy_list_u6_wspm[i] / total_energy_list_bs_spm[i])
+                total_energy_bs_r_list_u7_wspm.append(1 - total_energy_list_u7_wspm[i] / total_energy_list_bs_spm[i])
+                total_energy_bs_r_list_u8_wspm.append(1 - total_energy_list_u8_wspm[i] / total_energy_list_bs_spm[i])
+            print("binary serial (baseline)  :", total_energy_list_bs_spm)
+            print("unary 32c                 :", total_energy_bs_r_list_u6_wspm)
+            print("unary 64c                 :", total_energy_bs_r_list_u7_wspm)
+            print("unary 128c                :", total_energy_bs_r_list_u8_wspm)
+            print("min    reduction:", min(total_energy_bs_r_list_u6_wspm + total_energy_bs_r_list_u7_wspm + total_energy_bs_r_list_u8_wspm)*100, "%")
+            print("mean    reduction:", mean(total_energy_bs_r_list_u6_wspm + total_energy_bs_r_list_u7_wspm + total_energy_bs_r_list_u8_wspm)*100, "%")
+            print("median reduction:", median(total_energy_bs_r_list_u6_wspm + total_energy_bs_r_list_u7_wspm + total_energy_bs_r_list_u8_wspm)*100, "%")
+            print("max    reduction:", max(total_energy_bs_r_list_u6_wspm + total_energy_bs_r_list_u7_wspm + total_energy_bs_r_list_u8_wspm)*100, "%")
+
+
+        if print_energy_eff:
+            onchip_energy_eff_list_bp_spm = []
+            onchip_energy_eff_list_bs_spm = []
+            onchip_energy_eff_list_u6_wspm = []
+            onchip_energy_eff_list_u7_wspm = []
+            onchip_energy_eff_list_u8_wspm = []
+            total_energy_eff_list_bp_spm = []
+            total_energy_eff_list_bs_spm = []
+            total_energy_eff_list_u6_wspm = []
+            total_energy_eff_list_u7_wspm = []
+            total_energy_eff_list_u8_wspm = []
+            for i in range(len(throughput_list_bp_spm)):
+                onchip_energy_eff_list_bp_spm.append(throughput_list_bp_spm[i] / onchip_energy_list_bp_spm[i])
+                onchip_energy_eff_list_bs_spm.append(throughput_list_bs_spm[i] / onchip_energy_list_bs_spm[i])
+                onchip_energy_eff_list_u6_wspm.append(throughput_list_u6_wspm[i] / onchip_energy_list_u6_wspm[i])
+                onchip_energy_eff_list_u7_wspm.append(throughput_list_u7_wspm[i] / onchip_energy_list_u7_wspm[i])
+                onchip_energy_eff_list_u8_wspm.append(throughput_list_u8_wspm[i] / onchip_energy_list_u8_wspm[i])
+                total_energy_eff_list_bp_spm.append(throughput_list_bp_spm[i] / total_energy_list_bp_spm[i])
+                total_energy_eff_list_bs_spm.append(throughput_list_bs_spm[i] / total_energy_list_bs_spm[i])
+                total_energy_eff_list_u6_wspm.append(throughput_list_u6_wspm[i] / total_energy_list_u6_wspm[i])
+                total_energy_eff_list_u7_wspm.append(throughput_list_u7_wspm[i] / total_energy_list_u7_wspm[i])
+                total_energy_eff_list_u8_wspm.append(throughput_list_u8_wspm[i] / total_energy_list_u8_wspm[i])
+
+            onchip_energy_eff_bp_r_list_bs_spm = []
+            onchip_energy_eff_bp_r_list_u6_wspm = []
+            onchip_energy_eff_bp_r_list_u7_wspm = []
+            onchip_energy_eff_bp_r_list_u8_wspm = []
+            total_energy_eff_bp_r_list_bs_spm = []
+            total_energy_eff_bp_r_list_u6_wspm = []
+            total_energy_eff_bp_r_list_u7_wspm = []
+            total_energy_eff_bp_r_list_u8_wspm = []
+            onchip_energy_eff_bs_r_list_u6_wspm = []
+            onchip_energy_eff_bs_r_list_u7_wspm = []
+            onchip_energy_eff_bs_r_list_u8_wspm = []
+            total_energy_eff_bs_r_list_u6_wspm = []
+            total_energy_eff_bs_r_list_u7_wspm = []
+            total_energy_eff_bs_r_list_u8_wspm = []
+            for i in range(len(throughput_list_bp_spm)):
+                onchip_energy_eff_bp_r_list_bs_spm.append(onchip_energy_eff_list_bs_spm[i] / onchip_energy_eff_list_bp_spm[i] - 1)
+                onchip_energy_eff_bp_r_list_u6_wspm.append(onchip_energy_eff_list_u6_wspm[i] / onchip_energy_eff_list_bp_spm[i] - 1)
+                onchip_energy_eff_bp_r_list_u7_wspm.append(onchip_energy_eff_list_u7_wspm[i] / onchip_energy_eff_list_bp_spm[i] - 1)
+                onchip_energy_eff_bp_r_list_u8_wspm.append(onchip_energy_eff_list_u8_wspm[i] / onchip_energy_eff_list_bp_spm[i] - 1)
+                total_energy_eff_bp_r_list_bs_spm.append(total_energy_eff_list_bs_spm[i] / total_energy_eff_list_bp_spm[i] - 1)
+                total_energy_eff_bp_r_list_u6_wspm.append(total_energy_eff_list_u6_wspm[i] / total_energy_eff_list_bp_spm[i] - 1)
+                total_energy_eff_bp_r_list_u7_wspm.append(total_energy_eff_list_u7_wspm[i] / total_energy_eff_list_bp_spm[i] - 1)
+                total_energy_eff_bp_r_list_u8_wspm.append(total_energy_eff_list_u8_wspm[i] / total_energy_eff_list_bp_spm[i] - 1)
+                onchip_energy_eff_bs_r_list_u6_wspm.append(onchip_energy_eff_list_u6_wspm[i] / onchip_energy_eff_list_bs_spm[i] - 1)
+                onchip_energy_eff_bs_r_list_u7_wspm.append(onchip_energy_eff_list_u7_wspm[i] / onchip_energy_eff_list_bs_spm[i] - 1)
+                onchip_energy_eff_bs_r_list_u8_wspm.append(onchip_energy_eff_list_u8_wspm[i] / onchip_energy_eff_list_bs_spm[i] - 1)
+                total_energy_eff_bs_r_list_u6_wspm.append(total_energy_eff_list_u6_wspm[i] / total_energy_eff_list_bs_spm[i] - 1)
+                total_energy_eff_bs_r_list_u7_wspm.append(total_energy_eff_list_u7_wspm[i] / total_energy_eff_list_bs_spm[i] - 1)
+                total_energy_eff_bs_r_list_u8_wspm.append(total_energy_eff_list_u8_wspm[i] / total_energy_eff_list_bs_spm[i] - 1)
+
+            print("On-chip energy efficiency improve: ")
+            print("binary parallel (baseline):", onchip_energy_eff_list_bp_spm)
+            print("binary serial             :", onchip_energy_eff_bp_r_list_bs_spm)
+            print("unary 32c                 :", onchip_energy_eff_bp_r_list_u6_wspm)
+            print("unary 64c                 :", onchip_energy_eff_bp_r_list_u7_wspm)
+            print("unary 128c                :", onchip_energy_eff_bp_r_list_u8_wspm)
+            print("min    improve:", min(onchip_energy_eff_bp_r_list_u6_wspm + onchip_energy_eff_bp_r_list_u7_wspm + onchip_energy_eff_bp_r_list_u8_wspm)*100, "%")
+            print("mean   improve:", mean(onchip_energy_eff_bp_r_list_u6_wspm + onchip_energy_eff_bp_r_list_u7_wspm + onchip_energy_eff_bp_r_list_u8_wspm)*100, "%")
+            print("median improve:", median(onchip_energy_eff_bp_r_list_u6_wspm + onchip_energy_eff_bp_r_list_u7_wspm + onchip_energy_eff_bp_r_list_u8_wspm)*100, "%")
+            print("min    improve:", max(onchip_energy_eff_bp_r_list_u6_wspm + onchip_energy_eff_bp_r_list_u7_wspm + onchip_energy_eff_bp_r_list_u8_wspm)*100, "%")
+
+            print("binary serial (baseline)  :", onchip_energy_eff_list_bs_spm)
+            print("unary 32c                 :", onchip_energy_eff_bs_r_list_u6_wspm)
+            print("unary 64c                 :", onchip_energy_eff_bs_r_list_u7_wspm)
+            print("unary 128c                :", onchip_energy_eff_bs_r_list_u8_wspm)
+            print("min    improve:", min(onchip_energy_eff_bs_r_list_u6_wspm + onchip_energy_eff_bs_r_list_u7_wspm + onchip_energy_eff_bs_r_list_u8_wspm)*100, "%")
+            print("mean   improve:", mean(onchip_energy_eff_bs_r_list_u6_wspm + onchip_energy_eff_bs_r_list_u7_wspm + onchip_energy_eff_bs_r_list_u8_wspm)*100, "%")
+            print("median improve:", median(onchip_energy_eff_bs_r_list_u6_wspm + onchip_energy_eff_bs_r_list_u7_wspm + onchip_energy_eff_bs_r_list_u8_wspm)*100, "%")
+            print("max    improve:", max(onchip_energy_eff_bs_r_list_u6_wspm + onchip_energy_eff_bs_r_list_u7_wspm + onchip_energy_eff_bs_r_list_u8_wspm)*100, "%")
+
+            print("Total energy efficiency improve: ")
+            print("binary parallel (baseline):", total_energy_eff_list_bp_spm)
+            print("binary serial             :", total_energy_eff_bp_r_list_bs_spm)
+            print("unary 32c                 :", total_energy_eff_bp_r_list_u6_wspm)
+            print("unary 64c                 :", total_energy_eff_bp_r_list_u7_wspm)
+            print("unary 128c                :", total_energy_eff_bp_r_list_u8_wspm)
+            print("min    improve:", min(total_energy_eff_bp_r_list_u6_wspm + total_energy_eff_bp_r_list_u7_wspm + total_energy_eff_bp_r_list_u8_wspm)*100, "%")
+            print("mean   improve:", mean(total_energy_eff_bp_r_list_u6_wspm + total_energy_eff_bp_r_list_u7_wspm + total_energy_eff_bp_r_list_u8_wspm)*100, "%")
+            print("median improve:", median(total_energy_eff_bp_r_list_u6_wspm + total_energy_eff_bp_r_list_u7_wspm + total_energy_eff_bp_r_list_u8_wspm)*100, "%")
+            print("min    improve:", max(total_energy_eff_bp_r_list_u6_wspm + total_energy_eff_bp_r_list_u7_wspm + total_energy_eff_bp_r_list_u8_wspm)*100, "%")
+
+            print("binary serial (baseline)  :", total_energy_eff_list_bs_spm)
+            print("unary 32c                 :", total_energy_eff_bs_r_list_u6_wspm)
+            print("unary 64c                 :", total_energy_eff_bs_r_list_u7_wspm)
+            print("unary 128c                :", total_energy_eff_bs_r_list_u8_wspm)
+            print("min    improve:", min(total_energy_eff_bs_r_list_u6_wspm + total_energy_eff_bs_r_list_u7_wspm + total_energy_eff_bs_r_list_u8_wspm)*100, "%")
+            print("mean   improve:", mean(total_energy_eff_bs_r_list_u6_wspm + total_energy_eff_bs_r_list_u7_wspm + total_energy_eff_bs_r_list_u8_wspm)*100, "%")
+            print("median improve:", median(total_energy_eff_bs_r_list_u6_wspm + total_energy_eff_bs_r_list_u7_wspm + total_energy_eff_bs_r_list_u8_wspm)*100, "%")
+            print("max    improve:", max(total_energy_eff_bs_r_list_u6_wspm + total_energy_eff_bs_r_list_u7_wspm + total_energy_eff_bs_r_list_u8_wspm)*100, "%")
+
 
         print("Energy total fig saved!\n")
 
@@ -1402,7 +1513,7 @@ def plot_fig(technode=""):
             total_power_r_list_u8_wspm.append(1 - total_power_list_u8_wspm[i]/total_power_list_bp_spm[i])
 
 
-        ax.set_ylabel('Total power (mW)')
+        ax.set_ylabel('Total power\n(mW)')
         ax.set_xticks(x_idx)
         ax.set_xticklabels(x_axis)
         plt.xlim(x_idx[0]-0.5, x_idx[-1]+0.5)
@@ -1457,6 +1568,22 @@ def plot_fig(technode=""):
             print("median reduction:", median(onchip_power_r_list_u6_wspm + onchip_power_r_list_u7_wspm + onchip_power_r_list_u8_wspm)*100, "%")
             print("max    reduction:", max(onchip_power_r_list_u6_wspm + onchip_power_r_list_u7_wspm + onchip_power_r_list_u8_wspm)*100, "%")
 
+            onchip_power_bs_r_list_u6_wspm = []
+            onchip_power_bs_r_list_u7_wspm = []
+            onchip_power_bs_r_list_u8_wspm = []
+            for i in range(len(onchip_power_list_bs_spm)):
+                onchip_power_bs_r_list_u6_wspm.append(1 - onchip_power_list_u6_wspm[i] / onchip_power_list_bs_spm[i])
+                onchip_power_bs_r_list_u7_wspm.append(1 - onchip_power_list_u7_wspm[i] / onchip_power_list_bs_spm[i])
+                onchip_power_bs_r_list_u8_wspm.append(1 - onchip_power_list_u8_wspm[i] / onchip_power_list_bs_spm[i])
+            print("binary serial (baseline)  :", onchip_power_list_bs_spm)
+            print("unary 32c                 :", onchip_power_bs_r_list_u6_wspm)
+            print("unary 64c                 :", onchip_power_bs_r_list_u7_wspm)
+            print("unary 128c                :", onchip_power_bs_r_list_u8_wspm)
+            print("min    reduction:", min(onchip_power_bs_r_list_u6_wspm + onchip_power_bs_r_list_u7_wspm + onchip_power_bs_r_list_u8_wspm)*100, "%")
+            print("mean    reduction:", mean(onchip_power_bs_r_list_u6_wspm + onchip_power_bs_r_list_u7_wspm + onchip_power_bs_r_list_u8_wspm)*100, "%")
+            print("median reduction:", median(onchip_power_bs_r_list_u6_wspm + onchip_power_bs_r_list_u7_wspm + onchip_power_bs_r_list_u8_wspm)*100, "%")
+            print("max    reduction:", max(onchip_power_bs_r_list_u6_wspm + onchip_power_bs_r_list_u7_wspm + onchip_power_bs_r_list_u8_wspm)*100, "%")
+        
         if print_power_total:
             print("Total power reduction: ")
             print("binary parallel (baseline):", total_power_list_bp_spm)
@@ -1467,7 +1594,117 @@ def plot_fig(technode=""):
             print("min    reduction:", min(total_power_r_list_u6_wspm + total_power_r_list_u7_wspm + total_power_r_list_u8_wspm)*100, "%")
             print("mean   reduction:", mean(total_power_r_list_u6_wspm + total_power_r_list_u7_wspm + total_power_r_list_u8_wspm)*100, "%")
             print("median reduction:", median(total_power_r_list_u6_wspm + total_power_r_list_u7_wspm + total_power_r_list_u8_wspm)*100, "%")
-            print("min    reduction:", max(total_power_r_list_u6_wspm + total_power_r_list_u7_wspm + total_power_r_list_u8_wspm)*100, "%")
+            print("max    reduction:", max(total_power_r_list_u6_wspm + total_power_r_list_u7_wspm + total_power_r_list_u8_wspm)*100, "%")
+
+            total_power_bs_r_list_u6_wspm = []
+            total_power_bs_r_list_u7_wspm = []
+            total_power_bs_r_list_u8_wspm = []
+            for i in range(len(total_power_list_bs_spm)):
+                total_power_bs_r_list_u6_wspm.append(1 - total_power_list_u6_wspm[i] / total_power_list_bs_spm[i])
+                total_power_bs_r_list_u7_wspm.append(1 - total_power_list_u7_wspm[i] / total_power_list_bs_spm[i])
+                total_power_bs_r_list_u8_wspm.append(1 - total_power_list_u8_wspm[i] / total_power_list_bs_spm[i])
+            print("binary serial (baseline)  :", total_power_list_bs_spm)
+            print("unary 32c                 :", total_power_bs_r_list_u6_wspm)
+            print("unary 64c                 :", total_power_bs_r_list_u7_wspm)
+            print("unary 128c                :", total_power_bs_r_list_u8_wspm)
+            print("min    reduction:", min(total_power_bs_r_list_u6_wspm + total_power_bs_r_list_u7_wspm + total_power_bs_r_list_u8_wspm)*100, "%")
+            print("mean    reduction:", mean(total_power_bs_r_list_u6_wspm + total_power_bs_r_list_u7_wspm + total_power_bs_r_list_u8_wspm)*100, "%")
+            print("median reduction:", median(total_power_bs_r_list_u6_wspm + total_power_bs_r_list_u7_wspm + total_power_bs_r_list_u8_wspm)*100, "%")
+            print("max    reduction:", max(total_power_bs_r_list_u6_wspm + total_power_bs_r_list_u7_wspm + total_power_bs_r_list_u8_wspm)*100, "%")
+        
+        if print_power_eff:
+            onchip_power_eff_list_bp_spm = []
+            onchip_power_eff_list_bs_spm = []
+            onchip_power_eff_list_u6_wspm = []
+            onchip_power_eff_list_u7_wspm = []
+            onchip_power_eff_list_u8_wspm = []
+            total_power_eff_list_bp_spm = []
+            total_power_eff_list_bs_spm = []
+            total_power_eff_list_u6_wspm = []
+            total_power_eff_list_u7_wspm = []
+            total_power_eff_list_u8_wspm = []
+            for i in range(len(throughput_list_bp_spm)):
+                onchip_power_eff_list_bp_spm.append(throughput_list_bp_spm[i] / onchip_power_list_bp_spm[i])
+                onchip_power_eff_list_bs_spm.append(throughput_list_bs_spm[i] / onchip_power_list_bs_spm[i])
+                onchip_power_eff_list_u6_wspm.append(throughput_list_u6_wspm[i] / onchip_power_list_u6_wspm[i])
+                onchip_power_eff_list_u7_wspm.append(throughput_list_u7_wspm[i] / onchip_power_list_u7_wspm[i])
+                onchip_power_eff_list_u8_wspm.append(throughput_list_u8_wspm[i] / onchip_power_list_u8_wspm[i])
+                total_power_eff_list_bp_spm.append(throughput_list_bp_spm[i] / total_power_list_bp_spm[i])
+                total_power_eff_list_bs_spm.append(throughput_list_bs_spm[i] / total_power_list_bs_spm[i])
+                total_power_eff_list_u6_wspm.append(throughput_list_u6_wspm[i] / total_power_list_u6_wspm[i])
+                total_power_eff_list_u7_wspm.append(throughput_list_u7_wspm[i] / total_power_list_u7_wspm[i])
+                total_power_eff_list_u8_wspm.append(throughput_list_u8_wspm[i] / total_power_list_u8_wspm[i])
+
+            onchip_power_eff_bp_r_list_bs_spm = []
+            onchip_power_eff_bp_r_list_u6_wspm = []
+            onchip_power_eff_bp_r_list_u7_wspm = []
+            onchip_power_eff_bp_r_list_u8_wspm = []
+            total_power_eff_bp_r_list_bs_spm = []
+            total_power_eff_bp_r_list_u6_wspm = []
+            total_power_eff_bp_r_list_u7_wspm = []
+            total_power_eff_bp_r_list_u8_wspm = []
+            onchip_power_eff_bs_r_list_u6_wspm = []
+            onchip_power_eff_bs_r_list_u7_wspm = []
+            onchip_power_eff_bs_r_list_u8_wspm = []
+            total_power_eff_bs_r_list_u6_wspm = []
+            total_power_eff_bs_r_list_u7_wspm = []
+            total_power_eff_bs_r_list_u8_wspm = []
+            for i in range(len(throughput_list_bp_spm)):
+                onchip_power_eff_bp_r_list_bs_spm.append(onchip_power_eff_list_bs_spm[i] / onchip_power_eff_list_bp_spm[i] - 1)
+                onchip_power_eff_bp_r_list_u6_wspm.append(onchip_power_eff_list_u6_wspm[i] / onchip_power_eff_list_bp_spm[i] - 1)
+                onchip_power_eff_bp_r_list_u7_wspm.append(onchip_power_eff_list_u7_wspm[i] / onchip_power_eff_list_bp_spm[i] - 1)
+                onchip_power_eff_bp_r_list_u8_wspm.append(onchip_power_eff_list_u8_wspm[i] / onchip_power_eff_list_bp_spm[i] - 1)
+                total_power_eff_bp_r_list_bs_spm.append(total_power_eff_list_bs_spm[i] / total_power_eff_list_bp_spm[i] - 1)
+                total_power_eff_bp_r_list_u6_wspm.append(total_power_eff_list_u6_wspm[i] / total_power_eff_list_bp_spm[i] - 1)
+                total_power_eff_bp_r_list_u7_wspm.append(total_power_eff_list_u7_wspm[i] / total_power_eff_list_bp_spm[i] - 1)
+                total_power_eff_bp_r_list_u8_wspm.append(total_power_eff_list_u8_wspm[i] / total_power_eff_list_bp_spm[i] - 1)
+                onchip_power_eff_bs_r_list_u6_wspm.append(onchip_power_eff_list_u6_wspm[i] / onchip_power_eff_list_bs_spm[i] - 1)
+                onchip_power_eff_bs_r_list_u7_wspm.append(onchip_power_eff_list_u7_wspm[i] / onchip_power_eff_list_bs_spm[i] - 1)
+                onchip_power_eff_bs_r_list_u8_wspm.append(onchip_power_eff_list_u8_wspm[i] / onchip_power_eff_list_bs_spm[i] - 1)
+                total_power_eff_bs_r_list_u6_wspm.append(total_power_eff_list_u6_wspm[i] / total_power_eff_list_bs_spm[i] - 1)
+                total_power_eff_bs_r_list_u7_wspm.append(total_power_eff_list_u7_wspm[i] / total_power_eff_list_bs_spm[i] - 1)
+                total_power_eff_bs_r_list_u8_wspm.append(total_power_eff_list_u8_wspm[i] / total_power_eff_list_bs_spm[i - 1])
+
+            print("On-chip power efficiency improve: ")
+            print("binary parallel (baseline):", onchip_power_eff_list_bp_spm)
+            print("binary serial             :", onchip_power_eff_bp_r_list_bs_spm)
+            print("unary 32c                 :", onchip_power_eff_bp_r_list_u6_wspm)
+            print("unary 64c                 :", onchip_power_eff_bp_r_list_u7_wspm)
+            print("unary 128c                :", onchip_power_eff_bp_r_list_u8_wspm)
+            print("min    improve:", min(onchip_power_eff_bp_r_list_u6_wspm + onchip_power_eff_bp_r_list_u7_wspm + onchip_power_eff_bp_r_list_u8_wspm)*100, "%")
+            print("mean   improve:", mean(onchip_power_eff_bp_r_list_u6_wspm + onchip_power_eff_bp_r_list_u7_wspm + onchip_power_eff_bp_r_list_u8_wspm)*100, "%")
+            print("median improve:", median(onchip_power_eff_bp_r_list_u6_wspm + onchip_power_eff_bp_r_list_u7_wspm + onchip_power_eff_bp_r_list_u8_wspm)*100, "%")
+            print("max    improve:", max(onchip_power_eff_bp_r_list_u6_wspm + onchip_power_eff_bp_r_list_u7_wspm + onchip_power_eff_bp_r_list_u8_wspm)*100, "%")
+
+            print("binary serial (baseline)  :", onchip_power_eff_list_bs_spm)
+            print("unary 32c                 :", onchip_power_eff_bs_r_list_u6_wspm)
+            print("unary 64c                 :", onchip_power_eff_bs_r_list_u7_wspm)
+            print("unary 128c                :", onchip_power_eff_bs_r_list_u8_wspm)
+            print("min    improve:", min(onchip_power_eff_bs_r_list_u6_wspm + onchip_power_eff_bs_r_list_u7_wspm + onchip_power_eff_bs_r_list_u8_wspm)*100, "%")
+            print("mean   improve:", mean(onchip_power_eff_bs_r_list_u6_wspm + onchip_power_eff_bs_r_list_u7_wspm + onchip_power_eff_bs_r_list_u8_wspm)*100, "%")
+            print("median improve:", median(onchip_power_eff_bs_r_list_u6_wspm + onchip_power_eff_bs_r_list_u7_wspm + onchip_power_eff_bs_r_list_u8_wspm)*100, "%")
+            print("max    improve:", max(onchip_power_eff_bs_r_list_u6_wspm + onchip_power_eff_bs_r_list_u7_wspm + onchip_power_eff_bs_r_list_u8_wspm)*100, "%")
+
+            print("Total power efficiency improve: ")
+            print("binary parallel (baseline):", total_power_eff_list_bp_spm)
+            print("binary serial             :", total_power_eff_bp_r_list_bs_spm)
+            print("unary 32c                 :", total_power_eff_bp_r_list_u6_wspm)
+            print("unary 64c                 :", total_power_eff_bp_r_list_u7_wspm)
+            print("unary 128c                :", total_power_eff_bp_r_list_u8_wspm)
+            print("min    improve:", min(total_power_eff_bp_r_list_u6_wspm + total_power_eff_bp_r_list_u7_wspm + total_power_eff_bp_r_list_u8_wspm)*100, "%")
+            print("mean   improve:", mean(total_power_eff_bp_r_list_u6_wspm + total_power_eff_bp_r_list_u7_wspm + total_power_eff_bp_r_list_u8_wspm)*100, "%")
+            print("median improve:", median(total_power_eff_bp_r_list_u6_wspm + total_power_eff_bp_r_list_u7_wspm + total_power_eff_bp_r_list_u8_wspm)*100, "%")
+            print("max    improve:", max(total_power_eff_bp_r_list_u6_wspm + total_power_eff_bp_r_list_u7_wspm + total_power_eff_bp_r_list_u8_wspm)*100, "%")
+
+            print("binary serial (baseline)  :", total_power_eff_list_bs_spm)
+            print("unary 32c                 :", total_power_eff_bs_r_list_u6_wspm)
+            print("unary 64c                 :", total_power_eff_bs_r_list_u7_wspm)
+            print("unary 128c                :", total_power_eff_bs_r_list_u8_wspm)
+            print("min    improve:", min(total_power_eff_bs_r_list_u6_wspm + total_power_eff_bs_r_list_u7_wspm + total_power_eff_bs_r_list_u8_wspm)*100, "%")
+            print("mean   improve:", mean(total_power_eff_bs_r_list_u6_wspm + total_power_eff_bs_r_list_u7_wspm + total_power_eff_bs_r_list_u8_wspm)*100, "%")
+            print("median improve:", median(total_power_eff_bs_r_list_u6_wspm + total_power_eff_bs_r_list_u7_wspm + total_power_eff_bs_r_list_u8_wspm)*100, "%")
+            print("max    improve:", max(total_power_eff_bs_r_list_u6_wspm + total_power_eff_bs_r_list_u7_wspm + total_power_eff_bs_r_list_u8_wspm)*100, "%")
+
 
         print("Power total fig saved!\n")
         
