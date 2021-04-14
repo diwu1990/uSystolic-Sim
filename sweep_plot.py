@@ -17,7 +17,7 @@ def plot_fig(technode=""):
     print_bandwidth = False
     print_runtime = False
     print_energy_eff = False
-    print_power_eff = True
+    print_power_eff = False
 
     if not os.path.exists("./outputs_fig/"):
         os.system("mkdir ./outputs_fig")
@@ -747,7 +747,7 @@ def plot_fig(technode=""):
         # energy
         my_dpi = 300
         if a == "eyeriss":
-            fig_h = 2
+            fig_h = 1.3
         else:
             fig_h = 1
         fig_w = 3.3115
@@ -856,10 +856,10 @@ def plot_fig(technode=""):
         bottom, top = plt.ylim()
 
         if a == "eyeriss":
-            ax.set_ylim((bottom, top*50))
+            ax.set_ylim((bottom, top*10000))
             bottom, top = plt.ylim()
             for x in x_idx:
-                ax.fill_betweenx([bottom, top/50], x1=x, x2=x+0.5, alpha=0.2, color=bg_color, linewidth=0)
+                ax.fill_betweenx([bottom, top/10000], x1=x, x2=x+0.5, alpha=0.2, color=bg_color, linewidth=0)
             ax.legend(loc="upper center", ncol=3, frameon=True)
         else:
             ax.set_ylim((bottom, top))
@@ -870,7 +870,7 @@ def plot_fig(technode=""):
         
         locs, labels = plt.yticks()
         if a == "eyeriss":
-            locs = locs[:-1]
+            locs = [-10000000, -100000, 0, 100000, 10000000]
         else:
             locs = [-1000000000, -10000000, -100000, 0, 100000, 10000000] 
         ax.set_yticks(locs)
@@ -1277,60 +1277,60 @@ def plot_fig(technode=""):
             print("median reduction:", median(total_energy_bs_r_list_u6_wspm + total_energy_bs_r_list_u7_wspm + total_energy_bs_r_list_u8_wspm)*100, "%")
             print("max    reduction:", max(total_energy_bs_r_list_u6_wspm + total_energy_bs_r_list_u7_wspm + total_energy_bs_r_list_u8_wspm)*100, "%")
 
+        # energy eff
+        onchip_energy_eff_list_bp_spm = []
+        onchip_energy_eff_list_bs_spm = []
+        onchip_energy_eff_list_u6_wspm = []
+        onchip_energy_eff_list_u7_wspm = []
+        onchip_energy_eff_list_u8_wspm = []
+        total_energy_eff_list_bp_spm = []
+        total_energy_eff_list_bs_spm = []
+        total_energy_eff_list_u6_wspm = []
+        total_energy_eff_list_u7_wspm = []
+        total_energy_eff_list_u8_wspm = []
+        for i in range(len(throughput_list_bp_spm)):
+            onchip_energy_eff_list_bp_spm.append(throughput_list_bp_spm[i] / onchip_energy_list_bp_spm[i])
+            onchip_energy_eff_list_bs_spm.append(throughput_list_bs_spm[i] / onchip_energy_list_bs_spm[i])
+            onchip_energy_eff_list_u6_wspm.append(throughput_list_u6_wspm[i] / onchip_energy_list_u6_wspm[i])
+            onchip_energy_eff_list_u7_wspm.append(throughput_list_u7_wspm[i] / onchip_energy_list_u7_wspm[i])
+            onchip_energy_eff_list_u8_wspm.append(throughput_list_u8_wspm[i] / onchip_energy_list_u8_wspm[i])
+            total_energy_eff_list_bp_spm.append(throughput_list_bp_spm[i] / total_energy_list_bp_spm[i])
+            total_energy_eff_list_bs_spm.append(throughput_list_bs_spm[i] / total_energy_list_bs_spm[i])
+            total_energy_eff_list_u6_wspm.append(throughput_list_u6_wspm[i] / total_energy_list_u6_wspm[i])
+            total_energy_eff_list_u7_wspm.append(throughput_list_u7_wspm[i] / total_energy_list_u7_wspm[i])
+            total_energy_eff_list_u8_wspm.append(throughput_list_u8_wspm[i] / total_energy_list_u8_wspm[i])
+
+        onchip_energy_eff_bp_r_list_bs_spm = []
+        onchip_energy_eff_bp_r_list_u6_wspm = []
+        onchip_energy_eff_bp_r_list_u7_wspm = []
+        onchip_energy_eff_bp_r_list_u8_wspm = []
+        total_energy_eff_bp_r_list_bs_spm = []
+        total_energy_eff_bp_r_list_u6_wspm = []
+        total_energy_eff_bp_r_list_u7_wspm = []
+        total_energy_eff_bp_r_list_u8_wspm = []
+        onchip_energy_eff_bs_r_list_u6_wspm = []
+        onchip_energy_eff_bs_r_list_u7_wspm = []
+        onchip_energy_eff_bs_r_list_u8_wspm = []
+        total_energy_eff_bs_r_list_u6_wspm = []
+        total_energy_eff_bs_r_list_u7_wspm = []
+        total_energy_eff_bs_r_list_u8_wspm = []
+        for i in range(len(throughput_list_bp_spm)):
+            onchip_energy_eff_bp_r_list_bs_spm.append(onchip_energy_eff_list_bs_spm[i] / onchip_energy_eff_list_bp_spm[i] - 1)
+            onchip_energy_eff_bp_r_list_u6_wspm.append(onchip_energy_eff_list_u6_wspm[i] / onchip_energy_eff_list_bp_spm[i] - 1)
+            onchip_energy_eff_bp_r_list_u7_wspm.append(onchip_energy_eff_list_u7_wspm[i] / onchip_energy_eff_list_bp_spm[i] - 1)
+            onchip_energy_eff_bp_r_list_u8_wspm.append(onchip_energy_eff_list_u8_wspm[i] / onchip_energy_eff_list_bp_spm[i] - 1)
+            total_energy_eff_bp_r_list_bs_spm.append(total_energy_eff_list_bs_spm[i] / total_energy_eff_list_bp_spm[i] - 1)
+            total_energy_eff_bp_r_list_u6_wspm.append(total_energy_eff_list_u6_wspm[i] / total_energy_eff_list_bp_spm[i] - 1)
+            total_energy_eff_bp_r_list_u7_wspm.append(total_energy_eff_list_u7_wspm[i] / total_energy_eff_list_bp_spm[i] - 1)
+            total_energy_eff_bp_r_list_u8_wspm.append(total_energy_eff_list_u8_wspm[i] / total_energy_eff_list_bp_spm[i] - 1)
+            onchip_energy_eff_bs_r_list_u6_wspm.append(onchip_energy_eff_list_u6_wspm[i] / onchip_energy_eff_list_bs_spm[i] - 1)
+            onchip_energy_eff_bs_r_list_u7_wspm.append(onchip_energy_eff_list_u7_wspm[i] / onchip_energy_eff_list_bs_spm[i] - 1)
+            onchip_energy_eff_bs_r_list_u8_wspm.append(onchip_energy_eff_list_u8_wspm[i] / onchip_energy_eff_list_bs_spm[i] - 1)
+            total_energy_eff_bs_r_list_u6_wspm.append(total_energy_eff_list_u6_wspm[i] / total_energy_eff_list_bs_spm[i] - 1)
+            total_energy_eff_bs_r_list_u7_wspm.append(total_energy_eff_list_u7_wspm[i] / total_energy_eff_list_bs_spm[i] - 1)
+            total_energy_eff_bs_r_list_u8_wspm.append(total_energy_eff_list_u8_wspm[i] / total_energy_eff_list_bs_spm[i] - 1)
 
         if print_energy_eff:
-            onchip_energy_eff_list_bp_spm = []
-            onchip_energy_eff_list_bs_spm = []
-            onchip_energy_eff_list_u6_wspm = []
-            onchip_energy_eff_list_u7_wspm = []
-            onchip_energy_eff_list_u8_wspm = []
-            total_energy_eff_list_bp_spm = []
-            total_energy_eff_list_bs_spm = []
-            total_energy_eff_list_u6_wspm = []
-            total_energy_eff_list_u7_wspm = []
-            total_energy_eff_list_u8_wspm = []
-            for i in range(len(throughput_list_bp_spm)):
-                onchip_energy_eff_list_bp_spm.append(throughput_list_bp_spm[i] / onchip_energy_list_bp_spm[i])
-                onchip_energy_eff_list_bs_spm.append(throughput_list_bs_spm[i] / onchip_energy_list_bs_spm[i])
-                onchip_energy_eff_list_u6_wspm.append(throughput_list_u6_wspm[i] / onchip_energy_list_u6_wspm[i])
-                onchip_energy_eff_list_u7_wspm.append(throughput_list_u7_wspm[i] / onchip_energy_list_u7_wspm[i])
-                onchip_energy_eff_list_u8_wspm.append(throughput_list_u8_wspm[i] / onchip_energy_list_u8_wspm[i])
-                total_energy_eff_list_bp_spm.append(throughput_list_bp_spm[i] / total_energy_list_bp_spm[i])
-                total_energy_eff_list_bs_spm.append(throughput_list_bs_spm[i] / total_energy_list_bs_spm[i])
-                total_energy_eff_list_u6_wspm.append(throughput_list_u6_wspm[i] / total_energy_list_u6_wspm[i])
-                total_energy_eff_list_u7_wspm.append(throughput_list_u7_wspm[i] / total_energy_list_u7_wspm[i])
-                total_energy_eff_list_u8_wspm.append(throughput_list_u8_wspm[i] / total_energy_list_u8_wspm[i])
-
-            onchip_energy_eff_bp_r_list_bs_spm = []
-            onchip_energy_eff_bp_r_list_u6_wspm = []
-            onchip_energy_eff_bp_r_list_u7_wspm = []
-            onchip_energy_eff_bp_r_list_u8_wspm = []
-            total_energy_eff_bp_r_list_bs_spm = []
-            total_energy_eff_bp_r_list_u6_wspm = []
-            total_energy_eff_bp_r_list_u7_wspm = []
-            total_energy_eff_bp_r_list_u8_wspm = []
-            onchip_energy_eff_bs_r_list_u6_wspm = []
-            onchip_energy_eff_bs_r_list_u7_wspm = []
-            onchip_energy_eff_bs_r_list_u8_wspm = []
-            total_energy_eff_bs_r_list_u6_wspm = []
-            total_energy_eff_bs_r_list_u7_wspm = []
-            total_energy_eff_bs_r_list_u8_wspm = []
-            for i in range(len(throughput_list_bp_spm)):
-                onchip_energy_eff_bp_r_list_bs_spm.append(onchip_energy_eff_list_bs_spm[i] / onchip_energy_eff_list_bp_spm[i] - 1)
-                onchip_energy_eff_bp_r_list_u6_wspm.append(onchip_energy_eff_list_u6_wspm[i] / onchip_energy_eff_list_bp_spm[i] - 1)
-                onchip_energy_eff_bp_r_list_u7_wspm.append(onchip_energy_eff_list_u7_wspm[i] / onchip_energy_eff_list_bp_spm[i] - 1)
-                onchip_energy_eff_bp_r_list_u8_wspm.append(onchip_energy_eff_list_u8_wspm[i] / onchip_energy_eff_list_bp_spm[i] - 1)
-                total_energy_eff_bp_r_list_bs_spm.append(total_energy_eff_list_bs_spm[i] / total_energy_eff_list_bp_spm[i] - 1)
-                total_energy_eff_bp_r_list_u6_wspm.append(total_energy_eff_list_u6_wspm[i] / total_energy_eff_list_bp_spm[i] - 1)
-                total_energy_eff_bp_r_list_u7_wspm.append(total_energy_eff_list_u7_wspm[i] / total_energy_eff_list_bp_spm[i] - 1)
-                total_energy_eff_bp_r_list_u8_wspm.append(total_energy_eff_list_u8_wspm[i] / total_energy_eff_list_bp_spm[i] - 1)
-                onchip_energy_eff_bs_r_list_u6_wspm.append(onchip_energy_eff_list_u6_wspm[i] / onchip_energy_eff_list_bs_spm[i] - 1)
-                onchip_energy_eff_bs_r_list_u7_wspm.append(onchip_energy_eff_list_u7_wspm[i] / onchip_energy_eff_list_bs_spm[i] - 1)
-                onchip_energy_eff_bs_r_list_u8_wspm.append(onchip_energy_eff_list_u8_wspm[i] / onchip_energy_eff_list_bs_spm[i] - 1)
-                total_energy_eff_bs_r_list_u6_wspm.append(total_energy_eff_list_u6_wspm[i] / total_energy_eff_list_bs_spm[i] - 1)
-                total_energy_eff_bs_r_list_u7_wspm.append(total_energy_eff_list_u7_wspm[i] / total_energy_eff_list_bs_spm[i] - 1)
-                total_energy_eff_bs_r_list_u8_wspm.append(total_energy_eff_list_u8_wspm[i] / total_energy_eff_list_bs_spm[i] - 1)
-
             print("On-chip energy efficiency improve: ")
             onchip_energy_eff_bp_r_list_ux_wspm_min = min(onchip_energy_eff_bp_r_list_u6_wspm + onchip_energy_eff_bp_r_list_u7_wspm + onchip_energy_eff_bp_r_list_u8_wspm)
             onchip_energy_eff_bp_r_list_ux_wspm_mean = mean(onchip_energy_eff_bp_r_list_u6_wspm + onchip_energy_eff_bp_r_list_u7_wspm + onchip_energy_eff_bp_r_list_u8_wspm)
@@ -1638,59 +1638,127 @@ def plot_fig(technode=""):
             print("median reduction:", median(total_power_bs_r_list_u6_wspm + total_power_bs_r_list_u7_wspm + total_power_bs_r_list_u8_wspm)*100, "%")
             print("max    reduction:", max(total_power_bs_r_list_u6_wspm + total_power_bs_r_list_u7_wspm + total_power_bs_r_list_u8_wspm)*100, "%")
         
+        # power eff
+        onchip_power_eff_list_bp_spm = []
+        onchip_power_eff_list_bs_spm = []
+        onchip_power_eff_list_u6_wspm = []
+        onchip_power_eff_list_u7_wspm = []
+        onchip_power_eff_list_u8_wspm = []
+        total_power_eff_list_bp_spm = []
+        total_power_eff_list_bs_spm = []
+        total_power_eff_list_u6_wspm = []
+        total_power_eff_list_u7_wspm = []
+        total_power_eff_list_u8_wspm = []
+        for i in range(len(throughput_list_bp_spm)):
+            onchip_power_eff_list_bp_spm.append(throughput_list_bp_spm[i] / onchip_power_list_bp_spm[i])
+            onchip_power_eff_list_bs_spm.append(throughput_list_bs_spm[i] / onchip_power_list_bs_spm[i])
+            onchip_power_eff_list_u6_wspm.append(throughput_list_u6_wspm[i] / onchip_power_list_u6_wspm[i])
+            onchip_power_eff_list_u7_wspm.append(throughput_list_u7_wspm[i] / onchip_power_list_u7_wspm[i])
+            onchip_power_eff_list_u8_wspm.append(throughput_list_u8_wspm[i] / onchip_power_list_u8_wspm[i])
+            total_power_eff_list_bp_spm.append(throughput_list_bp_spm[i] / total_power_list_bp_spm[i])
+            total_power_eff_list_bs_spm.append(throughput_list_bs_spm[i] / total_power_list_bs_spm[i])
+            total_power_eff_list_u6_wspm.append(throughput_list_u6_wspm[i] / total_power_list_u6_wspm[i])
+            total_power_eff_list_u7_wspm.append(throughput_list_u7_wspm[i] / total_power_list_u7_wspm[i])
+            total_power_eff_list_u8_wspm.append(throughput_list_u8_wspm[i] / total_power_list_u8_wspm[i])
+
+        onchip_power_eff_bp_r_list_bs_spm = []
+        onchip_power_eff_bp_r_list_u6_wspm = []
+        onchip_power_eff_bp_r_list_u7_wspm = []
+        onchip_power_eff_bp_r_list_u8_wspm = []
+        total_power_eff_bp_r_list_bs_spm = []
+        total_power_eff_bp_r_list_u6_wspm = []
+        total_power_eff_bp_r_list_u7_wspm = []
+        total_power_eff_bp_r_list_u8_wspm = []
+        onchip_power_eff_bs_r_list_u6_wspm = []
+        onchip_power_eff_bs_r_list_u7_wspm = []
+        onchip_power_eff_bs_r_list_u8_wspm = []
+        total_power_eff_bs_r_list_u6_wspm = []
+        total_power_eff_bs_r_list_u7_wspm = []
+        total_power_eff_bs_r_list_u8_wspm = []
+        for i in range(len(throughput_list_bp_spm)):
+            onchip_power_eff_bp_r_list_bs_spm.append(onchip_power_eff_list_bs_spm[i] / onchip_power_eff_list_bp_spm[i] - 1)
+            onchip_power_eff_bp_r_list_u6_wspm.append(onchip_power_eff_list_u6_wspm[i] / onchip_power_eff_list_bp_spm[i] - 1)
+            onchip_power_eff_bp_r_list_u7_wspm.append(onchip_power_eff_list_u7_wspm[i] / onchip_power_eff_list_bp_spm[i] - 1)
+            onchip_power_eff_bp_r_list_u8_wspm.append(onchip_power_eff_list_u8_wspm[i] / onchip_power_eff_list_bp_spm[i] - 1)
+            total_power_eff_bp_r_list_bs_spm.append(total_power_eff_list_bs_spm[i] / total_power_eff_list_bp_spm[i] - 1)
+            total_power_eff_bp_r_list_u6_wspm.append(total_power_eff_list_u6_wspm[i] / total_power_eff_list_bp_spm[i] - 1)
+            total_power_eff_bp_r_list_u7_wspm.append(total_power_eff_list_u7_wspm[i] / total_power_eff_list_bp_spm[i] - 1)
+            total_power_eff_bp_r_list_u8_wspm.append(total_power_eff_list_u8_wspm[i] / total_power_eff_list_bp_spm[i] - 1)
+            onchip_power_eff_bs_r_list_u6_wspm.append(onchip_power_eff_list_u6_wspm[i] / onchip_power_eff_list_bs_spm[i] - 1)
+            onchip_power_eff_bs_r_list_u7_wspm.append(onchip_power_eff_list_u7_wspm[i] / onchip_power_eff_list_bs_spm[i] - 1)
+            onchip_power_eff_bs_r_list_u8_wspm.append(onchip_power_eff_list_u8_wspm[i] / onchip_power_eff_list_bs_spm[i] - 1)
+            total_power_eff_bs_r_list_u6_wspm.append(total_power_eff_list_u6_wspm[i] / total_power_eff_list_bs_spm[i] - 1)
+            total_power_eff_bs_r_list_u7_wspm.append(total_power_eff_list_u7_wspm[i] / total_power_eff_list_bs_spm[i] - 1)
+            total_power_eff_bs_r_list_u8_wspm.append(total_power_eff_list_u8_wspm[i] / total_power_eff_list_bs_spm[i - 1])
+
+
+        # plot eff
+        my_dpi = 300
+        if a == "eyeriss":
+            fig_h = 1
+        else:
+            fig_h = 0.8
+        fig_w = 3.3115
+
+        bp_color = "#7A81FF"
+        bs_color = "#FF7F7F"
+        u6_color = "#666666"
+        u7_color = "#888888"
+        u8_color = "#AAAAAA"
+        bg_color = "#D783FF"
+
+        x_axis = ["Over Binary Parallel", "Over Binary Serial"]
+        x_idx = np.arange(len(x_axis))
+
+        width = 0.1
+
+        eff_fig, eff_ax = plt.subplots(figsize=(fig_w, fig_h))
+        eff_ax.bar(x_idx - 2.5 * width, [mean(onchip_energy_eff_bp_r_list_u6_wspm), mean(onchip_energy_eff_bs_r_list_u6_wspm)], width, hatch = None, alpha=0.99, color=u6_color, label='Unary-32c')
+        eff_ax.bar(x_idx - 1.5 * width, [mean(onchip_energy_eff_bp_r_list_u7_wspm), mean(onchip_energy_eff_bs_r_list_u7_wspm)], width, hatch = None, alpha=0.99, color=u7_color, label='Unary-64c')
+        eff_ax.bar(x_idx - 0.5 * width, [mean(onchip_energy_eff_bp_r_list_u8_wspm), mean(onchip_energy_eff_bs_r_list_u8_wspm)], width, hatch = None, alpha=0.99, color=u8_color, label='Unary-128c')
+        eff_ax.set_ylabel('E.E.I.'+r'($\times$)')
+        eff_ax.minorticks_off()
         if print_power_eff:
-            onchip_power_eff_list_bp_spm = []
-            onchip_power_eff_list_bs_spm = []
-            onchip_power_eff_list_u6_wspm = []
-            onchip_power_eff_list_u7_wspm = []
-            onchip_power_eff_list_u8_wspm = []
-            total_power_eff_list_bp_spm = []
-            total_power_eff_list_bs_spm = []
-            total_power_eff_list_u6_wspm = []
-            total_power_eff_list_u7_wspm = []
-            total_power_eff_list_u8_wspm = []
-            for i in range(len(throughput_list_bp_spm)):
-                onchip_power_eff_list_bp_spm.append(throughput_list_bp_spm[i] / onchip_power_list_bp_spm[i])
-                onchip_power_eff_list_bs_spm.append(throughput_list_bs_spm[i] / onchip_power_list_bs_spm[i])
-                onchip_power_eff_list_u6_wspm.append(throughput_list_u6_wspm[i] / onchip_power_list_u6_wspm[i])
-                onchip_power_eff_list_u7_wspm.append(throughput_list_u7_wspm[i] / onchip_power_list_u7_wspm[i])
-                onchip_power_eff_list_u8_wspm.append(throughput_list_u8_wspm[i] / onchip_power_list_u8_wspm[i])
-                total_power_eff_list_bp_spm.append(throughput_list_bp_spm[i] / total_power_list_bp_spm[i])
-                total_power_eff_list_bs_spm.append(throughput_list_bs_spm[i] / total_power_list_bs_spm[i])
-                total_power_eff_list_u6_wspm.append(throughput_list_u6_wspm[i] / total_power_list_u6_wspm[i])
-                total_power_eff_list_u7_wspm.append(throughput_list_u7_wspm[i] / total_power_list_u7_wspm[i])
-                total_power_eff_list_u8_wspm.append(throughput_list_u8_wspm[i] / total_power_list_u8_wspm[i])
+            print("max onchip energy eff improve for all layers: ", mean(onchip_energy_eff_bp_r_list_u6_wspm))
 
-            onchip_power_eff_bp_r_list_bs_spm = []
-            onchip_power_eff_bp_r_list_u6_wspm = []
-            onchip_power_eff_bp_r_list_u7_wspm = []
-            onchip_power_eff_bp_r_list_u8_wspm = []
-            total_power_eff_bp_r_list_bs_spm = []
-            total_power_eff_bp_r_list_u6_wspm = []
-            total_power_eff_bp_r_list_u7_wspm = []
-            total_power_eff_bp_r_list_u8_wspm = []
-            onchip_power_eff_bs_r_list_u6_wspm = []
-            onchip_power_eff_bs_r_list_u7_wspm = []
-            onchip_power_eff_bs_r_list_u8_wspm = []
-            total_power_eff_bs_r_list_u6_wspm = []
-            total_power_eff_bs_r_list_u7_wspm = []
-            total_power_eff_bs_r_list_u8_wspm = []
-            for i in range(len(throughput_list_bp_spm)):
-                onchip_power_eff_bp_r_list_bs_spm.append(onchip_power_eff_list_bs_spm[i] / onchip_power_eff_list_bp_spm[i] - 1)
-                onchip_power_eff_bp_r_list_u6_wspm.append(onchip_power_eff_list_u6_wspm[i] / onchip_power_eff_list_bp_spm[i] - 1)
-                onchip_power_eff_bp_r_list_u7_wspm.append(onchip_power_eff_list_u7_wspm[i] / onchip_power_eff_list_bp_spm[i] - 1)
-                onchip_power_eff_bp_r_list_u8_wspm.append(onchip_power_eff_list_u8_wspm[i] / onchip_power_eff_list_bp_spm[i] - 1)
-                total_power_eff_bp_r_list_bs_spm.append(total_power_eff_list_bs_spm[i] / total_power_eff_list_bp_spm[i] - 1)
-                total_power_eff_bp_r_list_u6_wspm.append(total_power_eff_list_u6_wspm[i] / total_power_eff_list_bp_spm[i] - 1)
-                total_power_eff_bp_r_list_u7_wspm.append(total_power_eff_list_u7_wspm[i] / total_power_eff_list_bp_spm[i] - 1)
-                total_power_eff_bp_r_list_u8_wspm.append(total_power_eff_list_u8_wspm[i] / total_power_eff_list_bp_spm[i] - 1)
-                onchip_power_eff_bs_r_list_u6_wspm.append(onchip_power_eff_list_u6_wspm[i] / onchip_power_eff_list_bs_spm[i] - 1)
-                onchip_power_eff_bs_r_list_u7_wspm.append(onchip_power_eff_list_u7_wspm[i] / onchip_power_eff_list_bs_spm[i] - 1)
-                onchip_power_eff_bs_r_list_u8_wspm.append(onchip_power_eff_list_u8_wspm[i] / onchip_power_eff_list_bs_spm[i] - 1)
-                total_power_eff_bs_r_list_u6_wspm.append(total_power_eff_list_u6_wspm[i] / total_power_eff_list_bs_spm[i] - 1)
-                total_power_eff_bs_r_list_u7_wspm.append(total_power_eff_list_u7_wspm[i] / total_power_eff_list_bs_spm[i] - 1)
-                total_power_eff_bs_r_list_u8_wspm.append(total_power_eff_list_u8_wspm[i] / total_power_eff_list_bs_spm[i - 1])
+        eff_ax2 = eff_ax.twinx()
+        eff_ax2.bar(x_idx + 0.5 * width, [mean(onchip_power_eff_bp_r_list_u6_wspm), mean(onchip_power_eff_bs_r_list_u6_wspm)], width, hatch = None, alpha=0.99, color=u6_color)
+        eff_ax2.bar(x_idx + 1.5 * width, [mean(onchip_power_eff_bp_r_list_u7_wspm), mean(onchip_power_eff_bs_r_list_u7_wspm)], width, hatch = None, alpha=0.99, color=u7_color)
+        eff_ax2.bar(x_idx + 2.5 * width, [mean(onchip_power_eff_bp_r_list_u8_wspm), mean(onchip_power_eff_bs_r_list_u8_wspm)], width, hatch = None, alpha=0.99, color=u8_color)
+        eff_ax2.set_ylabel('P.E.I.'+r'($\times$)')
+        eff_ax2.minorticks_off()
+        if print_power_eff:
+            print("max onchip power eff improve for all layers: ", mean(onchip_power_eff_bp_r_list_u6_wspm))
 
+        eff_ax.set_xticks(x_idx)
+        eff_ax.set_xticklabels(x_axis)
+        plt.xlim(x_idx[0]-0.5, x_idx[-1]+0.5)
+        plt.yscale("linear")
+        
+        if a == "eyeriss":
+            bottom, top = eff_ax.get_ylim()
+            eff_ax.set_ylim((bottom, top * 1.4))
+            bottom, top = eff_ax2.get_ylim()
+            eff_ax2.set_ylim((bottom, top * 1.4))
+            bottom, top = eff_ax.get_ylim()
+            for x in x_idx:
+                eff_ax.fill_betweenx([bottom, top / 1.4], x1=x, x2=x+0.5, alpha=0.2, color=bg_color, linewidth=0)
+        else:
+            eff_ax.set_ylim((0, 600))
+            eff_ax2.set_ylim((0, 40))
+            for x in x_idx:
+                eff_ax2.fill_betweenx([0, 40], x1=x, x2=x+0.5, alpha=0.2, color=bg_color, linewidth=0)
+        
+        if a == "eyeriss":
+            eff_ax.legend(loc="upper center", ncol=3, frameon=True)
+        else:
+            pass
+
+        eff_fig.tight_layout()
+        plt.savefig('./outputs_fig/' + technode + '/Energy_power_eff_onchip_' + a_cap + ".pdf", bbox_inches='tight', dpi=my_dpi, pad_inches=0.02)
+
+
+        if print_power_eff:
             print("On-chip power efficiency improve: ")
             onchip_power_eff_bp_r_list_ux_wspm_min = min(onchip_power_eff_bp_r_list_u6_wspm + onchip_power_eff_bp_r_list_u7_wspm + onchip_power_eff_bp_r_list_u8_wspm)
             onchip_power_eff_bp_r_list_ux_wspm_mean = mean(onchip_power_eff_bp_r_list_u6_wspm + onchip_power_eff_bp_r_list_u7_wspm + onchip_power_eff_bp_r_list_u8_wspm)
@@ -1756,6 +1824,7 @@ def plot_fig(technode=""):
             print("                __________________________________________________________________________________")
             print("                | total   | ", total_power_eff_bs_r_list_ux_wspm_min, total_power_eff_bs_r_list_ux_wspm_mean, total_power_eff_bs_r_list_ux_wspm_max)
             print("__________________________________________________________________________________________________")
+
 
         print("Power total fig saved!\n")
         
