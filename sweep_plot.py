@@ -1828,6 +1828,7 @@ def plot_fig(technode=""):
 
         print("Power total fig saved!\n")
         
+        print("Energy power efficiency onchip fig saved!\n")
 
         print()
 
