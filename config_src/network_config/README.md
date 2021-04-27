@@ -3,6 +3,7 @@ Configuration of GEMMs to run on systolic array hardware.
 | Parameter     | Type   | Description |
 | ------------- | ------ | ----------- |
 | Layer name    | str    | Name of this GEMM layer |
+| Layer type    | str    | Type of this GEMM layer |
 | IFMAP Height  | int    | Height of input feature maps |
 | IFMAP Width   | int    | Width of input feature maps |
 | Filter Height | int    | Height of weight filters |

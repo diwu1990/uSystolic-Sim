@@ -14,3 +14,8 @@ Configuration of systolic array hardware.
 | Dataflow      | str    | Dataflow, currently use "ws" for weight stationary |
 | WordByte      | float  | Count of bytes for a data word |
 | WeightBwOpt   | bool   | Weight bandwidth optimization flag |
+| Computing     | str    | Applied computing scheme |
+| ZeroIfmapSram | bool   | IFMAP SRAM existence flag |
+| ZeroFilterSram| bool   | Weight SRAM existence flag |
+| ZeroOfmapSram | bool   | OFMAP SRAM existence flag |
+| SramAccBuf    | bool   | SRAM access buffer existence flag |

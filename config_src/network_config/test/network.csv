@@ -1,3 +1,0 @@
-Layer name, Layer Type, IFMAP Height, IFMAP Width, Filter Height, Filter Width, Channels, Num Filter, Stride H, Stride W, MAC Cycles,
-Conv1,  GEMM,    227,    227,     11,     11,      3,     64,      4,      4,     32,
-Conv2,  GEMM,     27,     27,      5,      5,     64,    192,      1,      1,     32,

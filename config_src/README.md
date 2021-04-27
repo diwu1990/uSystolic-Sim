@@ -1,0 +1,1 @@
+This folder contains the configuration files for memory, GEMM (organized as neural networks layers), and systolic array.

@@ -1,30 +1,35 @@
 # uSystolic-Sim
 *uSystolic-Sim* is a [systolic array](https://github.com/ARM-software/SCALE-Sim/blob/master/ideas.md) simulator built on top of [ARM SCALE-Sim](https://github.com/ARM-software/SCALE-Sim), which leverages memory traces to evaluate:
-1) the run time, as well as throughput
-2) the memory bandwidth
-3) the power and energy consumption, including both the computing kernel and memory hierarchy
-
+1) area
+2) bandwidth
+3) runtime
+4) throughput
+5) energy
+6) power
+of the systolic array with varying computing schemes.
 
 ## Feature
+The major features in *uSystolic-Sim* different from [ARM SCALE-Sim](https://github.com/ARM-software/SCALE-Sim) are list below.
 ### 1. Weight-stationary dataflow
-*uSystolic-Sim* focuses on the weight-stationary dataflow, which enables low-cost and high-accuracy unary computing for a fair comparison with bianry computing.
-However, it is open to any customized dataflow.
+*uSystolic-Sim* focuses on the weight-stationary dataflow, which enables low-cost and high-accuracy unary computing for a fair comparison with binary computing.
 
-### 2. Cycle-accurate trace generation
-Assuming no stalls in the computing kernel, *uSystolic-Sim* generates perfect cycle-accurate SRAM traces and approximate DRAM traces. Note that [ARM SCALE-Sim](https://github.com/ARM-software/SCALE-Sim) does not generate cycle-accurate traces, as it assumes [zero data feeding delay](https://github.com/diwu1990/uSystolic-Sim/blob/main/outputs/README.md). This difference does not change the bandwidth, throughput, and runtime numbers, but provides better estimation of the power and energy.
+### 2. Varying-bitwidth data
+*uSystolic-Sim* provides flexible configuration for the data bitwidth. The data bitwidth can be arbitrary as required by the target application, and will ultimately influence the power and energy consumption.
 
 ### 3. Computing-scheme-aware, multi-cycle MAC operation
-*uSystolic-Sim* is aware of the computing scheme at the kernel, including [unary computing](https://conferences.computer.org/isca/pdfs/ISCA2020-4QlDegUf3fKiwUXfV0KdCm/466100a377/466100a377.pdf), bit-serial and bit-parallel binary computing. *uSystolic-Sim* offers per GEMM level configuration for MAC operations. The maximum cycle count for a MAC operation is related to the computing scheme in the kernel. For exmaple, with N-bit binary source data, unary computing, bit-seral and bit-parallel binary computing will spend at most 2^N, N and 1 cycles for one MAC operations, respectively.
+*uSystolic-Sim* is aware of the computing scheme at the kernel, including [unary computing](https://unarycomputing.github.io/), bit-parallel and bit-serial binary computing. *uSystolic-Sim* offers per GEMM level configuration for MAC operations. The maximum cycle count for a MAC operation is related to the computing scheme in the kernel. For exmaple, with N-bit binary source data, unary computing, bit-parallel and bit-seral binary computing will spend at most 2^N, 1 and N cycles for a single MAC operation, respectively.
 
-### 4. Varying-bitwidth data
-*uSystolic-Sim* provides flexible configuration for the data bitwidth. The data bitwidth can be arbitrary as required by the target application, and will ultimately influence the power and energy consumption. Note that *uSystolic-Sim* focuses on the performance and efficiency evaluation, while ignoring the influence of data bitwidth on accuracy.
+### 4. Memory-contention-aware run-time statistics
+Assuming stall-less computation in the systolic array, *uSystolic-Sim* first generates perfect cycle-accurate SRAM traces and DRAM traces, unlike [ARM SCALE-Sim](https://github.com/ARM-software/SCALE-Sim) assuming [zero data feeding delay](https://github.com/diwu1990/uSystolic-Sim/blob/main/outputs/README.md) (not cycle-accurate). Then *uSystolic-Sim* further takes into consideration the memory contention for more realistic run-time statistics to evaluate the systolic array hardware.
+
+
 
 ## Workflow
 ### 1. Architecture simulation - [simArch](https://github.com/diwu1990/uSystolic-Sim/blob/main/simArch)
 All mandatory traces are generated for all GEMM operations, e.g., in deep neural networks. Also, the MAC utilization is reported.
 
 ### 2. Hardware simulation - [simHw](https://github.com/diwu1990/uSystolic-Sim/blob/main/simHw)
-The traces are profiled to generate the ideal and real bandwidth, throughput and runtime for all GEMM operations. Intermediate data for power and energy estimation are also generated at this step. This step accounts for most of the total runtime.
+The traces are profiled to generate both the ideal and real bandwidth, runtime and throughput for all GEMM operations. Intermediate data for energy and power estimation are also generated at this step. This step accounts for most of the total runtime.
 
 ### 3. Efficiency simulation - [simEff](https://github.com/diwu1990/uSystolic-Sim/blob/main/simEff)
 The Intermediate data, together with SRAM, DRAM and systolic array configurations, are utilized to estimate the power and energy consumption for all hardware.
@@ -39,12 +44,12 @@ The Intermediate data, together with SRAM, DRAM and systolic array configuration
 7. gcc/g++
 
 ## Input
-All inputs for <run_name> should be contained in ```./config/<run_name>```. Inputs are configuration files for the target systolic array, including:
-1) ```./config/run_name/systolic.cfg```: file to extract systolic array architechture from.
-2) ```./config/run_name/network.csv```: consecutive GEMM topologies to read.
-3) ```./config/run_name/sram.cfg```: SRAM configs for hardware simulation. Note that the sizes are specified in systolic.cfg.
-4) ```./config/run_name/dram.cfg```: DRAM configs for hardware simulation.
-5) ```./config/run_name/pe.cfg```: PE area and power data for hardware simulation. Those numbers should be pre-synthesized.
+All inputs for <run_name> shall be contained in ```./config/<run_name>```. Inputs are configuration files for the target systolic array, including:
+1) ```./config/<run_name>/systolic.cfg```: systolic array configuration.
+2) ```./config/<run_name>/network.csv``` : GEMM configuration.
+3) ```./config/<run_name>/sram.cfg```    : SRAM configuration for hardware simulation. Note that the sizes are specified in systolic.cfg.
+4) ```./config/<run_name>/dram.cfg```    : DRAM configuration for hardware simulation.
+5) ```./config/<run_name>/pe.cfg```      : PE area and power data for hardware simulation. Those numbers should be pre-synthesized.
 
 Example configuration files can be obtained by running ```python3 sweep_config.py``` and then will be generated in ```./config/```.
 
@@ -52,15 +57,15 @@ Example configuration files can be obtained by running ```python3 sweep_config.p
 
 All outputs for <run_name> will be located in ```./outputs/<run_name>```.
 
-1) ```./outputs/<run_name>/simArchOut``` contains the traces files and the report for MAC utilization.
-2) ```./outputs/<run_name>/simHwOut``` contains both ideal and real reports for bandwidth, throughput and runtime.
-3) ```./outputs/<run_name>/simEffOut``` contains the real reports for area, power and energy.
-4) ```./outputs/<run_name>/config``` contains the source input configurations.
+1) ```./outputs/<run_name>/simArchOut``` : the traces files and the report for MAC utilization.
+2) ```./outputs/<run_name>/simHwOut```   : the ideal and real reports for bandwidth, throughput and runtime.
+3) ```./outputs/<run_name>/simEffOut```  : the real reports for area, power and energy.
+4) ```./outputs/<run_name>/config```     : the input configuration, a copy of ```./config/<run_name>.
 
 By default, the logs will be displayed in terminal with indications of above result folders.
 
 ## Command to run
-For first-time users:
+For first-time users, you will need a disk space more than 700GB to ensure, all default configurations can be successfully run.
 1. ```python3 sweep_config.py```: generate all default configurations with each located in ```./config/<run_name>```.
 2. ```source run_all.sh```: run all configurations in ```./config/<run_name>```. This shell script will run those configurations in background and move all logs to ```./log/<run_name>```.
 3. ```source run_check```: check whether all ```./config/<run_name>``` produce correspondent results in ```./outputs/<run_name>```.
@@ -81,7 +86,7 @@ To be released.
 bib
 ``` -->
 
-## Authors
+## Author
 
 [Di Wu](http://diwu1990.github.io/), Department of ECE, University of Wisconsin-Madison
 
