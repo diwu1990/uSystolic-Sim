@@ -301,7 +301,7 @@ def plot_fig(technode=""):
         ax.set_xticks(x_idx)
         ax.set_xticklabels(x_axis)
         plt.xlim(x_idx[0]-0.5, x_idx[-1]+0.5)
-        plt.yscale("symlog", linthreshy=0.001)
+        plt.yscale("symlog", linthresh=0.001)
 
         # locs, labels = plt.yticks()
         if a == "eyeriss":
@@ -852,7 +852,7 @@ def plot_fig(technode=""):
         ax.set_xticks(x_idx)
         ax.set_xticklabels(x_axis)
         plt.xlim(x_idx[0]-0.5, x_idx[-1]+0.5)
-        plt.yscale("symlog", linthreshy=10000)
+        plt.yscale("symlog", linthresh=10000)
         bottom, top = plt.ylim()
 
         if a == "eyeriss":
