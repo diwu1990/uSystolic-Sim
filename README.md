@@ -74,7 +74,7 @@ For first-time users, you will need a disk space more than 700GB to ensure, all 
 
 Run a single configuration:
 
-```python3 evaluate.py -name=./config/<run_name>```, and logs will be displayed in terminal by default.
+```python3 evaluate.py -name=<run_name>```, and logs will be displayed in terminal by default. ```<run_name>``` must be located in ```./config/```.
 
 *If the current run is stopped before it finishes, run ```source clean.sh``` before starting the next run.*
 
