@@ -42,6 +42,9 @@ The Intermediate data, together with SRAM, DRAM and systolic array configuration
 5. subprocess
 6. tqdm
 7. gcc/g++
+8. matplotlib
+9. numpy
+10. scikit-learn
 
 Tested on Ubuntu 20.04.2.0 LTS (Focal Fossa)
 
