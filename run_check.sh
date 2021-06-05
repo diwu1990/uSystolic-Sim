@@ -10,6 +10,28 @@ if ls ./config/; then
                 echo "./outputs/$entry/simArchOut/${entry}_mac_util.csv does not exist!"
             fi
 
+            if [ ! -f "./outputs/$entry/simHwOut/${entry}_avg_bw_ideal.csv" ]; then
+                echo "./outputs/$entry/simHwOut/${entry}_avg_bw_ideal.csv does not exist!"
+            fi
+            if [ ! -f "./outputs/$entry/simHwOut/${entry}_avg_bw_real.csv" ]; then
+                echo "./outputs/$entry/simHwOut/${entry}_avg_bw_real.csv does not exist!"
+            fi
+            if [ ! -f "./outputs/$entry/simHwOut/${entry}_detail_ideal.csv" ]; then
+                echo "./outputs/$entry/simHwOut/${entry}_detail_ideal.csv does not exist!"
+            fi
+            if [ ! -f "./outputs/$entry/simHwOut/${entry}_detail_real.csv" ]; then
+                echo "./outputs/$entry/simHwOut/${entry}_detail_real.csv does not exist!"
+            fi
+            if [ ! -f "./outputs/$entry/simHwOut/${entry}_hw_runtime.csv" ]; then
+                echo "./outputs/$entry/simHwOut/${entry}_hw_runtime.csv does not exist!"
+            fi
+            if [ ! -f "./outputs/$entry/simHwOut/${entry}_throughput_ideal.csv" ]; then
+                echo "./outputs/$entry/simHwOut/${entry}_throughput_ideal.csv does not exist!"
+            fi
+            if [ ! -f "./outputs/$entry/simHwOut/${entry}_throughput_real.csv" ]; then
+                echo "./outputs/$entry/simHwOut/${entry}_throughput_real.csv does not exist!"
+            fi
+
             if [ ! -f "./outputs/$entry/simEffOut/${entry}_area.csv" ]; then
                 echo "./outputs/$entry/simEffOut/${entry}_area.csv does not exist!"
             fi
@@ -18,18 +40,6 @@ if ls ./config/; then
             fi
             if [ ! -f "./outputs/$entry/simEffOut/${entry}_power.csv" ]; then
                 echo "./outputs/$entry/simEffOut/${entry}_power.csv does not exist!"
-            fi
-            if [ ! -f "./outputs/$entry/simHwOut/${entry}_detail_ideal.csv" ]; then
-                echo "./outputs/$entry/simHwOut/${entry}_detail_ideal.csv does not exist!"
-            fi
-            if [ ! -f "./outputs/$entry/simHwOut/${entry}_avg_bw_ideal.csv" ]; then
-                echo "./outputs/$entry/simHwOut/${entry}_avg_bw_ideal.csv does not exist!"
-            fi
-            if [ ! -f "./outputs/$entry/simHwOut/${entry}_detail_real.csv" ]; then
-                echo "./outputs/$entry/simHwOut/${entry}_detail_real.csv does not exist!"
-            fi
-            if [ ! -f "./outputs/$entry/simHwOut/${entry}_avg_bw_real.csv" ]; then
-                echo "./outputs/$entry/simHwOut/${entry}_avg_bw_real.csv does not exist!"
             fi
         fi
     done
@@ -41,7 +51,7 @@ end=`date +%s`
 runtime=$((end-start))
 
 echo ""
-echo "All checked!"
+echo "All check passed!"
 echo ""
 echo "Total runtime: $runtime"
 echo ""

@@ -70,7 +70,7 @@ By default, the logs will be displayed in terminal with indications of above res
 For first-time users, you will need a disk space more than 700GB to ensure, all default configurations can be successfully run.
 1. ```python3 sweep_config.py```: generate all default configurations with each located in ```./config/<run_name>```.
 2. ```source run_all.sh```: run all configurations in ```./config/<run_name>```. This shell script will run those configurations in background and move all logs to ```./log/<run_name>```.
-3. ```source run_check```: check whether all ```./config/<run_name>``` produce correspondent results in ```./outputs/<run_name>```.
+3. ```source run_check.sh```: check whether all ```./config/<run_name>``` produce correspondent results in ```./outputs/<run_name>```.
 
 Run a single configuration:
 
