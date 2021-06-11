@@ -21,6 +21,11 @@ def pe_config_gen(
     config_log, total_area, total_leakage, total_dynamic = config_log_gen(path=path, computing="unarytemporal", config_log=config_log)
     reg_log = pe_regression(path=path, computing="unarytemporal", reg_log=reg_log, total_area=total_area, total_leakage=total_leakage, total_dynamic=total_dynamic)
     
+    config_log += "[UgemmRate]\n"
+    reg_log += "[UgemmRate]\n"
+    config_log, total_area, total_leakage, total_dynamic = config_log_gen(path=path, computing="ugemmrate", config_log=config_log)
+    reg_log = pe_regression(path=path, computing="ugemmrate", reg_log=reg_log, total_area=total_area, total_leakage=total_leakage, total_dynamic=total_dynamic)
+    
     config_log += "[BinarySerial]\n"
     reg_log += "[BinarySerial]\n"
     config_log, total_area, total_leakage, total_dynamic = config_log_gen(path=path, computing="binaryserial", config_log=config_log)
