@@ -14,7 +14,7 @@ module acc #(
     output logic [WIDTH-1 : 0] sum_o
 );
 
-    logic signed [WIDTH-1 : 0] prod;
+    logic [WIDTH-1 : 0] prod;
     assign prod = prod_bit ? 1 : 0;
 
     // this module is the horizontal buffer for control and data signals

@@ -32,11 +32,11 @@ module array_16 #(
     logic [HEIGHT : 0] en_o_x [WIDTH-1 : 0];
     logic [HEIGHT : 0] clr_o_x [WIDTH-1 : 0];
 
-    logic signed ifm_dff_x [HEIGHT-1 : 0][WIDTH : 0];
-    logic signed [IWIDTH-1 : 0] wght_x [WIDTH-1 : 0][HEIGHT : 0];
-    logic signed [IWIDTH-1 : 0] randW_x [WIDTH-1 : 0][HEIGHT : 0];
-    logic signed [IWIDTH-1 : 0] randW_inv_x [WIDTH-1 : 0][HEIGHT : 0];
-    logic signed [OWIDTH-1 : 0] ofm_x [WIDTH-1 : 0][HEIGHT : 0];
+    logic ifm_dff_x [HEIGHT-1 : 0][WIDTH : 0];
+    logic [IWIDTH-1 : 0] wght_x [WIDTH-1 : 0][HEIGHT : 0];
+    logic [IWIDTH-1 : 0] randW_x [WIDTH-1 : 0][HEIGHT : 0];
+    logic [IWIDTH-1 : 0] randW_inv_x [WIDTH-1 : 0][HEIGHT : 0];
+    logic [OWIDTH-1 : 0] ofm_x [WIDTH-1 : 0][HEIGHT : 0];
 
     genvar h;
     generate
@@ -94,7 +94,7 @@ module array_16 #(
                 .clr_o_d(clr_o_x[0][h]),
                 .ofm_d(ofm_x[0][h]),
 
-                .randW_d(randW_x[h][1])
+                .randW_d(randW_x[h][1]),
                 .randW_inv_d(randW_inv_x[h][1])
             );
             for (w = 1; w < WIDTH; w++) begin
@@ -130,7 +130,7 @@ module array_16 #(
 
                     .randW(randW_x[h][w]),
                     .randW_inv(randW_inv_x[h][w]),
-                    .randW_d(randW_x[h][w+1])
+                    .randW_d(randW_x[h][w+1]),
                     .randW_inv_d(randW_inv_x[h][w+1])
                 );
             end

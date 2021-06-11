@@ -20,7 +20,6 @@ module pe_inner #(
     input logic en_o,
     input logic clr_o,
     input logic ifm_dff,
-    input logic wght_sign,
     input logic [IWIDTH-1 : 0] randW,
     input logic [IWIDTH-1 : 0] randW_inv,
     input logic [IWIDTH-1 : 0] wght,
