@@ -57,8 +57,8 @@ module pe_inner #(
         .rst_n(rst_n),
         .en(en_w),
         .clr(clr_w),
-        .i_data_abs(wght),
-        .o_data_abs(wght_d)
+        .i_data(wght),
+        .o_data(wght_d)
     );
 
     mul_inner #(
