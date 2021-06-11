@@ -16,6 +16,7 @@ module mul_inner #(
 );
 
     logic bitI;
+    logic bitI_inv;
     logic bitW;
     logic bitW_inv;
     
@@ -24,8 +25,6 @@ module mul_inner #(
 
     assign bitW = i_data_w > o_randW;
     assign bitW_inv = i_data_w <= o_randW_inv;
-
-    assign o_bit = bitI & bitW;
 
     always_ff @(posedge clk) begin : buf_randW
         o_randW <= i_randW;
