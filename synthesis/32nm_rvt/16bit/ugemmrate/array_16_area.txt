@@ -1,0 +1,35 @@
+Warning: Design 'array_16' has '1' unresolved references. For more detailed information, use the "link" command. (UID-341)
+ 
+****************************************
+Report : area
+Design : array_16
+Version: Q-2019.12-SP3
+Date   : Sat Jun 12 00:32:50 2021
+****************************************
+
+Information: Updating design information... (UID-85)
+Warning: Design 'array_16' contains 2 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+Library(s) Used:
+
+    saed32rvt_tt0p85v25c (File: /cae/apps/data/saed32_edk-2018/lib/stdcell_rvt/db_nldm/saed32rvt_tt0p85v25c.db)
+
+Number of ports:                         1010
+Number of nets:                        124209
+Number of cells:                       111315
+Number of combinational cells:          91139
+Number of sequential cells:             20160
+Number of macros/black boxes:               0
+Number of buf/inv:                      15403
+Number of references:                      81
+
+Combinational area:             199000.597592
+Buf/Inv area:                    23375.911144
+Noncombinational area:          138414.958357
+Macro/Black Box area:                0.000000
+Net Interconnect area:          200655.674909
+
+Total cell area:                337415.555949
+Total area:                     538071.230858
+
+Information: This design contains black box (unknown) components. (RPT-8)
+1

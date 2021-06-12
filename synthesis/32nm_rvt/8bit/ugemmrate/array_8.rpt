@@ -1,0 +1,2128 @@
+
+                           Design Compiler Graphical 
+                                 DC Ultra (TM)
+                                  DFTMAX (TM)
+                              Power Compiler (TM)
+                                 DesignWare (R)
+                                 DC Expert (TM)
+                               Design Vision (TM)
+                               HDL Compiler (TM)
+                               VHDL Compiler (TM)
+                                  DFT Compiler
+                               Design Compiler(R)
+
+               Version Q-2019.12-SP3 for linux64 - Apr 21, 2020 
+
+                    Copyright (c) 1988 - 2020 Synopsys, Inc.
+   This software and the associated documentation are proprietary to Synopsys,
+ Inc. This software may only be used in accordance with the terms and conditions
+ of a written license agreement with Synopsys, Inc. All other use, reproduction,
+            or distribution of this software is strictly prohibited.
+Initializing...
+# ECE552 Extra Credit
+read_file -format sverilog {array_8.sv}
+Loading db file '/cae/apps/data/saed32_edk-2018/lib/stdcell_rvt/db_nldm/saed32rvt_tt0p85v25c.db'
+Loading db file '/cae/apps/data/saed32_edk-2018/lib/io_std/db_nldm/saed32io_wb_tt1p05v25c_2p5v.db'
+Loading db file '/cae/apps/data/synopsys-2020/syn/Q-2019.12-SP3/libraries/syn/gtech.db'
+Loading db file '/cae/apps/data/synopsys-2020/syn/Q-2019.12-SP3/libraries/syn/standard.sldb'
+  Loading link library 'saed32rvt_tt0p85v25c'
+  Loading link library 'saed32io_wb_tt1p05v25c_2p5v'
+  Loading link library 'gtech'
+Detecting input file type automatically (-rtl or -netlist).
+Reading with Presto HDL Compiler (equivalent to -rtl option).
+Running PRESTO HDLC
+Compiling source file /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/8bit/ugemmrate/array_8.sv
+Opening include file pe_border.sv
+Opening include file ireg_border.sv
+Opening include file wreg.sv
+Opening include file mul_border.sv
+Opening include file sobol8.sv
+Opening include file acc.sv
+Opening include file pe_inner.sv
+Opening include file ireg_inner.sv
+Opening include file wreg.sv
+Opening include file mul_inner.sv
+Opening include file acc.sv
+
+Inferred memory devices in process
+	in routine ireg_border line 16 in file
+		'ireg_border.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     o_data_reg      | Flip-flop |   8   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine wreg line 16 in file
+		'wreg.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     o_data_reg      | Flip-flop |   8   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Statistics for case statements in always block at line 73 in file
+	'sobol8.sv'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            74            |    auto/auto     |
+===============================================
+
+Inferred memory devices in process
+	in routine sobol8 line 20 in file
+		'sobol8.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|       cnt_reg       | Flip-flop |   8   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine sobol8 line 49 in file
+		'sobol8.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|    sobolSeq_reg     | Flip-flop |   8   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Statistics for MUX_OPs
+======================================================
+| block name/line  | Inputs | Outputs | # sel inputs |
+======================================================
+|    sobol8/54     |   8    |    8    |      3       |
+======================================================
+Warning:  acc.sv:18: signed to unsigned assignment occurs. (VER-318)
+
+Inferred memory devices in process
+	in routine acc line 21 in file
+		'acc.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|      sum_o_reg      | Flip-flop |  16   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine pe_border line 90 in file
+		'pe_border.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     en_i_d_reg      | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     en_w_d_reg      | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     en_o_d_reg      | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     clr_i_d_reg     | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     clr_w_d_reg     | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     clr_o_d_reg     | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|   mac_done_d_reg    | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine ireg_inner line 14 in file
+		'ireg_inner.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|   o_data_dff_reg    | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine mul_inner line 29 in file
+		'mul_inner.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     o_randW_reg     | Flip-flop |   8   |  Y  | N  | N  | N  | N  | N  | N  |
+|   o_randW_inv_reg   | Flip-flop |   8   |  Y  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine pe_inner line 90 in file
+		'pe_inner.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     en_i_d_reg      | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     en_w_d_reg      | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     en_o_d_reg      | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     clr_i_d_reg     | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     clr_w_d_reg     | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     clr_o_d_reg     | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|   mac_done_d_reg    | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
+Loaded 10 designs.
+Current design is 'ireg_border'.
+ireg_border wreg sobol8 mul_border acc pe_border ireg_inner mul_inner pe_inner array_8
+set current_design array_8
+array_8
+link
+
+  Linking design 'array_8'
+  Using the following designs and libraries:
+  --------------------------------------------------------------------------
+  array_8                     /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/8bit/ugemmrate/array_8.db
+  saed32rvt_tt0p85v25c (library) /cae/apps/data/saed32_edk-2018/lib/stdcell_rvt/db_nldm/saed32rvt_tt0p85v25c.db
+  saed32io_wb_tt1p05v25c_2p5v (library) /cae/apps/data/saed32_edk-2018/lib/io_std/db_nldm/saed32io_wb_tt1p05v25c_2p5v.db
+  * (9 designs)               /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/8bit/ugemmrate/ireg_border.db, etc
+
+Information: Building the design 'pe_border' instantiated from design 'array_8' with
+	the parameters "IWIDTH=8,OWIDTH=16". (HDL-193)
+
+Inferred memory devices in process
+	in routine pe_border_IWIDTH8_OWIDTH16 line 90 in file
+		'pe_border.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     en_i_d_reg      | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     en_w_d_reg      | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     en_o_d_reg      | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     clr_i_d_reg     | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     clr_w_d_reg     | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     clr_o_d_reg     | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|   mac_done_d_reg    | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (pe_border_IWIDTH8_OWIDTH16)
+Information: Building the design 'pe_inner' instantiated from design 'array_8' with
+	the parameters "IWIDTH=8,OWIDTH=16". (HDL-193)
+
+Inferred memory devices in process
+	in routine pe_inner_IWIDTH8_OWIDTH16 line 90 in file
+		'pe_inner.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     en_i_d_reg      | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     en_w_d_reg      | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     en_o_d_reg      | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     clr_i_d_reg     | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     clr_w_d_reg     | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     clr_o_d_reg     | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|   mac_done_d_reg    | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (pe_inner_IWIDTH8_OWIDTH16)
+Information: Building the design 'ireg_border' instantiated from design 'pe_border_IWIDTH8_OWIDTH16' with
+	the parameters "WIDTH=8". (HDL-193)
+
+Inferred memory devices in process
+	in routine ireg_border_WIDTH8 line 16 in file
+		'ireg_border.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     o_data_reg      | Flip-flop |   8   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (ireg_border_WIDTH8)
+Information: Building the design 'wreg' instantiated from design 'pe_border_IWIDTH8_OWIDTH16' with
+	the parameters "WIDTH=8". (HDL-193)
+
+Inferred memory devices in process
+	in routine wreg_WIDTH8 line 16 in file
+		'wreg.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     o_data_reg      | Flip-flop |   8   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (wreg_WIDTH8)
+Information: Building the design 'mul_border' instantiated from design 'pe_border_IWIDTH8_OWIDTH16' with
+	the parameters "WIDTH=8". (HDL-193)
+Presto compilation completed successfully. (mul_border_WIDTH8)
+Information: Building the design 'acc' instantiated from design 'pe_border_IWIDTH8_OWIDTH16' with
+	the parameters "WIDTH=16". (HDL-193)
+Warning:  acc.sv:18: signed to unsigned assignment occurs. (VER-318)
+
+Inferred memory devices in process
+	in routine acc_WIDTH16 line 21 in file
+		'acc.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|      sum_o_reg      | Flip-flop |  16   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (acc_WIDTH16)
+Information: Building the design 'mul_inner' instantiated from design 'pe_inner_IWIDTH8_OWIDTH16' with
+	the parameters "WIDTH=8". (HDL-193)
+
+Inferred memory devices in process
+	in routine mul_inner_WIDTH8 line 29 in file
+		'mul_inner.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     o_randW_reg     | Flip-flop |   8   |  Y  | N  | N  | N  | N  | N  | N  |
+|   o_randW_inv_reg   | Flip-flop |   8   |  Y  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (mul_inner_WIDTH8)
+1
+###########################################
+# Define clock and set don't mess with it #
+###########################################
+# clk with frequency of 400 MHz
+create_clock -name "clk" -period 2.5 -waveform { 0 1.25 } { clk }
+1
+set_dont_touch_network [find port clk]
+1
+# pointer to all inputs except clk
+set prim_inputs [remove_from_collection [all_inputs] [find port clk]]
+{rst_n en_i[7] en_i[6] en_i[5] en_i[4] en_i[3] en_i[2] en_i[1] en_i[0] clr_i[7] clr_i[6] clr_i[5] clr_i[4] clr_i[3] clr_i[2] clr_i[1] clr_i[0] mac_done[7] mac_done[6] mac_done[5] mac_done[4] mac_done[3] mac_done[2] mac_done[1] mac_done[0] en_w[7] en_w[6] en_w[5] en_w[4] en_w[3] en_w[2] en_w[1] en_w[0] clr_w[7] clr_w[6] clr_w[5] clr_w[4] clr_w[3] clr_w[2] clr_w[1] clr_w[0] en_o[7] en_o[6] en_o[5] en_o[4] en_o[3] en_o[2] en_o[1] en_o[0] clr_o[7] clr_o[6] clr_o[5] clr_o[4] clr_o[3] clr_o[2] clr_o[1] clr_o[0] ifm[7][7] ifm[7][6] ifm[7][5] ifm[7][4] ifm[7][3] ifm[7][2] ifm[7][1] ifm[7][0] ifm[6][7] ifm[6][6] ifm[6][5] ifm[6][4] ifm[6][3] ifm[6][2] ifm[6][1] ifm[6][0] ifm[5][7] ifm[5][6] ifm[5][5] ifm[5][4] ifm[5][3] ifm[5][2] ifm[5][1] ifm[5][0] ifm[4][7] ifm[4][6] ifm[4][5] ifm[4][4] ifm[4][3] ifm[4][2] ifm[4][1] ifm[4][0] ifm[3][7] ifm[3][6] ifm[3][5] ifm[3][4] ifm[3][3] ifm[3][2] ifm[3][1] ifm[3][0] ifm[2][7] ifm[2][6] ifm[2][5] ...}
+# pointer to all inputs except clk and rst_n
+set prim_inputs_no_rst [remove_from_collection $prim_inputs [find port rst_n]]
+{en_i[7] en_i[6] en_i[5] en_i[4] en_i[3] en_i[2] en_i[1] en_i[0] clr_i[7] clr_i[6] clr_i[5] clr_i[4] clr_i[3] clr_i[2] clr_i[1] clr_i[0] mac_done[7] mac_done[6] mac_done[5] mac_done[4] mac_done[3] mac_done[2] mac_done[1] mac_done[0] en_w[7] en_w[6] en_w[5] en_w[4] en_w[3] en_w[2] en_w[1] en_w[0] clr_w[7] clr_w[6] clr_w[5] clr_w[4] clr_w[3] clr_w[2] clr_w[1] clr_w[0] en_o[7] en_o[6] en_o[5] en_o[4] en_o[3] en_o[2] en_o[1] en_o[0] clr_o[7] clr_o[6] clr_o[5] clr_o[4] clr_o[3] clr_o[2] clr_o[1] clr_o[0] ifm[7][7] ifm[7][6] ifm[7][5] ifm[7][4] ifm[7][3] ifm[7][2] ifm[7][1] ifm[7][0] ifm[6][7] ifm[6][6] ifm[6][5] ifm[6][4] ifm[6][3] ifm[6][2] ifm[6][1] ifm[6][0] ifm[5][7] ifm[5][6] ifm[5][5] ifm[5][4] ifm[5][3] ifm[5][2] ifm[5][1] ifm[5][0] ifm[4][7] ifm[4][6] ifm[4][5] ifm[4][4] ifm[4][3] ifm[4][2] ifm[4][1] ifm[4][0] ifm[3][7] ifm[3][6] ifm[3][5] ifm[3][4] ifm[3][3] ifm[3][2] ifm[3][1] ifm[3][0] ifm[2][7] ifm[2][6] ifm[2][5] ifm[2][4] ...}
+# Set clk uncertainty (skew)
+set_clock_uncertainty 0.15 clk
+1
+#########################################
+# Set input delay & drive on all inputs #
+#########################################
+set_input_delay -clock clk 0.25 [copy_collection $prim_inputs]
+1
+#set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc $prim_inputs_no_rst
+# rst_n goes to many places so don't touch
+set_dont_touch_network [find port rst_n]
+1
+##########################################
+# Set output delay & load on all outputs #
+##########################################
+set_output_delay -clock clk 0.5 [all_outputs]
+1
+set_load 0.1 [all_outputs]
+1
+#############################################################
+# Wire load model allows it to estimate internal parasitics #
+#############################################################
+# set_wire_load_model -name TSMC32K_Lowk_Conservative -library tcbn40lpbwptc
+######################################################
+# Max transition time is important for Hot-E reasons #
+######################################################
+set_max_transition 0.1 [current_design]
+1
+########################################
+# Now actually synthesize for 1st time #
+########################################
+compile -map_effort medium
+Warning: Setting attribute 'fix_multiple_port_nets' on design 'array_8'. (UIO-59)
+Information: Evaluating DesignWare library utilization. (UISN-27)
+
+============================================================================
+| DesignWare Building Block Library  |         Version         | Available |
+============================================================================
+| Basic DW Building Blocks           | Q-2019.12-DWBB_201912.3 |     *     |
+| Licensed DW Building Blocks        |                         |           |
+============================================================================
+
+
+Information: There are 396 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
+
+
+Warning: Operating condition tt0p85v25c set on design array_8 has different process,
+voltage and temperatures parameters than the parameters at which target library 
+saed32io_wb_tt1p05v25c_2p5v is characterized. Delays may be inaccurate as a result. (OPT-998)
+
+  Beginning Pass 1 Mapping
+  ------------------------
+  Processing 'acc_WIDTH16_0'
+  Processing 'mul_inner_WIDTH8_0'
+  Processing 'wreg_WIDTH8_0'
+  Processing 'ireg_inner_0'
+  Processing 'pe_inner_IWIDTH8_OWIDTH16_0'
+  Processing 'sobol8_0'
+  Processing 'mul_border_WIDTH8_0'
+  Processing 'ireg_border_WIDTH8_0'
+  Processing 'pe_border_IWIDTH8_OWIDTH16_0'
+  Processing 'array_8'
+
+  Updating timing information
+Information: Updating design information... (UID-85)
+
+  Beginning Implementation Selection
+  ----------------------------------
+  Processing 'acc_WIDTH16_1_DW01_add_0'
+  Processing 'mul_inner_WIDTH8_1_DW01_cmp2_0'
+  Processing 'mul_inner_WIDTH8_1_DW01_cmp2_1'
+  Processing 'acc_WIDTH16_2_DW01_add_0_DW01_add_1'
+  Processing 'mul_inner_WIDTH8_2_DW01_cmp2_0_DW01_cmp2_2'
+  Processing 'mul_inner_WIDTH8_2_DW01_cmp2_1_DW01_cmp2_3'
+  Processing 'acc_WIDTH16_3_DW01_add_0_DW01_add_2'
+  Processing 'mul_inner_WIDTH8_3_DW01_cmp2_0_DW01_cmp2_4'
+  Processing 'mul_inner_WIDTH8_3_DW01_cmp2_1_DW01_cmp2_5'
+  Processing 'acc_WIDTH16_4_DW01_add_0_DW01_add_3'
+  Processing 'mul_inner_WIDTH8_4_DW01_cmp2_0_DW01_cmp2_6'
+  Processing 'mul_inner_WIDTH8_4_DW01_cmp2_1_DW01_cmp2_7'
+  Processing 'acc_WIDTH16_5_DW01_add_0_DW01_add_4'
+  Processing 'mul_inner_WIDTH8_5_DW01_cmp2_0_DW01_cmp2_8'
+  Processing 'mul_inner_WIDTH8_5_DW01_cmp2_1_DW01_cmp2_9'
+  Processing 'acc_WIDTH16_6_DW01_add_0_DW01_add_5'
+  Processing 'mul_inner_WIDTH8_6_DW01_cmp2_0_DW01_cmp2_10'
+  Processing 'mul_inner_WIDTH8_6_DW01_cmp2_1_DW01_cmp2_11'
+  Processing 'acc_WIDTH16_7_DW01_add_0_DW01_add_6'
+  Processing 'mul_inner_WIDTH8_7_DW01_cmp2_0_DW01_cmp2_12'
+  Processing 'mul_inner_WIDTH8_7_DW01_cmp2_1_DW01_cmp2_13'
+  Processing 'acc_WIDTH16_8_DW01_add_0_DW01_add_7'
+  Processing 'mul_border_WIDTH8_1_DW01_cmp2_0_DW01_cmp2_14'
+  Processing 'mul_border_WIDTH8_1_DW01_cmp2_1_DW01_cmp2_15'
+  Processing 'mul_border_WIDTH8_1_DW01_cmp2_2_DW01_cmp2_16'
+  Processing 'sobol8_1_DW01_add_0_DW01_add_8'
+  Processing 'sobol8_2_DW01_add_0_DW01_add_9'
+  Processing 'sobol8_3_DW01_add_0_DW01_add_10'
+  Processing 'acc_WIDTH16_9_DW01_add_0_DW01_add_11'
+  Processing 'mul_inner_WIDTH8_8_DW01_cmp2_0_DW01_cmp2_17'
+  Processing 'mul_inner_WIDTH8_8_DW01_cmp2_1_DW01_cmp2_18'
+  Processing 'acc_WIDTH16_10_DW01_add_0_DW01_add_12'
+  Processing 'mul_inner_WIDTH8_9_DW01_cmp2_0_DW01_cmp2_19'
+  Processing 'mul_inner_WIDTH8_9_DW01_cmp2_1_DW01_cmp2_20'
+  Processing 'acc_WIDTH16_11_DW01_add_0_DW01_add_13'
+  Processing 'mul_inner_WIDTH8_10_DW01_cmp2_0_DW01_cmp2_21'
+  Processing 'mul_inner_WIDTH8_10_DW01_cmp2_1_DW01_cmp2_22'
+  Processing 'acc_WIDTH16_12_DW01_add_0_DW01_add_14'
+  Processing 'mul_inner_WIDTH8_11_DW01_cmp2_0_DW01_cmp2_23'
+  Processing 'mul_inner_WIDTH8_11_DW01_cmp2_1_DW01_cmp2_24'
+  Processing 'acc_WIDTH16_13_DW01_add_0_DW01_add_15'
+  Processing 'mul_inner_WIDTH8_12_DW01_cmp2_0_DW01_cmp2_25'
+  Processing 'mul_inner_WIDTH8_12_DW01_cmp2_1_DW01_cmp2_26'
+  Processing 'acc_WIDTH16_14_DW01_add_0_DW01_add_16'
+  Processing 'mul_inner_WIDTH8_13_DW01_cmp2_0_DW01_cmp2_27'
+  Processing 'mul_inner_WIDTH8_13_DW01_cmp2_1_DW01_cmp2_28'
+  Processing 'acc_WIDTH16_15_DW01_add_0_DW01_add_17'
+  Processing 'mul_inner_WIDTH8_14_DW01_cmp2_0_DW01_cmp2_29'
+  Processing 'mul_inner_WIDTH8_14_DW01_cmp2_1_DW01_cmp2_30'
+  Processing 'acc_WIDTH16_16_DW01_add_0_DW01_add_18'
+  Processing 'mul_border_WIDTH8_2_DW01_cmp2_0_DW01_cmp2_31'
+  Processing 'mul_border_WIDTH8_2_DW01_cmp2_1_DW01_cmp2_32'
+  Processing 'mul_border_WIDTH8_2_DW01_cmp2_2_DW01_cmp2_33'
+  Processing 'sobol8_4_DW01_add_0_DW01_add_19'
+  Processing 'sobol8_5_DW01_add_0_DW01_add_20'
+  Processing 'sobol8_6_DW01_add_0_DW01_add_21'
+  Processing 'acc_WIDTH16_17_DW01_add_0_DW01_add_22'
+  Processing 'mul_inner_WIDTH8_15_DW01_cmp2_0_DW01_cmp2_34'
+  Processing 'mul_inner_WIDTH8_15_DW01_cmp2_1_DW01_cmp2_35'
+  Processing 'acc_WIDTH16_18_DW01_add_0_DW01_add_23'
+  Processing 'mul_inner_WIDTH8_16_DW01_cmp2_0_DW01_cmp2_36'
+  Processing 'mul_inner_WIDTH8_16_DW01_cmp2_1_DW01_cmp2_37'
+  Processing 'acc_WIDTH16_19_DW01_add_0_DW01_add_24'
+  Processing 'mul_inner_WIDTH8_17_DW01_cmp2_0_DW01_cmp2_38'
+  Processing 'mul_inner_WIDTH8_17_DW01_cmp2_1_DW01_cmp2_39'
+  Processing 'acc_WIDTH16_20_DW01_add_0_DW01_add_25'
+  Processing 'mul_inner_WIDTH8_18_DW01_cmp2_0_DW01_cmp2_40'
+  Processing 'mul_inner_WIDTH8_18_DW01_cmp2_1_DW01_cmp2_41'
+  Processing 'acc_WIDTH16_21_DW01_add_0_DW01_add_26'
+  Processing 'mul_inner_WIDTH8_19_DW01_cmp2_0_DW01_cmp2_42'
+  Processing 'mul_inner_WIDTH8_19_DW01_cmp2_1_DW01_cmp2_43'
+  Processing 'acc_WIDTH16_22_DW01_add_0_DW01_add_27'
+  Processing 'mul_inner_WIDTH8_20_DW01_cmp2_0_DW01_cmp2_44'
+  Processing 'mul_inner_WIDTH8_20_DW01_cmp2_1_DW01_cmp2_45'
+  Processing 'acc_WIDTH16_23_DW01_add_0_DW01_add_28'
+  Processing 'mul_inner_WIDTH8_21_DW01_cmp2_0_DW01_cmp2_46'
+  Processing 'mul_inner_WIDTH8_21_DW01_cmp2_1_DW01_cmp2_47'
+  Processing 'acc_WIDTH16_24_DW01_add_0_DW01_add_29'
+  Processing 'mul_border_WIDTH8_3_DW01_cmp2_0_DW01_cmp2_48'
+  Processing 'mul_border_WIDTH8_3_DW01_cmp2_1_DW01_cmp2_49'
+  Processing 'mul_border_WIDTH8_3_DW01_cmp2_2_DW01_cmp2_50'
+  Processing 'sobol8_7_DW01_add_0_DW01_add_30'
+  Processing 'sobol8_8_DW01_add_0_DW01_add_31'
+  Processing 'sobol8_9_DW01_add_0_DW01_add_32'
+  Processing 'acc_WIDTH16_25_DW01_add_0_DW01_add_33'
+  Processing 'mul_inner_WIDTH8_22_DW01_cmp2_0_DW01_cmp2_51'
+  Processing 'mul_inner_WIDTH8_22_DW01_cmp2_1_DW01_cmp2_52'
+  Processing 'acc_WIDTH16_26_DW01_add_0_DW01_add_34'
+  Processing 'mul_inner_WIDTH8_23_DW01_cmp2_0_DW01_cmp2_53'
+  Processing 'mul_inner_WIDTH8_23_DW01_cmp2_1_DW01_cmp2_54'
+  Processing 'acc_WIDTH16_27_DW01_add_0_DW01_add_35'
+  Processing 'mul_inner_WIDTH8_24_DW01_cmp2_0_DW01_cmp2_55'
+  Processing 'mul_inner_WIDTH8_24_DW01_cmp2_1_DW01_cmp2_56'
+  Processing 'acc_WIDTH16_28_DW01_add_0_DW01_add_36'
+  Processing 'mul_inner_WIDTH8_25_DW01_cmp2_0_DW01_cmp2_57'
+  Processing 'mul_inner_WIDTH8_25_DW01_cmp2_1_DW01_cmp2_58'
+  Processing 'acc_WIDTH16_29_DW01_add_0_DW01_add_37'
+  Processing 'mul_inner_WIDTH8_26_DW01_cmp2_0_DW01_cmp2_59'
+  Processing 'mul_inner_WIDTH8_26_DW01_cmp2_1_DW01_cmp2_60'
+  Processing 'acc_WIDTH16_30_DW01_add_0_DW01_add_38'
+  Processing 'mul_inner_WIDTH8_27_DW01_cmp2_0_DW01_cmp2_61'
+  Processing 'mul_inner_WIDTH8_27_DW01_cmp2_1_DW01_cmp2_62'
+  Processing 'acc_WIDTH16_31_DW01_add_0_DW01_add_39'
+  Processing 'mul_inner_WIDTH8_28_DW01_cmp2_0_DW01_cmp2_63'
+  Processing 'mul_inner_WIDTH8_28_DW01_cmp2_1_DW01_cmp2_64'
+  Processing 'acc_WIDTH16_32_DW01_add_0_DW01_add_40'
+  Processing 'mul_border_WIDTH8_4_DW01_cmp2_0_DW01_cmp2_65'
+  Processing 'mul_border_WIDTH8_4_DW01_cmp2_1_DW01_cmp2_66'
+  Processing 'mul_border_WIDTH8_4_DW01_cmp2_2_DW01_cmp2_67'
+  Processing 'sobol8_10_DW01_add_0_DW01_add_41'
+  Processing 'sobol8_11_DW01_add_0_DW01_add_42'
+  Processing 'sobol8_12_DW01_add_0_DW01_add_43'
+  Processing 'acc_WIDTH16_33_DW01_add_0_DW01_add_44'
+  Processing 'mul_inner_WIDTH8_29_DW01_cmp2_0_DW01_cmp2_68'
+  Processing 'mul_inner_WIDTH8_29_DW01_cmp2_1_DW01_cmp2_69'
+  Processing 'acc_WIDTH16_34_DW01_add_0_DW01_add_45'
+  Processing 'mul_inner_WIDTH8_30_DW01_cmp2_0_DW01_cmp2_70'
+  Processing 'mul_inner_WIDTH8_30_DW01_cmp2_1_DW01_cmp2_71'
+  Processing 'acc_WIDTH16_35_DW01_add_0_DW01_add_46'
+  Processing 'mul_inner_WIDTH8_31_DW01_cmp2_0_DW01_cmp2_72'
+  Processing 'mul_inner_WIDTH8_31_DW01_cmp2_1_DW01_cmp2_73'
+  Processing 'acc_WIDTH16_36_DW01_add_0_DW01_add_47'
+  Processing 'mul_inner_WIDTH8_32_DW01_cmp2_0_DW01_cmp2_74'
+  Processing 'mul_inner_WIDTH8_32_DW01_cmp2_1_DW01_cmp2_75'
+  Processing 'acc_WIDTH16_37_DW01_add_0_DW01_add_48'
+  Processing 'mul_inner_WIDTH8_33_DW01_cmp2_0_DW01_cmp2_76'
+  Processing 'mul_inner_WIDTH8_33_DW01_cmp2_1_DW01_cmp2_77'
+  Processing 'acc_WIDTH16_38_DW01_add_0_DW01_add_49'
+  Processing 'mul_inner_WIDTH8_34_DW01_cmp2_0_DW01_cmp2_78'
+  Processing 'mul_inner_WIDTH8_34_DW01_cmp2_1_DW01_cmp2_79'
+  Processing 'acc_WIDTH16_39_DW01_add_0_DW01_add_50'
+  Processing 'mul_inner_WIDTH8_35_DW01_cmp2_0_DW01_cmp2_80'
+  Processing 'mul_inner_WIDTH8_35_DW01_cmp2_1_DW01_cmp2_81'
+  Processing 'acc_WIDTH16_40_DW01_add_0_DW01_add_51'
+  Processing 'mul_border_WIDTH8_5_DW01_cmp2_0_DW01_cmp2_82'
+  Processing 'mul_border_WIDTH8_5_DW01_cmp2_1_DW01_cmp2_83'
+  Processing 'mul_border_WIDTH8_5_DW01_cmp2_2_DW01_cmp2_84'
+  Processing 'sobol8_13_DW01_add_0_DW01_add_52'
+  Processing 'sobol8_14_DW01_add_0_DW01_add_53'
+  Processing 'sobol8_15_DW01_add_0_DW01_add_54'
+  Processing 'acc_WIDTH16_41_DW01_add_0_DW01_add_55'
+  Processing 'mul_inner_WIDTH8_36_DW01_cmp2_0_DW01_cmp2_85'
+  Processing 'mul_inner_WIDTH8_36_DW01_cmp2_1_DW01_cmp2_86'
+  Processing 'acc_WIDTH16_42_DW01_add_0_DW01_add_56'
+  Processing 'mul_inner_WIDTH8_37_DW01_cmp2_0_DW01_cmp2_87'
+  Processing 'mul_inner_WIDTH8_37_DW01_cmp2_1_DW01_cmp2_88'
+  Processing 'acc_WIDTH16_43_DW01_add_0_DW01_add_57'
+  Processing 'mul_inner_WIDTH8_38_DW01_cmp2_0_DW01_cmp2_89'
+  Processing 'mul_inner_WIDTH8_38_DW01_cmp2_1_DW01_cmp2_90'
+  Processing 'acc_WIDTH16_44_DW01_add_0_DW01_add_58'
+  Processing 'mul_inner_WIDTH8_39_DW01_cmp2_0_DW01_cmp2_91'
+  Processing 'mul_inner_WIDTH8_39_DW01_cmp2_1_DW01_cmp2_92'
+  Processing 'acc_WIDTH16_45_DW01_add_0_DW01_add_59'
+  Processing 'mul_inner_WIDTH8_40_DW01_cmp2_0_DW01_cmp2_93'
+  Processing 'mul_inner_WIDTH8_40_DW01_cmp2_1_DW01_cmp2_94'
+  Processing 'acc_WIDTH16_46_DW01_add_0_DW01_add_60'
+  Processing 'mul_inner_WIDTH8_41_DW01_cmp2_0_DW01_cmp2_95'
+  Processing 'mul_inner_WIDTH8_41_DW01_cmp2_1_DW01_cmp2_96'
+  Processing 'acc_WIDTH16_47_DW01_add_0_DW01_add_61'
+  Processing 'mul_inner_WIDTH8_42_DW01_cmp2_0_DW01_cmp2_97'
+  Processing 'mul_inner_WIDTH8_42_DW01_cmp2_1_DW01_cmp2_98'
+  Processing 'acc_WIDTH16_48_DW01_add_0_DW01_add_62'
+  Processing 'mul_border_WIDTH8_6_DW01_cmp2_0_DW01_cmp2_99'
+  Processing 'mul_border_WIDTH8_6_DW01_cmp2_1_DW01_cmp2_100'
+  Processing 'mul_border_WIDTH8_6_DW01_cmp2_2_DW01_cmp2_101'
+  Processing 'sobol8_16_DW01_add_0_DW01_add_63'
+  Processing 'sobol8_17_DW01_add_0_DW01_add_64'
+  Processing 'sobol8_18_DW01_add_0_DW01_add_65'
+  Processing 'acc_WIDTH16_49_DW01_add_0_DW01_add_66'
+  Processing 'mul_inner_WIDTH8_43_DW01_cmp2_0_DW01_cmp2_102'
+  Processing 'mul_inner_WIDTH8_43_DW01_cmp2_1_DW01_cmp2_103'
+  Processing 'acc_WIDTH16_50_DW01_add_0_DW01_add_67'
+  Processing 'mul_inner_WIDTH8_44_DW01_cmp2_0_DW01_cmp2_104'
+  Processing 'mul_inner_WIDTH8_44_DW01_cmp2_1_DW01_cmp2_105'
+  Processing 'acc_WIDTH16_51_DW01_add_0_DW01_add_68'
+  Processing 'mul_inner_WIDTH8_45_DW01_cmp2_0_DW01_cmp2_106'
+  Processing 'mul_inner_WIDTH8_45_DW01_cmp2_1_DW01_cmp2_107'
+  Processing 'acc_WIDTH16_52_DW01_add_0_DW01_add_69'
+  Processing 'mul_inner_WIDTH8_46_DW01_cmp2_0_DW01_cmp2_108'
+  Processing 'mul_inner_WIDTH8_46_DW01_cmp2_1_DW01_cmp2_109'
+  Processing 'acc_WIDTH16_53_DW01_add_0_DW01_add_70'
+  Processing 'mul_inner_WIDTH8_47_DW01_cmp2_0_DW01_cmp2_110'
+  Processing 'mul_inner_WIDTH8_47_DW01_cmp2_1_DW01_cmp2_111'
+  Processing 'acc_WIDTH16_54_DW01_add_0_DW01_add_71'
+  Processing 'mul_inner_WIDTH8_48_DW01_cmp2_0_DW01_cmp2_112'
+  Processing 'mul_inner_WIDTH8_48_DW01_cmp2_1_DW01_cmp2_113'
+  Processing 'acc_WIDTH16_55_DW01_add_0_DW01_add_72'
+  Processing 'mul_inner_WIDTH8_49_DW01_cmp2_0_DW01_cmp2_114'
+  Processing 'mul_inner_WIDTH8_49_DW01_cmp2_1_DW01_cmp2_115'
+  Processing 'acc_WIDTH16_56_DW01_add_0_DW01_add_73'
+  Processing 'mul_border_WIDTH8_7_DW01_cmp2_0_DW01_cmp2_116'
+  Processing 'mul_border_WIDTH8_7_DW01_cmp2_1_DW01_cmp2_117'
+  Processing 'mul_border_WIDTH8_7_DW01_cmp2_2_DW01_cmp2_118'
+  Processing 'sobol8_19_DW01_add_0_DW01_add_74'
+  Processing 'sobol8_20_DW01_add_0_DW01_add_75'
+  Processing 'sobol8_21_DW01_add_0_DW01_add_76'
+  Processing 'acc_WIDTH16_57_DW01_add_0_DW01_add_77'
+  Processing 'mul_inner_WIDTH8_50_DW01_cmp2_0_DW01_cmp2_119'
+  Processing 'mul_inner_WIDTH8_50_DW01_cmp2_1_DW01_cmp2_120'
+  Processing 'acc_WIDTH16_58_DW01_add_0_DW01_add_78'
+  Processing 'mul_inner_WIDTH8_51_DW01_cmp2_0_DW01_cmp2_121'
+  Processing 'mul_inner_WIDTH8_51_DW01_cmp2_1_DW01_cmp2_122'
+  Processing 'acc_WIDTH16_59_DW01_add_0_DW01_add_79'
+  Processing 'mul_inner_WIDTH8_52_DW01_cmp2_0_DW01_cmp2_123'
+  Processing 'mul_inner_WIDTH8_52_DW01_cmp2_1_DW01_cmp2_124'
+  Processing 'acc_WIDTH16_60_DW01_add_0_DW01_add_80'
+  Processing 'mul_inner_WIDTH8_53_DW01_cmp2_0_DW01_cmp2_125'
+  Processing 'mul_inner_WIDTH8_53_DW01_cmp2_1_DW01_cmp2_126'
+  Processing 'acc_WIDTH16_61_DW01_add_0_DW01_add_81'
+  Processing 'mul_inner_WIDTH8_54_DW01_cmp2_0_DW01_cmp2_127'
+  Processing 'mul_inner_WIDTH8_54_DW01_cmp2_1_DW01_cmp2_128'
+  Processing 'acc_WIDTH16_62_DW01_add_0_DW01_add_82'
+  Processing 'mul_inner_WIDTH8_55_DW01_cmp2_0_DW01_cmp2_129'
+  Processing 'mul_inner_WIDTH8_55_DW01_cmp2_1_DW01_cmp2_130'
+  Processing 'acc_WIDTH16_63_DW01_add_0_DW01_add_83'
+  Processing 'mul_inner_WIDTH8_0_DW01_cmp2_0_DW01_cmp2_131'
+  Processing 'mul_inner_WIDTH8_0_DW01_cmp2_1_DW01_cmp2_132'
+  Processing 'acc_WIDTH16_0_DW01_add_0_DW01_add_84'
+  Processing 'mul_border_WIDTH8_0_DW01_cmp2_0_DW01_cmp2_133'
+  Processing 'mul_border_WIDTH8_0_DW01_cmp2_1_DW01_cmp2_134'
+  Processing 'mul_border_WIDTH8_0_DW01_cmp2_2_DW01_cmp2_135'
+  Processing 'sobol8_22_DW01_add_0_DW01_add_85'
+  Processing 'sobol8_23_DW01_add_0_DW01_add_86'
+  Processing 'sobol8_0_DW01_add_0_DW01_add_87'
+
+  Beginning Mapping Optimizations  (Medium effort)
+  -------------------------------
+  Mapping Optimization (Phase 1)
+  Mapping Optimization (Phase 2)
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:22   56393.3      0.67      95.8       1.2                          
+    0:00:22   56393.3      0.67      95.8       1.2                          
+    0:00:22   56393.3      0.67      95.8       1.2                          
+    0:00:22   56393.0      0.67      95.7       1.2                          
+    0:00:23   56393.0      0.67      95.7       1.2                          
+    0:00:25   51968.1      0.67      87.9       1.2                          
+    0:00:26   51968.1      0.67      87.9       1.2                          
+    0:00:26   51968.1      0.67      87.9       1.2                          
+    0:00:26   51969.4      0.66      87.8       1.2                          
+    0:00:26   51969.4      0.66      87.8       1.2                          
+    0:00:27   51998.9      0.66      87.5       1.2                          
+    0:00:27   52005.0      0.66      87.5       1.2                          
+    0:00:27   52013.4      0.66      87.3       1.2                          
+    0:00:27   52032.2      0.66      87.1       1.2                          
+    0:00:27   52032.2      0.66      87.1       1.2                          
+    0:00:27   52032.2      0.66      87.1       1.2                          
+    0:00:27   52036.2      0.66      87.1       0.0                          
+    0:00:27   52036.2      0.66      87.1       0.0                          
+    0:00:27   52036.2      0.66      87.1       0.0                          
+    0:00:27   52036.2      0.66      87.1       0.0                          
+    0:00:27   52055.6      0.65     112.0       0.0                          
+    0:00:27   52066.5      0.64     111.9       0.0                          
+    0:00:27   52086.1      0.64     111.6       0.0                          
+    0:00:27   52105.4      0.64     111.5       0.0                          
+    0:00:27   52117.6      0.64     111.5       0.0                          
+    0:00:28   52150.3      0.63     111.1       0.0                          
+    0:00:28   52173.5      0.63     110.8       0.0                          
+    0:00:28   52183.6      0.62     110.5       0.0                          
+    0:00:28   52205.8      0.61     109.8       0.0                          
+    0:00:28   52230.4      0.60     109.5       0.0                          
+    0:00:28   52238.8      0.59     109.2       0.0                          
+    0:00:28   52255.6      0.58     108.9       0.0                          
+    0:00:28   52270.8      0.58     108.5       0.0                          
+    0:00:28   52298.0      0.57     108.3       0.0                          
+    0:00:28   52317.1      0.57     108.2       0.0                          
+    0:00:28   52340.2      0.56     107.7       0.0                          
+    0:00:28   52353.2      0.56     107.6       0.0                          
+    0:00:28   52377.3      0.56     107.5       0.0                          
+    0:00:28   52409.3      0.56     107.2       0.0                          
+    0:00:28   52492.7      0.56     106.5       0.0                          
+    0:00:28   52506.7      0.56     106.4       0.0                          
+    0:00:28   52528.8      0.56     106.2       0.0                          
+    0:00:28   52534.1      0.56     105.9       0.0                          
+    0:00:28   52540.5      0.56     105.9       0.0                          
+
+
+
+  Beginning Delay Optimization Phase
+  ----------------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:28   52540.5      0.56     105.9       0.0                          
+    0:00:28   52545.0      0.55     105.8       0.0 genblk3[2].U_pe_border/U_acc/sum_o_reg[15]/D
+    0:00:28   52542.7      0.55     105.8       0.0 genblk3[2].U_pe_border/U_acc/sum_o_reg[15]/D
+    0:00:28   52550.4      0.54     105.7       0.0 genblk3[3].U_pe_border/U_acc/sum_o_reg[15]/D
+    0:00:29   52550.4      0.54     105.6       0.0 genblk3[4].U_pe_border/U_acc/sum_o_reg[15]/D
+    0:00:29   52561.3      0.54     105.6       0.0 genblk3[3].U_pe_border/U_acc/sum_o_reg[15]/D
+    0:00:29   52568.9      0.53     105.6       0.0 genblk3[2].U_pe_border/U_acc/sum_o_reg[15]/D
+    0:00:29   52570.4      0.53     105.5       0.0 genblk3[0].U_pe_border/U_acc/sum_o_reg[15]/D
+    0:00:29   52576.0      0.53     105.5       0.0 genblk3[0].U_pe_border/U_acc/sum_o_reg[15]/D
+    0:00:29   52598.9      0.53     105.4       0.0 genblk3[4].U_pe_border/U_acc/sum_o_reg[15]/D
+    0:00:29   52608.6      0.53     105.4       0.0 genblk3[4].U_pe_border/U_acc/sum_o_reg[15]/D
+    0:00:29   52621.8      0.52     105.3       0.0 genblk3[2].U_pe_border/U_acc/sum_o_reg[15]/D
+    0:00:29   52623.1      0.52     105.3       0.0 genblk3[0].U_pe_border/U_acc/sum_o_reg[15]/D
+    0:00:29   52626.9      0.52     105.3       0.0 genblk3[5].U_pe_border/U_acc/sum_o_reg[15]/D
+    0:00:29   52626.9      0.52     105.3       0.0 genblk3[3].U_pe_border/U_acc/sum_o_reg[15]/D
+    0:00:29   52624.8      0.52     105.2       0.0 genblk3[2].U_pe_border/U_acc/sum_o_reg[15]/D
+    0:00:29   52624.8      0.52     105.2       0.0 genblk3[3].U_pe_border/U_acc/sum_o_reg[15]/D
+    0:00:30   52622.0      0.52     105.2       0.0 genblk3[4].U_pe_border/U_acc/sum_o_reg[15]/D
+    0:00:30   52622.3      0.52     105.2       0.0 genblk3[6].U_pe_border/U_acc/sum_o_reg[15]/D
+    0:00:30   52627.4      0.52     105.1       0.0 genblk3[0].U_pe_border/U_acc/sum_o_reg[15]/D
+    0:00:30   52641.1      0.52     105.1       0.0 genblk3[2].U_pe_border/U_acc/sum_o_reg[15]/D
+    0:00:30   52650.8      0.52     105.1       0.0 genblk3[5].U_pe_border/U_acc/sum_o_reg[15]/D
+    0:00:30   52651.3      0.51     105.0       0.0 genblk3[5].U_pe_border/U_acc/sum_o_reg[15]/D
+    0:00:30   52679.5      0.51     105.0       0.0 genblk3[1].genblk1[5].U_pe_inner/U_acc/sum_o_reg[15]/D
+    0:00:30   52720.6      0.51     105.0       0.0 genblk3[2].genblk1[5].U_pe_inner/U_acc/sum_o_reg[15]/D
+    0:00:30   52761.8      0.51     104.9       0.0 genblk3[3].genblk1[5].U_pe_inner/U_acc/sum_o_reg[15]/D
+    0:00:30   52803.0      0.51     104.9       0.0 genblk3[4].genblk1[5].U_pe_inner/U_acc/sum_o_reg[15]/D
+    0:00:30   52844.2      0.51     104.9       0.0 genblk3[5].genblk1[5].U_pe_inner/U_acc/sum_o_reg[15]/D
+    0:00:30   52924.2      0.51     105.0       0.0 genblk3[6].genblk1[5].U_pe_inner/U_acc/sum_o_reg[15]/D
+    0:00:30   52977.6      0.51     105.1       0.0 genblk3[4].U_pe_border/U_acc/sum_o_reg[15]/D
+    0:00:30   53007.1      0.51     105.1       0.0 genblk3[3].U_pe_border/U_acc/sum_o_reg[15]/D
+    0:00:31   53009.1      0.51     105.0       0.0 genblk3[4].U_pe_border/U_acc/sum_o_reg[15]/D
+    0:00:31   53012.9      0.51     104.9       0.0                          
+    0:00:31   52805.8      0.51     104.4       0.0                          
+    0:00:32   52809.1      0.51      91.0       0.0 genblk3[6].U_pe_border/U_acc/sum_o_reg[15]/D
+    0:00:32   52819.5      0.51      91.0       0.0 genblk3[4].U_pe_border/U_acc/sum_o_reg[15]/D
+    0:00:32   52819.5      0.51      91.0       0.0 genblk3[0].U_pe_border/U_acc/sum_o_reg[15]/D
+    0:00:32   52823.3      0.51      91.0       0.0 genblk3[1].U_pe_border/U_acc/sum_o_reg[15]/D
+    0:00:32   52836.8      0.51      91.0       0.0 genblk3[1].U_pe_border/U_acc/sum_o_reg[15]/D
+    0:00:32   52837.8      0.51      90.9       0.0 genblk3[0].U_pe_border/U_acc/sum_o_reg[15]/D
+    0:00:32   52837.8      0.51      90.9       0.0                          
+    0:00:32   52839.6      0.51      90.9       0.0                          
+    0:00:32   52837.3      0.51      90.8       0.0                          
+    0:00:32   52837.3      0.51      90.8       0.0                          
+    0:00:32   52847.0      0.51      90.8       0.0                          
+    0:00:32   52851.0      0.51      90.8       0.0                          
+    0:00:32   52860.4      0.51      90.6       0.0                          
+    0:00:33   52873.6      0.51      90.6       0.0                          
+    0:00:33   52882.0      0.51      90.4       0.0                          
+    0:00:33   52997.9      0.51      89.5       0.0                          
+    0:00:33   53026.9      0.51      89.2       0.0                          
+    0:00:33   53101.4      0.51      88.1       0.0                          
+    0:00:33   53141.8      0.51      87.3       0.0                          
+    0:00:33   53182.2      0.51      86.4       0.0                          
+    0:00:33   53222.6      0.51      85.5       0.0                          
+    0:00:33   53263.0      0.51      84.6       0.0                          
+    0:00:33   53290.7      0.51      84.0       0.0                          
+    0:00:33   53294.5      0.51      83.9       0.0                          
+    0:00:33   53298.3      0.51      83.7       0.0                          
+    0:00:33   53302.1      0.51      83.5       0.0                          
+    0:00:33   53305.9      0.51      83.3       0.0                          
+    0:00:33   53309.8      0.51      83.1       0.0                          
+    0:00:33   53318.1      0.51      83.0       0.0                          
+    0:00:33   53330.3      0.51      82.7       0.0                          
+    0:00:33   53354.0      0.51      82.4       0.0                          
+    0:00:33   53378.9      0.51      82.6       0.0                          
+    0:00:33   53394.1      0.51      82.4       0.0                          
+    0:00:33   53415.0      0.51      81.0       0.0                          
+    0:00:33   53440.1      0.51      80.6       0.0                          
+
+
+  Beginning Area-Recovery Phase  (cleanup)
+  -----------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:33   53440.1      0.51      80.6       0.0                          
+    0:00:33   53440.1      0.51      80.6       0.0                          
+    0:00:34   52873.9      0.51      73.8       0.0                          
+    0:00:34   52617.5      0.51      73.8       0.0                          
+    0:00:34   52616.7      0.51      73.8       0.0                          
+    0:00:34   52616.7      0.51      73.8       0.0                          
+    0:00:34   52616.7      0.51      73.8       0.0                          
+    0:00:34   52616.7      0.51      73.8       0.0                          
+    0:00:35   52318.6      0.51      73.9       0.0                          
+    0:00:35   52318.6      0.51      73.9       0.0                          
+    0:00:35   52318.6      0.51      73.9       0.0                          
+    0:00:35   52318.6      0.51      73.9       0.0                          
+    0:00:35   52318.6      0.51      73.9       0.0                          
+    0:00:35   52318.6      0.51      73.9       0.0                          
+    0:00:35   52322.4      0.51      83.9       0.0                          
+    0:00:35   52326.2      0.51      83.9       0.0                          
+    0:00:35   52335.9      0.51      83.9       0.0                          
+    0:00:35   52335.9      0.51      83.9       0.0                          
+    0:00:35   52337.4      0.51      83.8       0.0                          
+    0:00:35   52337.4      0.51      83.8       0.0                          
+    0:00:35   52337.4      0.51      83.8       0.0                          
+    0:00:36   52339.9      0.51      83.7       0.0                          
+    0:00:36   52361.8      0.51      82.7       0.0                          
+    0:00:36   52390.3      0.51      80.2       0.0                          
+    0:00:36   52402.5      0.51      79.1       0.0                          
+    0:00:36   52402.7      0.51      79.1       0.0                          
+    0:00:36   52404.2      0.51      79.0       0.0                          
+    0:00:36   52405.8      0.51      78.9       0.0                          
+    0:00:36   52407.3      0.51      78.7       0.0                          
+    0:00:36   52408.8      0.51      78.6       0.0                          
+    0:00:36   52425.8      0.51      78.2       0.0                          
+    0:00:36   52451.0      0.51      77.5       0.0                          
+    0:00:36   52476.2      0.51      76.8       0.0                          
+    0:00:36   52504.1      0.51      76.0       0.0                          
+    0:00:36   52543.3      0.51      74.9       0.0                          
+    0:00:36   52582.4      0.51      73.8       0.0                          
+    0:00:36   52621.5      0.51      72.7       0.0                          
+    0:00:37   52627.1      0.51      72.6       0.0                          
+
+
+Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
+
+
+  Optimization Complete
+  ---------------------
+Warning: Design 'array_8' contains 2 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+1
+check_design
+ 
+****************************************
+check_design summary:
+Version:     Q-2019.12-SP3
+Date:        Sat Jun 12 04:58:26 2021
+****************************************
+
+                   Name                                            Total
+--------------------------------------------------------------------------------
+Inputs/Outputs                                                    184
+    Unconnected ports (LINT-28)                                   184
+
+Cells                                                             208
+    Connected to power or ground (LINT-32)                        200
+    Nets connected to multiple pins on same cell (LINT-33)          8
+--------------------------------------------------------------------------------
+
+Warning: In design 'mul_inner_WIDTH8_0', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH8_1', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH8_2', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH8_3', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH8_4', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH8_5', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH8_6', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH8_7', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH8_8', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH8_9', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH8_10', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH8_11', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH8_12', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH8_13', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH8_14', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH8_15', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH8_16', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH8_17', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH8_18', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH8_19', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH8_20', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH8_21', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH8_22', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH8_23', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH8_24', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH8_25', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH8_26', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH8_27', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH8_28', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH8_29', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH8_30', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH8_31', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH8_32', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH8_33', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH8_34', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH8_35', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH8_36', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH8_37', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH8_38', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH8_39', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH8_40', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH8_41', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH8_42', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH8_43', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH8_44', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH8_45', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH8_46', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH8_47', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH8_48', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH8_49', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH8_50', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH8_51', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH8_52', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH8_53', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH8_54', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH8_55', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_8_DW01_add_0_DW01_add_7', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_8_DW01_add_0_DW01_add_7', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_16_DW01_add_0_DW01_add_18', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_16_DW01_add_0_DW01_add_18', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_24_DW01_add_0_DW01_add_29', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_24_DW01_add_0_DW01_add_29', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_32_DW01_add_0_DW01_add_40', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_32_DW01_add_0_DW01_add_40', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_40_DW01_add_0_DW01_add_51', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_40_DW01_add_0_DW01_add_51', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_48_DW01_add_0_DW01_add_62', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_48_DW01_add_0_DW01_add_62', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_56_DW01_add_0_DW01_add_73', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_56_DW01_add_0_DW01_add_73', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_0_DW01_add_0_DW01_add_84', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_0_DW01_add_0_DW01_add_84', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_63_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_63_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_62_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_62_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_61_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_61_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_60_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_60_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_59_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_59_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_58_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_58_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_57_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_57_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_55_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_55_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_54_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_54_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_53_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_53_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_52_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_52_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_51_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_51_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_50_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_50_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_49_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_49_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_47_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_47_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_46_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_46_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_45_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_45_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_44_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_44_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_43_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_43_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_42_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_42_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_41_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_41_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_39_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_39_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_38_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_38_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_37_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_37_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_36_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_36_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_35_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_35_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_34_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_34_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_33_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_33_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_31_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_31_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_30_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_30_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_29_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_29_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_28_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_28_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_27_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_27_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_26_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_26_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_25_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_25_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_23_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_23_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_22_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_22_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_21_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_21_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_20_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_20_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_19_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_19_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_18_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_18_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_17_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_17_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_15_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_15_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_14_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_14_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_13_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_13_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_12_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_12_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_11_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_11_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_10_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_10_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_9_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_9_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_7_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_7_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_6_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_6_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_5_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_5_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_4_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_4_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_3_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_3_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_2_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_2_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_1_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH16_1_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].U_pe_border' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[15]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].U_pe_border' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[14]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].U_pe_border' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[13]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].U_pe_border' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[12]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].U_pe_border' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[11]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].U_pe_border' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[10]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].U_pe_border' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[9]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].U_pe_border' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[8]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].U_pe_border' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[7]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].U_pe_border' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[6]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].U_pe_border' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[5]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].U_pe_border' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[4]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].U_pe_border' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[3]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].U_pe_border' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[2]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].U_pe_border' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[1]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].U_pe_border' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[0]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[1].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[15]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[1].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[14]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[1].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[13]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[1].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[12]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[1].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[11]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[1].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[10]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[1].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[9]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[1].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[8]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[1].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[7]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[1].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[6]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[1].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[5]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[1].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[4]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[1].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[3]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[1].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[2]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[1].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[1]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[1].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[0]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[2].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[15]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[2].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[14]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[2].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[13]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[2].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[12]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[2].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[11]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[2].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[10]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[2].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[9]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[2].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[8]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[2].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[7]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[2].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[6]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[2].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[5]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[2].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[4]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[2].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[3]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[2].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[2]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[2].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[1]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[2].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[0]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[3].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[15]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[3].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[14]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[3].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[13]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[3].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[12]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[3].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[11]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[3].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[10]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[3].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[9]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[3].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[8]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[3].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[7]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[3].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[6]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[3].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[5]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[3].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[4]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[3].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[3]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[3].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[2]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[3].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[1]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[3].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[0]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[4].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[15]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[4].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[14]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[4].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[13]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[4].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[12]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[4].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[11]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[4].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[10]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[4].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[9]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[4].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[8]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[4].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[7]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[4].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[6]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[4].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[5]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[4].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[4]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[4].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[3]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[4].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[2]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[4].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[1]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[4].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[0]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[5].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[15]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[5].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[14]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[5].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[13]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[5].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[12]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[5].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[11]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[5].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[10]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[5].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[9]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[5].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[8]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[5].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[7]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[5].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[6]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[5].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[5]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[5].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[4]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[5].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[3]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[5].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[2]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[5].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[1]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[5].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[0]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[6].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[15]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[6].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[14]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[6].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[13]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[6].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[12]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[6].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[11]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[6].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[10]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[6].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[9]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[6].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[8]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[6].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[7]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[6].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[6]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[6].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[5]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[6].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[4]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[6].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[3]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[6].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[2]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[6].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[1]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[6].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[0]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[7].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[15]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[7].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[14]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[7].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[13]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[7].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[12]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[7].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[11]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[7].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[10]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[7].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[9]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[7].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[8]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[7].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[7]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[7].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[6]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[7].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[5]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[7].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[4]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[7].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[3]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[7].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[2]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[7].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[1]' is connected to logic 0. 
+Warning: In design 'array_8', a pin on submodule 'genblk3[7].genblk1[7].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[0]' is connected to logic 0. 
+Warning: In design 'mul_border_WIDTH8_0', a pin on submodule 'U_sobol_I' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'enable' is connected to logic 1. 
+Warning: In design 'acc_WIDTH16_0', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'mul_border_WIDTH8_1', a pin on submodule 'U_sobol_I' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'enable' is connected to logic 1. 
+Warning: In design 'mul_border_WIDTH8_2', a pin on submodule 'U_sobol_I' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'enable' is connected to logic 1. 
+Warning: In design 'mul_border_WIDTH8_3', a pin on submodule 'U_sobol_I' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'enable' is connected to logic 1. 
+Warning: In design 'mul_border_WIDTH8_4', a pin on submodule 'U_sobol_I' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'enable' is connected to logic 1. 
+Warning: In design 'mul_border_WIDTH8_5', a pin on submodule 'U_sobol_I' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'enable' is connected to logic 1. 
+Warning: In design 'mul_border_WIDTH8_6', a pin on submodule 'U_sobol_I' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'enable' is connected to logic 1. 
+Warning: In design 'mul_border_WIDTH8_7', a pin on submodule 'U_sobol_I' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'enable' is connected to logic 1. 
+Warning: In design 'acc_WIDTH16_1', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH16_2', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH16_3', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH16_4', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH16_5', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH16_6', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH16_7', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH16_8', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH16_9', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH16_10', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH16_11', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH16_12', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH16_13', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH16_14', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH16_15', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH16_16', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH16_17', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH16_18', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH16_19', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH16_20', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH16_21', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH16_22', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH16_23', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH16_24', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH16_25', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH16_26', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH16_27', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH16_28', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH16_29', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH16_30', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH16_31', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH16_32', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH16_33', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH16_34', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH16_35', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH16_36', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH16_37', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH16_38', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH16_39', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH16_40', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH16_41', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH16_42', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH16_43', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH16_44', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH16_45', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH16_46', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH16_47', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH16_48', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH16_49', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH16_50', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH16_51', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH16_52', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH16_53', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH16_54', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH16_55', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH16_56', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH16_57', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH16_58', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH16_59', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH16_60', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH16_61', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH16_62', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH16_63', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'array_8', the same net is connected to more than one pin on submodule 'genblk3[7].U_pe_border'. (LINT-33)
+   Net '*Logic0*' is connected to pins 'ofm[15]', 'ofm[14]'', 'ofm[13]', 'ofm[12]', 'ofm[11]', 'ofm[10]', 'ofm[9]', 'ofm[8]', 'ofm[7]', 'ofm[6]', 'ofm[5]', 'ofm[4]', 'ofm[3]', 'ofm[2]', 'ofm[1]', 'ofm[0]'.
+Warning: In design 'array_8', the same net is connected to more than one pin on submodule 'genblk3[7].genblk1[1].U_pe_inner'. (LINT-33)
+   Net '*Logic0*' is connected to pins 'ofm[15]', 'ofm[14]'', 'ofm[13]', 'ofm[12]', 'ofm[11]', 'ofm[10]', 'ofm[9]', 'ofm[8]', 'ofm[7]', 'ofm[6]', 'ofm[5]', 'ofm[4]', 'ofm[3]', 'ofm[2]', 'ofm[1]', 'ofm[0]'.
+Warning: In design 'array_8', the same net is connected to more than one pin on submodule 'genblk3[7].genblk1[2].U_pe_inner'. (LINT-33)
+   Net '*Logic0*' is connected to pins 'ofm[15]', 'ofm[14]'', 'ofm[13]', 'ofm[12]', 'ofm[11]', 'ofm[10]', 'ofm[9]', 'ofm[8]', 'ofm[7]', 'ofm[6]', 'ofm[5]', 'ofm[4]', 'ofm[3]', 'ofm[2]', 'ofm[1]', 'ofm[0]'.
+Warning: In design 'array_8', the same net is connected to more than one pin on submodule 'genblk3[7].genblk1[3].U_pe_inner'. (LINT-33)
+   Net '*Logic0*' is connected to pins 'ofm[15]', 'ofm[14]'', 'ofm[13]', 'ofm[12]', 'ofm[11]', 'ofm[10]', 'ofm[9]', 'ofm[8]', 'ofm[7]', 'ofm[6]', 'ofm[5]', 'ofm[4]', 'ofm[3]', 'ofm[2]', 'ofm[1]', 'ofm[0]'.
+Warning: In design 'array_8', the same net is connected to more than one pin on submodule 'genblk3[7].genblk1[4].U_pe_inner'. (LINT-33)
+   Net '*Logic0*' is connected to pins 'ofm[15]', 'ofm[14]'', 'ofm[13]', 'ofm[12]', 'ofm[11]', 'ofm[10]', 'ofm[9]', 'ofm[8]', 'ofm[7]', 'ofm[6]', 'ofm[5]', 'ofm[4]', 'ofm[3]', 'ofm[2]', 'ofm[1]', 'ofm[0]'.
+Warning: In design 'array_8', the same net is connected to more than one pin on submodule 'genblk3[7].genblk1[5].U_pe_inner'. (LINT-33)
+   Net '*Logic0*' is connected to pins 'ofm[15]', 'ofm[14]'', 'ofm[13]', 'ofm[12]', 'ofm[11]', 'ofm[10]', 'ofm[9]', 'ofm[8]', 'ofm[7]', 'ofm[6]', 'ofm[5]', 'ofm[4]', 'ofm[3]', 'ofm[2]', 'ofm[1]', 'ofm[0]'.
+Warning: In design 'array_8', the same net is connected to more than one pin on submodule 'genblk3[7].genblk1[6].U_pe_inner'. (LINT-33)
+   Net '*Logic0*' is connected to pins 'ofm[15]', 'ofm[14]'', 'ofm[13]', 'ofm[12]', 'ofm[11]', 'ofm[10]', 'ofm[9]', 'ofm[8]', 'ofm[7]', 'ofm[6]', 'ofm[5]', 'ofm[4]', 'ofm[3]', 'ofm[2]', 'ofm[1]', 'ofm[0]'.
+Warning: In design 'array_8', the same net is connected to more than one pin on submodule 'genblk3[7].genblk1[7].U_pe_inner'. (LINT-33)
+   Net '*Logic0*' is connected to pins 'ofm[15]', 'ofm[14]'', 'ofm[13]', 'ofm[12]', 'ofm[11]', 'ofm[10]', 'ofm[9]', 'ofm[8]', 'ofm[7]', 'ofm[6]', 'ofm[5]', 'ofm[4]', 'ofm[3]', 'ofm[2]', 'ofm[1]', 'ofm[0]'.
+1
+# Unflatten design now that its compiled
+ungroup -all -flatten
+Information: Updating graph... (UID-83)
+Warning: Design 'array_8' contains 2 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+1
+# force hold time to be met for all flops
+set_fix_hold clk
+1
+# Compile again with higher effort
+compile -map_effort high
+Warning: "The variable 'compile_high_effort_area_in_incremental' is supported in DC NXT only. Ignoring this setting." (OPT-1726)
+
+Information: There are 160 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
+
+
+Warning: Operating condition tt0p85v25c set on design array_8 has different process,
+voltage and temperatures parameters than the parameters at which target library 
+saed32io_wb_tt1p05v25c_2p5v is characterized. Delays may be inaccurate as a result. (OPT-998)
+
+  Beginning Pass 1 Mapping
+  ------------------------
+  Processing 'array_8'
+Information: The register 'genblk3[7].genblk1[7].U_pe_inner/en_i_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[7].genblk1[7].U_pe_inner/en_w_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[7].genblk1[7].U_pe_inner/clr_i_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[7].genblk1[7].U_pe_inner/clr_w_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[7].genblk1[6].U_pe_inner/en_w_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[7].genblk1[6].U_pe_inner/clr_w_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[7].genblk1[5].U_pe_inner/en_w_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[7].genblk1[5].U_pe_inner/clr_w_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[7].genblk1[4].U_pe_inner/en_w_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[7].genblk1[4].U_pe_inner/clr_w_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[7].genblk1[3].U_pe_inner/en_w_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[7].genblk1[3].U_pe_inner/clr_w_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[7].genblk1[2].U_pe_inner/en_w_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[7].genblk1[2].U_pe_inner/clr_w_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[7].genblk1[1].U_pe_inner/en_w_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[7].genblk1[1].U_pe_inner/clr_w_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[7].U_pe_border/en_w_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[7].U_pe_border/clr_w_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[6].genblk1[7].U_pe_inner/en_i_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[6].genblk1[7].U_pe_inner/clr_i_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[5].genblk1[7].U_pe_inner/en_i_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[5].genblk1[7].U_pe_inner/clr_i_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[4].genblk1[7].U_pe_inner/en_i_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[4].genblk1[7].U_pe_inner/clr_i_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[3].genblk1[7].U_pe_inner/en_i_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[3].genblk1[7].U_pe_inner/clr_i_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[2].genblk1[7].U_pe_inner/en_i_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[2].genblk1[7].U_pe_inner/clr_i_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[1].genblk1[7].U_pe_inner/en_i_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[1].genblk1[7].U_pe_inner/clr_i_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[0].genblk1[7].U_pe_inner/en_i_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[0].genblk1[7].U_pe_inner/en_o_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[0].genblk1[7].U_pe_inner/clr_i_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[0].genblk1[7].U_pe_inner/clr_o_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[0].genblk1[6].U_pe_inner/en_o_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[0].genblk1[6].U_pe_inner/clr_o_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[0].genblk1[5].U_pe_inner/en_o_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[0].genblk1[5].U_pe_inner/clr_o_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[0].genblk1[4].U_pe_inner/en_o_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[0].genblk1[4].U_pe_inner/clr_o_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[0].genblk1[3].U_pe_inner/en_o_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[0].genblk1[3].U_pe_inner/clr_o_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[0].genblk1[2].U_pe_inner/en_o_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[0].genblk1[2].U_pe_inner/clr_o_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[0].genblk1[1].U_pe_inner/en_o_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[0].genblk1[1].U_pe_inner/clr_o_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[0].U_pe_border/en_o_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[0].U_pe_border/clr_o_d_reg' will be removed. (OPT-1207)
+
+  Updating timing information
+Information: Updating design information... (UID-85)
+
+  Beginning Mapping Optimizations  (High effort)
+  -------------------------------
+  Mapping Optimization (Phase 3)
+
+                                  TOTAL                                                  
+   ELAPSED            WORST NEG   SETUP    DESIGN                              MIN DELAY 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT             COST    
+  --------- --------- --------- --------- --------- ------------------------- -----------
+    0:00:56   56217.9      5.60    3471.3       0.4                                0.00  
+    0:00:57   56091.9      5.60    3472.0       0.4                                0.00  
+    0:00:57   56091.9      5.60    3472.0       0.4                                0.00  
+    0:00:57   56091.1      5.60    3472.0       0.4                                0.00  
+    0:00:57   56091.1      5.60    3472.0       0.4                                0.00  
+    0:01:00   53678.3      5.66    3010.4       0.3                                0.00  
+    0:01:01   53753.0      5.58    2992.8       0.3                                0.00  
+    0:01:01   53841.7      5.54    2984.9       0.3                                0.00  
+    0:01:01   53849.8      5.50    2979.5       0.3                                0.00  
+    0:01:01   53885.1      5.50    2978.4       0.3                                0.00  
+    0:01:02   53916.9      5.50    2973.3       0.3                                0.00  
+    0:01:02   53917.9      5.53    2969.8       0.3                                0.00  
+    0:01:02   53958.1      5.52    2969.2       0.3                                0.00  
+    0:01:02   54017.3      5.54    2968.6       0.3                                0.00  
+    0:01:03   54011.2      5.57    2967.2       0.3                                0.00  
+    0:01:03   54032.5      5.57    2966.9       0.3                                0.00  
+    0:01:03   54032.5      5.57    2966.9       0.3                                0.00  
+    0:01:03   54032.5      5.57    2966.9       0.3                                0.00  
+    0:01:03   54051.9      5.57    2955.9       0.0                                0.00  
+    0:01:03   54051.9      5.57    2955.9       0.0                                0.00  
+    0:01:03   54051.9      5.57    2955.9       0.0                                0.00  
+    0:01:03   54051.9      5.57    2955.9       0.0                                0.00  
+
+
+
+  Beginning Delay Optimization Phase
+  ----------------------------------
+
+                                  TOTAL                                                  
+   ELAPSED            WORST NEG   SETUP    DESIGN                              MIN DELAY 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT             COST    
+  --------- --------- --------- --------- --------- ------------------------- -----------
+    0:01:03   54051.9      5.57    2955.9       0.0                                0.00  
+    0:01:03   54180.2      5.41    2946.8       0.0 genblk3[1].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:03   54209.2      5.38    2945.3       0.0 genblk3[5].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:03   54216.8      5.38    2944.1       0.0 genblk3[2].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:03   54249.3      5.37    2939.0       0.0 genblk3[6].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:03   54310.3      5.33    2936.9       0.0 genblk3[2].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:04   54369.5      5.32    2934.8       0.0 genblk3[1].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:04   54369.5      5.31    2934.7       0.0 genblk3[2].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:04   54370.0      5.31    2934.6       0.0 genblk3[0].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:04   54406.9      5.30    2932.3       0.0 genblk3[2].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:04   54407.1      5.30    2931.9       0.0 genblk3[0].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:04   54416.8      5.30    2932.4       0.0 genblk3[2].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:04   54461.8      5.28    2929.5       0.0 genblk3[2].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:04   54491.3      5.27    2924.5       0.0 genblk3[4].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:04   54537.0      5.26    2924.9       0.0 genblk3[6].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:04   54570.3      5.25    2924.7       0.0 genblk3[2].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:04   54591.1      5.25    2925.3       0.0 genblk3[2].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:04   54613.5      5.24    2925.5       0.0 genblk3[1].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:04   54667.4      5.23    2927.3       0.0 genblk3[6].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:05   54718.2      5.23    2927.9       0.1                                0.00  
+    0:01:05   54735.8      5.22    2924.4       0.1 genblk3[1].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:05   54759.1      5.22    2920.3       0.1 genblk3[2].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:05   54771.3      5.21    2919.4       0.1 genblk3[5].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:05   54777.2      5.21    2916.5       0.1 genblk3[2].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:05   54835.4      5.20    2911.8       0.1 genblk3[6].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:05   54848.9      5.20    2910.8       0.1 genblk3[5].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:05   54903.5      5.17    2905.5       0.1 genblk3[1].genblk1[7].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:05   54903.7      5.17    2905.4       0.1 genblk3[1].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:05   54942.9      5.16    2905.5       0.1 genblk3[3].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:06   54985.8      5.16    2904.5       0.1 genblk3[1].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:06   54994.5      5.15    2901.9       0.1 genblk3[3].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:06   54997.8      5.15    2901.7       0.1 genblk3[2].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:06   55011.8      5.15    2901.7       0.1 genblk3[0].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:06   55027.0      5.14    2900.1       0.1 genblk3[0].genblk1[7].U_pe_inner/U_acc/sum_o_reg[14]/D      0.00  
+    0:01:06   55043.0      5.13    2899.0       0.1 genblk3[4].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:06   55053.9      5.13    2899.5       0.1 genblk3[0].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:06   55070.2      5.13    2899.8       0.1 genblk3[0].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:06   55086.0      5.13    2899.8       0.1 genblk3[2].genblk1[1].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:06   55096.6      5.13    2899.2       0.1 genblk3[2].genblk1[5].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:07   55128.2      5.12    2899.2       0.1                                0.00  
+    0:01:08   55139.1      5.12    2899.9       0.1 genblk3[5].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:08   55180.8      5.12    2900.5       0.1 genblk3[3].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:08   55189.7      5.12    2899.0       0.1 genblk3[2].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:08   55223.5      5.11    2897.0       0.1 genblk3[3].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:08   55219.6      5.11    2896.2       0.1 genblk3[2].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:08   55228.3      5.10    2895.4       0.9 genblk3[2].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:08   55227.5      5.10    2895.1       0.9 genblk3[6].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:08   55252.7      5.10    2894.6       0.9 genblk3[5].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:09   55264.9      5.10    2894.4       0.9 genblk3[0].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:09   55266.2      5.10    2893.9       0.9 genblk3[5].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:09   55281.9      5.09    2890.6       0.9 genblk3[4].genblk1[5].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:09   55294.1      5.09    2889.3       0.9 genblk3[5].genblk1[5].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:09   55308.3      5.08    2888.6       0.9 genblk3[3].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:09   55322.6      5.07    2888.9       0.9 genblk3[5].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:09   55328.2      5.07    2888.7       0.9 genblk3[4].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:09   55331.0      5.07    2888.1       0.9 genblk3[5].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:09   55348.8      5.07    2885.5       0.9 genblk3[2].genblk1[5].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:09   55365.5      5.06    2885.3       0.9 genblk3[3].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:10   55384.8      5.06    2884.3       0.9 genblk3[5].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:10   55396.5      5.05    2884.0       0.9 genblk3[3].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:10   55396.3      5.05    2878.6       0.9 genblk3[1].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:10   55396.8      5.05    2877.4       0.9 genblk3[4].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:10   55408.2      5.04    2877.0       0.9 genblk3[6].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:11   55411.8      5.03    2872.8       0.9 genblk3[3].genblk1[7].U_pe_inner/U_acc/sum_o_reg[14]/D      0.00  
+    0:01:11   55411.3      5.03    2872.6       0.9 genblk3[3].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:11   55406.7      5.02    2871.9       0.9 genblk3[1].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:11   55407.0      5.02    2871.9       0.9 genblk3[1].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:11   55470.7      5.01    2871.1       0.9                                0.00  
+    0:01:11   55473.3      5.00    2871.0       0.9 genblk3[3].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:12   55494.1      5.00    2871.4       0.9                                0.00  
+    0:01:12   55494.9      5.00    2871.3       0.9 genblk3[1].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:12   55527.7      5.00    2870.0       0.9 genblk3[6].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:12   55542.7      5.00    2869.3       0.9 genblk3[5].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:12   55562.0      5.00    2870.2       0.9 genblk3[4].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:12   55563.0      5.00    2869.9       0.9 genblk3[3].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:12   55562.7      5.00    2869.6       0.9 genblk3[4].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:12   55579.0      4.99    2868.3       0.9 genblk3[1].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:12   55583.3      4.98    2867.4       0.9 genblk3[3].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:12   55603.4      4.98    2867.2       1.7 genblk3[3].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:12   55607.2      4.98    2867.2       1.7 genblk3[1].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:13   55619.7      4.97    2861.1       1.7 genblk3[5].genblk1[7].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:13   55619.4      4.96    2860.6       1.7 genblk3[5].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:13   55647.1      4.96    2860.3       1.7 genblk3[4].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:13   55659.6      4.96    2859.8       1.7 genblk3[1].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:13   55659.6      4.96    2859.6       1.7 genblk3[4].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:13   55691.3      4.94    2850.1       1.7 genblk3[2].genblk1[2].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:13   55699.7      4.94    2821.7       1.7 genblk3[4].genblk1[2].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:13   55705.6      4.94    2806.2       1.7 genblk3[5].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:13   55714.5      4.94    2798.5       1.7 genblk3[6].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:14   55751.8      4.94    2798.3       3.1                                0.00  
+    0:01:14   55777.0      4.93    2796.4       3.1 genblk3[6].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:14   55783.3      4.93    2794.9       3.1 genblk3[4].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:14   55792.2      4.93    2795.3       3.1 genblk3[4].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:14   55807.0      4.92    2795.1       3.1 genblk3[1].genblk1[3].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:14   55813.3      4.90    2791.1       3.1 genblk3[4].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:14   55843.8      4.89    2790.2       3.1 genblk3[1].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:15   55855.5      4.89    2788.2       3.9                                0.00  
+    0:01:15   55855.5      4.89    2788.1       3.9 genblk3[5].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:15   55862.9      4.88    2784.4       3.9 genblk3[6].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:15   55863.4      4.88    2783.1       3.9 genblk3[6].genblk1[1].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:15   55866.4      4.87    2783.0       3.9 genblk3[4].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:15   55870.5      4.87    2782.7       3.9 genblk3[5].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:15   55885.8      4.86    2778.9       3.9 genblk3[1].genblk1[7].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:15   55900.5      4.85    2778.9       3.9 genblk3[4].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:15   55921.8      4.85    2779.3       3.9 genblk3[6].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:15   55911.2      4.85    2779.9       3.9                                0.00  
+    0:01:15   55934.6      4.85    2779.8       3.9 genblk3[1].genblk1[1].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:16   55936.8      4.85    2780.6       3.9 genblk3[6].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:16   55942.2      4.84    2779.6       3.9                                0.00  
+    0:01:16   55968.9      4.84    2779.6       3.9                                0.00  
+    0:01:17   55980.6      4.84    2779.5       3.9 genblk3[4].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:17   55980.6      4.84    2779.1       3.9 genblk3[5].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:17   55981.1      4.83    2778.8       3.9 genblk3[5].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:17   55971.7      4.82    2777.0       3.9                                0.00  
+    0:01:17   56013.8      4.81    2771.8       3.9 genblk3[2].genblk1[7].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:17   56016.1      4.81    2771.6       3.9 genblk3[6].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:17   56052.7      4.80    2770.8       4.5 genblk3[0].genblk1[7].U_pe_inner/U_acc/sum_o_reg[14]/D      0.00  
+    0:01:17   56055.3      4.79    2770.3       4.5 genblk3[4].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:17   56058.3      4.79    2770.2       4.5 genblk3[4].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:18   56078.1      4.78    2769.3       4.5 genblk3[6].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:18   56080.4      4.78    2768.9       4.5 genblk3[4].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:18   56089.1      4.78    2767.2       4.5 genblk3[4].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:18   56090.3      4.77    2765.2       4.5 genblk3[0].U_pe_border/U_acc/sum_o_reg[14]/D      0.00  
+    0:01:18   56091.9      4.77    2765.8       4.5 genblk3[6].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:18   56101.5      4.76    2757.5       4.5 genblk3[2].genblk1[5].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:18   56089.6      4.76    2755.8       4.5 genblk3[6].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:19   56099.7      4.76    2753.9       4.5 genblk3[6].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:19   56104.3      4.75    2750.2       4.5 genblk3[3].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:19   56136.1      4.75    2735.5       4.5 genblk3[0].U_pe_border/U_acc/sum_o_reg[14]/D      0.00  
+    0:01:20   56143.7      4.74    2734.1       4.5 genblk3[1].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:20   56153.9      4.73    2732.7       4.5 genblk3[4].genblk1[7].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:20   56169.9      4.72    2725.2       4.5 genblk3[2].genblk1[7].U_pe_inner/U_acc/sum_o_reg[14]/D      0.00  
+    0:01:20   56186.7      4.71    2723.7       4.5 genblk3[4].genblk1[5].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:20   56192.8      4.71    2717.0       4.6 genblk3[0].genblk1[1].U_pe_inner/U_acc/sum_o_reg[14]/D      0.00  
+    0:01:20   56185.4      4.70    2709.9       4.6 genblk3[2].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:20   56188.2      4.70    2708.4       4.6 genblk3[2].genblk1[7].U_pe_inner/U_acc/sum_o_reg[14]/D      0.00  
+    0:01:20   56201.7      4.69    2702.6       5.0 genblk3[5].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:20   56253.5      4.67    2698.3       5.7 genblk3[5].genblk1[7].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:20   56289.8      4.67    2690.8       5.7 genblk3[2].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:20   56289.8      4.67    2690.6       5.7 genblk3[2].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:21   56291.6      4.65    2688.5       5.7 genblk3[0].U_pe_border/U_acc/sum_o_reg[14]/D      0.00  
+    0:01:21   56311.4      4.65    2687.8       5.7 genblk3[2].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:21   56323.4      4.64    2686.2       5.7 genblk3[5].genblk1[2].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:21   56339.9      4.63    2683.3       5.7 genblk3[3].genblk1[3].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:21   56329.7      4.63    2680.4       5.7 genblk3[1].genblk1[1].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:21   56412.1      4.62    2674.9       6.3 genblk3[5].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:21   56414.1      4.62    2672.8       6.3 genblk3[5].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:21   56414.6      4.62    2672.8       6.3 genblk3[0].U_pe_border/U_acc/sum_o_reg[14]/D      0.00  
+    0:01:21   56425.3      4.61    2673.3       6.3 genblk3[1].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:22   56433.2      4.61    2673.0       6.3 genblk3[1].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:22   56436.2      4.60    2669.4       6.3 genblk3[2].genblk1[2].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:22   56436.2      4.60    2667.4       6.3 genblk3[6].genblk1[5].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:22   56436.2      4.60    2665.4       6.3 genblk3[5].genblk1[4].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:22   56434.2      4.60    2664.4       6.3 genblk3[1].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:23   56422.5      4.60    2660.0       6.7                                0.00  
+    0:01:23   56424.8      4.60    2660.0       6.7 genblk3[1].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:24   56473.8      4.59    2661.3       6.7                                0.00  
+    0:01:24   56479.9      4.58    2659.3       6.7 genblk3[3].genblk1[2].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:24   56479.9      4.58    2658.1       6.7 genblk3[6].genblk1[5].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:24   56479.9      4.58    2656.8       6.7 genblk3[6].genblk1[3].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:24   56479.9      4.58    2655.5       6.7 genblk3[2].genblk1[4].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:24   56479.9      4.58    2654.2       6.7 genblk3[1].genblk1[6].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:24   56479.9      4.58    2652.9       6.7 genblk3[1].genblk1[4].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:24   56479.9      4.58    2651.6       6.7 genblk3[2].genblk1[6].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:24   56479.9      4.58    2650.3       6.7 genblk3[3].genblk1[6].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:24   56479.9      4.58    2649.1       6.7 genblk3[5].genblk1[4].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:24   56479.9      4.58    2647.8       6.7 genblk3[4].genblk1[6].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:24   56479.7      4.58    2647.1       6.7 genblk3[1].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:25   56482.7      4.58    2647.1       6.7 genblk3[3].U_pe_border/U_acc/sum_o_reg[14]/D      0.00  
+    0:01:25   56492.4      4.58    2647.5       6.7 genblk3[1].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:25   56498.5      4.57    2647.3       6.6 genblk3[3].U_pe_border/U_acc/sum_o_reg[14]/D      0.00  
+    0:01:25   56500.0      4.57    2646.6       6.6                                0.00  
+    0:01:25   56501.5      4.57    2646.6       6.6 genblk3[3].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:25   56503.6      4.55    2642.7       6.6 genblk3[6].genblk1[7].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:25   56515.3      4.54    2640.0       6.6 genblk3[3].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:25   56527.5      4.54    2639.5       6.6 genblk3[1].genblk1[2].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:25   56539.7      4.54    2638.7       6.6 genblk3[3].genblk1[6].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:26   56551.6      4.54    2638.1       6.6 genblk3[3].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:26   56569.4      4.53    2635.3       6.6 genblk3[5].genblk1[7].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:26   56580.3      4.53    2619.6       6.7 genblk3[4].genblk1[5].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:26   56608.8      4.51    2619.7       7.3 genblk3[3].genblk1[7].U_pe_inner/U_acc/sum_o_reg[14]/D      0.00  
+    0:01:26   56627.1      4.51    2620.6       7.3 genblk3[3].genblk1[7].U_pe_inner/U_acc/sum_o_reg[14]/D      0.00  
+    0:01:26   56636.5      4.50    2620.1       7.3 genblk3[6].genblk1[2].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:26   56650.2      4.50    2619.9       7.3 genblk3[5].genblk1[2].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:26   56672.8      4.50    2619.9       7.3 genblk3[6].genblk1[7].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:26   56678.9      4.50    2617.1       7.3 genblk3[1].genblk1[2].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:26   56685.0      4.50    2614.3       7.3 genblk3[6].genblk1[2].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:26   56691.1      4.50    2611.4       7.3 genblk3[4].genblk1[6].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:26   56701.8      4.49    2611.7       7.3 genblk3[5].genblk1[7].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:26   56719.1      4.47    2611.5       7.3 genblk3[6].genblk1[7].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:26   56736.4      4.46    2611.1       7.3 genblk3[3].genblk1[2].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:26   56749.1      4.45    2610.7       7.3 genblk3[2].genblk1[7].U_pe_inner/U_acc/sum_o_reg[14]/D      0.00  
+    0:01:26   56769.2      4.45    2608.1       7.3 genblk3[3].genblk1[5].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:26   56762.8      4.45    2609.3       7.3 genblk3[2].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:27   56767.9      4.44    2607.9       7.3                                0.00  
+    0:01:27   56767.9      4.44    2607.8       7.3 genblk3[3].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:27   56786.7      4.43    2605.1       7.3 genblk3[6].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:27   56788.5      4.43    2603.9       7.3 genblk3[6].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:28   56787.7      4.42    2602.7       7.3 genblk3[3].genblk1[1].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:28   56787.7      4.42    2602.3       7.3 genblk3[3].U_pe_border/U_acc/sum_o_reg[14]/D      0.00  
+    0:01:28   56794.6      4.42    2599.5       7.3 genblk3[1].genblk1[1].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:28   56799.7      4.42    2599.5       7.3 genblk3[6].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:28   56813.1      4.42    2600.9       7.3 genblk3[6].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:28   56825.1      4.41    2601.2       7.3 genblk3[5].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:28   56843.9      4.40    2597.6       7.3 genblk3[2].genblk1[3].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:28   56845.2      4.40    2595.8       7.3 genblk3[4].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:28   56845.7      4.40    2595.5       7.3 genblk3[4].genblk1[7].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:29   56861.2      4.39    2594.7       6.7                                0.00  
+    0:01:30   56870.8      4.39    2589.1       6.7 genblk3[6].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:30   56877.2      4.38    2580.8       6.7 genblk3[3].genblk1[6].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:31   56871.8      4.37    2578.3       6.7 genblk3[2].genblk1[4].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:31   56862.4      4.37    2577.1       6.7 genblk3[3].genblk1[6].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:31   56852.3      4.37    2576.2       6.7 genblk3[6].genblk1[5].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:31   56844.9      4.37    2574.6       6.7 genblk3[4].genblk1[7].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:32   56851.0      4.33    2565.1       6.7 genblk3[3].genblk1[2].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:32   56851.8      4.30    2561.1       6.7 genblk3[6].genblk1[7].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:32   56841.8      4.29    2554.2       6.7 genblk3[5].genblk1[5].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:33   56849.5      4.28    2538.9       6.7 genblk3[2].genblk1[6].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:33   56842.4      4.26    2518.0       6.7 genblk3[2].genblk1[7].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:33   56824.1      4.23    2511.7       6.7 genblk3[5].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:34   56830.2      4.23    2508.3       6.7 genblk3[4].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:34   56900.3      4.23    2508.9       6.7 genblk3[4].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:34   56904.4      4.22    2508.9       6.7 genblk3[1].genblk1[3].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:34   56917.8      4.22    2508.7       6.7 genblk3[1].genblk1[5].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:34   56921.9      4.22    2506.0       6.7 genblk3[4].genblk1[5].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:34   56927.7      4.21    2505.9       6.7 genblk3[4].genblk1[1].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:34   56928.8      4.21    2505.8       6.7 genblk3[1].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:34   56956.7      4.21    2504.1       6.7 genblk3[2].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:35   56969.2      4.21    2503.7       6.7 genblk3[2].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:35   56977.3      4.21    2503.6       6.7 genblk3[1].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:35   56974.5      4.20    2503.0       6.7 genblk3[1].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:35   56994.1      4.20    2502.9       7.3 genblk3[0].genblk1[4].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:35   56996.1      4.20    2502.8       7.3 genblk3[1].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:35   56998.7      4.20    2502.8       7.3 genblk3[1].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:35   57000.2      4.20    2502.7       7.3 genblk3[6].genblk1[1].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:35   57014.4      4.20    2501.1       7.3 genblk3[0].genblk1[4].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:35   57029.2      4.19    2499.3       7.3 genblk3[5].genblk1[5].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:36   57019.7      4.19    2499.3       7.3 genblk3[6].genblk1[7].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:36   57024.1      4.19    2499.2       7.3 genblk3[1].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:36   57026.9      4.19    2499.1       7.3 genblk3[4].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:36   57028.4      4.19    2498.7       7.3 genblk3[6].genblk1[7].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:36   57029.9      4.19    2497.3       7.3 genblk3[5].genblk1[5].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:37   57033.0      4.19    2497.2       7.3 genblk3[4].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:37   57047.7      4.19    2495.4       7.3 genblk3[3].genblk1[5].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:37   57060.9      4.19    2495.4       7.3 genblk3[2].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:37   57062.7      4.18    2495.4       7.3 genblk3[3].U_pe_border/U_acc/sum_o_reg[14]/D      0.00  
+    0:01:37   57088.4      4.18    2492.9       7.3 genblk3[1].genblk1[7].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:37   57102.6      4.18    2492.8       7.3 genblk3[4].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:38   57104.4      4.18    2492.7       7.3 genblk3[2].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:38   57109.7      4.17    2492.5       7.3 genblk3[1].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:38   57112.3      4.17    2492.5       7.3 genblk3[4].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:38   57111.0      4.17    2492.5       7.3 genblk3[4].genblk1[1].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:39   57122.7      4.17    2492.6       7.3 genblk3[4].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:39   57113.3      4.17    2492.6       7.3 genblk3[3].U_pe_border/U_acc/sum_o_reg[14]/D      0.00  
+    0:01:39   57111.7      4.17    2492.4       7.3 genblk3[4].genblk1[3].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:39   57111.2      4.17    2491.3       7.3 genblk3[1].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:39   57125.2      4.16    2491.2       7.3 genblk3[2].genblk1[2].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:39   57132.3      4.16    2491.2       6.7 genblk3[5].genblk1[7].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:39   57140.7      4.16    2491.2       6.7 genblk3[2].genblk1[6].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:39   57147.8      4.16    2491.1       6.7 genblk3[6].genblk1[5].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:39   57151.6      4.16    2491.1       6.7 genblk3[1].genblk1[1].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:40   57173.5      4.16    2491.0       6.7 genblk3[3].U_pe_border/U_acc/sum_o_reg[14]/D      0.00  
+    0:01:40   57185.7      4.16    2490.8       6.7 genblk3[1].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:41   57188.0      4.16    2490.9       6.7 genblk3[4].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:41   57187.7      4.16    2490.9       6.7 genblk3[3].genblk1[7].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:41   57189.3      4.16    2490.9       6.7 genblk3[4].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:41   57213.2      4.16    2490.6       6.7 genblk3[6].genblk1[4].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:41   57214.4      4.16    2490.6       6.7 genblk3[1].genblk1[1].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:41   57238.3      4.16    2490.4       6.7 genblk3[2].genblk1[4].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:41   57262.2      4.16    2490.1       6.7 genblk3[1].genblk1[6].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:41   57286.1      4.16    2489.9       6.7 genblk3[1].genblk1[4].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:41   57310.0      4.16    2489.6       6.7 genblk3[2].genblk1[6].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:41   57333.9      4.16    2489.4       6.7 genblk3[3].genblk1[6].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:41   57357.8      4.16    2489.1       6.7 genblk3[5].genblk1[4].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:41   57381.6      4.16    2488.9       6.7 genblk3[4].genblk1[6].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:42   57394.9      4.16    2488.7       6.7 genblk3[1].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:42   57393.6      4.16    2488.7       6.7 genblk3[1].genblk1[1].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:42   57417.5      4.16    2488.5       6.7 genblk3[6].genblk1[3].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:42   57420.3      4.16    2488.5       6.7 genblk3[1].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:42   57424.1      4.16    2488.5       6.2 genblk3[4].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:43   57425.6      4.16    2488.5       6.2 genblk3[4].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:43   57428.7      4.16    2488.5       6.2 genblk3[1].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:43   57435.0      4.15    2488.5       6.2 genblk3[0].genblk1[2].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:43   57435.5      4.15    2486.9       6.2 genblk3[0].genblk1[6].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:43   57453.6      4.15    2486.8       6.2 genblk3[5].genblk1[5].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:43   57456.6      4.15    2485.8       6.2 genblk3[0].genblk1[3].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:43   57459.4      4.15    2485.8       6.2 genblk3[4].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:43   57459.7      4.15    2485.7       6.2 genblk3[0].genblk1[6].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:43   57460.4      4.15    2485.7       6.2 genblk3[0].genblk1[2].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:44   57462.5      4.15    2485.6       6.2 genblk3[4].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:44   57484.8      4.15    2484.9       6.2 genblk3[0].genblk1[5].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:44   57507.2      4.15    2484.1       6.2 genblk3[0].genblk1[2].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:44   57519.9      4.15    2483.7       6.2 genblk3[0].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:44   57517.4      4.15    2483.4       6.2 genblk3[4].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:44   57517.9      4.15    2483.3       6.2 genblk3[5].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:44   57519.6      4.15    2483.3       6.2 genblk3[5].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:45   57522.7      4.14    2482.7       6.2 genblk3[0].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:45   57525.7      4.14    2482.7       6.2 genblk3[1].genblk1[1].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:45   57538.5      4.14    2482.6       6.3 genblk3[5].genblk1[7].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:45   57541.3      4.14    2482.6       6.3 genblk3[5].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:45   57541.3      4.14    2482.6       6.3                                0.00  
+    0:01:48   56716.0      4.14    2756.7       7.8                                0.00  
+
+
+  Beginning Design Rule Fixing  (max_transition)  (max_capacitance)
+  ----------------------------
+
+                                  TOTAL                                                  
+   ELAPSED            WORST NEG   SETUP    DESIGN                              MIN DELAY 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT             COST    
+  --------- --------- --------- --------- --------- ------------------------- -----------
+    0:01:48   56716.0      4.14    2756.7       7.8                                0.00  
+    0:01:48   56715.0      4.14    2756.4       0.0 genblk3[1].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:49   56722.1      4.14    2755.6       0.0 genblk3[6].genblk1[3].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:49   56732.3      4.14    2754.3       0.0 genblk3[3].genblk1[6].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:49   56742.5      4.14    2753.1       0.0 genblk3[4].genblk1[4].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:49   56752.6      4.14    2751.8       0.0 genblk3[3].genblk1[4].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:49   56762.8      4.14    2750.6       0.0 genblk3[1].genblk1[2].U_pe_inner/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:49   56776.3      4.13    2750.3       0.0 genblk3[4].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:49   56777.5      4.13    2750.3       0.0 genblk3[4].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:49   56785.7      4.12    2747.8       0.0 genblk3[5].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:49   56789.5      4.12    2747.6       0.0 genblk3[5].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:01:49   56789.2      4.12    2747.4       0.0                                0.00  
+    0:01:49   56822.0      4.12    2745.7       0.0                                0.00  
+    0:01:49   56822.8      4.11    2745.3       0.0                                0.00  
+    0:01:49   56833.2      4.11    2744.9       0.0                                0.00  
+    0:01:49   56835.0      4.11    2745.7       0.0                                0.00  
+    0:01:49   56831.9      4.11    2745.7       0.0                                0.00  
+    0:01:50   56938.2      4.11    2749.9       0.0                                0.00  
+    0:01:50   56997.4      4.11    2751.8       0.0                                0.00  
+    0:01:50   57010.3      4.11    2751.5       0.0                                0.00  
+    0:01:50   57028.1      4.11    2751.4       0.0                                0.00  
+    0:01:50   57022.3      4.11    2750.6       0.0                                0.00  
+    0:01:50   57029.4      4.11    2750.4       0.0                                0.00  
+    0:01:50   57036.5      4.11    2750.2       0.0                                0.00  
+    0:01:50   57043.6      4.11    2750.0       0.0                                0.00  
+    0:01:50   57050.8      4.11    2749.8       0.0                                0.00  
+    0:01:50   57080.0      4.11    2747.7       0.0                                0.00  
+    0:01:50   57073.9      4.11    2747.3       0.0                                0.00  
+    0:01:50   57073.9      4.11    2747.0       0.0                                0.00  
+    0:01:50   57073.9      4.11    2746.7       0.0                                0.00  
+    0:01:50   57073.9      4.11    2746.4       0.0                                0.00  
+    0:01:50   57073.9      4.11    2746.1       0.0                                0.00  
+    0:01:51   57040.3      4.11    2744.5       0.0                                0.00  
+    0:01:51   57006.8      4.11    2742.9       0.0                                0.00  
+    0:01:51   57004.5      4.11    2742.1       0.0                                0.00  
+    0:01:51   57004.2      4.11    2741.2       0.0                                0.00  
+    0:01:51   56994.6      4.11    2738.3       0.0                                0.00  
+    0:01:51   56994.8      4.11    2737.9       0.0                                0.00  
+    0:01:51   56998.1      4.11    2737.7       0.0                                0.00  
+    0:01:51   56998.1      4.11    2735.9       0.0                                0.00  
+    0:01:51   56998.1      4.11    2733.8       0.0                                0.00  
+    0:01:51   56979.3      4.11    2731.6       0.0                                0.00  
+    0:01:51   56988.7      4.11    2731.2       0.0                                0.00  
+    0:01:51   56998.9      4.11    2730.6       0.0                                0.00  
+    0:01:51   57004.5      4.11    2727.1       0.0                                0.00  
+    0:01:52   57010.6      4.11    2724.9       0.0                                0.00  
+    0:01:52   57012.4      4.11    2723.3       0.0                                0.00  
+    0:01:52   57040.6      4.11    2721.4       0.0                                0.00  
+    0:01:52   57053.0      4.11    2718.4       0.0                                0.00  
+    0:01:52   57063.2      4.11    2717.1       0.0                                0.00  
+    0:01:52   57211.6      4.11    2709.0       0.0                                0.00  
+    0:01:52   57282.3      4.11    2705.1       0.0                                0.00  
+    0:01:52   57281.5      4.11    2704.4       0.0                                0.00  
+    0:01:52   57279.7      4.11    2703.4       0.0                                0.00  
+    0:01:52   57282.5      4.11    2701.5       0.0                                0.00  
+    0:01:52   57295.5      4.11    2701.0       0.0                                0.00  
+    0:01:52   57307.7      4.11    2700.5       0.0                                0.00  
+    0:01:52   57312.5      4.11    2697.5       0.0                                0.00  
+    0:01:52   57306.4      4.11    2695.8       0.0                                0.00  
+    0:01:53   57300.3      4.11    2694.1       0.0                                0.00  
+    0:01:53   57295.7      4.11    2691.3       0.0                                0.00  
+    0:01:53   57310.0      4.11    2689.1       0.0                                0.00  
+    0:01:53   57311.8      4.11    2687.8       0.0                                0.00  
+    0:01:53   57313.8      4.11    2687.1       0.0                                0.00  
+    0:01:53   57323.7      4.11    2684.7       0.0                                0.00  
+    0:01:53   57363.4      4.11    2681.0       0.0                                0.00  
+    0:01:53   57368.4      4.11    2677.7       0.0                                0.00  
+    0:01:53   57365.1      4.11    2673.9       0.0                                0.00  
+    0:01:53   57384.2      4.11    2673.1       0.0                                0.00  
+    0:01:53   57409.6      4.11    2670.5       0.0                                0.00  
+    0:01:53   57414.7      4.11    2669.3       0.0                                0.00  
+    0:01:53   57414.9      4.11    2669.1       0.0                                0.00  
+    0:01:53   57411.9      4.11    2669.0       0.0                                0.00  
+    0:01:53   57414.2      4.11    2668.1       0.0                                0.00  
+    0:01:54   57402.2      4.11    2666.0       0.0                                0.00  
+    0:01:54   57397.2      4.11    2664.8       0.0                                0.00  
+    0:01:54   57399.4      4.11    2662.7       0.0                                0.00  
+    0:01:54   57395.6      4.11    2660.2       0.0                                0.00  
+    0:01:54   57383.9      4.11    2658.4       0.0                                0.00  
+    0:01:54   57382.4      4.11    2657.3       0.0                                0.00  
+    0:01:54   57395.6      4.11    2655.9       0.0                                0.00  
+    0:01:54   57412.1      4.11    2654.4       0.0                                0.00  
+    0:01:54   57419.3      4.11    2654.1       0.0                                0.00  
+    0:01:54   57454.6      4.11    2652.3       0.0                                0.00  
+    0:01:54   57466.0      4.11    2650.1       0.0                                0.00  
+    0:01:54   57493.2      4.11    2647.1       0.0                                0.00  
+    0:01:54   57624.1      4.11    2644.2       0.0                                0.00  
+    0:01:54   57699.3      4.11    2641.9       0.0                                0.00  
+    0:01:54   57702.9      4.11    2640.6       0.0                                0.00  
+    0:01:54   57693.5      4.11    2639.0       0.0                                0.00  
+    0:01:54   57685.4      4.11    2635.9       0.0                                0.00  
+    0:01:54   57681.5      4.11    2632.1       0.0                                0.00  
+    0:01:55   57679.8      4.11    2630.9       0.0                                0.00  
+    0:01:55   57674.4      4.11    2628.9       0.0                                0.00  
+    0:01:55   57674.9      4.11    2626.7       0.0                                0.00  
+    0:01:55   57672.4      4.11    2626.6       0.0                                0.00  
+    0:01:55   57681.5      4.11    2622.3       0.0                                0.00  
+    0:01:55   57678.7      4.11    2618.6       0.0                                0.00  
+    0:01:55   57687.6      4.11    2615.7       0.0                                0.00  
+    0:01:55   57686.1      4.11    2614.5       0.0                                0.00  
+    0:01:55   57688.1      4.11    2611.6       0.0                                0.00  
+    0:01:55   57702.1      4.11    2609.8       0.0                                0.00  
+    0:01:55   57701.9      4.11    2609.3       0.0                                0.00  
+    0:01:55   57699.1      4.11    2606.6       0.0                                0.00  
+    0:01:55   57699.1      4.11    2606.0       0.0                                0.00  
+    0:01:55   57699.1      4.11    2605.5       0.0                                0.00  
+    0:01:56   57699.1      4.11    2604.9       0.0                                0.00  
+    0:01:56   57699.1      4.11    2604.4       0.0                                0.00  
+    0:01:56   57697.6      4.11    2603.8       0.0                                0.00  
+    0:01:56   57699.6      4.11    2602.8       0.0                                0.00  
+    0:01:56   57707.0      4.11    2601.4       0.0                                0.00  
+    0:01:56   57732.4      4.11    2601.0       0.0                                0.00  
+    0:01:56   57735.4      4.11    2598.7       0.0                                0.00  
+    0:01:56   57733.9      4.11    2596.8       0.0                                0.00  
+    0:01:56   57732.1      4.11    2595.7       0.0                                0.00  
+    0:01:56   57719.2      4.11    2595.3       0.0                                0.00  
+    0:01:56   57720.2      4.11    2593.2       0.0                                0.00  
+    0:01:56   57719.2      4.11    2592.8       0.0                                0.00  
+    0:01:56   57720.4      4.11    2592.6       0.0                                0.00  
+    0:01:56   57716.6      4.11    2592.0       0.0                                0.00  
+    0:01:56   57710.0      4.11    2591.1       0.0                                0.00  
+    0:01:56   57711.0      4.11    2590.5       0.0                                0.00  
+    0:01:56   57702.6      4.11    2588.3       0.0                                0.00  
+    0:01:57   57700.3      4.11    2586.5       0.0                                0.00  
+    0:01:57   57708.0      4.11    2585.4       0.0                                0.00  
+    0:01:57   57711.0      4.11    2584.9       0.0                                0.00  
+    0:01:57   57717.6      4.11    2583.9       0.0                                0.00  
+    0:01:57   57725.3      4.11    2582.8       0.0                                0.00  
+    0:01:57   57735.9      4.11    2582.6       0.0                                0.00  
+    0:01:57   57736.7      4.11    2582.0       0.0                                0.00  
+    0:01:57   57739.2      4.11    2581.5       0.0                                0.00  
+    0:01:57   57751.9      4.11    2580.7       0.0                                0.00  
+    0:01:57   57785.0      4.11    2576.5       0.0                                0.00  
+    0:01:57   57795.1      4.11    2576.0       0.0                                0.00  
+    0:01:57   57779.9      4.11    2575.0       0.0                                0.00  
+    0:01:57   57779.4      4.11    2574.7       0.0                                0.00  
+    0:01:57   57792.6      4.11    2574.6       0.0                                0.00  
+    0:01:57   57805.8      4.11    2574.4       0.0                                0.00  
+    0:01:57   57825.6      4.11    2573.5       0.0                                0.00  
+    0:01:57   57847.2      4.11    2569.2       0.0                                0.00  
+    0:01:57   57840.6      4.11    2567.9       0.0                                0.00  
+    0:01:57   57839.6      4.11    2567.4       0.0                                0.00  
+    0:01:57   57856.9      4.11    2563.9       0.0                                0.00  
+    0:01:58   57859.4      4.11    2562.8       0.0                                0.00  
+    0:01:58   57866.8      4.11    2559.8       0.0                                0.00  
+    0:01:58   57901.1      4.11    2544.9       0.0                                0.00  
+    0:01:58   57901.4      4.11    2544.9       0.0                                0.00  
+    0:01:58   57902.1      4.11    2544.5       0.0                                0.00  
+    0:01:58   57910.0      4.11    2544.3       0.0                                0.00  
+    0:01:58   57918.4      4.11    2543.1       0.0                                0.00  
+    0:01:58   57920.2      4.11    2542.8       0.0                                0.00  
+
+
+  Beginning Area-Recovery Phase  (cleanup)
+  -----------------------------
+
+                                  TOTAL                                                  
+   ELAPSED            WORST NEG   SETUP    DESIGN                              MIN DELAY 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT             COST    
+  --------- --------- --------- --------- --------- ------------------------- -----------
+    0:01:58   57920.2      4.11    2542.8       0.0                                0.00  
+    0:01:58   57920.2      4.11    2542.8       0.0                                0.00  
+    0:01:59   55871.5      4.12    2517.8       0.0                                0.00  
+    0:01:59   55600.9      4.12    2510.8       0.0                                0.00  
+    0:01:59   55542.7      4.12    2505.3       0.0                                0.00  
+    0:01:59   55527.4      4.12    2503.2       0.0                                0.00  
+    0:01:59   55519.8      4.12    2503.2       0.0                                0.00  
+    0:01:59   55519.8      4.12    2503.2       0.0                                0.00  
+    0:01:59   55521.3      4.12    2503.2       0.0                                0.00  
+    0:02:00   54641.5      4.19    2512.4       0.0                                0.00  
+    0:02:00   54514.9      4.23    2513.9       0.0                                0.00  
+    0:02:00   54487.2      4.25    2514.7       0.0                                0.00  
+    0:02:00   54487.2      4.25    2514.7       0.0                                0.00  
+    0:02:00   54487.2      4.25    2514.7       0.0                                0.00  
+    0:02:00   54487.2      4.25    2514.7       0.0                                0.00  
+    0:02:00   54487.2      4.25    2514.7       0.0                                0.00  
+    0:02:00   54487.2      4.25    2514.7       0.0                                0.00  
+    0:02:01   54555.1      4.12    2505.1       0.0 genblk3[1].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:02:01   54552.8      4.12    2505.0       0.0 genblk3[4].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:02:01   54545.1      4.11    2504.3       0.0                                0.00  
+    0:02:01   54548.2      4.11    2504.1       0.0                                0.00  
+    0:02:01   54549.5      4.11    2504.0       0.0                                0.00  
+    0:02:01   54552.0      4.11    2503.5       0.0                                0.00  
+    0:02:01   54541.1      4.11    2502.7       0.0                                0.00  
+    0:02:01   54541.1      4.11    2502.3       0.0                                0.00  
+    0:02:01   54539.3      4.11    2502.3       0.0                                0.00  
+    0:02:01   54543.9      4.11    2502.3       0.0                                0.00  
+    0:02:01   54541.6      4.11    2502.2       0.0                                0.00  
+    0:02:01   54551.0      4.11    2501.9       0.0                                0.00  
+    0:02:02   54554.0      4.11    2499.3       0.0                                0.00  
+    0:02:02   54554.3      4.11    2498.9       0.0                                0.00  
+    0:02:02   54553.3      4.11    2497.8       0.0                                0.00  
+    0:02:02   54556.8      4.11    2497.3       0.0                                0.00  
+    0:02:02   54570.3      4.11    2490.1       0.0                                0.00  
+    0:02:02   54574.4      4.11    2489.2       0.0                                0.00  
+    0:02:02   54576.2      4.11    2488.9       0.0                                0.00  
+    0:02:02   54577.7      4.11    2488.5       0.0                                0.00  
+    0:02:02   54580.0      4.11    2488.1       0.0                                0.00  
+    0:02:02   54582.3      4.11    2487.7       0.0                                0.00  
+    0:02:02   54578.2      4.11    2483.7       0.0                                0.00  
+    0:02:02   54582.8      4.11    2482.6       0.0                                0.00  
+    0:02:02   54587.3      4.11    2482.1       0.0                                0.00  
+    0:02:02   54590.9      4.11    2481.9       0.0                                0.00  
+    0:02:02   54594.5      4.11    2481.6       0.0                                0.00  
+    0:02:03   54598.0      4.11    2481.3       0.0                                0.00  
+    0:02:03   54604.4      4.11    2480.9       0.0                                0.00  
+    0:02:03   54605.1      4.11    2480.5       0.0                                0.00  
+    0:02:03   54609.2      4.11    2480.2       0.0                                0.00  
+    0:02:03   54613.3      4.11    2479.9       0.0                                0.00  
+    0:02:03   54617.3      4.11    2479.6       0.0                                0.00  
+    0:02:03   54625.5      4.11    2479.2       0.0                                0.00  
+    0:02:03   54651.4      4.11    2477.6       0.0                                0.00  
+    0:02:03   54656.0      4.11    2477.6       0.0                                0.00  
+    0:02:03   54656.7      4.11    2477.0       0.0                                0.00  
+    0:02:03   54656.7      4.11    2476.1       0.0                                0.00  
+    0:02:03   54656.7      4.11    2475.3       0.0                                0.00  
+    0:02:03   54669.4      4.11    2474.1       0.0                                0.00  
+    0:02:03   54671.5      4.11    2473.3       0.0                                0.00  
+    0:02:04   54697.1      4.11    2473.2       0.0                                0.00  
+    0:02:04   54697.9      4.11    2473.0       0.0                                0.00  
+    0:02:04   54697.6      4.11    2472.7       0.0                                0.00  
+    0:02:04   54690.5      4.11    2471.2       0.0                                0.00  
+    0:02:04   54699.9      4.11    2470.6       0.0                                0.00  
+    0:02:04   54704.8      4.11    2470.2       0.0                                0.00  
+    0:02:04   54709.3      4.11    2469.9       0.0                                0.00  
+    0:02:04   54711.1      4.11    2468.9       0.0                                0.00  
+    0:02:04   54712.9      4.11    2468.5       0.0                                0.00  
+    0:02:04   54711.9      4.11    2468.3       0.0                                0.00  
+    0:02:04   54724.1      4.11    2468.1       0.0                                0.00  
+    0:02:04   54724.1      4.11    2467.4       0.0                                0.00  
+    0:02:04   54724.1      4.11    2466.8       0.0                                0.00  
+    0:02:04   54746.7      4.11    2466.5       0.0                                0.00  
+    0:02:04   54746.7      4.11    2465.7       0.0                                0.00  
+    0:02:05   54743.9      4.11    2464.9       0.0                                0.00  
+    0:02:05   54745.2      4.11    2464.5       0.0                                0.00  
+    0:02:05   54752.5      4.11    2464.1       0.0                                0.00  
+    0:02:05   54752.5      4.11    2463.7       0.0                                0.00  
+    0:02:05   54769.0      4.11    2462.6       0.0                                0.00  
+    0:02:05   54774.4      4.11    2462.1       0.0                                0.00  
+    0:02:05   54775.9      4.11    2462.1       0.0                                0.00  
+    0:02:05   54774.1      4.11    2461.9       0.0                                0.00  
+    0:02:05   54796.8      4.11    2461.3       0.0                                0.00  
+    0:02:05   54803.6      4.11    2460.6       0.0                                0.00  
+    0:02:05   54803.4      4.11    2460.3       0.0                                0.00  
+    0:02:05   54801.8      4.11    2460.1       0.0                                0.00  
+    0:02:05   54799.0      4.11    2459.9       0.0                                0.00  
+    0:02:05   54798.3      4.11    2459.7       0.0                                0.00  
+    0:02:05   54799.3      4.11    2459.5       0.0                                0.00  
+    0:02:06   54800.3      4.11    2458.0       0.0                                0.00  
+    0:02:06   54800.1      4.11    2457.7       0.0                                0.00  
+    0:02:06   54798.3      4.11    2457.4       0.0                                0.00  
+    0:02:06   54797.0      4.11    2456.9       0.0                                0.00  
+    0:02:06   54800.1      4.11    2456.4       0.0                                0.00  
+    0:02:06   54801.8      4.11    2456.2       0.0                                0.00  
+    0:02:06   54801.8      4.11    2455.8       0.0                                0.00  
+    0:02:06   54801.8      4.11    2455.6       0.0                                0.00  
+    0:02:06   54805.1      4.11    2455.1       0.0                                0.00  
+    0:02:06   54810.2      4.11    2454.7       0.0                                0.00  
+    0:02:06   54810.2      4.11    2454.4       0.0                                0.00  
+    0:02:06   54810.7      4.11    2454.0       0.0                                0.00  
+    0:02:06   54812.0      4.11    2453.7       0.0                                0.00  
+    0:02:06   54811.0      4.11    2453.5       0.0                                0.00  
+    0:02:06   54810.7      4.11    2453.3       0.0                                0.00  
+    0:02:06   54809.5      4.11    2453.1       0.0                                0.00  
+    0:02:06   54823.4      4.11    2452.8       0.0                                0.00  
+    0:02:07   54822.2      4.11    2451.9       0.0                                0.00  
+    0:02:07   54823.4      4.11    2451.8       0.0                                0.00  
+    0:02:07   54819.9      4.11    2451.8       0.0                                0.00  
+    0:02:07   54818.9      4.11    2451.7       0.0                                0.00  
+    0:02:07   54828.3      4.11    2451.7       0.0                                0.00  
+    0:02:07   54828.5      4.11    2451.3       0.0                                0.00  
+    0:02:07   54825.0      4.11    2451.0       0.0                                0.00  
+    0:02:07   54828.3      4.11    2450.5       0.0                                0.00  
+    0:02:07   54826.7      4.11    2450.4       0.0                                0.00  
+    0:02:07   54829.0      4.11    2450.3       0.0                                0.00  
+    0:02:07   54827.5      4.11    2449.8       0.0                                0.00  
+    0:02:07   54840.7      4.11    2449.7       0.0                                0.00  
+    0:02:07   54839.4      4.11    2449.5       0.0                                0.00  
+    0:02:07   54846.3      4.11    2448.6       0.0                                0.00  
+    0:02:07   54857.2      4.11    2448.4       0.0                                0.00  
+    0:02:07   54858.8      4.11    2446.7       0.0                                0.00  
+    0:02:07   54857.7      4.11    2446.7       0.0                                0.00  
+    0:02:07   54857.2      4.11    2446.7       0.0                                0.00  
+    0:02:08   54864.9      4.11    2446.1       0.0                                0.00  
+    0:02:08   54862.3      4.11    2445.6       0.0                                0.00  
+    0:02:08   54873.0      4.11    2445.5       0.0                                0.00  
+    0:02:08   54887.5      4.11    2445.2       0.0                                0.00  
+    0:02:08   54910.9      4.11    2445.1       0.0                                0.00  
+    0:02:08   54910.9      4.11    2444.9       0.0                                0.00  
+    0:02:08   54912.1      4.11    2444.8       0.0                                0.00  
+    0:02:08   54908.3      4.11    2444.4       0.0                                0.00  
+    0:02:08   54912.6      4.11    2444.0       0.0                                0.00  
+    0:02:08   54913.9      4.11    2443.8       0.0                                0.00  
+    0:02:08   54913.1      4.11    2443.8       0.0                                0.00  
+    0:02:08   54921.3      4.10    2444.3       0.0 genblk3[4].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:02:08   54921.3      4.10    2444.1       0.0 genblk3[1].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:02:08   54921.3      4.10    2444.0       0.0 genblk3[1].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:02:08   54921.3      4.10    2444.0       0.0 genblk3[3].U_pe_border/U_acc/sum_o_reg[13]/D      0.00  
+    0:02:08   54922.6      4.10    2444.0       0.0 genblk3[3].U_pe_border/U_acc/sum_o_reg[13]/D      0.00  
+
+
+Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
+
+
+  Optimization Complete
+  ---------------------
+Warning: Design 'array_8' contains 2 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+1
+check_design
+1
+#############################################
+# Take a look at area, max, and min timings #
+#############################################
+report_area > array_8_area.txt
+report_power > array_8_power.txt
+report_timing -delay min > array_8_min_delay.txt
+report_timing -delay max > array_8_max_delay.txt
+#### write out final netlist ######
+write -format verilog array_8 -output array_8.vg
+Writing verilog file '/filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/8bit/ugemmrate/array_8.vg'.
+Warning: Verilog 'assign' or 'tran' statements are written out. (VO-4)
+1
+exit
+Memory usage for this session 261 Mbytes.
+Memory usage for this session including child processes 261 Mbytes.
+CPU usage for this session 130 seconds ( 0.04 hours ).
+Elapsed time for this session 133 seconds ( 0.04 hours ).
+
+Thank you...

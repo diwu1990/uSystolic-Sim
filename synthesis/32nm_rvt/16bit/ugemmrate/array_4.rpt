@@ -1,0 +1,1214 @@
+
+                           Design Compiler Graphical 
+                                 DC Ultra (TM)
+                                  DFTMAX (TM)
+                              Power Compiler (TM)
+                                 DesignWare (R)
+                                 DC Expert (TM)
+                               Design Vision (TM)
+                               HDL Compiler (TM)
+                               VHDL Compiler (TM)
+                                  DFT Compiler
+                               Design Compiler(R)
+
+               Version Q-2019.12-SP3 for linux64 - Apr 21, 2020 
+
+                    Copyright (c) 1988 - 2020 Synopsys, Inc.
+   This software and the associated documentation are proprietary to Synopsys,
+ Inc. This software may only be used in accordance with the terms and conditions
+ of a written license agreement with Synopsys, Inc. All other use, reproduction,
+            or distribution of this software is strictly prohibited.
+Initializing...
+# ECE552 Extra Credit
+read_file -format sverilog {array_4.sv}
+Loading db file '/cae/apps/data/saed32_edk-2018/lib/stdcell_rvt/db_nldm/saed32rvt_tt0p85v25c.db'
+Loading db file '/cae/apps/data/saed32_edk-2018/lib/io_std/db_nldm/saed32io_wb_tt1p05v25c_2p5v.db'
+Loading db file '/cae/apps/data/synopsys-2020/syn/Q-2019.12-SP3/libraries/syn/gtech.db'
+Loading db file '/cae/apps/data/synopsys-2020/syn/Q-2019.12-SP3/libraries/syn/standard.sldb'
+  Loading link library 'saed32rvt_tt0p85v25c'
+  Loading link library 'saed32io_wb_tt1p05v25c_2p5v'
+  Loading link library 'gtech'
+Detecting input file type automatically (-rtl or -netlist).
+Reading with Presto HDL Compiler (equivalent to -rtl option).
+Running PRESTO HDLC
+Compiling source file /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/16bit/ugemmrate/array_4.sv
+Opening include file pe_border.sv
+Opening include file ireg_border.sv
+Opening include file wreg.sv
+Opening include file mul_border.sv
+Opening include file sobol16.sv
+Opening include file acc.sv
+Opening include file pe_inner.sv
+Opening include file ireg_inner.sv
+Opening include file wreg.sv
+Opening include file mul_inner.sv
+Opening include file acc.sv
+
+Inferred memory devices in process
+	in routine ireg_border line 16 in file
+		'ireg_border.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     o_data_reg      | Flip-flop |  16   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine wreg line 16 in file
+		'wreg.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     o_data_reg      | Flip-flop |  16   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Statistics for case statements in always block at line 81 in file
+	'sobol16.sv'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            82            |    auto/auto     |
+===============================================
+
+Inferred memory devices in process
+	in routine sobol16 line 20 in file
+		'sobol16.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|       cnt_reg       | Flip-flop |  16   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine sobol16 line 49 in file
+		'sobol16.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|    sobolSeq_reg     | Flip-flop |  16   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Warning:  acc.sv:18: signed to unsigned assignment occurs. (VER-318)
+
+Inferred memory devices in process
+	in routine acc line 21 in file
+		'acc.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|      sum_o_reg      | Flip-flop |  24   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine pe_border line 90 in file
+		'pe_border.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     en_i_d_reg      | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     en_w_d_reg      | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     en_o_d_reg      | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     clr_i_d_reg     | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     clr_w_d_reg     | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     clr_o_d_reg     | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|   mac_done_d_reg    | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine ireg_inner line 14 in file
+		'ireg_inner.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|   o_data_dff_reg    | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine mul_inner line 29 in file
+		'mul_inner.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     o_randW_reg     | Flip-flop |  16   |  Y  | N  | N  | N  | N  | N  | N  |
+|   o_randW_inv_reg   | Flip-flop |  16   |  Y  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine pe_inner line 90 in file
+		'pe_inner.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     en_i_d_reg      | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     en_w_d_reg      | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     en_o_d_reg      | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     clr_i_d_reg     | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     clr_w_d_reg     | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     clr_o_d_reg     | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|   mac_done_d_reg    | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
+Loaded 10 designs.
+Current design is 'ireg_border'.
+ireg_border wreg sobol16 mul_border acc pe_border ireg_inner mul_inner pe_inner array_4
+set current_design array_4
+array_4
+link
+
+  Linking design 'array_4'
+  Using the following designs and libraries:
+  --------------------------------------------------------------------------
+  array_4                     /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/16bit/ugemmrate/array_4.db
+  saed32rvt_tt0p85v25c (library) /cae/apps/data/saed32_edk-2018/lib/stdcell_rvt/db_nldm/saed32rvt_tt0p85v25c.db
+  saed32io_wb_tt1p05v25c_2p5v (library) /cae/apps/data/saed32_edk-2018/lib/io_std/db_nldm/saed32io_wb_tt1p05v25c_2p5v.db
+  * (9 designs)               /filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/16bit/ugemmrate/ireg_border.db, etc
+
+Information: Building the design 'pe_border' instantiated from design 'array_4' with
+	the parameters "IWIDTH=16,OWIDTH=24". (HDL-193)
+
+Inferred memory devices in process
+	in routine pe_border_IWIDTH16_OWIDTH24 line 90 in file
+		'pe_border.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     en_i_d_reg      | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     en_w_d_reg      | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     en_o_d_reg      | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     clr_i_d_reg     | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     clr_w_d_reg     | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     clr_o_d_reg     | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|   mac_done_d_reg    | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (pe_border_IWIDTH16_OWIDTH24)
+Information: Building the design 'pe_inner' instantiated from design 'array_4' with
+	the parameters "IWIDTH=16,OWIDTH=24". (HDL-193)
+
+Inferred memory devices in process
+	in routine pe_inner_IWIDTH16_OWIDTH24 line 90 in file
+		'pe_inner.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     en_i_d_reg      | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     en_w_d_reg      | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     en_o_d_reg      | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     clr_i_d_reg     | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     clr_w_d_reg     | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     clr_o_d_reg     | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|   mac_done_d_reg    | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (pe_inner_IWIDTH16_OWIDTH24)
+Information: Building the design 'ireg_border' instantiated from design 'pe_border_IWIDTH16_OWIDTH24' with
+	the parameters "WIDTH=16". (HDL-193)
+
+Inferred memory devices in process
+	in routine ireg_border_WIDTH16 line 16 in file
+		'ireg_border.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     o_data_reg      | Flip-flop |  16   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (ireg_border_WIDTH16)
+Information: Building the design 'wreg' instantiated from design 'pe_border_IWIDTH16_OWIDTH24' with
+	the parameters "WIDTH=16". (HDL-193)
+
+Inferred memory devices in process
+	in routine wreg_WIDTH16 line 16 in file
+		'wreg.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     o_data_reg      | Flip-flop |  16   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (wreg_WIDTH16)
+Information: Building the design 'mul_border' instantiated from design 'pe_border_IWIDTH16_OWIDTH24' with
+	the parameters "WIDTH=16". (HDL-193)
+Presto compilation completed successfully. (mul_border_WIDTH16)
+Information: Building the design 'acc' instantiated from design 'pe_border_IWIDTH16_OWIDTH24' with
+	the parameters "WIDTH=24". (HDL-193)
+Warning:  acc.sv:18: signed to unsigned assignment occurs. (VER-318)
+
+Inferred memory devices in process
+	in routine acc_WIDTH24 line 21 in file
+		'acc.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|      sum_o_reg      | Flip-flop |  24   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (acc_WIDTH24)
+Information: Building the design 'mul_inner' instantiated from design 'pe_inner_IWIDTH16_OWIDTH24' with
+	the parameters "WIDTH=16". (HDL-193)
+
+Inferred memory devices in process
+	in routine mul_inner_WIDTH16 line 29 in file
+		'mul_inner.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     o_randW_reg     | Flip-flop |  16   |  Y  | N  | N  | N  | N  | N  | N  |
+|   o_randW_inv_reg   | Flip-flop |  16   |  Y  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (mul_inner_WIDTH16)
+Information: Building the design 'sobol8'. (HDL-193)
+Warning: Cannot find the design 'sobol8' in the library 'WORK'. (LBR-1)
+Warning: Unable to resolve reference 'sobol8' in 'mul_border_WIDTH16'. (LINK-5)
+0
+###########################################
+# Define clock and set don't mess with it #
+###########################################
+# clk with frequency of 400 MHz
+create_clock -name "clk" -period 2.5 -waveform { 0 1.25 } { clk }
+Warning: Design 'array_4' has '1' unresolved references. For more detailed information, use the "link" command. (UID-341)
+1
+set_dont_touch_network [find port clk]
+Warning: Design 'array_4' has '1' unresolved references. For more detailed information, use the "link" command. (UID-341)
+1
+# pointer to all inputs except clk
+set prim_inputs [remove_from_collection [all_inputs] [find port clk]]
+{rst_n en_i[3] en_i[2] en_i[1] en_i[0] clr_i[3] clr_i[2] clr_i[1] clr_i[0] mac_done[3] mac_done[2] mac_done[1] mac_done[0] en_w[3] en_w[2] en_w[1] en_w[0] clr_w[3] clr_w[2] clr_w[1] clr_w[0] en_o[3] en_o[2] en_o[1] en_o[0] clr_o[3] clr_o[2] clr_o[1] clr_o[0] ifm[3][15] ifm[3][14] ifm[3][13] ifm[3][12] ifm[3][11] ifm[3][10] ifm[3][9] ifm[3][8] ifm[3][7] ifm[3][6] ifm[3][5] ifm[3][4] ifm[3][3] ifm[3][2] ifm[3][1] ifm[3][0] ifm[2][15] ifm[2][14] ifm[2][13] ifm[2][12] ifm[2][11] ifm[2][10] ifm[2][9] ifm[2][8] ifm[2][7] ifm[2][6] ifm[2][5] ifm[2][4] ifm[2][3] ifm[2][2] ifm[2][1] ifm[2][0] ifm[1][15] ifm[1][14] ifm[1][13] ifm[1][12] ifm[1][11] ifm[1][10] ifm[1][9] ifm[1][8] ifm[1][7] ifm[1][6] ifm[1][5] ifm[1][4] ifm[1][3] ifm[1][2] ifm[1][1] ifm[1][0] ifm[0][15] ifm[0][14] ifm[0][13] ifm[0][12] ifm[0][11] ifm[0][10] ifm[0][9] ifm[0][8] ifm[0][7] ifm[0][6] ifm[0][5] ifm[0][4] ifm[0][3] ifm[0][2] ifm[0][1] ifm[0][0] wght[3][15] wght[3][14] wght[3][13] wght[3][12] wght[3][11] wght[3][10] wght[3][9] ...}
+# pointer to all inputs except clk and rst_n
+set prim_inputs_no_rst [remove_from_collection $prim_inputs [find port rst_n]]
+{en_i[3] en_i[2] en_i[1] en_i[0] clr_i[3] clr_i[2] clr_i[1] clr_i[0] mac_done[3] mac_done[2] mac_done[1] mac_done[0] en_w[3] en_w[2] en_w[1] en_w[0] clr_w[3] clr_w[2] clr_w[1] clr_w[0] en_o[3] en_o[2] en_o[1] en_o[0] clr_o[3] clr_o[2] clr_o[1] clr_o[0] ifm[3][15] ifm[3][14] ifm[3][13] ifm[3][12] ifm[3][11] ifm[3][10] ifm[3][9] ifm[3][8] ifm[3][7] ifm[3][6] ifm[3][5] ifm[3][4] ifm[3][3] ifm[3][2] ifm[3][1] ifm[3][0] ifm[2][15] ifm[2][14] ifm[2][13] ifm[2][12] ifm[2][11] ifm[2][10] ifm[2][9] ifm[2][8] ifm[2][7] ifm[2][6] ifm[2][5] ifm[2][4] ifm[2][3] ifm[2][2] ifm[2][1] ifm[2][0] ifm[1][15] ifm[1][14] ifm[1][13] ifm[1][12] ifm[1][11] ifm[1][10] ifm[1][9] ifm[1][8] ifm[1][7] ifm[1][6] ifm[1][5] ifm[1][4] ifm[1][3] ifm[1][2] ifm[1][1] ifm[1][0] ifm[0][15] ifm[0][14] ifm[0][13] ifm[0][12] ifm[0][11] ifm[0][10] ifm[0][9] ifm[0][8] ifm[0][7] ifm[0][6] ifm[0][5] ifm[0][4] ifm[0][3] ifm[0][2] ifm[0][1] ifm[0][0] wght[3][15] wght[3][14] wght[3][13] wght[3][12] wght[3][11] wght[3][10] wght[3][9] wght[3][8] ...}
+# Set clk uncertainty (skew)
+set_clock_uncertainty 0.15 clk
+Warning: Design 'array_4' has '1' unresolved references. For more detailed information, use the "link" command. (UID-341)
+1
+#########################################
+# Set input delay & drive on all inputs #
+#########################################
+set_input_delay -clock clk 0.25 [copy_collection $prim_inputs]
+Warning: Design 'array_4' has '1' unresolved references. For more detailed information, use the "link" command. (UID-341)
+1
+#set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc $prim_inputs_no_rst
+# rst_n goes to many places so don't touch
+set_dont_touch_network [find port rst_n]
+Warning: Design 'array_4' has '1' unresolved references. For more detailed information, use the "link" command. (UID-341)
+1
+##########################################
+# Set output delay & load on all outputs #
+##########################################
+set_output_delay -clock clk 0.5 [all_outputs]
+Warning: Design 'array_4' has '1' unresolved references. For more detailed information, use the "link" command. (UID-341)
+1
+set_load 0.1 [all_outputs]
+1
+#############################################################
+# Wire load model allows it to estimate internal parasitics #
+#############################################################
+# set_wire_load_model -name TSMC32K_Lowk_Conservative -library tcbn40lpbwptc
+######################################################
+# Max transition time is important for Hot-E reasons #
+######################################################
+set_max_transition 0.1 [current_design]
+1
+########################################
+# Now actually synthesize for 1st time #
+########################################
+compile -map_effort medium
+Warning: Design 'array_4' has '1' unresolved references. For more detailed information, use the "link" command. (UID-341)
+Warning: Setting attribute 'fix_multiple_port_nets' on design 'array_4'. (UIO-59)
+Information: Evaluating DesignWare library utilization. (UISN-27)
+
+============================================================================
+| DesignWare Building Block Library  |         Version         | Available |
+============================================================================
+| Basic DW Building Blocks           | Q-2019.12-DWBB_201912.3 |     *     |
+| Licensed DW Building Blocks        |                         |           |
+============================================================================
+
+
+Information: There are 335 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
+
+
+Warning: Operating condition tt0p85v25c set on design array_4 has different process,
+voltage and temperatures parameters than the parameters at which target library 
+saed32io_wb_tt1p05v25c_2p5v is characterized. Delays may be inaccurate as a result. (OPT-998)
+
+  Beginning Pass 1 Mapping
+  ------------------------
+  Processing 'acc_WIDTH24_0'
+  Processing 'mul_inner_WIDTH16_0'
+  Processing 'wreg_WIDTH16_0'
+  Processing 'ireg_inner_0'
+  Processing 'pe_inner_IWIDTH16_OWIDTH24_0'
+  Processing 'mul_border_WIDTH16_0'
+  Processing 'ireg_border_WIDTH16_0'
+  Processing 'pe_border_IWIDTH16_OWIDTH24_0'
+  Processing 'array_4'
+Information: Building the design 'sobol8'. (HDL-193)
+Warning: Cannot find the design 'sobol8' in the library 'WORK'. (LBR-1)
+Warning: Unable to resolve reference 'sobol8' in 'mul_border_WIDTH16_0'. (LINK-5)
+Warning: Design 'array_4' has '1' unresolved references. For more detailed information, use the "link" command. (UID-341)
+
+  Updating timing information
+Information: Updating design information... (UID-85)
+
+  Beginning Implementation Selection
+  ----------------------------------
+  Processing 'acc_WIDTH24_1_DW01_add_0'
+  Processing 'mul_inner_WIDTH16_1_DW01_cmp2_0'
+  Processing 'mul_inner_WIDTH16_1_DW01_cmp2_1'
+  Processing 'acc_WIDTH24_2_DW01_add_0_DW01_add_1'
+  Processing 'mul_inner_WIDTH16_2_DW01_cmp2_0_DW01_cmp2_2'
+  Processing 'mul_inner_WIDTH16_2_DW01_cmp2_1_DW01_cmp2_3'
+  Processing 'acc_WIDTH24_3_DW01_add_0_DW01_add_2'
+  Processing 'mul_inner_WIDTH16_3_DW01_cmp2_0_DW01_cmp2_4'
+  Processing 'mul_inner_WIDTH16_3_DW01_cmp2_1_DW01_cmp2_5'
+  Processing 'acc_WIDTH24_4_DW01_add_0_DW01_add_3'
+  Processing 'mul_border_WIDTH16_1_DW01_cmp2_0_DW01_cmp2_6'
+  Processing 'mul_border_WIDTH16_1_DW01_cmp2_1_DW01_cmp2_7'
+  Processing 'mul_border_WIDTH16_1_DW01_cmp2_2_DW01_cmp2_8'
+  Processing 'acc_WIDTH24_5_DW01_add_0_DW01_add_4'
+  Processing 'mul_inner_WIDTH16_4_DW01_cmp2_0_DW01_cmp2_9'
+  Processing 'mul_inner_WIDTH16_4_DW01_cmp2_1_DW01_cmp2_10'
+  Processing 'acc_WIDTH24_6_DW01_add_0_DW01_add_5'
+  Processing 'mul_inner_WIDTH16_5_DW01_cmp2_0_DW01_cmp2_11'
+  Processing 'mul_inner_WIDTH16_5_DW01_cmp2_1_DW01_cmp2_12'
+  Processing 'acc_WIDTH24_7_DW01_add_0_DW01_add_6'
+  Processing 'mul_inner_WIDTH16_6_DW01_cmp2_0_DW01_cmp2_13'
+  Processing 'mul_inner_WIDTH16_6_DW01_cmp2_1_DW01_cmp2_14'
+  Processing 'acc_WIDTH24_8_DW01_add_0_DW01_add_7'
+  Processing 'mul_border_WIDTH16_2_DW01_cmp2_0_DW01_cmp2_15'
+  Processing 'mul_border_WIDTH16_2_DW01_cmp2_1_DW01_cmp2_16'
+  Processing 'mul_border_WIDTH16_2_DW01_cmp2_2_DW01_cmp2_17'
+  Processing 'acc_WIDTH24_9_DW01_add_0_DW01_add_8'
+  Processing 'mul_inner_WIDTH16_7_DW01_cmp2_0_DW01_cmp2_18'
+  Processing 'mul_inner_WIDTH16_7_DW01_cmp2_1_DW01_cmp2_19'
+  Processing 'acc_WIDTH24_10_DW01_add_0_DW01_add_9'
+  Processing 'mul_inner_WIDTH16_8_DW01_cmp2_0_DW01_cmp2_20'
+  Processing 'mul_inner_WIDTH16_8_DW01_cmp2_1_DW01_cmp2_21'
+  Processing 'acc_WIDTH24_11_DW01_add_0_DW01_add_10'
+  Processing 'mul_inner_WIDTH16_9_DW01_cmp2_0_DW01_cmp2_22'
+  Processing 'mul_inner_WIDTH16_9_DW01_cmp2_1_DW01_cmp2_23'
+  Processing 'acc_WIDTH24_12_DW01_add_0_DW01_add_11'
+  Processing 'mul_border_WIDTH16_3_DW01_cmp2_0_DW01_cmp2_24'
+  Processing 'mul_border_WIDTH16_3_DW01_cmp2_1_DW01_cmp2_25'
+  Processing 'mul_border_WIDTH16_3_DW01_cmp2_2_DW01_cmp2_26'
+  Processing 'acc_WIDTH24_13_DW01_add_0_DW01_add_12'
+  Processing 'mul_inner_WIDTH16_10_DW01_cmp2_0_DW01_cmp2_27'
+  Processing 'mul_inner_WIDTH16_10_DW01_cmp2_1_DW01_cmp2_28'
+  Processing 'acc_WIDTH24_14_DW01_add_0_DW01_add_13'
+  Processing 'mul_inner_WIDTH16_11_DW01_cmp2_0_DW01_cmp2_29'
+  Processing 'mul_inner_WIDTH16_11_DW01_cmp2_1_DW01_cmp2_30'
+  Processing 'acc_WIDTH24_15_DW01_add_0_DW01_add_14'
+  Processing 'mul_inner_WIDTH16_0_DW01_cmp2_0_DW01_cmp2_31'
+  Processing 'mul_inner_WIDTH16_0_DW01_cmp2_1_DW01_cmp2_32'
+  Processing 'acc_WIDTH24_0_DW01_add_0_DW01_add_15'
+  Processing 'mul_border_WIDTH16_0_DW01_cmp2_0_DW01_cmp2_33'
+  Processing 'mul_border_WIDTH16_0_DW01_cmp2_1_DW01_cmp2_34'
+  Processing 'mul_border_WIDTH16_0_DW01_cmp2_2_DW01_cmp2_35'
+
+  Beginning Mapping Optimizations  (Medium effort)
+  -------------------------------
+  Mapping Optimization (Phase 1)
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:13   21445.7      0.47      41.7       0.3                          
+    0:00:13   21445.7      0.47      41.7       0.3                          
+    0:00:13   21445.7      0.47      41.7       0.3                          
+    0:00:13   21445.7      0.47      41.7       0.3                          
+    0:00:14   21445.7      0.47      41.7       0.3                          
+    0:00:15   20027.8      0.50      34.9       0.0                          
+    0:00:15   20062.6      0.45      34.7       0.0                          
+    0:00:15   20079.9      0.44      33.7       0.0                          
+    0:00:15   20118.3      0.41      32.5       0.0                          
+    0:00:15   20116.5      0.40      30.5       0.0                          
+    0:00:16   20165.3      0.39      30.5       0.0                          
+    0:00:16   20195.0      0.38      28.5       0.0                          
+    0:00:16   20188.2      0.37      27.1       0.0                          
+    0:00:16   20200.9      0.37      26.9       0.0                          
+    0:00:16   20206.2      0.37      27.0       0.0                          
+    0:00:16   20244.3      0.36      27.8       0.0                          
+    0:00:16   20275.9      0.34      25.9       0.0                          
+    0:00:16   20310.2      0.32      25.6       0.0                          
+    0:00:16   20410.1      0.32      24.9       0.0                          
+    0:00:16   20470.5      0.32      25.1       0.0                          
+    0:00:16   20479.2      0.32      24.9       0.0                          
+    0:00:17   20487.1      0.32      24.8       0.0                          
+    0:00:17   20492.6      0.32      24.8       0.0                          
+    0:00:17   20510.9      0.32      24.8       0.0                          
+    0:00:17   20510.9      0.32      24.8       0.0                          
+    0:00:17   20510.9      0.32      24.8       0.0                          
+    0:00:17   20510.9      0.32      24.8       0.0                          
+    0:00:17   20510.9      0.32      24.8       0.0                          
+    0:00:17   20510.9      0.32      24.8       0.0                          
+
+
+
+  Beginning Delay Optimization Phase
+  ----------------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:17   20510.9      0.32      24.8       0.0                          
+    0:00:17   20583.6      0.31      24.6       0.0 genblk3[0].genblk1[3].U_pe_inner/U_acc/sum_o_reg[23]/D
+    0:00:17   20588.7      0.30      24.5       0.0 genblk3[0].genblk1[3].U_pe_inner/U_acc/sum_o_reg[23]/D
+    0:00:17   20614.1      0.30      24.3       0.0 genblk3[0].genblk1[1].U_pe_inner/U_acc/sum_o_reg[23]/D
+    0:00:17   20624.5      0.28      23.9       0.0 genblk3[0].genblk1[3].U_pe_inner/U_acc/sum_o_reg[23]/D
+    0:00:17   20638.5      0.28      22.5       0.0 genblk3[2].genblk1[2].U_pe_inner/U_acc/sum_o_reg[23]/D
+    0:00:17   20674.9      0.28      21.5       0.0 genblk3[2].genblk1[3].U_pe_inner/U_acc/sum_o_reg[23]/D
+    0:00:17   20705.4      0.28      20.8       0.0 genblk3[1].genblk1[2].U_pe_inner/U_acc/sum_o_reg[23]/D
+    0:00:17   20735.9      0.28      20.7       0.0 genblk3[1].genblk1[2].U_pe_inner/U_acc/sum_o_reg[23]/D
+    0:00:17   20758.2      0.28      20.5       0.0 genblk3[3].U_pe_border/U_acc/sum_o_reg[23]/D
+    0:00:17   20799.7      0.27      20.1       0.0 genblk3[2].genblk1[2].U_pe_inner/U_acc/sum_o_reg[23]/D
+    0:00:17   20812.9      0.27      19.9       0.0 genblk3[1].genblk1[2].U_pe_inner/U_acc/sum_o_reg[23]/D
+    0:00:17   20855.8      0.26      19.5       0.0 genblk3[3].genblk1[3].U_pe_inner/U_acc/sum_o_reg[23]/D
+    0:00:18   20867.5      0.26      19.4       0.0 genblk3[0].genblk1[2].U_pe_inner/U_acc/sum_o_reg[23]/D
+    0:00:18   20921.1      0.26      18.6       0.0 genblk3[3].genblk1[2].U_pe_inner/U_acc/sum_o_reg[23]/D
+    0:00:18   20957.2      0.26      18.5       0.0 genblk3[0].genblk1[2].U_pe_inner/U_acc/sum_o_reg[23]/D
+    0:00:18   20966.4      0.25      17.8       0.0 genblk3[0].genblk1[2].U_pe_inner/U_acc/sum_o_reg[23]/D
+    0:00:18   21018.5      0.25      17.5       0.0 genblk3[2].genblk1[2].U_pe_inner/U_acc/sum_o_reg[23]/D
+    0:00:18   21018.0      0.24      16.2       0.0 genblk3[0].genblk1[2].U_pe_inner/U_acc/sum_o_reg[23]/D
+    0:00:18   21051.3      0.24      16.0       0.0 genblk3[2].U_pe_border/U_acc/sum_o_reg[23]/D
+    0:00:18   21082.8      0.23      15.5       0.0 genblk3[2].genblk1[1].U_pe_inner/U_acc/sum_o_reg[15]/D
+    0:00:18   21102.3      0.23      15.0       0.0 genblk3[0].genblk1[2].U_pe_inner/U_acc/sum_o_reg[16]/D
+    0:00:18   21112.3      0.22      14.9       0.0 genblk3[0].U_pe_border/U_acc/sum_o_reg[23]/D
+    0:00:18   21150.4      0.22      14.9       0.0 genblk3[3].genblk1[1].U_pe_inner/U_acc/sum_o_reg[23]/D
+    0:00:18   21167.9      0.22      14.7       0.0 genblk3[0].U_pe_border/U_acc/sum_o_reg[23]/D
+    0:00:18   21176.8      0.21      14.6       0.0 genblk3[1].U_pe_border/U_acc/sum_o_reg[23]/D
+    0:00:18   21194.6      0.21      14.3       0.0 genblk3[2].U_pe_border/U_acc/sum_o_reg[23]/D
+    0:00:18   21202.7      0.21      14.0       0.0 genblk3[3].genblk1[1].U_pe_inner/U_acc/sum_o_reg[23]/D
+    0:00:18   21211.4      0.21      13.9       0.0 genblk3[3].U_pe_border/U_acc/sum_o_reg[23]/D
+    0:00:18   21224.6      0.21      13.8       0.0 genblk3[1].U_pe_border/U_acc/sum_o_reg[23]/D
+    0:00:18   21229.9      0.21      13.6       0.0 genblk3[1].genblk1[1].U_pe_inner/U_acc/sum_o_reg[23]/D
+    0:00:18   21244.9      0.20      13.4       0.0 genblk3[0].genblk1[3].U_pe_inner/U_acc/sum_o_reg[23]/D
+    0:00:19   21255.3      0.20      12.8       0.0 genblk3[0].U_pe_border/U_acc/sum_o_reg[23]/D
+    0:00:19   21236.5      0.20      12.9       0.0 genblk3[1].U_pe_border/U_acc/sum_o_reg[23]/D
+    0:00:19   21274.4      0.20      12.7       0.0 genblk3[3].genblk1[1].U_pe_inner/U_acc/sum_o_reg[23]/D
+    0:00:19   21290.9      0.20      12.7       0.0 genblk3[1].U_pe_border/U_acc/sum_o_reg[23]/D
+    0:00:19   21306.4      0.19      12.6       0.0 genblk3[2].U_pe_border/U_acc/sum_o_reg[19]/D
+    0:00:19   21313.3      0.19      12.3       0.0 genblk3[1].U_pe_border/U_acc/sum_o_reg[23]/D
+    0:00:19   21324.7      0.19      12.1       0.0 genblk3[3].U_pe_border/U_acc/sum_o_reg[23]/D
+    0:00:19   21340.0      0.19      11.7       0.0 genblk3[0].genblk1[2].U_pe_inner/U_acc/sum_o_reg[23]/D
+    0:00:19   21372.0      0.18      11.5       0.0 genblk3[2].genblk1[2].U_pe_inner/U_acc/sum_o_reg[23]/D
+    0:00:19   21387.0      0.18      11.4       0.0 genblk3[0].genblk1[1].U_pe_inner/U_acc/sum_o_reg[23]/D
+    0:00:19   21413.7      0.18      11.1       0.0 genblk3[0].genblk1[3].U_pe_inner/U_acc/sum_o_reg[15]/D
+    0:00:19   21419.8      0.18      11.0       0.0 genblk3[1].U_pe_border/U_acc/sum_o_reg[23]/D
+    0:00:19   21455.3      0.18      10.8       0.0 genblk3[2].genblk1[3].U_pe_inner/U_acc/sum_o_reg[23]/D
+    0:00:19   21455.6      0.18      10.8       0.0 genblk3[2].U_pe_border/U_acc/sum_o_reg[19]/D
+    0:00:19   21455.6      0.18      10.8       0.0 genblk3[1].U_pe_border/U_acc/sum_o_reg[23]/D
+    0:00:20   21485.3      0.17      10.9       0.0 genblk3[2].U_pe_border/U_acc/sum_o_reg[19]/D
+    0:00:20   21500.6      0.17      11.2       0.0 genblk3[2].U_pe_border/U_acc/sum_o_reg[23]/D
+    0:00:20   21556.7      0.17      11.5       0.0 genblk3[1].genblk1[3].U_pe_inner/U_acc/sum_o_reg[23]/D
+    0:00:20   21566.4      0.17      11.4       0.0 genblk3[2].U_pe_border/U_acc/sum_o_reg[23]/D
+    0:00:20   21572.8      0.17      11.4       0.0 genblk3[3].U_pe_border/U_acc/sum_o_reg[23]/D
+    0:00:20   21589.8      0.16      11.0       0.0 genblk3[0].genblk1[2].U_pe_inner/U_acc/sum_o_reg[23]/D
+    0:00:20   21614.4      0.16      10.7       0.0 genblk3[2].U_pe_border/U_acc/sum_o_reg[23]/D
+    0:00:20   21636.3      0.15      11.0       0.0 genblk3[2].U_pe_border/U_acc/sum_o_reg[23]/D
+    0:00:20   21663.5      0.15      11.0       0.0 genblk3[1].U_pe_border/U_acc/sum_o_reg[19]/D
+    0:00:20   21683.1      0.15      10.8       0.0 genblk3[3].genblk1[2].U_pe_inner/U_acc/sum_o_reg[23]/D
+    0:00:20   21732.6      0.15      10.7       0.0 genblk3[1].genblk1[1].U_pe_inner/U_acc/sum_o_reg[23]/D
+    0:00:20   21750.4      0.15      10.7       0.0 genblk3[1].U_pe_border/U_acc/sum_o_reg[19]/D
+    0:00:20   21743.0      0.14      10.5       0.0 genblk3[3].genblk1[1].U_pe_inner/U_acc/sum_o_reg[23]/D
+    0:00:20   21770.5      0.14      10.4       0.0 genblk3[3].genblk1[1].U_pe_inner/U_acc/sum_o_reg[23]/D
+    0:00:20   21764.1      0.14      10.3       0.0 genblk3[1].U_pe_border/U_acc/sum_o_reg[23]/D
+    0:00:20   21769.0      0.14      10.2       0.0 genblk3[0].genblk1[3].U_pe_inner/U_acc/sum_o_reg[23]/D
+    0:00:20   21771.8      0.14      10.1       0.0 genblk3[3].U_pe_border/U_acc/sum_o_reg[23]/D
+    0:00:20   21773.0      0.14      10.1       0.0 genblk3[3].genblk1[1].U_pe_inner/U_acc/sum_o_reg[23]/D
+    0:00:21   21777.1      0.13      10.1       0.0 genblk3[1].U_pe_border/U_acc/sum_o_reg[15]/D
+    0:00:21   21770.5      0.13      10.1       0.0 genblk3[1].U_pe_border/U_acc/sum_o_reg[15]/D
+    0:00:21   21780.4      0.13      10.2       0.0 genblk3[3].U_pe_border/U_acc/sum_o_reg[23]/D
+    0:00:21   21769.0      0.13       9.3       0.0 genblk3[0].genblk1[2].U_pe_inner/U_acc/sum_o_reg[23]/D
+    0:00:21   21774.5      0.13       9.1       0.0                          
+    0:00:22   21588.8      0.13       9.1       5.1                          
+
+
+  Beginning Design Rule Fixing  (max_transition)  (max_capacitance)
+  ----------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:22   21588.8      0.13       9.1       5.1                          
+    0:00:22   21601.7      0.13       8.9       0.0 genblk3[0].genblk1[2].U_pe_inner/U_acc/sum_o_reg[15]/D
+    0:00:22   21617.2      0.12       8.6       0.0 genblk3[3].genblk1[1].U_pe_inner/U_acc/sum_o_reg[23]/D
+    0:00:22   21636.8      0.12       8.4       0.0 genblk3[0].genblk1[3].U_pe_inner/U_acc/sum_o_reg[23]/D
+    0:00:22   21655.4      0.12       8.3       0.0 genblk3[2].genblk1[3].U_pe_inner/U_acc/sum_o_reg[23]/D
+    0:00:22   21657.9      0.12       8.2       0.0 genblk3[3].U_pe_border/U_acc/sum_o_reg[23]/D
+    0:00:22   21672.4      0.12       8.0       0.0 genblk3[3].genblk1[3].U_pe_inner/U_acc/sum_o_reg[23]/D
+    0:00:22   21675.2      0.12       7.9       0.0 genblk3[2].U_pe_border/U_acc/sum_o_reg[23]/D
+    0:00:22   21694.0      0.12       7.8       0.0 genblk3[3].genblk1[1].U_pe_inner/U_acc/sum_o_reg[23]/D
+    0:00:22   21710.5      0.11       7.1       0.0 genblk3[3].genblk1[2].U_pe_inner/U_acc/sum_o_reg[3]/D
+    0:00:22   21719.4      0.11       6.8       0.0 genblk3[3].genblk1[1].U_pe_inner/U_acc/sum_o_reg[23]/D
+    0:00:22   21719.4      0.11       6.8       0.0 genblk3[2].U_pe_border/U_acc/sum_o_reg[23]/D
+    0:00:22   21736.4      0.11       6.8       0.0 genblk3[0].genblk1[1].U_pe_inner/U_acc/sum_o_reg[23]/D
+    0:00:22   21750.7      0.11       6.6       0.0 genblk3[3].genblk1[1].U_pe_inner/U_acc/sum_o_reg[23]/D
+    0:00:22   21763.1      0.11       6.5       0.0 genblk3[1].genblk1[2].U_pe_inner/U_acc/sum_o_reg[23]/D
+    0:00:22   21765.7      0.11       6.5       0.0 genblk3[1].U_pe_border/U_acc/sum_o_reg[15]/D
+    0:00:23   21766.7      0.11       6.5       0.0 genblk3[3].genblk1[3].U_pe_inner/U_acc/sum_o_reg[23]/D
+    0:00:23   21786.2      0.10       6.3       0.0 genblk3[1].genblk1[2].U_pe_inner/U_acc/sum_o_reg[23]/D
+    0:00:23   21785.5      0.10       6.0       0.0 genblk3[2].U_pe_border/U_acc/sum_o_reg[23]/D
+    0:00:23   21795.6      0.10       6.0       0.0 genblk3[0].genblk1[2].U_pe_inner/U_acc/sum_o_reg[23]/D
+    0:00:23   21809.1      0.10       5.9       0.0 genblk3[2].U_pe_border/U_acc/sum_o_reg[23]/D
+    0:00:23   21806.8      0.10       5.9       0.0 genblk3[2].U_pe_border/U_acc/sum_o_reg[23]/D
+    0:00:23   21806.8      0.10       5.9       0.0 genblk3[2].U_pe_border/U_acc/sum_o_reg[23]/D
+    0:00:23   21802.3      0.10       5.9       0.0                          
+
+
+  Beginning Area-Recovery Phase  (cleanup)
+  -----------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:23   21802.3      0.10       5.9       0.0                          
+    0:00:23   21802.3      0.10       5.9       0.0                          
+    0:00:23   21415.2      0.10       5.5       0.0                          
+    0:00:23   21343.8      0.10       5.5       0.0                          
+    0:00:23   21332.8      0.10       5.5       0.0                          
+    0:00:23   21332.8      0.10       5.5       0.0                          
+    0:00:23   21332.8      0.10       5.5       0.0                          
+    0:00:23   21332.8      0.10       5.5       0.0                          
+    0:00:24   21335.4      0.10       5.5       0.0                          
+    0:00:24   20946.3      0.12       5.4       0.0                          
+    0:00:24   20942.0      0.12       5.4       0.0                          
+    0:00:24   20942.0      0.12       5.4       0.0                          
+    0:00:24   20942.0      0.12       5.4       0.0                          
+    0:00:24   20942.0      0.12       5.4       0.0                          
+    0:00:24   20942.0      0.12       5.4       0.0                          
+    0:00:24   20942.0      0.12       5.4       0.0                          
+    0:00:24   20946.8      0.10       5.1       0.0 genblk3[0].genblk1[3].U_pe_inner/U_acc/sum_o_reg[23]/D
+    0:00:24   20952.1      0.10       5.0       0.0 genblk3[2].U_pe_border/U_acc/sum_o_reg[23]/D
+    0:00:24   20949.6      0.10       5.0       0.0                          
+    0:00:24   20949.9      0.10       5.0       0.0 genblk3[3].U_pe_border/U_acc/sum_o_reg[23]/D
+    0:00:24   20949.6      0.10       5.1       0.0 genblk3[2].U_pe_border/U_acc/sum_o_reg[23]/D
+
+
+Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
+
+
+  Optimization Complete
+  ---------------------
+Warning: Design 'array_4' contains 1 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+1
+check_design
+Information: Building the design 'sobol8'. (HDL-193)
+Warning: Cannot find the design 'sobol8' in the library 'WORK'. (LBR-1)
+Warning: Unable to resolve reference 'sobol8' in 'mul_border_WIDTH16_0'. (LINK-5)
+Warning: Unable to resolve reference 'sobol8' in 'mul_border_WIDTH16_3'. (LINK-5)
+Warning: Unable to resolve reference 'sobol8' in 'mul_border_WIDTH16_2'. (LINK-5)
+Warning: Unable to resolve reference 'sobol8' in 'mul_border_WIDTH16_1'. (LINK-5)
+ 
+****************************************
+check_design summary:
+Version:     Q-2019.12-SP3
+Date:        Sat Jun 12 04:01:35 2021
+****************************************
+
+                   Name                                            Total
+--------------------------------------------------------------------------------
+Inputs/Outputs                                                     52
+    Multiply driven inputs (LINT-6)                                 8
+    Unconnected ports (LINT-28)                                    44
+
+Cells                                                             116
+    Connected to power or ground (LINT-32)                        112
+    Nets connected to multiple pins on same cell (LINT-33)          4
+
+Nets                                                                4
+    Multiply driven net with constant driver (LINT-54)              4
+
+Tristate                                                           12
+    A tristate bus has a non tri-state driver (LINT-34)            12
+--------------------------------------------------------------------------------
+
+Warning: In design 'mul_border_WIDTH16_0', input port 'clk' drives wired logic; the port direction may have been specified incorrectly. (LINT-6)
+Warning: In design 'mul_border_WIDTH16_0', input port 'rst_n' drives wired logic; the port direction may have been specified incorrectly. (LINT-6)
+Warning: In design 'mul_border_WIDTH16_1', input port 'clk' drives wired logic; the port direction may have been specified incorrectly. (LINT-6)
+Warning: In design 'mul_border_WIDTH16_1', input port 'rst_n' drives wired logic; the port direction may have been specified incorrectly. (LINT-6)
+Warning: In design 'mul_border_WIDTH16_2', input port 'clk' drives wired logic; the port direction may have been specified incorrectly. (LINT-6)
+Warning: In design 'mul_border_WIDTH16_2', input port 'rst_n' drives wired logic; the port direction may have been specified incorrectly. (LINT-6)
+Warning: In design 'mul_border_WIDTH16_3', input port 'clk' drives wired logic; the port direction may have been specified incorrectly. (LINT-6)
+Warning: In design 'mul_border_WIDTH16_3', input port 'rst_n' drives wired logic; the port direction may have been specified incorrectly. (LINT-6)
+Warning: In design 'mul_inner_WIDTH16_0', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH16_1', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH16_2', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH16_3', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH16_4', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH16_5', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH16_6', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH16_7', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH16_8', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH16_9', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH16_10', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'mul_inner_WIDTH16_11', port 'rst_n' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH24_15_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH24_15_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH24_14_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH24_14_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH24_13_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH24_13_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH24_11_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH24_11_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH24_10_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH24_10_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH24_9_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH24_9_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH24_7_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH24_7_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH24_6_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH24_6_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH24_5_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH24_5_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH24_3_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH24_3_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH24_2_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH24_2_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH24_1_DW01_add_1', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH24_1_DW01_add_1', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH24_0_DW01_add_2', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH24_0_DW01_add_2', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH24_12_DW01_add_2', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH24_12_DW01_add_2', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH24_8_DW01_add_2', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH24_8_DW01_add_2', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH24_4_DW01_add_2', port 'CI' is not connected to any nets. (LINT-28)
+Warning: In design 'acc_WIDTH24_4_DW01_add_2', port 'CO' is not connected to any nets. (LINT-28)
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].U_pe_border' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[23]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].U_pe_border' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[22]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].U_pe_border' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[21]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].U_pe_border' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[20]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].U_pe_border' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[19]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].U_pe_border' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[18]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].U_pe_border' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[17]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].U_pe_border' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[16]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].U_pe_border' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[15]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].U_pe_border' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[14]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].U_pe_border' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[13]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].U_pe_border' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[12]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].U_pe_border' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[11]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].U_pe_border' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[10]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].U_pe_border' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[9]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].U_pe_border' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[8]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].U_pe_border' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[7]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].U_pe_border' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[6]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].U_pe_border' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[5]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].U_pe_border' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[4]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].U_pe_border' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[3]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].U_pe_border' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[2]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].U_pe_border' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[1]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].U_pe_border' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[0]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[1].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[23]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[1].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[22]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[1].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[21]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[1].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[20]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[1].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[19]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[1].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[18]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[1].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[17]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[1].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[16]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[1].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[15]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[1].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[14]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[1].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[13]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[1].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[12]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[1].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[11]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[1].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[10]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[1].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[9]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[1].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[8]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[1].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[7]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[1].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[6]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[1].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[5]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[1].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[4]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[1].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[3]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[1].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[2]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[1].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[1]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[1].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[0]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[2].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[23]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[2].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[22]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[2].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[21]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[2].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[20]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[2].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[19]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[2].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[18]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[2].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[17]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[2].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[16]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[2].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[15]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[2].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[14]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[2].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[13]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[2].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[12]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[2].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[11]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[2].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[10]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[2].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[9]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[2].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[8]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[2].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[7]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[2].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[6]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[2].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[5]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[2].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[4]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[2].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[3]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[2].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[2]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[2].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[1]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[2].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[0]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[3].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[23]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[3].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[22]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[3].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[21]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[3].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[20]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[3].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[19]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[3].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[18]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[3].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[17]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[3].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[16]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[3].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[15]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[3].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[14]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[3].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[13]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[3].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[12]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[3].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[11]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[3].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[10]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[3].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[9]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[3].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[8]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[3].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[7]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[3].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[6]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[3].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[5]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[3].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[4]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[3].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[3]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[3].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[2]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[3].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[1]' is connected to logic 0. 
+Warning: In design 'array_4', a pin on submodule 'genblk3[3].genblk1[3].U_pe_inner' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'ofm[0]' is connected to logic 0. 
+Warning: In design 'acc_WIDTH24_0', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH24_1', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH24_2', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH24_3', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH24_4', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH24_5', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH24_6', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH24_7', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH24_8', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH24_9', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH24_10', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH24_11', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH24_12', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH24_13', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH24_14', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'acc_WIDTH24_15', a pin on submodule 'add_29' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'CI' is connected to logic 0. 
+Warning: In design 'array_4', the same net is connected to more than one pin on submodule 'genblk3[3].U_pe_border'. (LINT-33)
+   Net '*Logic0*' is connected to pins 'ofm[23]', 'ofm[22]'', 'ofm[21]', 'ofm[20]', 'ofm[19]', 'ofm[18]', 'ofm[17]', 'ofm[16]', 'ofm[15]', 'ofm[14]', 'ofm[13]', 'ofm[12]', 'ofm[11]', 'ofm[10]', 'ofm[9]', 'ofm[8]', 'ofm[7]', 'ofm[6]', 'ofm[5]', 'ofm[4]', 'ofm[3]', 'ofm[2]', 'ofm[1]', 'ofm[0]'.
+Warning: In design 'array_4', the same net is connected to more than one pin on submodule 'genblk3[3].genblk1[1].U_pe_inner'. (LINT-33)
+   Net '*Logic0*' is connected to pins 'ofm[23]', 'ofm[22]'', 'ofm[21]', 'ofm[20]', 'ofm[19]', 'ofm[18]', 'ofm[17]', 'ofm[16]', 'ofm[15]', 'ofm[14]', 'ofm[13]', 'ofm[12]', 'ofm[11]', 'ofm[10]', 'ofm[9]', 'ofm[8]', 'ofm[7]', 'ofm[6]', 'ofm[5]', 'ofm[4]', 'ofm[3]', 'ofm[2]', 'ofm[1]', 'ofm[0]'.
+Warning: In design 'array_4', the same net is connected to more than one pin on submodule 'genblk3[3].genblk1[2].U_pe_inner'. (LINT-33)
+   Net '*Logic0*' is connected to pins 'ofm[23]', 'ofm[22]'', 'ofm[21]', 'ofm[20]', 'ofm[19]', 'ofm[18]', 'ofm[17]', 'ofm[16]', 'ofm[15]', 'ofm[14]', 'ofm[13]', 'ofm[12]', 'ofm[11]', 'ofm[10]', 'ofm[9]', 'ofm[8]', 'ofm[7]', 'ofm[6]', 'ofm[5]', 'ofm[4]', 'ofm[3]', 'ofm[2]', 'ofm[1]', 'ofm[0]'.
+Warning: In design 'array_4', the same net is connected to more than one pin on submodule 'genblk3[3].genblk1[3].U_pe_inner'. (LINT-33)
+   Net '*Logic0*' is connected to pins 'ofm[23]', 'ofm[22]'', 'ofm[21]', 'ofm[20]', 'ofm[19]', 'ofm[18]', 'ofm[17]', 'ofm[16]', 'ofm[15]', 'ofm[14]', 'ofm[13]', 'ofm[12]', 'ofm[11]', 'ofm[10]', 'ofm[9]', 'ofm[8]', 'ofm[7]', 'ofm[6]', 'ofm[5]', 'ofm[4]', 'ofm[3]', 'ofm[2]', 'ofm[1]', 'ofm[0]'.
+Warning: In design 'array_4', three-state bus 'ifm_dff_x[0][1]' has non three-state driver 'genblk3[0].U_pe_border/U_mul_border/gt_33/ULTI2/Y'. (LINT-34)
+Warning: In design 'array_4', three-state bus 'ifm_dff_x[1][1]' has non three-state driver 'genblk3[1].U_pe_border/U_mul_border/gt_33/ULTI2/Y'. (LINT-34)
+Warning: In design 'array_4', three-state bus 'ifm_dff_x[2][1]' has non three-state driver 'genblk3[2].U_pe_border/U_mul_border/gt_33/ULTI2/Y'. (LINT-34)
+Warning: In design 'array_4', three-state bus 'ifm_dff_x[3][1]' has non three-state driver 'genblk3[3].U_pe_border/U_mul_border/gt_33/ULTI2/Y'. (LINT-34)
+Warning: In design 'array_4', three-state bus 'genblk3[0].U_pe_border/U_mul_border/n108' has non three-state driver 'genblk3[0].U_pe_border/U_mul_border/U112/**logic_1**'. (LINT-34)
+Warning: In design 'array_4', three-state bus 'genblk3[0].U_pe_border/U_mul_border/bitI_inv' has non three-state driver 'genblk3[0].U_pe_border/U_mul_border/I_0/Y'. (LINT-34)
+Warning: In design 'array_4', three-state bus 'genblk3[3].U_pe_border/U_mul_border/n108' has non three-state driver 'genblk3[3].U_pe_border/U_mul_border/U112/**logic_1**'. (LINT-34)
+Warning: In design 'array_4', three-state bus 'genblk3[3].U_pe_border/U_mul_border/bitI_inv' has non three-state driver 'genblk3[3].U_pe_border/U_mul_border/I_0/Y'. (LINT-34)
+Warning: In design 'array_4', three-state bus 'genblk3[2].U_pe_border/U_mul_border/n108' has non three-state driver 'genblk3[2].U_pe_border/U_mul_border/U112/**logic_1**'. (LINT-34)
+Warning: In design 'array_4', three-state bus 'genblk3[2].U_pe_border/U_mul_border/bitI_inv' has non three-state driver 'genblk3[2].U_pe_border/U_mul_border/I_0/Y'. (LINT-34)
+Warning: In design 'array_4', three-state bus 'genblk3[1].U_pe_border/U_mul_border/n108' has non three-state driver 'genblk3[1].U_pe_border/U_mul_border/U112/**logic_1**'. (LINT-34)
+Warning: In design 'array_4', three-state bus 'genblk3[1].U_pe_border/U_mul_border/bitI_inv' has non three-state driver 'genblk3[1].U_pe_border/U_mul_border/I_0/Y'. (LINT-34)
+Warning: In design 'array_4', multiply-driven net 'genblk3[0].U_pe_border/U_mul_border/n108' is driven by constant 1. (LINT-54)
+Warning: In design 'array_4', multiply-driven net 'genblk3[3].U_pe_border/U_mul_border/n108' is driven by constant 1. (LINT-54)
+Warning: In design 'array_4', multiply-driven net 'genblk3[2].U_pe_border/U_mul_border/n108' is driven by constant 1. (LINT-54)
+Warning: In design 'array_4', multiply-driven net 'genblk3[1].U_pe_border/U_mul_border/n108' is driven by constant 1. (LINT-54)
+1
+# Unflatten design now that its compiled
+ungroup -all -flatten
+Warning: Design 'array_4' has '4' unresolved references. For more detailed information, use the "link" command. (UID-341)
+Information: Updating graph... (UID-83)
+Warning: Design 'array_4' contains 1 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+1
+# force hold time to be met for all flops
+set_fix_hold clk
+Warning: Design 'array_4' has '4' unresolved references. For more detailed information, use the "link" command. (UID-341)
+1
+# Compile again with higher effort
+compile -map_effort high
+Warning: Design 'array_4' has '4' unresolved references. For more detailed information, use the "link" command. (UID-341)
+Warning: "The variable 'compile_high_effort_area_in_incremental' is supported in DC NXT only. Ignoring this setting." (OPT-1726)
+
+Information: There are 114 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
+
+
+Warning: Operating condition tt0p85v25c set on design array_4 has different process,
+voltage and temperatures parameters than the parameters at which target library 
+saed32io_wb_tt1p05v25c_2p5v is characterized. Delays may be inaccurate as a result. (OPT-998)
+
+  Beginning Pass 1 Mapping
+  ------------------------
+  Processing 'array_4'
+Information: The register 'genblk3[3].genblk1[3].U_pe_inner/en_i_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[3].genblk1[3].U_pe_inner/en_w_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[3].genblk1[3].U_pe_inner/clr_i_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[3].genblk1[3].U_pe_inner/clr_w_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[3].genblk1[2].U_pe_inner/en_w_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[3].genblk1[2].U_pe_inner/clr_w_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[3].genblk1[1].U_pe_inner/en_w_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[3].genblk1[1].U_pe_inner/clr_w_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[3].U_pe_border/en_w_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[3].U_pe_border/clr_w_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[2].genblk1[3].U_pe_inner/en_i_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[2].genblk1[3].U_pe_inner/clr_i_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[1].genblk1[3].U_pe_inner/en_i_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[1].genblk1[3].U_pe_inner/clr_i_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[0].genblk1[3].U_pe_inner/en_i_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[0].genblk1[3].U_pe_inner/en_o_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[0].genblk1[3].U_pe_inner/clr_i_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[0].genblk1[3].U_pe_inner/clr_o_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[0].genblk1[2].U_pe_inner/en_o_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[0].genblk1[2].U_pe_inner/clr_o_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[0].genblk1[1].U_pe_inner/en_o_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[0].genblk1[1].U_pe_inner/clr_o_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[0].U_pe_border/en_o_d_reg' will be removed. (OPT-1207)
+Information: The register 'genblk3[0].U_pe_border/clr_o_d_reg' will be removed. (OPT-1207)
+Information: Building the design 'sobol8'. (HDL-193)
+Warning: Cannot find the design 'sobol8' in the library 'WORK'. (LBR-1)
+Warning: Unable to resolve reference 'sobol8' in 'array_4'. (LINK-5)
+Warning: Design 'array_4' has '1' unresolved references. For more detailed information, use the "link" command. (UID-341)
+
+  Updating timing information
+Information: Updating design information... (UID-85)
+
+  Beginning Mapping Optimizations  (High effort)
+  -------------------------------
+  Mapping Optimization (Phase 2)
+
+                                  TOTAL                                                  
+   ELAPSED            WORST NEG   SETUP    DESIGN                              MIN DELAY 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT             COST    
+  --------- --------- --------- --------- --------- ------------------------- -----------
+    0:00:33   21104.4      0.67      36.8      22.8                                0.00  
+    0:00:33   21090.9      0.71      37.1      22.8                                0.00  
+    0:00:33   21090.9      0.71      37.1      22.8                                0.00  
+    0:00:33   21090.9      0.71      37.1      22.8                                0.00  
+    0:00:33   21090.9      0.71      37.1      22.8                                0.00  
+    0:00:34   19422.7      0.71      34.4       0.0                                0.00  
+    0:00:34   19411.3      0.59      31.6       0.0                                0.00  
+    0:00:35   19444.0      0.55      27.2       0.0                                0.00  
+    0:00:35   19462.3      0.48      25.0       0.0                                0.00  
+    0:00:35   19477.1      0.43      22.8       0.0                                0.00  
+    0:00:35   19479.4      0.43      22.4       0.0                                0.00  
+    0:00:35   19496.9      0.39      20.8       0.0                                0.00  
+    0:00:35   19527.2      0.38      18.7       0.0                                0.00  
+    0:00:35   19547.7      0.38      16.9       0.0                                0.00  
+    0:00:35   19555.4      0.38      16.3       0.0                                0.00  
+    0:00:36   19604.9      0.36      15.3       0.0                                0.00  
+    0:00:36   19635.7      0.36      15.1       0.0                                0.00  
+    0:00:36   19648.4      0.36      15.1       0.0                                0.00  
+    0:00:36   19662.9      0.36      14.6       0.0                                0.00  
+    0:00:36   19665.2      0.36      14.6       0.0                                0.00  
+    0:00:36   19672.0      0.36      14.0       0.0                                0.00  
+    0:00:36   19682.9      0.36      13.4       0.0                                0.00  
+    0:00:36   19683.2      0.36      13.4       0.0                                0.00  
+    0:00:36   19686.0      0.36      13.4       0.0                                0.00  
+    0:00:36   19686.0      0.36      13.4       0.0                                0.00  
+    0:00:36   19686.0      0.36      13.4       0.0                                0.00  
+    0:00:36   19686.0      0.36      13.4       0.0                                0.00  
+    0:00:36   19686.0      0.36      13.4       0.0                                0.00  
+    0:00:36   19686.0      0.36      13.4       0.0                                0.00  
+
+
+
+  Beginning Delay Optimization Phase
+  ----------------------------------
+
+                                  TOTAL                                                  
+   ELAPSED            WORST NEG   SETUP    DESIGN                              MIN DELAY 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT             COST    
+  --------- --------- --------- --------- --------- ------------------------- -----------
+    0:00:36   19686.0      0.36      13.4       0.0                                0.00  
+    0:00:36   19720.8      0.31      12.9       0.0 genblk3[2].U_pe_border/U_acc/sum_o_reg[23]/D      0.00  
+    0:00:36   19769.4      0.26      12.0       0.0 genblk3[0].genblk1[3].U_pe_inner/U_acc/sum_o_reg[23]/D      0.00  
+    0:00:36   19780.3      0.25      11.7       0.0 genblk3[3].genblk1[3].U_pe_inner/U_acc/sum_o_reg[23]/D      0.00  
+    0:00:36   19809.8      0.24      11.6       0.0 genblk3[3].genblk1[1].U_pe_inner/U_acc/sum_o_reg[23]/D      0.00  
+    0:00:36   19844.6      0.24      11.5       0.0 genblk3[0].U_pe_border/U_acc/sum_o_reg[23]/D      0.00  
+    0:00:37   19870.2      0.24      11.1       0.0 genblk3[1].genblk1[3].U_pe_inner/U_acc/sum_o_reg[23]/D      0.00  
+    0:00:37   19888.5      0.23      11.0       0.0 genblk3[0].U_pe_border/U_acc/sum_o_reg[23]/D      0.00  
+    0:00:37   19907.1      0.23      10.9       0.0 genblk3[1].U_pe_border/U_acc/sum_o_reg[20]/D      0.00  
+    0:00:37   19924.6      0.22      10.9       0.0 genblk3[3].genblk1[3].U_pe_inner/U_acc/sum_o_reg[23]/D      0.00  
+    0:00:37   19983.9      0.22       9.4       0.0 genblk3[3].genblk1[1].U_pe_inner/U_acc/sum_o_reg[23]/D      0.00  
+    0:00:37   19996.3      0.21       8.8       0.0 genblk3[0].genblk1[3].U_pe_inner/U_acc/sum_o_reg[23]/D      0.00  
+    0:00:37   20007.2      0.20       8.7       0.0 genblk3[3].genblk1[2].U_pe_inner/U_acc/sum_o_reg[22]/D      0.00  
+    0:00:37   20028.6      0.19       8.3       0.0 genblk3[3].genblk1[2].U_pe_inner/U_acc/sum_o_reg[22]/D      0.00  
+    0:00:37   20072.8      0.19       7.8       0.0 genblk3[3].genblk1[3].U_pe_inner/U_acc/sum_o_reg[23]/D      0.00  
+    0:00:37   20096.9      0.18       7.7       0.0 genblk3[0].genblk1[3].U_pe_inner/U_acc/sum_o_reg[23]/D      0.00  
+    0:00:37   20125.4      0.18       7.4       0.0 genblk3[0].U_pe_border/U_acc/sum_o_reg[23]/D      0.00  
+    0:00:37   20126.7      0.17       6.9       0.0 genblk3[3].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:00:37   20145.2      0.16       6.7       0.0 genblk3[0].genblk1[3].U_pe_inner/U_acc/sum_o_reg[23]/D      0.00  
+    0:00:37   20160.5      0.16       6.6       0.0 genblk3[0].U_pe_border/U_acc/sum_o_reg[23]/D      0.00  
+    0:00:37   20163.3      0.16       6.6       0.0 genblk3[0].U_pe_border/U_acc/sum_o_reg[23]/D      0.00  
+    0:00:37   20192.5      0.15       6.4       0.0 genblk3[2].U_pe_border/U_acc/sum_o_reg[23]/D      0.00  
+    0:00:37   20200.1      0.15       6.3       0.0 genblk3[3].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:00:38   20212.1      0.14       5.8       0.0 genblk3[2].U_pe_border/U_acc/sum_o_reg[23]/D      0.00  
+    0:00:38   20217.2      0.14       5.6       0.0 genblk3[0].U_pe_border/U_acc/sum_o_reg[23]/D      0.00  
+    0:00:38   20237.2      0.14       5.3       0.0 genblk3[1].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:00:38   20251.0      0.13       5.3       0.0 genblk3[0].U_pe_border/U_acc/sum_o_reg[20]/D      0.00  
+    0:00:38   20260.6      0.12       5.1       0.0 genblk3[1].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:00:38   20269.5      0.12       5.0       0.0 genblk3[0].U_pe_border/U_acc/sum_o_reg[23]/D      0.00  
+    0:00:38   20319.1      0.12       5.0       8.9                                0.00  
+    0:00:38   20319.1      0.12       5.0       8.9 genblk3[1].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:00:38   20319.8      0.12       4.1       8.9 genblk3[3].genblk1[2].U_pe_inner/U_acc/sum_o_reg[22]/D      0.00  
+    0:00:38   20323.9      0.11       3.7       8.9 genblk3[0].U_pe_border/U_acc/sum_o_reg[23]/D      0.00  
+    0:00:38   20329.2      0.10       3.6       8.9 genblk3[2].U_pe_border/U_acc/sum_o_reg[11]/D      0.00  
+    0:00:38   20342.2      0.10       3.4       8.9 genblk3[3].genblk1[1].U_pe_inner/U_acc/sum_o_reg[22]/D      0.00  
+    0:00:38   20350.6      0.10       3.3       8.9 genblk3[2].genblk1[3].U_pe_inner/U_acc/sum_o_reg[20]/D      0.00  
+    0:00:39   20354.4      0.09       3.2       8.9 genblk3[0].genblk1[1].U_pe_inner/U_acc/sum_o_reg[23]/D      0.00  
+    0:00:39   20361.0      0.09       3.1       8.9 genblk3[0].genblk1[3].U_pe_inner/U_acc/sum_o_reg[23]/D      0.00  
+    0:00:39   20377.5      0.09       3.0       8.9 genblk3[3].U_pe_border/U_acc/sum_o_reg[23]/D      0.00  
+    0:00:39   20378.0      0.09       2.8       8.9 genblk3[3].genblk1[1].U_pe_inner/U_acc/sum_o_reg[22]/D      0.00  
+    0:00:39   20400.1      0.08       2.6       8.9 genblk3[0].genblk1[1].U_pe_inner/U_acc/sum_o_reg[23]/D      0.00  
+    0:00:39   20418.9      0.08       2.2       8.9 genblk3[3].U_pe_border/U_acc/sum_o_reg[23]/D      0.00  
+    0:00:39   20439.3      0.07       2.1       8.9 genblk3[3].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:00:39   20472.6      0.07       1.9       8.9 genblk3[3].genblk1[1].U_pe_inner/U_acc/sum_o_reg[22]/D      0.00  
+    0:00:39   20480.4      0.06       1.7      24.3                                0.00  
+    0:00:39   20521.6      0.06       1.5      24.3 genblk3[2].U_pe_border/U_acc/sum_o_reg[21]/D      0.00  
+    0:00:39   20530.3      0.06       1.5      24.3 genblk3[0].genblk1[3].U_pe_inner/U_acc/sum_o_reg[23]/D      0.00  
+    0:00:39   20556.2      0.05       1.2      24.3 genblk3[0].genblk1[2].U_pe_inner/U_acc/sum_o_reg[21]/D      0.00  
+    0:00:39   20566.3      0.05       1.1      24.3 genblk3[3].genblk1[2].U_pe_inner/U_acc/sum_o_reg[22]/D      0.00  
+    0:00:39   20567.9      0.05       1.0      24.3 genblk3[1].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:00:40   20574.5      0.05       0.9      24.3 genblk3[3].genblk1[2].U_pe_inner/U_acc/sum_o_reg[22]/D      0.00  
+    0:00:40   20580.1      0.04       0.9      24.3 genblk3[0].genblk1[2].U_pe_inner/U_acc/sum_o_reg[21]/D      0.00  
+    0:00:40   20593.5      0.04       0.6      24.3 genblk3[0].genblk1[2].U_pe_inner/U_acc/sum_o_reg[21]/D      0.00  
+    0:00:40   20615.9      0.03       0.6      24.3 genblk3[1].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:00:40   20617.2      0.03       0.5      24.3 genblk3[3].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:00:40   20635.7      0.03       0.5      24.3 genblk3[1].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:00:40   20636.7      0.02       0.5      24.3 genblk3[0].genblk1[1].U_pe_inner/U_acc/sum_o_reg[23]/D      0.00  
+    0:00:40   20646.4      0.02       0.4      24.3 genblk3[1].genblk1[3].U_pe_inner/U_acc/sum_o_reg[20]/D      0.00  
+    0:00:40   20644.9      0.02       0.3      24.3 genblk3[0].genblk1[2].U_pe_inner/U_acc/sum_o_reg[21]/D      0.00  
+    0:00:40   20648.7      0.02       0.3      24.3 genblk3[1].genblk1[3].U_pe_inner/U_acc/sum_o_reg[23]/D      0.00  
+    0:00:40   20648.9      0.02       0.2      24.3 genblk3[0].genblk1[2].U_pe_inner/U_acc/sum_o_reg[21]/D      0.00  
+    0:00:40   20643.6      0.02       0.2      24.3 genblk3[0].genblk1[1].U_pe_inner/U_acc/sum_o_reg[23]/D      0.00  
+    0:00:40   20647.9      0.02       0.2      24.3 genblk3[1].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:00:41   20670.3      0.01       0.2      14.9                                0.00  
+    0:00:41   20670.3      0.01       0.2      14.9 genblk3[3].U_pe_border/U_acc/sum_o_reg[15]/D      0.00  
+    0:00:41   20670.0      0.01       0.2      14.9 genblk3[1].genblk1[3].U_pe_inner/U_acc/sum_o_reg[23]/D      0.00  
+    0:00:41   20657.1      0.01       0.1      14.9 genblk3[3].genblk1[3].U_pe_inner/U_acc/sum_o_reg[23]/D      0.00  
+    0:00:41   20654.5      0.01       0.1      14.9 genblk3[3].genblk1[1].U_pe_inner/U_acc/sum_o_reg[22]/D      0.00  
+    0:00:41   20696.0      0.01       0.1      14.9                                0.00  
+    0:00:41   20724.4      0.01       0.1      14.9 genblk3[3].genblk1[1].U_pe_inner/U_acc/sum_o_reg[22]/D      0.00  
+    0:00:42   20726.0      0.01       0.1      14.9 genblk3[0].genblk1[1].U_pe_inner/U_acc/sum_o_reg[23]/D      0.00  
+    0:00:42   20726.0      0.01       0.1      14.9 genblk3[1].U_pe_border/U_acc/sum_o_reg[7]/D      0.00  
+    0:00:42   20720.4      0.01       0.1      14.9                                0.00  
+    0:00:42   20721.6      0.01       0.1      14.9 genblk3[0].genblk1[1].U_pe_inner/U_acc/sum_o_reg[23]/D      0.00  
+    0:00:42   20725.2      0.01       0.1      14.9 genblk3[2].U_pe_border/U_acc/sum_o_reg[21]/D      0.00  
+    0:00:42   20723.9      0.01       0.0      14.9 genblk3[1].genblk1[2].U_pe_inner/U_acc/sum_o_reg[23]/D      0.00  
+    0:00:42   20719.3      0.00       0.0      14.9 genblk3[2].genblk1[1].U_pe_inner/U_acc/sum_o_reg[22]/D      0.00  
+    0:00:42   20718.1      0.00       0.0      14.9 genblk3[1].genblk1[3].U_pe_inner/U_acc/sum_o_reg[20]/D      0.00  
+    0:00:42   20718.1      0.00       0.0      14.8 genblk3[2].genblk1[1].U_pe_inner/U_acc/sum_o_reg[20]/D      0.00  
+    0:00:42   20726.7      0.00       0.0      14.8                                0.00  
+    0:00:42   20725.4      0.00       0.0      14.8                                0.00  
+    0:00:44   20220.2      0.00       0.0      13.5                                0.00  
+
+
+  Beginning Design Rule Fixing  (max_transition)  (max_capacitance)
+  ----------------------------
+
+                                  TOTAL                                                  
+   ELAPSED            WORST NEG   SETUP    DESIGN                              MIN DELAY 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT             COST    
+  --------- --------- --------- --------- --------- ------------------------- -----------
+    0:00:44   20220.2      0.00       0.0      13.5                                0.00  
+    0:00:44   20211.6      0.00       0.0       0.0                                0.00  
+
+
+  Beginning Area-Recovery Phase  (cleanup)
+  -----------------------------
+
+                                  TOTAL                                                  
+   ELAPSED            WORST NEG   SETUP    DESIGN                              MIN DELAY 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT             COST    
+  --------- --------- --------- --------- --------- ------------------------- -----------
+    0:00:44   20211.6      0.00       0.0       0.0                                0.00  
+    0:00:44   20211.6      0.00       0.0       0.0                                0.00  
+    0:00:45   19559.2      0.00       0.0       0.0                                0.00  
+    0:00:45   19366.3      0.01       0.0       0.0                                0.00  
+    0:00:45   19312.9      0.01       0.0       0.0                                0.00  
+    0:00:45   19294.4      0.01       0.0       0.0                                0.00  
+    0:00:45   19280.1      0.01       0.0       0.0                                0.00  
+    0:00:45   19280.1      0.01       0.0       0.0                                0.00  
+    0:00:45   19280.1      0.01       0.0       0.0                                0.00  
+    0:00:45   19013.8      0.00       0.0       0.0                                0.00  
+    0:00:45   18982.5      0.00       0.0       0.0                                0.00  
+    0:00:45   18982.5      0.00       0.0       0.0                                0.00  
+    0:00:45   18982.5      0.00       0.0       0.0                                0.00  
+    0:00:45   18982.5      0.00       0.0       0.0                                0.00  
+    0:00:45   18982.5      0.00       0.0       0.0                                0.00  
+    0:00:45   18982.5      0.00       0.0       0.0                                0.00  
+
+
+Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
+
+
+  Optimization Complete
+  ---------------------
+Warning: Design 'array_4' contains 1 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+1
+check_design
+Warning: Design 'array_4' has '1' unresolved references. For more detailed information, use the "link" command. (UID-341)
+ 
+****************************************
+check_design summary:
+Version:     Q-2019.12-SP3
+Date:        Sat Jun 12 04:01:56 2021
+****************************************
+
+                   Name                                            Total
+--------------------------------------------------------------------------------
+Inputs/Outputs                                                      2
+    Multiply driven inputs (LINT-6)                                 2
+
+Nets                                                                4
+    Multiply driven net with constant driver (LINT-54)              4
+
+Tristate                                                           12
+    A tristate bus has a non tri-state driver (LINT-34)            12
+--------------------------------------------------------------------------------
+
+Warning: In design 'array_4', input port 'clk' drives wired logic; the port direction may have been specified incorrectly. (LINT-6)
+Warning: In design 'array_4', input port 'rst_n' drives wired logic; the port direction may have been specified incorrectly. (LINT-6)
+Warning: In design 'array_4', three-state bus 'n7708' has non three-state driver 'genblk3[3].U_pe_border/U_mul_border/U112/**logic_1**'. (LINT-34)
+Warning: In design 'array_4', three-state bus 'n7707' has non three-state driver 'genblk3[2].U_pe_border/U_mul_border/U112/**logic_1**'. (LINT-34)
+Warning: In design 'array_4', three-state bus 'n7706' has non three-state driver 'genblk3[1].U_pe_border/U_mul_border/U112/**logic_1**'. (LINT-34)
+Warning: In design 'array_4', three-state bus 'n7705' has non three-state driver 'genblk3[0].U_pe_border/U_mul_border/U112/**logic_1**'. (LINT-34)
+Warning: In design 'array_4', three-state bus 'genblk3[3].U_pe_border/U_mul_border/bitI_inv' has non three-state driver 'genblk3[3].U_pe_border/U_mul_border/I_0/Y'. (LINT-34)
+Warning: In design 'array_4', three-state bus 'genblk3[2].U_pe_border/U_mul_border/bitI_inv' has non three-state driver 'genblk3[2].U_pe_border/U_mul_border/I_0/Y'. (LINT-34)
+Warning: In design 'array_4', three-state bus 'genblk3[1].U_pe_border/U_mul_border/bitI_inv' has non three-state driver 'genblk3[1].U_pe_border/U_mul_border/I_0/Y'. (LINT-34)
+Warning: In design 'array_4', three-state bus 'genblk3[0].U_pe_border/U_mul_border/bitI_inv' has non three-state driver 'genblk3[0].U_pe_border/U_mul_border/I_0/Y'. (LINT-34)
+Warning: In design 'array_4', three-state bus 'ifm_dff_x[0][1]' has non three-state driver 'genblk3[0].U_pe_border/U_mul_border/gt_33/ULTI2/Y'. (LINT-34)
+Warning: In design 'array_4', three-state bus 'ifm_dff_x[1][1]' has non three-state driver 'genblk3[1].U_pe_border/U_mul_border/gt_33/ULTI2/Y'. (LINT-34)
+Warning: In design 'array_4', three-state bus 'ifm_dff_x[2][1]' has non three-state driver 'genblk3[2].U_pe_border/U_mul_border/gt_33/ULTI2/Y'. (LINT-34)
+Warning: In design 'array_4', three-state bus 'ifm_dff_x[3][1]' has non three-state driver 'genblk3[3].U_pe_border/U_mul_border/gt_33/ULTI2/Y'. (LINT-34)
+Warning: In design 'array_4', multiply-driven net 'n7708' is driven by constant 1. (LINT-54)
+Warning: In design 'array_4', multiply-driven net 'n7707' is driven by constant 1. (LINT-54)
+Warning: In design 'array_4', multiply-driven net 'n7706' is driven by constant 1. (LINT-54)
+Warning: In design 'array_4', multiply-driven net 'n7705' is driven by constant 1. (LINT-54)
+1
+#############################################
+# Take a look at area, max, and min timings #
+#############################################
+report_area > array_4_area.txt
+report_power > array_4_power.txt
+report_timing -delay min > array_4_min_delay.txt
+report_timing -delay max > array_4_max_delay.txt
+#### write out final netlist ######
+write -format verilog array_4 -output array_4.vg
+Warning: Design 'array_4' has '1' unresolved references. For more detailed information, use the "link" command. (UID-341)
+Writing verilog file '/filespace/d/dwu94/Project/uSystolic-Sim/synthesis/32nm_rvt/16bit/ugemmrate/array_4.vg'.
+1
+exit
+Memory usage for this session 178 Mbytes.
+Memory usage for this session including child processes 178 Mbytes.
+CPU usage for this session 45 seconds ( 0.01 hours ).
+Elapsed time for this session 48 seconds ( 0.01 hours ).
+
+Thank you...

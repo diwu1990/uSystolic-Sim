@@ -1,0 +1,34 @@
+Warning: Design 'pe_border' has '1' unresolved references. For more detailed information, use the "link" command. (UID-341)
+ 
+****************************************
+Report : area
+Design : pe_border
+Version: Q-2019.12-SP3
+Date   : Sat Jun 12 04:19:23 2021
+****************************************
+
+Information: Updating design information... (UID-85)
+Library(s) Used:
+
+    saed32rvt_tt0p85v25c (File: /cae/apps/data/saed32_edk-2018/lib/stdcell_rvt/db_nldm/saed32rvt_tt0p85v25c.db)
+
+Number of ports:                          145
+Number of nets:                           668
+Number of cells:                          518
+Number of combinational cells:            451
+Number of sequential cells:                66
+Number of macros/black boxes:               0
+Number of buf/inv:                         97
+Number of references:                      28
+
+Combinational area:                909.835521
+Buf/Inv area:                      128.851009
+Noncombinational area:             444.752008
+Macro/Black Box area:                0.000000
+Net Interconnect area:             326.410529
+
+Total cell area:                  1354.587530
+Total area:                       1680.998059
+
+Information: This design contains black box (unknown) components. (RPT-8)
+1
