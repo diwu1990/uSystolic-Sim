@@ -113,7 +113,6 @@ def pe_regression(
     total_leakage=None,
     total_dynamic=None
 ):
-    print("\t\tcomputing: ", computing)
     
     input = np.array([[4, 4], [8, 8], [12, 14], [16, 16], [32, 32]])
     input = np.log2(input)
