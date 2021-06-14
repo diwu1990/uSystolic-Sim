@@ -2,8 +2,10 @@ def convert_network_config(src_file="network.csv", dst_file="network_new.csv"):
     i_file = open(src_file, 'r')
     o_file = open(dst_file, 'w')
 
+    row_idx = 0
     first = True
     for row in i_file:
+        row_idx += 1
         # per layer trace gen
         if first:
             # skip the header row
@@ -19,7 +21,7 @@ def convert_network_config(src_file="network.csv", dst_file="network_new.csv"):
             o_file.write(row)
             continue
         else:
-            dst_str = elems[0] + ",\t" + \
+            dst_str = elems[0] + "_" + str(row_idx-1) + ",\t" + \
                         "GEMM" + ",\t" + \
                         elems[1] + ",\t" + \
                         elems[2] + ",\t" + \
