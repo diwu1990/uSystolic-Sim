@@ -643,11 +643,11 @@ def estimate(
         row_idx_hw = 0
         for row_hw in hw_runtime:
             row_idx_hw += 1
-            if row_idx == row_idx_hw:
-                found_flag = True
-                elems_hw = row_hw.strip().split(',')
-                elems_hw = prune(elems_hw)
+            elems_hw = row_hw.strip().split(',')
+            elems_hw = prune(elems_hw)
 
+            if name == elems_hw[0]:
+                found_flag = True
                 elems_hw = [float(elem_hw) for elem_hw in elems_hw[2:]]
 
                 [tot_word_ifmap_rd_dram, 
