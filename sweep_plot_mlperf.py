@@ -192,7 +192,7 @@ def plot_fig(technode=""):
 
         fig, ax = plt.subplots(figsize=(fig_w, fig_h))
         
-        idx_tot = 12
+        idx_tot = 6
 
         x_idx = np.arange(len(x_axis))
 
@@ -204,7 +204,7 @@ def plot_fig(technode=""):
         index = 0
         dram_bw_list = bw_list[index * 2][-1:]
         sram_bw_list = [-x for x in bw_list[index * 2 + 1][-1:]]
-        idx = 0.5
+        idx = 1.5
         ax.bar(x_idx + iterval * (idx - idx_tot / 2), dram_bw_list, width, hatch = None, alpha=0.99, color=bp_color, label="Binary Parallel")
         ax.bar(x_idx + iterval * (idx - idx_tot / 2), sram_bw_list, width, hatch = None, alpha=0.99, color=bp_color)
         dram_bw_list_bp_spm = [i for i in dram_bw_list]
@@ -303,26 +303,10 @@ def plot_fig(technode=""):
             print("min:", min(dram_bw_list_bp_spm), "max:", max(dram_bw_list_bp_spm))
             print("DRAM bs spm :", dram_bw_list_bs_spm)
             print("min:", min(dram_bw_list_bs_spm), "max:", max(dram_bw_list_bs_spm))
-            print("DRAM u6 spm :", dram_bw_list_u6_spm)
-            print("min:", min(dram_bw_list_u6_spm), "max:", max(dram_bw_list_u6_spm))
-            print("DRAM u7 spm :", dram_bw_list_u7_spm)
-            print("min:", min(dram_bw_list_u7_spm), "max:", max(dram_bw_list_u7_spm))
-            print("DRAM u8 spm :", dram_bw_list_u8_spm)
-            print("min:", min(dram_bw_list_u8_spm), "max:", max(dram_bw_list_u8_spm))
-            print("DRAM ug spm :", dram_bw_list_ug_spm)
-            print("min:", min(dram_bw_list_ug_spm), "max:", max(dram_bw_list_ug_spm))
 
             print("SRAM bp spm :", sram_bw_list_bp_spm)
             print("SRAM bs spm :", sram_bw_list_bs_spm)
-            print("SRAM u6 spm :", sram_bw_list_u6_spm)
-            print("SRAM u7 spm :", sram_bw_list_u7_spm)
-            print("SRAM u8 spm :", sram_bw_list_u8_spm)
-            print("SRAM ug spm :", sram_bw_list_ug_spm)
 
-            print("DRAM bp wspm:", dram_bw_list_bp_wspm)
-            print("min:", min(dram_bw_list_bp_wspm), "max:", max(dram_bw_list_bp_wspm))
-            print("DRAM bs wspm:", dram_bw_list_bs_wspm)
-            print("min:", min(dram_bw_list_bs_wspm), "max:", max(dram_bw_list_bs_wspm))
             print("DRAM u6 wspm:", dram_bw_list_u6_wspm)
             print("min:", min(dram_bw_list_u6_wspm), "max:", max(dram_bw_list_u6_wspm))
             print("DRAM u7 wspm:", dram_bw_list_u7_wspm)
@@ -345,18 +329,8 @@ def plot_fig(technode=""):
             sram_bw_r_list_u8_spm = []
             sram_bw_r_list_ug_spm = []
             for i in range(len(dram_bw_list_bp_spm)):
-                dram_bw_r_list_bp_spm.append(dram_bw_list_bp_wspm[i] / dram_bw_list_bp_spm[i])
-                dram_bw_r_list_bs_spm.append(dram_bw_list_bs_wspm[i] / dram_bw_list_bs_spm[i])
-                dram_bw_r_list_u6_spm.append(dram_bw_list_u6_wspm[i] / dram_bw_list_u6_spm[i])
-                dram_bw_r_list_u7_spm.append(dram_bw_list_u7_wspm[i] / dram_bw_list_u7_spm[i])
-                dram_bw_r_list_u8_spm.append(dram_bw_list_u8_wspm[i] / dram_bw_list_u8_spm[i])
-                dram_bw_r_list_ug_spm.append(dram_bw_list_ug_wspm[i] / dram_bw_list_ug_spm[i])
                 sram_bw_r_list_bp_spm.append(-sram_bw_list_bp_spm[i] / dram_bw_list_bp_spm[i])
                 sram_bw_r_list_bs_spm.append(-sram_bw_list_bs_spm[i] / dram_bw_list_bs_spm[i])
-                sram_bw_r_list_u6_spm.append(-sram_bw_list_u6_spm[i] / dram_bw_list_u6_spm[i])
-                sram_bw_r_list_u7_spm.append(-sram_bw_list_u7_spm[i] / dram_bw_list_u7_spm[i])
-                sram_bw_r_list_u8_spm.append(-sram_bw_list_u8_spm[i] / dram_bw_list_u8_spm[i])
-                sram_bw_r_list_ug_spm.append(-sram_bw_list_ug_spm[i] / dram_bw_list_ug_spm[i])
             print("SRAM bp wspm r:", sram_bw_r_list_bp_spm)
             print("SRAM bs wspm r:", sram_bw_r_list_bs_spm)
             print("SRAM u6 wspm r:", sram_bw_r_list_u6_spm)
@@ -1831,8 +1805,8 @@ def plot_fig(technode=""):
             for x in x_idx:
                 eff_ax.fill_betweenx([bottom, top / 1.9], x1=x, x2=x+0.5, alpha=0.2, color=bg_color, linewidth=0)
         else:
-            eff_ax.set_ylim((0, 600))
-            eff_ax2.set_ylim((0, 40))
+            eff_ax.set_ylim((0, 80))
+            eff_ax2.set_ylim((0, 14))
             for x in x_idx:
                 eff_ax2.fill_betweenx([0, 40], x1=x, x2=x+0.5, alpha=0.2, color=bg_color, linewidth=0)
         
