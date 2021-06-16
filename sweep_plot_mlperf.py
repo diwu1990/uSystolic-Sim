@@ -1879,6 +1879,7 @@ def plot_fig(technode=""):
             onchip_power_eff_ug_r_list_ux_wspm_min = min(onchip_power_eff_ug_r_list_u6_wspm + onchip_power_eff_ug_r_list_u7_wspm + onchip_power_eff_ug_r_list_u8_wspm)
             onchip_power_eff_ug_r_list_ux_wspm_mean = mean(onchip_power_eff_ug_r_list_u6_wspm + onchip_power_eff_ug_r_list_u7_wspm + onchip_power_eff_ug_r_list_u8_wspm)
             onchip_power_eff_ug_r_list_ux_wspm_median = median(onchip_power_eff_ug_r_list_u6_wspm + onchip_power_eff_ug_r_list_u7_wspm + onchip_power_eff_ug_r_list_u8_wspm)
+            onchip_power_eff_ug_r_list_ux_wspm_max = max(onchip_power_eff_ug_r_list_u6_wspm + onchip_power_eff_ug_r_list_u7_wspm + onchip_power_eff_ug_r_list_u8_wspm)
             print("ugemm 256c (baseline)     :", onchip_power_eff_list_ug_wspm)
             print("unary 32c                 :", onchip_power_eff_ug_r_list_u6_wspm)
             print("unary 64c                 :", onchip_power_eff_ug_r_list_u7_wspm)
@@ -1886,6 +1887,7 @@ def plot_fig(technode=""):
             print("min    improve:", onchip_power_eff_ug_r_list_ux_wspm_min*100, "%")
             print("mean   improve:", onchip_power_eff_ug_r_list_ux_wspm_mean*100, "%")
             print("median improve:", onchip_power_eff_ug_r_list_ux_wspm_median*100, "%")
+            print("max    improve:", onchip_power_eff_ug_r_list_ux_wspm_max*100, "%")
 
             print("Total power efficiency improve: ")
             total_power_eff_bp_r_list_ux_wspm_min = min(total_power_eff_bp_r_list_u6_wspm + total_power_eff_bp_r_list_u7_wspm + total_power_eff_bp_r_list_u8_wspm)
