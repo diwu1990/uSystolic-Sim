@@ -2062,16 +2062,21 @@ def plot_fig(technode=""):
         plt.yscale("linear")
         
         if a == "eyeriss":
-            bottom, top = eff_ax.get_ylim()
-            eff_ax.set_ylim((bottom, top * 1.9))
-            bottom, top = eff_ax2.get_ylim()
-            eff_ax2.set_ylim((bottom, top * 1.9))
-            bottom, top = eff_ax.get_ylim()
+            eff_ax.set_ylim((0, 250))
+            eff_ax.set_yticks((0, 125))
+            eff_ax.set_yticklabels(("{:3d}".format(0), "{:3d}".format(125)))
+            eff_ax2.set_ylim((0, 100))
+            eff_ax2.set_yticks((0, 50))
+            eff_ax2.set_yticklabels(("{:2d}".format(0), "{:2d}".format(50)))
             for x in x_idx:
-                eff_ax.fill_betweenx([bottom, top / 1.9], x1=x, x2=x+0.5, alpha=0.2, color=bg_color, linewidth=0)
+                eff_ax.fill_betweenx([0, 125], x1=x, x2=x+0.5, alpha=0.2, color=bg_color, linewidth=0)
         else:
             eff_ax.set_ylim((0, 600))
+            eff_ax.set_yticks((0, 300))
+            eff_ax.set_yticklabels(("{:3d}".format(0), "{:3d}".format(300)))
             eff_ax2.set_ylim((0, 40))
+            eff_ax2.set_yticks((0, 20))
+            eff_ax2.set_yticklabels(("{:2d}".format(0), "{:2d}".format(20)))
             for x in x_idx:
                 eff_ax2.fill_betweenx([0, 40], x1=x, x2=x+0.5, alpha=0.2, color=bg_color, linewidth=0)
         
