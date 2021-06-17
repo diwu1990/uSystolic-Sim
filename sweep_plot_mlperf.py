@@ -19,8 +19,8 @@ def plot_fig(technode=""):
     print_energy_eff = False
     print_power_eff = False
 
-    if not os.path.exists("./outputs_fig/"):
-        os.system("mkdir ./outputs_fig")
+    if not os.path.exists("./outputs_fig_mlperf/"):
+        os.system("mkdir ./outputs_fig_mlperf")
 
     arch_list = ["tpu", "eyeriss"]
     network_list = ["mlperf"]
