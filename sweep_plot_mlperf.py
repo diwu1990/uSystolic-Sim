@@ -438,7 +438,6 @@ def plot_fig(technode=""):
         u6_color = "#666666"
         u7_color = "#888888"
         u8_color = "#AAAAAA"
-        ug_color = "#CCCCCC"
         bg_color = "#D783FF"
 
         x_axis = ["Average"]
@@ -538,7 +537,6 @@ def plot_fig(technode=""):
         u6_color = "#666666"
         u7_color = "#888888"
         u8_color = "#AAAAAA"
-        ug_color = "#CCCCCC"
         bg_color = "#D783FF"
 
         x_axis = ["Average"]
