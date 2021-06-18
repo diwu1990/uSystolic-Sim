@@ -1770,10 +1770,10 @@ def plot_fig(technode=""):
         plt.yscale("linear")
         
         if a == "eyeriss":
-            eff_ax.set_ylim((-1, 4))
+            eff_ax.set_ylim((-1.5, 4))
             eff_ax.set_yticks([0, 3])
             eff_ax.set_yticklabels(["{:3d}".format(0), "{:3d}".format(3)])
-            eff_ax2.set_ylim((-4, 16))
+            eff_ax2.set_ylim((-6, 16))
             eff_ax2.set_yticks([0, 12])
             eff_ax2.set_yticklabels(["{:2d}".format(0), "{:2d}".format(12)])
             bottom, top = eff_ax.get_ylim()
