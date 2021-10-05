@@ -18,6 +18,8 @@ def plot_fig(technode=""):
     print_runtime = False
     print_energy_eff = False
     print_power_eff = False
+    print_energy_delay_product_onchip = False
+    print_energy_delay_product_total = False
 
     if not os.path.exists("./outputs_fig/"):
         os.system("mkdir ./outputs_fig")
@@ -2196,6 +2198,333 @@ def plot_fig(technode=""):
         print("Energy power efficiency onchip fig saved!\n")
 
         print()
+
+
+
+        # energy delay product onchip
+        my_dpi = 300
+        if a == "eyeriss":
+            fig_h = 1.3
+        else:
+            fig_h = 1
+        fig_w = 3.3115
+
+        bp_color = "#7A81FF"
+        bs_color = "#FF7F7F"
+        u6_color = "#666666"
+        u7_color = "#888888"
+        u8_color = "#AAAAAA"
+        ug_color = "#CCCCCC"
+        bg_color = "#D783FF"
+
+        x_axis = ["Conv1", "Conv2", "Conv3", "Conv4", "Conv5", "FC6", "FC7", "FC8"]
+
+        fig, ax = plt.subplots(figsize=(fig_w, fig_h))
+        
+        idx_tot = 6
+
+        x_idx = np.arange(len(x_axis))
+
+        width = 1 / 2**(math.ceil(math.log2(idx_tot)))
+
+        iterval = width
+        
+        l_alpha = 0.8
+
+        # 8b - spm - bp
+        index = 0
+        runtime_list = time_list[index][:-1]
+        onchip_edp_list_bp_spm = []
+        total_edp_list_bp_spm = []
+        for i in range(len(onchip_energy_list_bp_spm)):
+            onchip_edp_list_bp_spm.append(onchip_energy_list_bp_spm[i] * runtime_list[i])
+            total_edp_list_bp_spm.append(total_energy_list_bp_spm[i] * runtime_list[i])
+        idx = 1.5
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), onchip_edp_list_bp_spm, width, hatch = None, alpha=0.99, color=bp_color, label="Binary Parallel")
+
+        # 8b - spm - bs
+        index = 1
+        runtime_list = time_list[index][:-1]
+        onchip_edp_list_bs_spm = []
+        total_edp_list_bs_spm = []
+        for i in range(len(onchip_energy_list_bs_spm)):
+            onchip_edp_list_bs_spm.append(onchip_energy_list_bs_spm[i] * runtime_list[i])
+            total_edp_list_bs_spm.append(total_energy_list_bs_spm[i] * runtime_list[i])
+        idx += 1
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), onchip_edp_list_bs_spm, width, hatch = None, alpha=0.99, color=bs_color, label='Binary Serial')
+
+        # 8b - wospm - ur - 32c
+        index = 9
+        runtime_list = time_list[index][:-1]
+        onchip_edp_list_u6_wspm = []
+        total_edp_list_u6_wspm = []
+        for i in range(len(onchip_energy_list_u6_wspm)):
+            onchip_edp_list_u6_wspm.append(onchip_energy_list_u6_wspm[i] * runtime_list[i])
+            total_edp_list_u6_wspm.append(total_energy_list_u6_wspm[i] * runtime_list[i])
+        idx += 1
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), onchip_edp_list_u6_wspm, width, hatch = None, alpha=0.99, color=u6_color, label='Unary-32c')
+
+        # 8b - wospm - ur - 64c
+        index = 10
+        runtime_list = time_list[index][:-1]
+        onchip_edp_list_u7_wspm = []
+        total_edp_list_u7_wspm = []
+        for i in range(len(onchip_energy_list_u7_wspm)):
+            onchip_edp_list_u7_wspm.append(onchip_energy_list_u7_wspm[i] * runtime_list[i])
+            total_edp_list_u7_wspm.append(total_energy_list_u7_wspm[i] * runtime_list[i])
+        idx += 1
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), onchip_edp_list_u7_wspm, width, hatch = None, alpha=0.99, color=u7_color, label='Unary-64c')
+
+        # 8b - wospm - ur - 128c
+        index = 11
+        runtime_list = time_list[index][:-1]
+        onchip_edp_list_u8_wspm = []
+        total_edp_list_u8_wspm = []
+        for i in range(len(onchip_energy_list_u8_wspm)):
+            onchip_edp_list_u8_wspm.append(onchip_energy_list_u8_wspm[i] * runtime_list[i])
+            total_edp_list_u8_wspm.append(total_energy_list_u8_wspm[i] * runtime_list[i])
+        idx += 1
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), onchip_edp_list_u8_wspm, width, hatch = None, alpha=0.99, color=u8_color, label='Unary-128c')
+
+        # 8b - wospm - ug - 256c
+        index = 12
+        runtime_list = time_list[index][:-1]
+        onchip_edp_list_ug_wspm = []
+        total_edp_list_ug_wspm = []
+        for i in range(len(onchip_energy_list_ug_wspm)):
+            onchip_edp_list_ug_wspm.append(onchip_energy_list_ug_wspm[i] * runtime_list[i])
+            total_edp_list_ug_wspm.append(total_energy_list_ug_wspm[i] * runtime_list[i])
+        idx += 1
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), onchip_edp_list_ug_wspm, width, hatch = None, alpha=0.99, color=ug_color, label='uGEMM-H')
+
+        ax.set_ylabel('On-chip EDP\n(uJ*s)')
+        ax.set_xticks(x_idx)
+        ax.set_xticklabels(x_axis)
+        plt.xlim(x_idx[0]-0.5, x_idx[-1]+0.5)
+        plt.yscale("log")
+
+        _, top = plt.ylim()
+
+        locs, labels = plt.yticks()
+        if a == "eyeriss":
+            locs = [10, 1000, 100000, 10000000]
+        else:
+            locs = locs[1:]
+        ax.set_yticks(locs)
+        
+        bottom, _ = plt.ylim()
+        if a == "eyeriss":
+            ax.set_ylim((bottom, top*500))
+            bottom, top = plt.ylim()
+            for x in x_idx:
+                ax.fill_betweenx([bottom, top/500], x1=x, x2=x+0.5, alpha=0.2, color=bg_color, linewidth=0)
+            ax.legend(loc="upper center", ncol=3, frameon=True)
+        else:
+            ax.set_ylim((bottom, top))
+            bottom, top = plt.ylim()
+            for x in x_idx:
+                ax.fill_betweenx([bottom, top], x1=x, x2=x+0.5, alpha=0.2, color=bg_color, linewidth=0)
+        
+        y_label_list = []
+        for y in locs:
+            if y != 0:
+                y_label_list.append("{:1.0E}".format(abs(y)))
+            else:
+                y_label_list.append("0")
+        ax.set_yticklabels(y_label_list)
+
+        ax.minorticks_off()
+        fig.tight_layout()
+        plt.savefig('./outputs_fig/' + technode + '/Energy_delay_product_onchip_' + a_cap + ".pdf", bbox_inches='tight', dpi=my_dpi, pad_inches=0.02)
+        print("Energy delay product onchip fig saved!\n")
+
+
+        # energy delay product total
+        my_dpi = 300
+        if a == "eyeriss":
+            fig_h = 1
+        else:
+            fig_h = 1
+        fig_w = 3.3115
+
+        bp_color = "#7A81FF"
+        bs_color = "#FF7F7F"
+        u6_color = "#666666"
+        u7_color = "#888888"
+        u8_color = "#AAAAAA"
+        ug_color = "#CCCCCC"
+        bg_color = "#D783FF"
+
+        x_axis = ["Conv1", "Conv2", "Conv3", "Conv4", "Conv5", "FC6", "FC7", "FC8"]
+
+        fig, ax = plt.subplots(figsize=(fig_w, fig_h))
+        
+        idx_tot = 6
+
+        x_idx = np.arange(len(x_axis))
+
+        width = 1 / 2**(math.ceil(math.log2(idx_tot)))
+
+        iterval = width
+        
+        l_alpha = 0.8
+
+        # 8b - spm - bp
+        index = 0
+        idx = 1.5
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), total_edp_list_bp_spm, width, hatch = None, alpha=0.99, color=bp_color, label="Binary Parallel")
+
+        # 8b - spm - bs
+        index = 1
+        idx += 1
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), total_edp_list_bs_spm, width, hatch = None, alpha=0.99, color=bs_color, label='Binary Serial')
+
+        # 8b - wospm - ur - 32c
+        index = 9
+        idx += 1
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), total_edp_list_u6_wspm, width, hatch = None, alpha=0.99, color=u6_color, label='Unary-32c')
+
+        # 8b - wospm - ur - 64c
+        index = 10
+        idx += 1
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), total_edp_list_u7_wspm, width, hatch = None, alpha=0.99, color=u7_color, label='Unary-64c')
+
+        # 8b - wospm - ur - 128c
+        index = 11
+        idx += 1
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), total_edp_list_u8_wspm, width, hatch = None, alpha=0.99, color=u8_color, label='Unary-128c')
+
+        # 8b - wospm - ug - 256c
+        index = 12
+        idx += 1
+        ax.bar(x_idx + iterval * (idx - idx_tot / 2), total_edp_list_ug_wspm, width, hatch = None, alpha=0.99, color=ug_color, label='uGEMM-H')
+
+        ax.set_ylabel('Total EDP\n(uJ*s)')
+        ax.set_xticks(x_idx)
+        ax.set_xticklabels(x_axis)
+        plt.xlim(x_idx[0]-0.5, x_idx[-1]+0.5)
+        plt.yscale("log")
+
+        _, top = plt.ylim()
+
+        locs, labels = plt.yticks()
+        if a == "eyeriss":
+            locs = locs[1:]
+        else:
+            locs = locs[1:]
+        ax.set_yticks(locs)
+        
+        bottom, _ = plt.ylim()
+        if a == "eyeriss":
+            ax.set_ylim((bottom, top))
+            bottom, top = plt.ylim()
+            for x in x_idx:
+                ax.fill_betweenx([bottom, top], x1=x, x2=x+0.5, alpha=0.2, color=bg_color, linewidth=0)
+        else:
+            ax.set_ylim((bottom, top))
+            bottom, top = plt.ylim()
+            for x in x_idx:
+                ax.fill_betweenx([bottom, top], x1=x, x2=x+0.5, alpha=0.2, color=bg_color, linewidth=0)
+        
+        y_label_list = []
+        for y in locs:
+            if y != 0:
+                y_label_list.append("{:1.0E}".format(abs(y)))
+            else:
+                y_label_list.append("0")
+        ax.set_yticklabels(y_label_list)
+
+        ax.minorticks_off()
+        fig.tight_layout()
+        plt.savefig('./outputs_fig/' + technode + '/Energy_delay_product_total_' + a_cap + ".pdf", bbox_inches='tight', dpi=my_dpi, pad_inches=0.02)
+        print("Energy delay product total fig saved!\n")
+
+
+        if print_energy_delay_product_onchip:
+            print("On-chip energy delay product reduction: ")
+            onchip_edp_bp_r_list_bs_spm = []
+            onchip_edp_bp_r_list_u6_wspm = []
+            onchip_edp_bp_r_list_u7_wspm = []
+            onchip_edp_bp_r_list_u8_wspm = []
+            onchip_edp_bp_r_list_ug_wspm = []
+            for i in range(len(onchip_edp_list_bp_spm)):
+                onchip_edp_bp_r_list_bs_spm.append(1 - onchip_edp_list_bs_spm[i] / onchip_edp_list_bp_spm[i])
+                onchip_edp_bp_r_list_u6_wspm.append(1 - onchip_edp_list_u6_wspm[i] / onchip_edp_list_bp_spm[i])
+                onchip_edp_bp_r_list_u7_wspm.append(1 - onchip_edp_list_u7_wspm[i] / onchip_edp_list_bp_spm[i])
+                onchip_edp_bp_r_list_u8_wspm.append(1 - onchip_edp_list_u8_wspm[i] / onchip_edp_list_bp_spm[i])
+                onchip_edp_bp_r_list_ug_wspm.append(1 - onchip_edp_list_ug_wspm[i] / onchip_edp_list_bp_spm[i])
+            print("binary parallel (baseline):", onchip_edp_list_bp_spm)
+            print("binary serial             :", onchip_edp_bp_r_list_bs_spm)
+            print("unary 32c                 :", onchip_edp_bp_r_list_u6_wspm)
+            print("unary 64c                 :", onchip_edp_bp_r_list_u7_wspm)
+            print("unary 128c                :", onchip_edp_bp_r_list_u8_wspm)
+            print("ugemm 256c                :", onchip_edp_bp_r_list_ug_wspm)
+            print("min    reduction:", min(onchip_edp_bp_r_list_u6_wspm + onchip_edp_bp_r_list_u7_wspm + onchip_edp_bp_r_list_u8_wspm)*100, "%")
+            print("mean   reduction:", mean(onchip_edp_bp_r_list_u6_wspm + onchip_edp_bp_r_list_u7_wspm + onchip_edp_bp_r_list_u8_wspm)*100, "%")
+            print("median reduction:", median(onchip_edp_bp_r_list_u6_wspm + onchip_edp_bp_r_list_u7_wspm + onchip_edp_bp_r_list_u8_wspm)*100, "%")
+            print("max    reduction:", max(onchip_edp_bp_r_list_u6_wspm + onchip_edp_bp_r_list_u7_wspm + onchip_edp_bp_r_list_u8_wspm)*100, "%")
+            
+            onchip_edp_bs_r_list_u6_wspm = []
+            onchip_edp_bs_r_list_u7_wspm = []
+            onchip_edp_bs_r_list_u8_wspm = []
+            onchip_edp_bs_r_list_ug_wspm = []
+            for i in range(len(onchip_edp_list_bs_spm)):
+                onchip_edp_bs_r_list_u6_wspm.append(1 - onchip_edp_list_u6_wspm[i] / onchip_edp_list_bs_spm[i])
+                onchip_edp_bs_r_list_u7_wspm.append(1 - onchip_edp_list_u7_wspm[i] / onchip_edp_list_bs_spm[i])
+                onchip_edp_bs_r_list_u8_wspm.append(1 - onchip_edp_list_u8_wspm[i] / onchip_edp_list_bs_spm[i])
+                onchip_edp_bs_r_list_ug_wspm.append(1 - onchip_edp_list_ug_wspm[i] / onchip_edp_list_bs_spm[i])
+            print("binary serial (baseline)  :", onchip_edp_list_bs_spm)
+            print("unary 32c                 :", onchip_edp_bs_r_list_u6_wspm)
+            print("unary 64c                 :", onchip_edp_bs_r_list_u7_wspm)
+            print("unary 128c                :", onchip_edp_bs_r_list_u8_wspm)
+            print("unary 128c                :", onchip_edp_bs_r_list_ug_wspm)
+            print("min    reduction:", min(onchip_edp_bs_r_list_u6_wspm + onchip_edp_bs_r_list_u7_wspm + onchip_edp_bs_r_list_u8_wspm)*100, "%")
+            print("mean    reduction:", mean(onchip_edp_bs_r_list_u6_wspm + onchip_edp_bs_r_list_u7_wspm + onchip_edp_bs_r_list_u8_wspm)*100, "%")
+            print("median reduction:", median(onchip_edp_bs_r_list_u6_wspm + onchip_edp_bs_r_list_u7_wspm + onchip_edp_bs_r_list_u8_wspm)*100, "%")
+            print("max    reduction:", max(onchip_edp_bs_r_list_u6_wspm + onchip_edp_bs_r_list_u7_wspm + onchip_edp_bs_r_list_u8_wspm)*100, "%")
+
+        if print_energy_delay_product_total:
+            print("Total energy delay product reduction: ")
+            total_edp_bp_r_list_bs_spm = []
+            total_edp_bp_r_list_u6_wspm = []
+            total_edp_bp_r_list_u7_wspm = []
+            total_edp_bp_r_list_u8_wspm = []
+            total_edp_bp_r_list_ug_wspm = []
+            for i in range(len(total_edp_list_bp_spm)):
+                total_edp_bp_r_list_bs_spm.append(1 - total_edp_list_bs_spm[i] / total_edp_list_bp_spm[i])
+                total_edp_bp_r_list_u6_wspm.append(1 - total_edp_list_u6_wspm[i] / total_edp_list_bp_spm[i])
+                total_edp_bp_r_list_u7_wspm.append(1 - total_edp_list_u7_wspm[i] / total_edp_list_bp_spm[i])
+                total_edp_bp_r_list_u8_wspm.append(1 - total_edp_list_u8_wspm[i] / total_edp_list_bp_spm[i])
+                total_edp_bp_r_list_ug_wspm.append(1 - total_edp_list_ug_wspm[i] / total_edp_list_bp_spm[i])
+            print("binary parallel (baseline):", total_edp_list_bp_spm)
+            print("binary serial             :", total_edp_bp_r_list_bs_spm)
+            print("unary 32c                 :", total_edp_bp_r_list_u6_wspm)
+            print("unary 64c                 :", total_edp_bp_r_list_u7_wspm)
+            print("unary 128c                :", total_edp_bp_r_list_u8_wspm)
+            print("ugemm 256c                :", total_edp_bp_r_list_ug_wspm)
+            print("min    reduction:", min(total_edp_bp_r_list_u6_wspm + total_edp_bp_r_list_u7_wspm + total_edp_bp_r_list_u8_wspm)*100, "%")
+            print("mean   reduction:", mean(total_edp_bp_r_list_u6_wspm + total_edp_bp_r_list_u7_wspm + total_edp_bp_r_list_u8_wspm)*100, "%")
+            print("median reduction:", median(total_edp_bp_r_list_u6_wspm + total_edp_bp_r_list_u7_wspm + total_edp_bp_r_list_u8_wspm)*100, "%")
+            print("max    reduction:", max(total_edp_bp_r_list_u6_wspm + total_edp_bp_r_list_u7_wspm + total_edp_bp_r_list_u8_wspm)*100, "%")
+            
+            total_edp_bs_r_list_u6_wspm = []
+            total_edp_bs_r_list_u7_wspm = []
+            total_edp_bs_r_list_u8_wspm = []
+            total_edp_bs_r_list_ug_wspm = []
+            for i in range(len(total_edp_list_bs_spm)):
+                total_edp_bs_r_list_u6_wspm.append(1 - total_edp_list_u6_wspm[i] / total_edp_list_bs_spm[i])
+                total_edp_bs_r_list_u7_wspm.append(1 - total_edp_list_u7_wspm[i] / total_edp_list_bs_spm[i])
+                total_edp_bs_r_list_u8_wspm.append(1 - total_edp_list_u8_wspm[i] / total_edp_list_bs_spm[i])
+                total_edp_bs_r_list_ug_wspm.append(1 - total_edp_list_ug_wspm[i] / total_edp_list_bs_spm[i])
+            print("binary serial (baseline)  :", total_edp_list_bs_spm)
+            print("unary 32c                 :", total_edp_bs_r_list_u6_wspm)
+            print("unary 64c                 :", total_edp_bs_r_list_u7_wspm)
+            print("unary 128c                :", total_edp_bs_r_list_u8_wspm)
+            print("unary 128c                :", total_edp_bs_r_list_ug_wspm)
+            print("min    reduction:", min(total_edp_bs_r_list_u6_wspm + total_edp_bs_r_list_u7_wspm + total_edp_bs_r_list_u8_wspm)*100, "%")
+            print("mean    reduction:", mean(total_edp_bs_r_list_u6_wspm + total_edp_bs_r_list_u7_wspm + total_edp_bs_r_list_u8_wspm)*100, "%")
+            print("median reduction:", median(total_edp_bs_r_list_u6_wspm + total_edp_bs_r_list_u7_wspm + total_edp_bs_r_list_u8_wspm)*100, "%")
+            print("max    reduction:", max(total_edp_bs_r_list_u6_wspm + total_edp_bs_r_list_u7_wspm + total_edp_bs_r_list_u8_wspm)*100, "%")
 
 
 def prune(input_list):
