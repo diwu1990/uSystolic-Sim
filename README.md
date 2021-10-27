@@ -82,14 +82,16 @@ Run a single configuration:
 *If the current run is stopped before it finishes, run ```source clean.sh``` before starting the next run.*
 
 ## Citing
-
-To be released.
-
-<!-- If you find this tool useful for your research, please use the following bibtex to cite us,
+If you find UnarySim is useful for your research, please use the following bibtex to cite us,
 
 ```
-bib
-``` -->
+@inproceedings{diwu2022uSystolic,
+  title = {{uSystolic: Byte-Crawling Unary Systolic Array}},
+  author = {Di Wu and Joshua San Miguel},
+  booktitle = {International Symposium on High-Performance Computer Architecture (HPCA)},
+  year = {2022},
+}
+```
 
 ## Author
 
