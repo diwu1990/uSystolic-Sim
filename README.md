@@ -82,7 +82,7 @@ Run a single configuration:
 *If the current run is stopped before it finishes, run ```source clean.sh``` before starting the next run.*
 
 ## Citing
-If you find UnarySim is useful for your research, please use the following bibtex to cite us,
+If you find uSystolic-Sim is useful for your research, please use the following bibtex to cite us,
 
 ```
 @inproceedings{diwu2022uSystolic,
