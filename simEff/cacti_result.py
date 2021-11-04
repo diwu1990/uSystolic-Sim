@@ -157,9 +157,15 @@ def dram_report_extract(
         if line_idx == 65:
             # unit: mW
             leakage_power_closed_page = float(entry.strip().split(':')[-1].strip())
+        if line_idx == 66:
+            # unit: mW
+            leakage_power_open_page = float(entry.strip().split(':')[-1].strip())
         if line_idx == 67:
             # unit: mW
             leakage_power_IO = float(entry.strip().split(':')[-1].strip())
+        if line_idx == 68:
+            # unit: mW
+            refresh_power = float(entry.strip().split(':')[-1].strip())
         if line_idx == 69:
             # unit: mm^2
             height = float(entry.strip().split(':')[-1].split('x')[0].strip())
@@ -172,7 +178,7 @@ def dram_report_extract(
     # MHz
     max_freq = 1 / cycle_time * 1000
     cacti_out.close()
-    return max_freq, activate_energy, energy_rd, energy_wr, precharge_energy, leakage_power_closed_page, leakage_power_IO, area
+    return max_freq, activate_energy, energy_rd, energy_wr, precharge_energy, leakage_power_closed_page, leakage_power_open_page, leakage_power_IO, refresh_power, area
 
 
 if __name__ == "__main__":

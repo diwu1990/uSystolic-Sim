@@ -482,7 +482,9 @@ def estimate(
     energy_wr_dram, \
     precharge_energy_dram, \
     leakage_power_closed_page_dram, \
+    leakage_power_open_page_dram, \
     leakage_power_IO_dram, \
+    refresh_power_dram, \
     area_dram = cacti.dram_report_extract(report=run_name + "_DRAM.rpt")
 
     # extract the bank count from dram_cfg
