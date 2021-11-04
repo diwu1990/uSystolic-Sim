@@ -237,6 +237,12 @@ def profiling(
     config.read(pe_cfg_file)
     frequency = float(config.get("Frequency", 'MHz').split(',')[0].strip())
     period = 1.0 / frequency # in us unit
+    try:
+        running_frequency = float(config.get("Running Frequency", 'MHz').split(',')[0].strip())
+        running_period = 1.0 / running_frequency # in us unit
+    except:
+        running_frequency = frequency
+        running_period = period
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
     # output report
@@ -711,7 +717,7 @@ def profiling(
                             ideal_start_cycle_ofmap_rd_sram, 
                             ideal_start_cycle_ofmap_wr_sram)
         ideal_layer_cycle = ideal_max_clk - ideal_min_clk + 1
-        ideal_layer_sec = ideal_layer_cycle * period / float(10**6)
+        ideal_layer_sec = ideal_layer_cycle * running_period / float(10**6)
         ideal_layer_throughput = 1 / ideal_layer_sec
         ideal_cycle_all += ideal_layer_cycle
         ideal_sec_all += ideal_layer_sec
@@ -724,7 +730,7 @@ def profiling(
         real_min_clk =  ideal_min_clk - \
                         shift_cycles_ifmap_rd_dram - shift_cycles_filter_rd_dram
         real_layer_cycle = real_max_clk - real_min_clk + 1
-        real_layer_sec = real_layer_cycle * period / float(10**6)
+        real_layer_sec = real_layer_cycle * running_period / float(10**6)
         real_layer_throughput = 1 / real_layer_sec
         real_cycle_all += real_layer_cycle
         real_sec_all += real_layer_sec
