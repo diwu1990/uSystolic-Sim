@@ -8,7 +8,7 @@
 6) power
 of the systolic array with varying computing schemes.
 
-The paper related to this simulator, "uSystolic: Byte-Crawling Unary Systolic Array", is accepted to International Symposium on High-Performance Computer Architecture (HPCA) 2022.
+The paper related to this simulator, "uSystolic: Byte-Crawling Unary Systolic Array", is accepted to International Symposium on High-Performance Computer Architecture (HPCA) 2022. The accuracy simulation of this paper can be found in [UnarySim](https://github.com/diwu1990/UnarySim/tree/master/app/uSystolic).
 
 ## Feature
 The major features in *uSystolic-Sim* different from [ARM SCALE-Sim](https://github.com/ARM-software/SCALE-Sim) are list below.
