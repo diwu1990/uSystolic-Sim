@@ -284,10 +284,10 @@ def profiling(
                     "SRAM I RD BW (GBytes/sec),\tSRAM F RD BW (GBytes/sec),\tSRAM O RD BW (GBytes/sec),\tSRAM O WR BW (GBytes/sec),\tSRAM BW Total (GBytes/sec),\t\n"
     
     tp_ideal_log =  "Layer,\tType,\t" + \
-                    "Cycle Total (Cycles),\tTime Total (Secs),\tThroughput (Frames/sec)\t\n"
+                    "Cycle Total (Cycles),\tTime Total (Secs),\tThroughput (Frames/sec),\t\n"
     
     tp_real_log =  "Layer,\tType,\t" + \
-                    "Cycle Total (Cycles),\tTime Total (Secs),\tThroughput (Frames/sec)\t\n"
+                    "Cycle Total (Cycles),\tTime Total (Secs),\tThroughput (Frames/sec),\t\n"
     
     hw_runtime_log =  "Layer,\tType,\t" + \
                     "tot_word_ifmap_rd_dram,\t" + \

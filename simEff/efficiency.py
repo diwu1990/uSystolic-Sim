@@ -451,7 +451,7 @@ def estimate(
                     "MUL (D) (nJ),\tMUL (L) (nJ),\tMUL Total (D+L) (nJ),\t" + \
                     "ACC (D) (nJ),\tACC (L) (nJ),\tACC Total (D+L) (nJ),\t" + \
                     "Systolic Array Total (D) (nJ),\tSystolic Array Total (L) (nJ),\tSystolic Array Total (D+L) (nJ),\t" + \
-                    "System Total (D) (nJ),\tSystem Total (L) (nJ),\tSystem Total (D+L) (nJ)\t\n"
+                    "System Total (D) (nJ),\tSystem Total (L) (nJ),\tSystem Total (D+L) (nJ),\t\n"
     
     power_log =     "Layer,\tType,\t" + \
                     "DRAM I RD (D) (mW),\tDRAM F RD (D) (mW),\tDRAM O RD (D) (mW),\tDRAM O WR (D) (mW),\tDRAM Total (D) (mW),\t" + \
@@ -463,7 +463,7 @@ def estimate(
                     "MUL (D) (mW),\tMUL (L) (mW),\tMUL Total (D+L) (mW),\t" + \
                     "ACC (D) (mW),\tACC (L) (mW),\tACC Total (D+L) (mW),\t" + \
                     "Systolic Array Total (D) (mW),\tSystolic Array Total (L) (mW),\tSystolic Array Total (D+L) (mW),\t" + \
-                    "System Total (D) (mW),\tSystem Total (L) (mW),\tSystem Total (D+L) (mW)\t\n"
+                    "System Total (D) (mW),\tSystem Total (L) (mW),\tSystem Total (D+L) (mW),\t\n"
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
     # DRAM: area
