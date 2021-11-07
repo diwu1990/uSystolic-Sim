@@ -374,11 +374,11 @@ def estimate(
 
     sa_energy_dynamic    =  0
     sa_energy_leakage    =  0
-    sa_energy_tot        =  0
+    sa_energy_total      =  0
 
     sa_energy_dynamic_all    =  0
     sa_energy_leakage_all    =  0
-    sa_energy_tot_all        =  0
+    sa_energy_total_all      =  0
 
     sa_power_ireg_d     = 0
     sa_power_ireg_l     = 0
@@ -414,11 +414,11 @@ def estimate(
     
     sa_power_dynamic    = 0
     sa_power_leakage    = 0
-    sa_power_tot        = 0
+    sa_power_total      = 0
 
     sa_power_dynamic_all    = 0
     sa_power_leakage_all    = 0
-    sa_power_tot_all        = 0
+    sa_power_total_all      = 0
 
     onchip_area_tot = 0
 
@@ -922,11 +922,11 @@ def estimate(
 
         sa_energy_dynamic=  sa_energy_ireg_d + sa_energy_wreg_d + sa_energy_mul_d + sa_energy_acc_d
         sa_energy_leakage=  sa_energy_ireg_l + sa_energy_wreg_l + sa_energy_mul_l + sa_energy_acc_l
-        sa_energy_tot    =  sa_energy_dynamic + sa_energy_leakage
+        sa_energy_total  =  sa_energy_dynamic + sa_energy_leakage
 
         sa_energy_dynamic_all    +=  sa_energy_dynamic
         sa_energy_leakage_all    +=  sa_energy_leakage
-        sa_energy_tot_all      +=  sa_energy_tot
+        sa_energy_total_all      +=  sa_energy_total
 
         sa_power_ireg_d = sa_energy_ireg_d   / (real_layer_cycle * running_period)
         sa_power_ireg_l = sa_energy_ireg_l   / (real_layer_cycle * running_period)
@@ -942,7 +942,7 @@ def estimate(
         sa_power_acc    = sa_energy_acc      / (real_layer_cycle * running_period)
         sa_power_dynamic= sa_power_ireg_d + sa_power_wreg_d + sa_power_mul_d + sa_power_acc_d
         sa_power_leakage= sa_power_ireg_l + sa_power_wreg_l + sa_power_mul_l + sa_power_acc_l
-        sa_power_tot    = sa_power_dynamic + sa_power_leakage
+        sa_power_total  = sa_power_dynamic + sa_power_leakage
 
         sys_energy_dynamic  = dram_energy_dynamic + sram_energy_dynamic + sa_energy_dynamic
         sys_energy_leakage  = dram_energy_leakage + sram_energy_leakage + sa_energy_leakage
@@ -992,7 +992,7 @@ def estimate(
                             str(sa_energy_acc) + ",\t" + \
                             str(sa_energy_dynamic) + ",\t" + \
                             str(sa_energy_leakage) + ",\t" + \
-                            str(sa_energy_tot) + ",\t" + \
+                            str(sa_energy_total) + ",\t" + \
                             str(sys_energy_dynamic) + ",\t" + \
                             str(sys_energy_leakage) + ",\t" + \
                             str(sys_energy_total) + ",\t\n"
@@ -1030,7 +1030,7 @@ def estimate(
                             str(sa_power_acc) + ",\t" + \
                             str(sa_power_dynamic) + ",\t" + \
                             str(sa_power_leakage) + ",\t" + \
-                            str(sa_power_tot) + ",\t" + \
+                            str(sa_power_total) + ",\t" + \
                             str(sys_power_dynamic) + ",\t" + \
                             str(sys_power_leakage) + ",\t" + \
                             str(sys_power_total) + ",\t\n"
@@ -1068,7 +1068,7 @@ def estimate(
     sa_power_acc_all                = sa_energy_acc_all             / (real_cycle_all * running_period)
     sa_power_dynamic_all            = sa_energy_dynamic_all         / (real_cycle_all * running_period)
     sa_power_leakage_all            = sa_energy_leakage_all         / (real_cycle_all * running_period)
-    sa_power_tot_all                = sa_energy_tot_all             / (real_cycle_all * running_period)
+    sa_power_total_all              = sa_energy_total_all           / (real_cycle_all * running_period)
     sys_power_dynamic_all           = sys_energy_dynamic_all        / (real_cycle_all * running_period)
     sys_power_leakage_all           = sys_energy_leakage_all        / (real_cycle_all * running_period)
     sys_power_total_all             = sys_energy_total_all          / (real_cycle_all * running_period)
@@ -1106,7 +1106,7 @@ def estimate(
                         str(sa_energy_acc_all) + ",\t" + \
                         str(sa_energy_dynamic_all) + ",\t" + \
                         str(sa_energy_leakage_all) + ",\t" + \
-                        str(sa_energy_tot_all) + ",\t" + \
+                        str(sa_energy_total_all) + ",\t" + \
                         str(sys_energy_dynamic_all) + ",\t" + \
                         str(sys_energy_leakage_all) + ",\t" + \
                         str(sys_energy_total_all) + ",\t\n"
@@ -1144,7 +1144,7 @@ def estimate(
                         str(sa_power_acc_all) + ",\t" + \
                         str(sa_power_dynamic_all) + ",\t" + \
                         str(sa_power_leakage_all) + ",\t" + \
-                        str(sa_power_tot_all) + ",\t" + \
+                        str(sa_power_total_all) + ",\t" + \
                         str(sys_power_dynamic_all) + ",\t" + \
                         str(sys_power_leakage_all) + ",\t" + \
                         str(sys_power_total_all) + ",\t\n"
