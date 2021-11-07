@@ -69,16 +69,16 @@ def plot_fig(technode=""):
                     area_list.append(return_indexed_elems(  input_csv=path + name + "_area.csv",            index=10)) # sa wreg area
                     area_list.append(return_indexed_elems(  input_csv=path + name + "_area.csv",            index=11)) # sa mul area
                     area_list.append(return_indexed_elems(  input_csv=path + name + "_area.csv",            index=12)) # sa acc area
-                    power_list.append(return_indexed_elems( input_csv=path + name + "_power.csv",           index=6)) # dram
-                    power_list.append(return_indexed_elems( input_csv=path + name + "_power.csv",           index=11)) # sram D
-                    power_list.append(return_indexed_elems( input_csv=path + name + "_power.csv",           index=15)) # sram L
-                    power_list.append(return_indexed_elems( input_csv=path + name + "_power.csv",           index=29)) # sa D
-                    power_list.append(return_indexed_elems( input_csv=path + name + "_power.csv",           index=30)) # sa L
-                    energy_list.append(return_indexed_elems(input_csv=path + name + "_energy.csv",          index=6)) # dram
-                    energy_list.append(return_indexed_elems(input_csv=path + name + "_energy.csv",          index=11)) # sram D
-                    energy_list.append(return_indexed_elems(input_csv=path + name + "_energy.csv",          index=15)) # sram L
-                    energy_list.append(return_indexed_elems(input_csv=path + name + "_energy.csv",          index=29)) # sa D
-                    energy_list.append(return_indexed_elems(input_csv=path + name + "_energy.csv",          index=30)) # sa L
+                    power_list.append(return_indexed_elems( input_csv=path + name + "_power.csv",           index=6)) # dram D
+                    power_list.append(return_indexed_elems( input_csv=path + name + "_power.csv",           index=13)) # sram D
+                    power_list.append(return_indexed_elems( input_csv=path + name + "_power.csv",           index=17)) # sram L
+                    power_list.append(return_indexed_elems( input_csv=path + name + "_power.csv",           index=31)) # sa D
+                    power_list.append(return_indexed_elems( input_csv=path + name + "_power.csv",           index=32)) # sa L
+                    energy_list.append(return_indexed_elems(input_csv=path + name + "_energy.csv",          index=6)) # dram D
+                    energy_list.append(return_indexed_elems(input_csv=path + name + "_energy.csv",          index=13)) # sram D
+                    energy_list.append(return_indexed_elems(input_csv=path + name + "_energy.csv",          index=17)) # sram L
+                    energy_list.append(return_indexed_elems(input_csv=path + name + "_energy.csv",          index=31)) # sa D
+                    energy_list.append(return_indexed_elems(input_csv=path + name + "_energy.csv",          index=32)) # sa L
                     
                     # binary serial
                     computing = "bs"
@@ -99,16 +99,16 @@ def plot_fig(technode=""):
                     area_list.append(return_indexed_elems(  input_csv=path + name + "_area.csv",            index=10)) # sa wreg area
                     area_list.append(return_indexed_elems(  input_csv=path + name + "_area.csv",            index=11)) # sa mul area
                     area_list.append(return_indexed_elems(  input_csv=path + name + "_area.csv",            index=12)) # sa acc area
-                    power_list.append(return_indexed_elems( input_csv=path + name + "_power.csv",           index=6)) # dram
-                    power_list.append(return_indexed_elems( input_csv=path + name + "_power.csv",           index=11)) # sram D
-                    power_list.append(return_indexed_elems( input_csv=path + name + "_power.csv",           index=15)) # sram L
-                    power_list.append(return_indexed_elems( input_csv=path + name + "_power.csv",           index=29)) # sa D
-                    power_list.append(return_indexed_elems( input_csv=path + name + "_power.csv",           index=30)) # sa L
-                    energy_list.append(return_indexed_elems(input_csv=path + name + "_energy.csv",          index=6)) # dram
-                    energy_list.append(return_indexed_elems(input_csv=path + name + "_energy.csv",          index=11)) # sram D
-                    energy_list.append(return_indexed_elems(input_csv=path + name + "_energy.csv",          index=15)) # sram L
-                    energy_list.append(return_indexed_elems(input_csv=path + name + "_energy.csv",          index=29)) # sa D
-                    energy_list.append(return_indexed_elems(input_csv=path + name + "_energy.csv",          index=30)) # sa L
+                    power_list.append(return_indexed_elems( input_csv=path + name + "_power.csv",           index=6)) # dram D
+                    power_list.append(return_indexed_elems( input_csv=path + name + "_power.csv",           index=13)) # sram D
+                    power_list.append(return_indexed_elems( input_csv=path + name + "_power.csv",           index=17)) # sram L
+                    power_list.append(return_indexed_elems( input_csv=path + name + "_power.csv",           index=31)) # sa D
+                    power_list.append(return_indexed_elems( input_csv=path + name + "_power.csv",           index=32)) # sa L
+                    energy_list.append(return_indexed_elems(input_csv=path + name + "_energy.csv",          index=6)) # dram D
+                    energy_list.append(return_indexed_elems(input_csv=path + name + "_energy.csv",          index=13)) # sram D
+                    energy_list.append(return_indexed_elems(input_csv=path + name + "_energy.csv",          index=17)) # sram L
+                    energy_list.append(return_indexed_elems(input_csv=path + name + "_energy.csv",          index=31)) # sa D
+                    energy_list.append(return_indexed_elems(input_csv=path + name + "_energy.csv",          index=32)) # sa L
 
                     # unary rate
                     computing = "ur"
@@ -130,16 +130,16 @@ def plot_fig(technode=""):
                         area_list.append(return_indexed_elems(  input_csv=path + name + "_area.csv",            index=10)) # sa wreg area
                         area_list.append(return_indexed_elems(  input_csv=path + name + "_area.csv",            index=11)) # sa mul area
                         area_list.append(return_indexed_elems(  input_csv=path + name + "_area.csv",            index=12)) # sa acc area
-                        power_list.append(return_indexed_elems( input_csv=path + name + "_power.csv",           index=6)) # dram
-                        power_list.append(return_indexed_elems( input_csv=path + name + "_power.csv",           index=11)) # sram D
-                        power_list.append(return_indexed_elems( input_csv=path + name + "_power.csv",           index=15)) # sram L
-                        power_list.append(return_indexed_elems( input_csv=path + name + "_power.csv",           index=29)) # sa D
-                        power_list.append(return_indexed_elems( input_csv=path + name + "_power.csv",           index=30)) # sa L
-                        energy_list.append(return_indexed_elems(input_csv=path + name + "_energy.csv",          index=6)) # dram
-                        energy_list.append(return_indexed_elems(input_csv=path + name + "_energy.csv",          index=11)) # sram D
-                        energy_list.append(return_indexed_elems(input_csv=path + name + "_energy.csv",          index=15)) # sram L
-                        energy_list.append(return_indexed_elems(input_csv=path + name + "_energy.csv",          index=29)) # sa D
-                        energy_list.append(return_indexed_elems(input_csv=path + name + "_energy.csv",          index=30)) # sa L
+                        power_list.append(return_indexed_elems( input_csv=path + name + "_power.csv",           index=6)) # dram D
+                        power_list.append(return_indexed_elems( input_csv=path + name + "_power.csv",           index=13)) # sram D
+                        power_list.append(return_indexed_elems( input_csv=path + name + "_power.csv",           index=17)) # sram L
+                        power_list.append(return_indexed_elems( input_csv=path + name + "_power.csv",           index=31)) # sa D
+                        power_list.append(return_indexed_elems( input_csv=path + name + "_power.csv",           index=32)) # sa L
+                        energy_list.append(return_indexed_elems(input_csv=path + name + "_energy.csv",          index=6)) # dram D
+                        energy_list.append(return_indexed_elems(input_csv=path + name + "_energy.csv",          index=13)) # sram D
+                        energy_list.append(return_indexed_elems(input_csv=path + name + "_energy.csv",          index=17)) # sram L
+                        energy_list.append(return_indexed_elems(input_csv=path + name + "_energy.csv",          index=31)) # sa D
+                        energy_list.append(return_indexed_elems(input_csv=path + name + "_energy.csv",          index=32)) # sa L
 
                     # ugemm rate
                     computing = "ug"
@@ -161,16 +161,16 @@ def plot_fig(technode=""):
                         area_list.append(return_indexed_elems(  input_csv=path + name + "_area.csv",            index=10)) # sa wreg area
                         area_list.append(return_indexed_elems(  input_csv=path + name + "_area.csv",            index=11)) # sa mul area
                         area_list.append(return_indexed_elems(  input_csv=path + name + "_area.csv",            index=12)) # sa acc area
-                        power_list.append(return_indexed_elems( input_csv=path + name + "_power.csv",           index=6)) # dram
-                        power_list.append(return_indexed_elems( input_csv=path + name + "_power.csv",           index=11)) # sram D
-                        power_list.append(return_indexed_elems( input_csv=path + name + "_power.csv",           index=15)) # sram L
-                        power_list.append(return_indexed_elems( input_csv=path + name + "_power.csv",           index=29)) # sa D
-                        power_list.append(return_indexed_elems( input_csv=path + name + "_power.csv",           index=30)) # sa L
-                        energy_list.append(return_indexed_elems(input_csv=path + name + "_energy.csv",          index=6)) # dram
-                        energy_list.append(return_indexed_elems(input_csv=path + name + "_energy.csv",          index=11)) # sram D
-                        energy_list.append(return_indexed_elems(input_csv=path + name + "_energy.csv",          index=15)) # sram L
-                        energy_list.append(return_indexed_elems(input_csv=path + name + "_energy.csv",          index=29)) # sa D
-                        energy_list.append(return_indexed_elems(input_csv=path + name + "_energy.csv",          index=30)) # sa L
+                        power_list.append(return_indexed_elems( input_csv=path + name + "_power.csv",           index=6)) # dram D
+                        power_list.append(return_indexed_elems( input_csv=path + name + "_power.csv",           index=13)) # sram D
+                        power_list.append(return_indexed_elems( input_csv=path + name + "_power.csv",           index=17)) # sram L
+                        power_list.append(return_indexed_elems( input_csv=path + name + "_power.csv",           index=31)) # sa D
+                        power_list.append(return_indexed_elems( input_csv=path + name + "_power.csv",           index=32)) # sa L
+                        energy_list.append(return_indexed_elems(input_csv=path + name + "_energy.csv",          index=6)) # dram D
+                        energy_list.append(return_indexed_elems(input_csv=path + name + "_energy.csv",          index=13)) # sram D
+                        energy_list.append(return_indexed_elems(input_csv=path + name + "_energy.csv",          index=17)) # sram L
+                        energy_list.append(return_indexed_elems(input_csv=path + name + "_energy.csv",          index=31)) # sa D
+                        energy_list.append(return_indexed_elems(input_csv=path + name + "_energy.csv",          index=32)) # sa L
 
                     # unary temporal
                     computing = "ut"
@@ -192,16 +192,16 @@ def plot_fig(technode=""):
                         area_list.append(return_indexed_elems(  input_csv=path + name + "_area.csv",            index=10)) # sa wreg area
                         area_list.append(return_indexed_elems(  input_csv=path + name + "_area.csv",            index=11)) # sa mul area
                         area_list.append(return_indexed_elems(  input_csv=path + name + "_area.csv",            index=12)) # sa acc area
-                        power_list.append(return_indexed_elems( input_csv=path + name + "_power.csv",           index=6)) # dram
-                        power_list.append(return_indexed_elems( input_csv=path + name + "_power.csv",           index=11)) # sram D
-                        power_list.append(return_indexed_elems( input_csv=path + name + "_power.csv",           index=15)) # sram L
-                        power_list.append(return_indexed_elems( input_csv=path + name + "_power.csv",           index=29)) # sa D
-                        power_list.append(return_indexed_elems( input_csv=path + name + "_power.csv",           index=30)) # sa L
-                        energy_list.append(return_indexed_elems(input_csv=path + name + "_energy.csv",          index=6)) # dram
-                        energy_list.append(return_indexed_elems(input_csv=path + name + "_energy.csv",          index=11)) # sram D
-                        energy_list.append(return_indexed_elems(input_csv=path + name + "_energy.csv",          index=15)) # sram L
-                        energy_list.append(return_indexed_elems(input_csv=path + name + "_energy.csv",          index=29)) # sa D
-                        energy_list.append(return_indexed_elems(input_csv=path + name + "_energy.csv",          index=30)) # sa L
+                        power_list.append(return_indexed_elems( input_csv=path + name + "_power.csv",           index=6)) # dram D
+                        power_list.append(return_indexed_elems( input_csv=path + name + "_power.csv",           index=13)) # sram D
+                        power_list.append(return_indexed_elems( input_csv=path + name + "_power.csv",           index=17)) # sram L
+                        power_list.append(return_indexed_elems( input_csv=path + name + "_power.csv",           index=31)) # sa D
+                        power_list.append(return_indexed_elems( input_csv=path + name + "_power.csv",           index=32)) # sa L
+                        energy_list.append(return_indexed_elems(input_csv=path + name + "_energy.csv",          index=6)) # dram D
+                        energy_list.append(return_indexed_elems(input_csv=path + name + "_energy.csv",          index=13)) # sram D
+                        energy_list.append(return_indexed_elems(input_csv=path + name + "_energy.csv",          index=17)) # sram L
+                        energy_list.append(return_indexed_elems(input_csv=path + name + "_energy.csv",          index=31)) # sa D
+                        energy_list.append(return_indexed_elems(input_csv=path + name + "_energy.csv",          index=32)) # sa L
 
         # bandwidth
         my_dpi = 300
@@ -2196,9 +2196,6 @@ def plot_fig(technode=""):
         print("Power total fig saved!\n")
         
         print("Energy power efficiency onchip fig saved!\n")
-
-        print()
-
 
 
         # energy delay product onchip

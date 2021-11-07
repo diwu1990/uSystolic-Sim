@@ -22,7 +22,7 @@ def estimate(
 ):
     """
     this code run CACTI according to the configuration of ifmap, filter, ofmap to get power and energy
-    1) it calculates the required numbre of banks for SRAM/DRAM (ifmap, filter and ofmap SRAM, as well DRAM)
+    1) it calculates the required number of banks for SRAM/DRAM (ifmap, filter and ofmap SRAM, as well DRAM)
     2) it profiles the trace file from architecture simulation, and report the required bank count for memory
     3) the cacti result, together with the run time reported from architecture simulation, will generate the total power and total energy for each component
     """
@@ -97,7 +97,9 @@ def estimate(
     energy_wr_dram = 0
     precharge_energy_dram = 0
     leakage_power_closed_page_dram = 0
+    leakage_power_open_page_dram = 0
     leakage_power_IO_dram = 0
+    refresh_power_dram = 0
     area_dram = 0
 
     dram_page_bits = 0
@@ -110,25 +112,33 @@ def estimate(
     dram_energy_filter_rd       =   0
     dram_energy_ofmap_rd        =   0
     dram_energy_ofmap_wr        =   0
-    dram_energy_total_dynamic   =   0
+    dram_energy_dynamic         =   0
+    dram_energy_leakage         =   0
+    dram_energy_total           =   0
 
     dram_energy_ifmap_rd_all        =   0
     dram_energy_filter_rd_all       =   0
     dram_energy_ofmap_rd_all        =   0
     dram_energy_ofmap_wr_all        =   0
-    dram_energy_total_dynamic_all   =   0
+    dram_energy_dynamic_all         =   0
+    dram_energy_leakage_all         =   0
+    dram_energy_total_all           =   0
 
     dram_power_ifmap_rd         =   0
     dram_power_filter_rd        =   0
     dram_power_ofmap_rd         =   0
     dram_power_ofmap_wr         =   0
-    dram_power_total_dynamic    =   0
+    dram_power_dynamic          =   0
+    dram_power_leakage          =   0
+    dram_power_total            =   0
 
     dram_power_ifmap_rd_all         =   0
     dram_power_filter_rd_all        =   0
     dram_power_ofmap_rd_all         =   0
     dram_power_ofmap_wr_all         =   0
-    dram_power_total_dynamic_all    =   0
+    dram_power_dynamic_all          =   0
+    dram_power_leakage_all          =   0
+    dram_power_total_all            =   0
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
     # sram
@@ -414,19 +424,19 @@ def estimate(
 
     sys_energy_dynamic = 0
     sys_energy_leakage = 0
-    sys_energy_tot = 0
+    sys_energy_total = 0
 
     sys_energy_dynamic_all = 0
     sys_energy_leakage_all = 0
-    sys_energy_tot_all = 0
+    sys_energy_total_all = 0
 
     sys_power_dynamic = 0
     sys_power_leakage = 0
-    sys_power_tot = 0
+    sys_power_total = 0
 
     sys_power_dynamic_all = 0
     sys_power_leakage_all = 0
-    sys_power_tot_all = 0
+    sys_power_total_all = 0
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
     # output report
@@ -443,6 +453,7 @@ def estimate(
 
     energy_log =    "Layer,\tType,\t" + \
                     "DRAM I RD (D) (nJ),\tDRAM F RD (D) (nJ),\tDRAM O RD (D) (nJ),\tDRAM O WR (D) (nJ),\tDRAM Total (D) (nJ),\t" + \
+                    "DRAM Total (L) (nJ),\tDRAM Total (D+L) (nJ),\t" + \
                     "SRAM I RD (D) (nJ),\tSRAM F RD (D) (nJ),\tSRAM O RD (D) (nJ),\tSRAM O WR (D) (nJ),\tSRAM Total (D) (nJ),\t" + \
                     "SRAM I (L) (nJ),\tSRAM F (L) (nJ),\tSRAM O (L) (nJ),\tSRAM Total (L) (nJ),\t" + \
                     "SRAM Total (D+L) (nJ),\t" + \
@@ -455,6 +466,7 @@ def estimate(
     
     power_log =     "Layer,\tType,\t" + \
                     "DRAM I RD (D) (mW),\tDRAM F RD (D) (mW),\tDRAM O RD (D) (mW),\tDRAM O WR (D) (mW),\tDRAM Total (D) (mW),\t" + \
+                    "DRAM Total (L) (mW),\tDRAM Total (D+L) (mW),\t" + \
                     "SRAM I RD (D) (mW),\tSRAM F RD (D) (mW),\tSRAM O RD (D) (mW),\tSRAM O WR (D) (mW),\tSRAM Total (D) (mW),\t" + \
                     "SRAM I (L) (mW),\tSRAM F (L) (mW),\tSRAM O (L) (mW),\tSRAM Total (L) (mW),\t" + \
                     "SRAM Total (D+L) (mW),\t" + \
@@ -774,13 +786,18 @@ def estimate(
                                         energy_rd_dram * tot_access_ofmap_rd_dram
         dram_energy_ofmap_wr        =   (activate_energy_dram + precharge_energy_dram) * tot_row_access_ofmap_wr_dram + \
                                         energy_wr_dram * tot_access_ofmap_wr_dram
-        dram_energy_total_dynamic   =   dram_energy_ifmap_rd + dram_energy_filter_rd + dram_energy_ofmap_rd + dram_energy_ofmap_wr
+        dram_energy_dynamic         =   dram_energy_ifmap_rd + dram_energy_filter_rd + dram_energy_ofmap_rd + dram_energy_ofmap_wr
+        dram_energy_leakage         =   (leakage_power_closed_page_dram + leakage_power_open_page_dram + leakage_power_IO_dram + refresh_power_dram) * \
+                                        (real_layer_cycle * running_period) * dram_bank
+        dram_energy_total           =   dram_energy_dynamic + dram_energy_leakage
 
         dram_power_ifmap_rd         =   dram_energy_ifmap_rd        /   (real_layer_cycle * running_period)
         dram_power_filter_rd        =   dram_energy_filter_rd       /   (real_layer_cycle * running_period)
         dram_power_ofmap_rd         =   dram_energy_ofmap_rd        /   (real_layer_cycle * running_period)
         dram_power_ofmap_wr         =   dram_energy_ofmap_wr        /   (real_layer_cycle * running_period)
-        dram_power_total_dynamic    =   dram_energy_total_dynamic   /   (real_layer_cycle * running_period)
+        dram_power_dynamic          =   dram_energy_dynamic         /   (real_layer_cycle * running_period)
+        dram_power_leakage          =   dram_energy_leakage         /   (real_layer_cycle * running_period)
+        dram_power_total            =   dram_power_dynamic + dram_power_leakage
 
         tot_word_ifmap_rd_dram_all  += tot_word_ifmap_rd_dram
         tot_word_filter_rd_dram_all += tot_word_filter_rd_dram
@@ -791,7 +808,9 @@ def estimate(
         dram_energy_filter_rd_all   += dram_energy_filter_rd
         dram_energy_ofmap_rd_all    += dram_energy_ofmap_rd
         dram_energy_ofmap_wr_all    += dram_energy_ofmap_wr
-        dram_energy_total_dynamic_all += dram_energy_total_dynamic
+        dram_energy_dynamic_all     += dram_energy_dynamic
+        dram_energy_leakage_all     += dram_energy_leakage
+        dram_energy_total_all       += dram_energy_total
 
         # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
         # SRAM: energy and power
@@ -925,27 +944,30 @@ def estimate(
         sa_power_leakage= sa_power_ireg_l + sa_power_wreg_l + sa_power_mul_l + sa_power_acc_l
         sa_power_tot    = sa_power_dynamic + sa_power_leakage
 
-        sys_energy_dynamic  = dram_energy_total_dynamic + sram_energy_dynamic + sa_energy_dynamic
-        sys_energy_leakage  = sram_energy_leakage + sa_energy_leakage
-        sys_energy_tot      = sys_energy_dynamic + sys_energy_leakage
+        sys_energy_dynamic  = dram_energy_dynamic + sram_energy_dynamic + sa_energy_dynamic
+        sys_energy_leakage  = dram_energy_leakage + sram_energy_leakage + sa_energy_leakage
+        sys_energy_total    = sys_energy_dynamic + sys_energy_leakage
 
         sys_energy_dynamic_all  += sys_energy_dynamic
         sys_energy_leakage_all  += sys_energy_leakage
-        sys_energy_tot_all      += sys_energy_tot
+        sys_energy_total_all    += sys_energy_total
         
         sys_power_dynamic   = sys_energy_dynamic / (real_layer_cycle * running_period)
         sys_power_leakage   = sys_energy_leakage / (real_layer_cycle * running_period)
-        sys_power_tot       = sys_power_dynamic + sys_power_leakage
+        sys_power_total     = sys_power_dynamic + sys_power_leakage
         # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
         # log generation
         # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 
-        energy_log +=       str(name) + ",\t" + str(layer_type) + ",\t" + \
+        energy_log +=       str(name) + ",\t" + \
+                            str(layer_type) + ",\t" + \
                             str(dram_energy_ifmap_rd) + ",\t" + \
                             str(dram_energy_filter_rd) + ",\t" + \
                             str(dram_energy_ofmap_rd) + ",\t" + \
                             str(dram_energy_ofmap_wr) + ",\t" + \
-                            str(dram_energy_total_dynamic) + ",\t" + \
+                            str(dram_energy_dynamic) + ",\t" + \
+                            str(dram_energy_leakage) + ",\t" + \
+                            str(dram_energy_total) + ",\t" + \
                             str(sram_energy_ifmap_rd) + ",\t" + \
                             str(sram_energy_filter_rd) + ",\t" + \
                             str(sram_energy_ofmap_rd) + ",\t" + \
@@ -973,14 +995,17 @@ def estimate(
                             str(sa_energy_tot) + ",\t" + \
                             str(sys_energy_dynamic) + ",\t" + \
                             str(sys_energy_leakage) + ",\t" + \
-                            str(sys_energy_tot) + ",\t\n"
+                            str(sys_energy_total) + ",\t\n"
 
-        power_log +=        str(name) + ",\t" + str(layer_type) + ",\t" + \
+        power_log +=        str(name) + ",\t" + \
+                            str(layer_type) + ",\t" + \
                             str(dram_power_ifmap_rd) + ",\t" + \
                             str(dram_power_filter_rd) + ",\t" + \
                             str(dram_power_ofmap_rd) + ",\t" + \
                             str(dram_power_ofmap_wr) + ",\t" + \
-                            str(dram_power_total_dynamic) + ",\t" + \
+                            str(dram_power_dynamic) + ",\t" + \
+                            str(dram_power_leakage) + ",\t" + \
+                            str(dram_power_total) + ",\t" + \
                             str(sram_power_ifmap_rd) + ",\t" + \
                             str(sram_power_filter_rd) + ",\t" + \
                             str(sram_power_ofmap_rd) + ",\t" + \
@@ -1008,7 +1033,7 @@ def estimate(
                             str(sa_power_tot) + ",\t" + \
                             str(sys_power_dynamic) + ",\t" + \
                             str(sys_power_leakage) + ",\t" + \
-                            str(sys_power_tot) + ",\t\n"
+                            str(sys_power_total) + ",\t\n"
         
         print("All done for " + name)
     
@@ -1016,7 +1041,9 @@ def estimate(
     dram_power_filter_rd_all        = dram_energy_filter_rd_all     / (real_cycle_all * running_period)
     dram_power_ofmap_rd_all         = dram_energy_ofmap_rd_all      / (real_cycle_all * running_period)
     dram_power_ofmap_wr_all         = dram_energy_ofmap_wr_all      / (real_cycle_all * running_period)
-    dram_power_total_dynamic_all    = dram_energy_total_dynamic_all / (real_cycle_all * running_period)
+    dram_power_dynamic_all          = dram_energy_dynamic_all       / (real_cycle_all * running_period)
+    dram_power_leakage_all          = dram_energy_leakage_all       / (real_cycle_all * running_period)
+    dram_power_total_all            = dram_energy_total_all         / (real_cycle_all * running_period)
     sram_power_ifmap_rd_all         = sram_energy_ifmap_rd_all      / (real_cycle_all * running_period)
     sram_power_filter_rd_all        = sram_energy_filter_rd_all     / (real_cycle_all * running_period)
     sram_power_ofmap_rd_all         = sram_energy_ofmap_rd_all      / (real_cycle_all * running_period)
@@ -1044,14 +1071,17 @@ def estimate(
     sa_power_tot_all                = sa_energy_tot_all             / (real_cycle_all * running_period)
     sys_power_dynamic_all           = sys_energy_dynamic_all        / (real_cycle_all * running_period)
     sys_power_leakage_all           = sys_energy_leakage_all        / (real_cycle_all * running_period)
-    sys_power_tot_all               = sys_energy_tot_all            / (real_cycle_all * running_period)
+    sys_power_total_all             = sys_energy_total_all          / (real_cycle_all * running_period)
 
-    energy_log +=       str(run_name) + ",\t" + "All" + ",\t" + \
+    energy_log +=       str(run_name) + ",\t" + \
+                        "All" + ",\t" + \
                         str(dram_energy_ifmap_rd_all) + ",\t" + \
                         str(dram_energy_filter_rd_all) + ",\t" + \
                         str(dram_energy_ofmap_rd_all) + ",\t" + \
                         str(dram_energy_ofmap_wr_all) + ",\t" + \
-                        str(dram_energy_total_dynamic_all) + ",\t" + \
+                        str(dram_energy_dynamic_all) + ",\t" + \
+                        str(dram_energy_leakage_all) + ",\t" + \
+                        str(dram_energy_total_all) + ",\t" + \
                         str(sram_energy_ifmap_rd_all) + ",\t" + \
                         str(sram_energy_filter_rd_all) + ",\t" + \
                         str(sram_energy_ofmap_rd_all) + ",\t" + \
@@ -1079,14 +1109,17 @@ def estimate(
                         str(sa_energy_tot_all) + ",\t" + \
                         str(sys_energy_dynamic_all) + ",\t" + \
                         str(sys_energy_leakage_all) + ",\t" + \
-                        str(sys_energy_tot_all) + ",\t\n"
+                        str(sys_energy_total_all) + ",\t\n"
 
-    power_log +=        str(run_name) + ",\t" + "All" + ",\t" + \
+    power_log +=        str(run_name) + ",\t" + \
+                        "All" + ",\t" + \
                         str(dram_power_ifmap_rd_all) + ",\t" + \
                         str(dram_power_filter_rd_all) + ",\t" + \
                         str(dram_power_ofmap_rd_all) + ",\t" + \
                         str(dram_power_ofmap_wr_all) + ",\t" + \
-                        str(dram_power_total_dynamic_all) + ",\t" + \
+                        str(dram_power_dynamic_all) + ",\t" + \
+                        str(dram_power_leakage_all) + ",\t" + \
+                        str(dram_power_total_all) + ",\t" + \
                         str(sram_power_ifmap_rd_all) + ",\t" + \
                         str(sram_power_filter_rd_all) + ",\t" + \
                         str(sram_power_ofmap_rd_all) + ",\t" + \
@@ -1114,7 +1147,7 @@ def estimate(
                         str(sa_power_tot_all) + ",\t" + \
                         str(sys_power_dynamic_all) + ",\t" + \
                         str(sys_power_leakage_all) + ",\t" + \
-                        str(sys_power_tot_all) + ",\t\n"
+                        str(sys_power_total_all) + ",\t\n"
 
     area.write(area_log)
     energy.write(energy_log)
